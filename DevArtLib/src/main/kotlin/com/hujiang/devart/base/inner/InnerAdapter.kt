@@ -29,10 +29,10 @@ abstract class InnerAdapter<T> : BaseAdapter, Filterable {
 
     constructor(context: Context, list: MutableList<T>?): super() {
         this.context = context
-        this.inflater = LayoutInflater.from(context);
-        this.listFull = list;
-        this.list = list;
-        this.pm = context.packageManager;
+        this.inflater = LayoutInflater.from(context)
+        this.listFull = list
+        this.list = list
+        this.pm = context.packageManager
     }
 
     open fun setNewList(list: MutableList<T>?) {
@@ -104,16 +104,16 @@ abstract class InnerAdapter<T> : BaseAdapter, Filterable {
                 results.count = newValues.size
             }
 
-            return results;
+            return results
         }
 
         override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
             if (results != null) {
-                list = results.values as MutableList<T>?;
+                list = results.values as MutableList<T>?
                 if (results.count > 0) {
-                    notifyDataSetChanged();
+                    notifyDataSetChanged()
                 } else {
-                    notifyDataSetInvalidated();
+                    notifyDataSetInvalidated()
                 }
             }
         }

@@ -7,7 +7,7 @@ import android.view.*
 /**
  * Created by rarnu on 3/23/16.
  */
-abstract class InnerFragment: Fragment, ViewTreeObserver.OnGlobalLayoutListener, InnerIntf {
+abstract class InnerFragment: Fragment, ViewTreeObserver.OnGlobalLayoutListener, IIntf {
 
     protected var innerView: View? = null
     protected var innerBundle: Bundle? = null
@@ -29,7 +29,7 @@ abstract class InnerFragment: Fragment, ViewTreeObserver.OnGlobalLayoutListener,
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        innerBundle = arguments;
+        innerBundle = arguments
         initLogic()
         if (activity.actionBar != null) {
             if (getCustomTitle() == null || getCustomTitle().equals("")) {

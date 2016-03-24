@@ -6,7 +6,7 @@ import android.view.Menu
 /**
  * Created by rarnu on 3/23/16.
  */
-interface InnerIntf {
+interface IIntf {
     fun getBarTitle(): Int
     fun getBarTitleWithPath(): Int
     fun getCustomTitle(): String?

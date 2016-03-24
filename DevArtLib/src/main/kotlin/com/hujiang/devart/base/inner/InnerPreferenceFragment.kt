@@ -8,7 +8,7 @@ import android.view.MenuInflater
 /**
  * Created by rarnu on 3/23/16.
  */
-abstract class InnerPreferenceFragment: PreferenceFragment, InnerIntf {
+abstract class InnerPreferenceFragment: PreferenceFragment, IIntf {
 
     var tabTitle: String? = null
     protected var innerBundle: Bundle? = null

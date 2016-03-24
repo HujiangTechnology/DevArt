@@ -46,7 +46,7 @@ abstract class InnerActivity: Activity(), ViewTreeObserver.OnGlobalLayoutListene
             }
         }
 
-        replace();
+        replace()
     }
 
     abstract fun getIcon(): Int
