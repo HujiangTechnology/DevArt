@@ -9,16 +9,10 @@ import com.hujiang.devart.base.inner.InnerActivity
  */
 abstract class BaseActivity: InnerActivity() {
 
-    override fun getCloseCondition(): Boolean {
-        return resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
-    }
+    override fun getCloseCondition(): Boolean = resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
 
-    override fun getBaseLayout(): Int {
-        return R.layout.layout_replacement
-    }
+    override fun getBaseLayout(): Int = R.layout.layout_replacement
 
-    override fun getReplaceId(): Int {
-        return R.id.fReplacement
-    }
+    override fun getReplaceId(): Int = R.id.fReplacement
 
 }

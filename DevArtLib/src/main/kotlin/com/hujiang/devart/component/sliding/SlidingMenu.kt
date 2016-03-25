@@ -11,6 +11,7 @@ import android.os.Build
 import android.os.Handler
 import android.os.Parcel
 import android.os.Parcelable
+import android.support.v4.view.ViewPager
 import android.util.AttributeSet
 import android.view.*
 import android.widget.FrameLayout
@@ -50,7 +51,7 @@ class SlidingMenu : RelativeLayout {
         }
     private var _handler = Handler()
 
-    constructor(context: Context) : super(context)
+    constructor(context: Context) : this(context, null)
 
     constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
 
@@ -65,19 +66,23 @@ class SlidingMenu : RelativeLayout {
 
         _viewAbove?.viewBehind = _viewBehind
         _viewBehind?.viewAbove = _viewAbove
-        _viewAbove?.onPageChangeListener = object : OnSlidingPageChangeListener {
+        _viewAbove?.onPageChangeListener = object : ViewPager.OnPageChangeListener {
+
             val POSITION_OPEN = 0
             val POSITION_CLOSE = 1
-            override fun onSlidingPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
             }
 
-            override fun onSlidingPageSelected(position: Int) {
+            override fun onPageSelected(position: Int) {
                 if (position == POSITION_OPEN) {
                     _openListener?.onSlidingOpen()
                 } else if (position == POSITION_CLOSE) {
                     _closeListener?.onSlidingClose()
                 }
             }
+
+            override fun onPageScrollStateChanged(state: Int) { }
         }
 
         val ta = context.obtainStyledAttributes(attrs, R.styleable.SlidingMenu)
@@ -247,24 +252,23 @@ class SlidingMenu : RelativeLayout {
 
     fun toggle() = toggle(true)
 
-    fun toggle(animate: Boolean) {
-        if (isMenuShowing) {
-            showContent(animate)
-        } else {
-            showMenu(animate)
-        }
+    fun toggle(animate: Boolean) = if (isMenuShowing) {
+        showContent(animate)
+    } else {
+        showMenu(animate)
     }
 
-    var isMenuShowing: Boolean = (_viewAbove!!.currentItem == 0 || _viewAbove!!.currentItem == 2)
+    var isMenuShowing: Boolean = false
+        get() = _viewAbove?.currentItem == 0 || _viewAbove?.currentItem == 2
 
-    var isSecondaryMenuShowing: Boolean = (_viewAbove!!.currentItem == 2)
+    var isSecondaryMenuShowing: Boolean = false
+        get() = _viewAbove?.currentItem == 2
 
     var behindOffset: Int
         get() = (_viewBehind!!.layoutParams as RelativeLayout.LayoutParams).rightMargin
         set(value) {
             _viewBehind!!.widthOffset = value
         }
-
 
     fun setBehindOffsetRes(resId: Int) {
         val i = context.resources.getDimension(resId).toInt()
@@ -449,15 +453,28 @@ class SlidingMenu : RelativeLayout {
         }
 
         if (layerType != aboveContent!!.layerType) {
-            _handler.post({
+            _handler.post {
                 aboveContent!!.setLayerType(layerType, null)
                 behindMenu!!.setLayerType(layerType, null)
                 behindSecondaryMenu?.setLayerType(layerType, null)
-            })
+            }
         }
     }
 
-    inner class SavedState : BaseSavedState {
+    class SavedState : BaseSavedState {
+
+        companion object {
+            val CREATOR = object : Parcelable.Creator<SavedState> {
+                override fun newArray(size: Int): Array<SavedState?> {
+                    return arrayOfNulls(size)
+                }
+
+                override fun createFromParcel(source: Parcel?): SavedState? {
+                    return SavedState(source!!)
+                }
+
+            }
+        }
 
         private var _item: Int = 0
         var item: Int = 0

@@ -43,9 +43,7 @@ object DeviceUtils {
         return ret
     }
 
-    fun getAppVersionCode(context: Context): Int {
-        return getAppVersionCode(context, null)
-    }
+    fun getAppVersionCode(context: Context): Int = getAppVersionCode(context, null)
 
     fun getAppVersionName(context: Context, filePath: String): String {
         var ret = ""
@@ -73,8 +71,6 @@ object DeviceUtils {
         return ret
     }
 
-    fun getAppVersionName(context: Context): String {
-        return getAppVersionName(context, null)
-    }
+    fun getAppVersionName(context: Context): String = getAppVersionName(context, null)
 
 }

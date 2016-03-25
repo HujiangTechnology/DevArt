@@ -68,14 +68,10 @@ abstract class InnerFragment: Fragment, ViewTreeObserver.OnGlobalLayoutListener,
         initMenu(menu)
     }
 
-    override fun onGlobalLayout() {
-        onLayoutReady()
-    }
+    override fun onGlobalLayout() = onLayoutReady()
 
     /**
      * override the method if you want to re-layout after system layouted
      */
-    protected open fun onLayoutReady() {
-
-    }
+    protected open fun onLayoutReady() { }
 }

@@ -10,20 +10,14 @@ abstract class BaseLoader<T>(context: Context?) : AsyncTaskLoader<MutableList<T>
 
     abstract override fun loadInBackground(): MutableList<T>?
 
-    override fun onStartLoading() {
-        forceLoad()
-    }
+    override fun onStartLoading() = forceLoad()
 
-    override fun onCanceled(data: MutableList<T>?) {
-        super.onCanceled(data)
-    }
+    override fun onCanceled(data: MutableList<T>?) = super.onCanceled(data)
 
     override fun onStopLoading() {
         cancelLoad()
     }
 
-    override fun onReset() {
-        stopLoading()
-    }
+    override fun onReset() = stopLoading()
 
 }

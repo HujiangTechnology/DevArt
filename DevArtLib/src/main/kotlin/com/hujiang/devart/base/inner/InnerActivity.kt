@@ -75,14 +75,10 @@ abstract class InnerActivity: Activity(), ViewTreeObserver.OnGlobalLayoutListene
         return super.onOptionsItemSelected(item)
     }
 
-    override fun onGlobalLayout() {
-        onLayoutReady()
-    }
+    override fun onGlobalLayout() = onLayoutReady()
 
     /**
      * override the method if you want to re-layout after system layouted
      */
-    open fun onLayoutReady() {
-
-    }
+    open fun onLayoutReady() { }
 }

@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Rect
 import android.os.Build
+import android.support.v4.view.ViewPager
 import android.util.AttributeSet
 import android.util.FloatMath
 import android.view.*
@@ -82,11 +83,11 @@ class CustomViewAbove: ViewGroup {
     var isSlideEnabled: Boolean
         get() = _enabled
         set(value) { _enabled = value }
-    private var _onPageChangeListener: OnSlidingPageChangeListener? = null
-    var onPageChangeListener: OnSlidingPageChangeListener?
+    private var _onPageChangeListener: ViewPager.OnPageChangeListener? = null
+    var onPageChangeListener: ViewPager.OnPageChangeListener?
         get() = _onPageChangeListener
         set(value) { _onPageChangeListener = value }
-    private var _internalPageChangeListener: OnSlidingPageChangeListener? = null
+    private var _internalPageChangeListener: ViewPager.OnPageChangeListener? = null
     private var _closedListener: OnSlidingClosedListener? = null
     var closedListener: OnSlidingClosedListener?
         get() = _closedListener
@@ -115,7 +116,7 @@ class CustomViewAbove: ViewGroup {
         _maximumVelocity = configuration.scaledMaximumFlingVelocity
 
         setInternalPageChangeListener(object: SimpleOnSlidingPageChangeListener() {
-            override fun onSlidingPageSelected(position: Int) {
+            override fun onPageSelected(position: Int) {
                 when(position) {
                     0, 2 -> _viewBehind?.childrenEnabled = true
                     1 -> _viewBehind?.childrenEnabled = false
@@ -143,10 +144,10 @@ class CustomViewAbove: ViewGroup {
         _curItem = newitem
         val destX = getDestScrollX(_curItem)
         if (dispatchSelected) {
-            _onPageChangeListener?.onSlidingPageSelected(newitem)
+            _onPageChangeListener?.onPageSelected(newitem)
         }
         if (dispatchSelected) {
-            _internalPageChangeListener?.onSlidingPageSelected(newitem)
+            _internalPageChangeListener?.onPageSelected(newitem)
         }
         if (smoothScroll) {
             smoothScrollTo(destX, 0, velocity)
@@ -156,7 +157,7 @@ class CustomViewAbove: ViewGroup {
         }
     }
 
-    private fun setInternalPageChangeListener(listener: OnSlidingPageChangeListener?): OnSlidingPageChangeListener? {
+    private fun setInternalPageChangeListener(listener: ViewPager.OnPageChangeListener?): ViewPager.OnPageChangeListener? {
         val oldListener = _internalPageChangeListener
         _internalPageChangeListener = listener
         return oldListener
@@ -309,8 +310,8 @@ class CustomViewAbove: ViewGroup {
     }
 
     protected fun onPageScrolled(position: Int, offset: Float, offsetPixels: Int) {
-        _onPageChangeListener?.onSlidingPageScrolled(position, offset, offsetPixels)
-        _internalPageChangeListener?.onSlidingPageScrolled(position, offset, offsetPixels)
+        _onPageChangeListener?.onPageScrolled(position, offset, offsetPixels)
+        _internalPageChangeListener?.onPageScrolled(position, offset, offsetPixels)
     }
 
     private fun completeScroll() {
@@ -348,12 +349,10 @@ class CustomViewAbove: ViewGroup {
         }
     }
 
-    private fun isSlideAllowed(dx: Float): Boolean {
-        return if (isMenuOpen) {
-            _viewBehind!!.menuOpenSlideAllowed(dx)
-        } else {
-            _viewBehind!!.menuClosedSlideAllowed(dx)
-        }
+    private fun isSlideAllowed(dx: Float): Boolean = if (isMenuOpen) {
+        _viewBehind!!.menuOpenSlideAllowed(dx)
+    } else {
+        _viewBehind!!.menuClosedSlideAllowed(dx)
     }
 
     private fun getPointerIndex(ev: MotionEvent?, id: Int): Int {
@@ -677,16 +676,16 @@ class CustomViewAbove: ViewGroup {
         return false
     }
 
-    inner open class SimpleOnSlidingPageChangeListener: OnSlidingPageChangeListener {
-        override fun onSlidingPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+    inner open class SimpleOnSlidingPageChangeListener: ViewPager.OnPageChangeListener {
+        override fun onPageScrollStateChanged(state: Int) {
 
         }
 
-        override fun onSlidingPageSelected(position: Int) {
+        override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
 
         }
 
-        open fun onSlidingPageScrollStateChanged(state: Int) {
+        override fun onPageSelected(position: Int) {
 
         }
 

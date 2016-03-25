@@ -199,20 +199,18 @@ object UIUtils {
         }
     }
 
-    fun setSearchViewTextBackground(sv: SearchView, backgroundRes: Int) {
-        try {
-            val clz = sv.javaClass
-            val fSearchPlate = clz.getDeclaredField("mSearchPlate")
-            fSearchPlate.isAccessible =  true
-            val vSearchPlate = fSearchPlate.get(sv) as View
-            vSearchPlate.setBackgroundResource(backgroundRes)
-            val fSubmitArea = clz.getDeclaredField("submit_area")
-            fSubmitArea.isAccessible = true
-            val vSubmitArea = fSubmitArea.get(sv) as View
-            vSubmitArea.setBackgroundResource(backgroundRes)
-        } catch(e: Exception) {
+    fun setSearchViewTextBackground(sv: SearchView, backgroundRes: Int) = try {
+        val clz = sv.javaClass
+        val fSearchPlate = clz.getDeclaredField("mSearchPlate")
+        fSearchPlate.isAccessible =  true
+        val vSearchPlate = fSearchPlate.get(sv) as View
+        vSearchPlate.setBackgroundResource(backgroundRes)
+        val fSubmitArea = clz.getDeclaredField("submit_area")
+        fSubmitArea.isAccessible = true
+        val vSubmitArea = fSubmitArea.get(sv) as View
+        vSubmitArea.setBackgroundResource(backgroundRes)
+    } catch(e: Exception) {
 
-        }
     }
 
 }

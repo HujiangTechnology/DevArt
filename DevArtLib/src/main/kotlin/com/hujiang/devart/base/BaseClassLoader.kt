@@ -10,19 +10,13 @@ abstract class BaseClassLoader<T>(context: Context?) : AsyncTaskLoader<T>(contex
 
     abstract override fun loadInBackground(): T?
 
-    override fun onStartLoading() {
-        forceLoad()
-    }
+    override fun onStartLoading() = forceLoad()
 
-    override fun onCanceled(data: T?) {
-        super.onCanceled(data)
-    }
+    override fun onCanceled(data: T?) = super.onCanceled(data)
 
     override fun onStopLoading() {
         cancelLoad()
     }
 
-    override fun onReset() {
-        stopLoading()
-    }
+    override fun onReset() = stopLoading()
 }

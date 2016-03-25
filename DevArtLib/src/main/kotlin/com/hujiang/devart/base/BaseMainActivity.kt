@@ -79,9 +79,7 @@ abstract class BaseMainActivity: Activity(), IFragments {
         super.onDestroy()
     }
 
-    private fun initOneTime() {
-        initOnce()
-    }
+    private fun initOneTime() = initOnce()
 
     private fun loadUI() {
         setContentView(R.layout.layout_main)

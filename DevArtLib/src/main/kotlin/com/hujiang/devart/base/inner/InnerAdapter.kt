@@ -55,21 +55,13 @@ abstract class InnerAdapter<T> : BaseAdapter, Filterable {
         notifyDataSetChanged()
     }
 
-    override fun getItem(position: Int): Any? {
-        return list!![position]
-    }
+    override fun getItem(position: Int): Any? = list!![position]
 
-    override fun getItemId(position: Int): Long {
-        return position.toLong()
-    }
+    override fun getItemId(position: Int): Long = position.toLong()
 
-    override fun getCount(): Int {
-        return list!!.size
-    }
+    override fun getCount(): Int = list!!.size
 
-    override fun getFilter(): Filter? {
-        throw UnsupportedOperationException()
-    }
+    override fun getFilter(): Filter? = throw UnsupportedOperationException()
 
     abstract fun getValueText(item: T): String?
 

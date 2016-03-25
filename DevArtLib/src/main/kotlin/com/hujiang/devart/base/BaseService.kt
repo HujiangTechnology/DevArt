@@ -30,9 +30,7 @@ abstract class BaseService: Service() {
 
     private var operating = false
 
-    override fun onBind(intent: Intent?): IBinder? {
-        return null
-    }
+    override fun onBind(intent: Intent?): IBinder? = null
 
     private fun doSendMessage() {
         Thread({
@@ -71,9 +69,8 @@ abstract class BaseService: Service() {
         }).start()
     }
 
-    private fun doNotification(id: Int, title: Int, desc: Int, canClose: Boolean, action: String) {
-        NotificationUtils.showNotification(applicationContext, id, getIcon24(), title, desc, action, canClose)
-    }
+    private fun doNotification(id: Int, title: Int, desc: Int, canClose: Boolean, action: String) =
+            NotificationUtils.showNotification(applicationContext, id, getIcon24(), title, desc, action, canClose)
 
     /**
      * you may pass the parameters via INTENT

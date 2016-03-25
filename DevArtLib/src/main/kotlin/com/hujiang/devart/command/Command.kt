@@ -41,29 +41,21 @@ object Command {
             return hasBusybox
         }
 
-    fun runCommand(command: String, root: Boolean): CommandResult {
-        return runCommand(arrayOf(command), root, null)
-    }
+    fun runCommand(command: String, root: Boolean): CommandResult = runCommand(arrayOf(command), root, null)
 
-    fun runCommand(prog: Array<String>): CommandResult {
-        return runCommand(prog, false, null)
-    }
+    fun runCommand(prog: Array<String>): CommandResult = runCommand(prog, false, null)
 
-    fun runCommand(prog: Array<String>, listener: OnCommandExecutionListener?): CommandResult {
-        return runCommand(prog, false, listener)
-    }
+    fun runCommand(prog: Array<String>, listener: OnCommandExecutionListener?): CommandResult = runCommand(prog, false, listener)
 
-    fun runCommand(command: String, root: Boolean, listener: OnCommandExecutionListener?): CommandResult {
-        return runCommand(arrayOf(command), root, listener)
-    }
+    fun runCommand(command: String, root: Boolean, listener: OnCommandExecutionListener?): CommandResult = runCommand(arrayOf(command), root, listener)
 
     fun runCommand(command: Array<String>, root: Boolean, listener: OnCommandExecutionListener?): CommandResult {
-        val ret = CommandResult(this@Command, "", "")
+        val ret = CommandResult(this, "", "")
         var process: Process?
         var rootOs: DataOutputStream? = null
         var procOutOs: BufferedReader? = null
         var procErrOs: BufferedReader? = null
-        listener?.onCommandStart(this@Command)
+        listener?.onCommandStart(this)
         try {
             if (root) {
                 process = Runtime.getRuntime().exec("su")
@@ -87,7 +79,7 @@ object Command {
                 line = procOutOs.readLine()
                 if (line != null) {
                     outStr.append("${line}\n")
-                    listener?.onCommandReadLine(this@Command, line)
+                    listener?.onCommandReadLine(this, line)
                 } else {
                     break
                 }
@@ -96,7 +88,7 @@ object Command {
                 line = procErrOs.readLine()
                 if (line != null) {
                     errStr.append("${line}\n")
-                    listener?.onCommandReadError(this@Command, line)
+                    listener?.onCommandReadError(this, line)
                 } else {
                     break
                 }
@@ -113,7 +105,7 @@ object Command {
             procOutOs?.close()
             procErrOs?.close()
         }
-        listener?.onCommandComplete(this@Command)
+        listener?.onCommandComplete(this)
         return ret
     }
 

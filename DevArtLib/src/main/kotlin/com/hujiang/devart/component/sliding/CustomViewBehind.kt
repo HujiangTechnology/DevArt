@@ -16,7 +16,7 @@ import com.hujiang.devart.R
 /**
  * Created by rarnu on 3/24/16.
  */
-class CustomViewBehind: ViewGroup {
+class CustomViewBehind : ViewGroup {
 
     companion object {
         private val TAG = "CustomViewBehind"
@@ -27,11 +27,15 @@ class CustomViewBehind: ViewGroup {
     private var _touchMode = SlidingMenu.TOUCHMODE_MARGIN
     var touchMode: Int
         get() = _touchMode
-        set(value) { _touchMode = value }
+        set(value) {
+            _touchMode = value
+        }
     private var _viewAbove: CustomViewAbove? = null
     var viewAbove: CustomViewAbove?
         get() = _viewAbove
-        set(value) { _viewAbove = value }
+        set(value) {
+            _viewAbove = value
+        }
     private var _content: View? = null
     var content: View?
         get() = _content
@@ -63,11 +67,15 @@ class CustomViewBehind: ViewGroup {
     private var _transformer: CanvasTransformer? = null
     var transformer: CanvasTransformer?
         get() = _transformer
-        set(value) { _transformer = value }
+        set(value) {
+            _transformer = value
+        }
     private var _childrenEnabled = false
     var childrenEnabled: Boolean
         get() = _childrenEnabled
-        set(value) { _childrenEnabled = value }
+        set(value) {
+            _childrenEnabled = value
+        }
     private var _mode = 0
     var mode: Int
         get() = _mode
@@ -81,11 +89,15 @@ class CustomViewBehind: ViewGroup {
     private var _fadeEnabled = false
     var fadeEnabled: Boolean
         get() = _fadeEnabled
-        set(value) { _fadeEnabled = value }
+        set(value) {
+            _fadeEnabled = value
+        }
     private var _scrollScale = 0.0f
     var scrollScale: Float
         get() = _scrollScale
-        set(value) { _scrollScale = value }
+        set(value) {
+            _scrollScale = value
+        }
     private var _shadowDrawable: Drawable? = null
     var shadowDrawable: Drawable?
         get() = _shadowDrawable
@@ -119,7 +131,9 @@ class CustomViewBehind: ViewGroup {
     private var _selectorEnabled = true
     var selectorEnabled: Boolean
         get() = _selectorEnabled
-        set(value) { _selectorEnabled = value }
+        set(value) {
+            _selectorEnabled = value
+        }
     private var _selectorDrawable: Bitmap? = null
     var selectorDrawable: Bitmap?
         get() = _selectorDrawable
@@ -142,13 +156,11 @@ class CustomViewBehind: ViewGroup {
             }
         }
 
-    constructor(context: Context): this(context, null)
+    constructor(context: Context) : this(context, null)
 
-    constructor(context: Context, attrs: AttributeSet?): super(context, attrs) {
+    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
         _marginThreshold = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, MARGIN_THRESHOLD, resources.displayMetrics).toInt()
     }
-
-
 
     override fun scrollTo(x: Int, y: Int) {
         super.scrollTo(x, y)
@@ -157,13 +169,9 @@ class CustomViewBehind: ViewGroup {
         }
     }
 
-    override fun onInterceptTouchEvent(ev: MotionEvent?): Boolean {
-        return !_childrenEnabled
-    }
+    override fun onInterceptTouchEvent(ev: MotionEvent?): Boolean = !_childrenEnabled
 
-    override fun onTouchEvent(event: MotionEvent?): Boolean {
-        return !_childrenEnabled
-    }
+    override fun onTouchEvent(event: MotionEvent?): Boolean = !_childrenEnabled
 
     override fun dispatchDraw(canvas: Canvas?) {
         if (_transformer != null) {
@@ -197,7 +205,15 @@ class CustomViewBehind: ViewGroup {
     }
 
     fun getMenuPage(page: Int): Int {
-        val npage = if (page > 1) { 2 } else { if (page < 1) { 0 } else { page} }
+        val npage = if (page > 1) {
+            2
+        } else {
+            if (page < 1) {
+                0
+            } else {
+                page
+            }
+        }
         return if (_mode == SlidingMenu.LEFT && page > 1) {
             0
         } else if (_mode == SlidingMenu.RIGHT && page < 1) {
@@ -220,9 +236,21 @@ class CustomViewBehind: ViewGroup {
             }
             scrollTo((behindWidth - width + (x - behindWidth) * _scrollScale).toInt(), y)
         } else if (_mode == SlidingMenu.LEFT_RIGHT) {
-            _content?.visibility = if (x >= content!!.left) { View.INVISIBLE } else { View.VISIBLE}
-            _secondaryContent?.visibility = if (x <= content.left) { View.INVISIBLE } else { View.VISIBLE}
-            vis = if (x == 0) { View.INVISIBLE } else { View.VISIBLE }
+            _content?.visibility = if (x >= content!!.left) {
+                View.INVISIBLE
+            } else {
+                View.VISIBLE
+            }
+            _secondaryContent?.visibility = if (x <= content.left) {
+                View.INVISIBLE
+            } else {
+                View.VISIBLE
+            }
+            vis = if (x == 0) {
+                View.INVISIBLE
+            } else {
+                View.VISIBLE
+            }
             if (x <= content.left) {
                 scrollTo(((x + behindWidth) * _scrollScale).toInt(), y)
             } else {
@@ -232,51 +260,45 @@ class CustomViewBehind: ViewGroup {
         visibility = vis
     }
 
-    fun getMenuLeft(content: View?, page: Int): Int {
-        return when (_mode) {
-            SlidingMenu.LEFT -> {
-                when(page) {
-                    0 -> content!!.left - behindWidth
-                    else -> content!!.left
-                }
+    fun getMenuLeft(content: View?, page: Int): Int = when (_mode) {
+        SlidingMenu.LEFT -> {
+            when (page) {
+                0 -> content!!.left - behindWidth
+                else -> content!!.left
             }
-            SlidingMenu.RIGHT -> {
-                when(page) {
-                    2 -> content!!.left + behindWidth
-                    else -> content!!.left
-                }
-            }
-            SlidingMenu.LEFT_RIGHT -> {
-                when(page) {
-                    0 -> content!!.left - behindWidth
-                    2 -> content!!.left + behindWidth
-                    else -> content!!.left
-                }
-            }
-            else -> content!!.left
         }
+        SlidingMenu.RIGHT -> {
+            when (page) {
+                2 -> content!!.left + behindWidth
+                else -> content!!.left
+            }
+        }
+        SlidingMenu.LEFT_RIGHT -> {
+            when (page) {
+                0 -> content!!.left - behindWidth
+                2 -> content!!.left + behindWidth
+                else -> content!!.left
+            }
+        }
+        else -> content!!.left
     }
 
-    fun getAbsLeftBound(content: View?): Int {
-        return when (_mode) {
-            SlidingMenu.LEFT, SlidingMenu.LEFT_RIGHT -> content!!.left - behindWidth
-            SlidingMenu.RIGHT -> content!!.left
-            else -> 0
-        }
+    fun getAbsLeftBound(content: View?): Int = when (_mode) {
+        SlidingMenu.LEFT, SlidingMenu.LEFT_RIGHT -> content!!.left - behindWidth
+        SlidingMenu.RIGHT -> content!!.left
+        else -> 0
     }
 
-    fun getAbsRightBound(content: View?): Int {
-        return when (_mode) {
-            SlidingMenu.LEFT -> content!!.left
-            SlidingMenu.RIGHT, SlidingMenu.LEFT_RIGHT -> content!!.left + behindWidth
-            else -> 0
-        }
+    fun getAbsRightBound(content: View?): Int = when (_mode) {
+        SlidingMenu.LEFT -> content!!.left
+        SlidingMenu.RIGHT, SlidingMenu.LEFT_RIGHT -> content!!.left + behindWidth
+        else -> 0
     }
 
     fun marginTouchAllowed(content: View?, x: Int): Boolean {
         val left = content!!.left
         val right = content.right
-        return when(_mode) {
+        return when (_mode) {
             SlidingMenu.LEFT -> (x >= left && x <= _marginThreshold + left)
             SlidingMenu.RIGHT -> (x <= right && x >= right - _marginThreshold)
             SlidingMenu.LEFT_RIGHT -> (x >= left && x <= _marginThreshold + left) || (x <= right && x >= right - _marginThreshold)
@@ -284,40 +306,33 @@ class CustomViewBehind: ViewGroup {
         }
     }
 
-    fun menuOpenTouchAllowed(content: View?, currPage: Int, x: Float): Boolean {
-        return when (_touchMode) {
-            SlidingMenu.TOUCHMODE_FULLSCREEN -> true
-            SlidingMenu.TOUCHMODE_MARGIN -> menuTouchInQuickReturn(content, currPage, x)
-            else -> false
-        }
+    fun menuOpenTouchAllowed(content: View?, currPage: Int, x: Float): Boolean = when (_touchMode) {
+        SlidingMenu.TOUCHMODE_FULLSCREEN -> true
+        SlidingMenu.TOUCHMODE_MARGIN -> menuTouchInQuickReturn(content, currPage, x)
+        else -> false
     }
 
-    fun menuTouchInQuickReturn(content: View?, currPage: Int, x: Float): Boolean {
-        return if (_mode == SlidingMenu.LEFT || (_mode == SlidingMenu.LEFT_RIGHT && currPage == 0)) {
-            x >= content!!.left
-        } else if (_mode == SlidingMenu.RIGHT || (_mode == SlidingMenu.LEFT_RIGHT && currPage == 2)) {
-            x <= content!!.right
-        } else {
-            false
-        }
+    fun menuTouchInQuickReturn(content: View?, currPage: Int, x: Float): Boolean =
+            if (_mode == SlidingMenu.LEFT || (_mode == SlidingMenu.LEFT_RIGHT && currPage == 0)) {
+                x >= content!!.left
+            } else if (_mode == SlidingMenu.RIGHT || (_mode == SlidingMenu.LEFT_RIGHT && currPage == 2)) {
+                x <= content!!.right
+            } else {
+                false
+            }
+
+    fun menuClosedSlideAllowed(dx: Float): Boolean = when (_mode) {
+        SlidingMenu.LEFT -> dx > 0
+        SlidingMenu.RIGHT -> dx < 0
+        SlidingMenu.LEFT_RIGHT -> true
+        else -> false
     }
 
-    fun menuClosedSlideAllowed(dx: Float): Boolean {
-        return when(_mode) {
-            SlidingMenu.LEFT -> dx > 0
-            SlidingMenu.RIGHT -> dx < 0
-            SlidingMenu.LEFT_RIGHT -> true
-            else -> false
-        }
-    }
-
-    fun menuOpenSlideAllowed(dx: Float): Boolean {
-        return when(_mode) {
-            SlidingMenu.LEFT -> dx < 0
-            SlidingMenu.RIGHT -> dx > 0
-            SlidingMenu.LEFT_RIGHT -> true
-            else -> false
-        }
+    fun menuOpenSlideAllowed(dx: Float): Boolean = when (_mode) {
+        SlidingMenu.LEFT -> dx < 0
+        SlidingMenu.RIGHT -> dx > 0
+        SlidingMenu.LEFT_RIGHT -> true
+        else -> false
     }
 
     fun drawShadow(content: View?, canvas: Canvas?) {

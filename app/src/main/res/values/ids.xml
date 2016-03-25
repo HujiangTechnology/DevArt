@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="id_item_1_1">Arg_1_1</string>
+    <string name="id_item_1_2">Arg_1_2</string>
+    <string name="id_item_1_3">Arg_1_3</string>
+    <string name="id_item_2_1">Adapter</string>
+    <string name="id_item_2_2">Dialog</string>
+    <string name="id_item_2_3">Popup</string>
+    <string name="id_item_2_4">Loader</string>
+    <string name="id_item_3_1">HScrollLayout</string>
+    <string name="id_item_3_2">VScrollLayout</string>
+    <string name="id_item_3_3">PullDownLayout</string>
+    <string name="id_item_3_4">PullDownListView</string>
+    <string name="id_item_3_4_1">DragListView</string>
+    <string name="id_item_3_4_2">WaterfallView</string>
+    <string name="id_item_3_4_3">FlipView</string>
+    <string name="id_item_3_5">SlideMenu</string>
+    <string name="id_item_3_6">FloatWindow</string>
+    <string name="id_item_3_7">Tab</string>
+    <string name="id_item_3_8">DynamicMetro</string>
+    <string name="id_item_4_1">Device</string>
+    <string name="id_item_4_2">Download</string>
+    <string name="id_item_4_3">File</string>
+    <string name="id_item_4_3_1">Json</string>
+    <string name="id_item_4_4">HttpRequest</string>
+    <string name="id_item_4_5">Image</string>
+    <string name="id_item_4_6">Network</string>
+    <string name="id_item_4_7">Notification</string>
+    <string name="id_item_4_8">UI</string>
+    <string name="id_item_5_1">Run</string>
+
+    <string name="menuid_item_1">Item_1</string>
+    <string name="menuid_item_2">Item_2</string>
+    <string name="menuid_item_3">Item_3</string>
+    <string name="menuid_item_4">Item_4</string>
+    <string name="menuid_item_5">Item_5</string>
+    <string name="menuid_item_6">Item_6</string>
+</resources>

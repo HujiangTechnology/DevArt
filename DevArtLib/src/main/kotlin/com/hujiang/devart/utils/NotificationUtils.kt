@@ -32,9 +32,8 @@ object NotificationUtils {
         mgr.notify(id, n)
     }
 
-    fun showNotification(context: Context, id: Int, icon: Int, title: Int, desc: Int, action: String, canClose: Boolean) {
-        showNotification(context, id, icon, title, desc, action, null, canClose)
-    }
+    fun showNotification(context: Context, id: Int, icon: Int, title: Int, desc: Int, action: String, canClose: Boolean) =
+            showNotification(context, id, icon, title, desc, action, null, canClose)
 
     fun buildNotification(context: Context, id: Int, icon: Int, title: Int, desc: Int, action: String, obj: Serializable?, canClose: Boolean): Notification? {
         val inMain = Intent(action)
