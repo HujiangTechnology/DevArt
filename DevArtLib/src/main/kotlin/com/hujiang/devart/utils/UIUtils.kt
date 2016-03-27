@@ -186,11 +186,11 @@ object UIUtils {
     fun setFitSystem(activity: Activity, res: Int, immersion: Boolean) {
         val v = activity.findViewById(res)
         if (v is ViewGroup) {
-            setFitSystem(activity, v as ViewGroup, immersion)
+            setFitSystem(v, immersion)
         }
     }
 
-    fun setFitSystem(activity: Activity, v: ViewGroup, immersion: Boolean) {
+    fun setFitSystem(v: ViewGroup, immersion: Boolean) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             if (immersion) {
                 v.fitsSystemWindows = true

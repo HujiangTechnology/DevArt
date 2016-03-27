@@ -4,18 +4,18 @@ import android.content.Intent
 import android.os.Bundle
 import android.preference.Preference
 import android.view.Menu
-import com.hujiang.devart.sample.R
 import com.hujiang.devart.base.BasePreferenceFragment
-import com.hujiang.devart.sample.MainActivity
-import com.hujiang.devart.sample.SlideActivity
+import com.hujiang.devart.base.common.FragmentStarter
+import com.hujiang.devart.base.inner.UIInstance
+import com.hujiang.devart.sample.*
 
 /**
  * Created by rarnu on 3/25/16.
  */
 class IndexFragment: BasePreferenceFragment(), Preference.OnPreferenceClickListener {
 
-
-    private var p_3_5: Preference? = null
+    private var p3Slide: Preference? = null
+    private var p3Tab: Preference? = null
 
     override fun getBarTitle(): Int = R.string.app_name
 
@@ -24,12 +24,13 @@ class IndexFragment: BasePreferenceFragment(), Preference.OnPreferenceClickListe
     override fun getCustomTitle(): String? = null
 
     override fun initComponents() {
-        p_3_5 = findPreference(getString(R.string.id_item_3_5))
-
+        p3Slide = findPreference(getString(R.string.id_item_3_5))
+        p3Tab = findPreference(getString(R.string.id_item_3_7))
     }
 
     override fun initEvents() {
-        p_3_5?.onPreferenceClickListener = this
+        p3Slide?.onPreferenceClickListener = this
+        p3Tab?.onPreferenceClickListener = this
     }
 
     override fun initLogic() {
@@ -52,6 +53,10 @@ class IndexFragment: BasePreferenceFragment(), Preference.OnPreferenceClickListe
         val key = preference!!.key
         when(key) {
             getString(R.string.id_item_3_5) -> startActivity(Intent(activity, SlideActivity::class.java))
+            getString(R.string.id_item_3_7) -> {
+                UIInstance.currentFragment = 17
+                FragmentStarter.showContent(activity, TabActivity::class.java, Fragments.tabFragment)
+            }
         }
         return true
     }

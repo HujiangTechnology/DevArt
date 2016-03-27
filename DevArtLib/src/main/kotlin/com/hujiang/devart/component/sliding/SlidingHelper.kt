@@ -28,7 +28,7 @@ class SlidingHelper {
         _activity = activity
     }
 
-    fun onCreate(savedInstanceState: Bundle?) {
+    fun onCreate() {
         _slidingMenu = LayoutInflater.from(_activity).inflate(R.layout.layout_sliding_menu, null) as SlidingMenu
     }
 
@@ -80,7 +80,7 @@ class SlidingHelper {
         outState?.putBoolean("SlidingActivityHelper.secondary", _slidingMenu!!.isSecondaryMenuShowing)
     }
 
-    fun registerAboveContentView(v: View?, params: ViewGroup.LayoutParams?) {
+    fun registerAboveContentView(v: View?) {
         if (!_broadcasting) {
             _viewAbove = v
         }
@@ -91,7 +91,7 @@ class SlidingHelper {
         _activity.setContentView(v)
     }
 
-    fun setBehindContentView(v: View?, layoutParams: ViewGroup.LayoutParams?) {
+    fun setBehindContentView(v: View?) {
         _viewBehind = v
         _slidingMenu!!.behindMenu = _viewBehind
     }
@@ -104,7 +104,7 @@ class SlidingHelper {
 
     fun showSecondaryMenu() = _slidingMenu!!.showSecondaryMenu()
 
-    fun onKeyUp(keyCode: Int, event: KeyEvent?): Boolean {
+    fun onKeyUp(keyCode: Int): Boolean {
         if (keyCode == KeyEvent.KEYCODE_BACK && _slidingMenu!!.isMenuShowing) {
             showContent()
             return true

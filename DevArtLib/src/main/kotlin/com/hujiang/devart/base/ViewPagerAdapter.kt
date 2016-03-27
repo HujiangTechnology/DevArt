@@ -10,19 +10,19 @@ import android.view.ViewGroup
  */
 class ViewPagerAdapter : PagerAdapter {
 
-    private var views: MutableList<View?>? = null
+    private var _views: MutableList<View?>? = null
 
     constructor(views: MutableList<View?>?) {
         setNewData(views)
     }
 
     fun setNewData(views: MutableList<View?>?) {
-        this.views = views
+        _views = views
         notifyDataSetChanged()
     }
 
     override fun getCount(): Int {
-        return views!!.size
+        return _views!!.size
     }
 
     override fun destroyItem(container: ViewGroup?, position: Int, `object`: Any?) {
@@ -31,11 +31,11 @@ class ViewPagerAdapter : PagerAdapter {
 
     override fun instantiateItem(container: ViewGroup?, position: Int): Any? {
         try {
-            (container as ViewPager?)?.addView(views!![position], 0)
+            (container as ViewPager?)?.addView(_views!![position], 0)
         } catch (e: Exception) {
         }
-        return if (views!!.size > 0) {
-            views!![position]
+        return if (_views!!.size > 0) {
+            _views!![position]
         } else {
             null
         }

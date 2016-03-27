@@ -1,4 +1,4 @@
-package com.hujiang.devart.base.inner
+package com.hujiang.devart.component.sliding
 
 import android.view.View
 import android.view.ViewGroup
@@ -9,11 +9,11 @@ import com.hujiang.devart.component.sliding.SlidingMenu
  */
 interface ISliding {
 
-    fun setBehindContentView(v: View?, layoutParams: ViewGroup.LayoutParams?)
+    fun setBehindContentView(v: View?, params: ViewGroup.LayoutParams?)
 
     fun setBehindContentView(v: View?)
 
-    fun setBehindContentView(layoutResID: Int)
+    fun setBehindContentView(id: Int)
 
     fun getSlidingMenu(): SlidingMenu?
 

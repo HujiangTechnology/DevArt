@@ -31,7 +31,13 @@
 
         <activity
                 android:name=".SlideActivity"
-                android:label="@string/slidemenu_name">
+                android:label="@string/slidemenu_name"
+                android:configChanges="orientation">
+        </activity>
+
+        <activity android:name=".TabActivity"
+                  android:label="@string/tab_name"
+                  android:configChanges="orientation">
         </activity>
     </application>
 

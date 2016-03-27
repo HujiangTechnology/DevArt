@@ -15,6 +15,7 @@ class MainActivity : BaseMainActivity() {
 
     private var _itemShare: MenuItem? = null
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         UIUtils.initDisplayMetrics(this, windowManager, false)
         super.onCreate(savedInstanceState)
@@ -30,11 +31,12 @@ class MainActivity : BaseMainActivity() {
 
     override fun getFragment(currentFragment: Int): Fragment? {
         return when(currentFragment) {
-            else -> IntroFragment()
+            17 -> Fragments.tabFragment
+            else -> Fragments.introFragment
         }
     }
 
-    override fun getIndexFragment(): Fragment? = IndexFragment()
+    override fun getIndexFragment(): Fragment? = Fragments.indexFragment
 
     override fun initMenu(menu: Menu?) {
         _itemShare = menu?.add(0, 1, 99, "Share")

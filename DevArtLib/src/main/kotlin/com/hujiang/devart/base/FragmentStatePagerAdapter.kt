@@ -140,13 +140,17 @@ abstract class FragmentStatePagerAdapter: PagerAdapter {
             for (key in keys) {
                 if (key.startsWith("f")) {
                     val index = key.substring(1).toInt()
-                    val f = _fragmentManager?.getFragment(bundle, key)
-                    if (f != null) {
-                        while (_fragments.size <= index) {
-                            _fragments.add(null)
+                    try {
+                        val f = _fragmentManager?.getFragment(bundle, key)
+                        if (f != null) {
+                            while (_fragments.size <= index) {
+                                _fragments.add(null)
+                            }
+                            f.setMenuVisibility(false)
+                            _fragments[index] = f
                         }
-                        f.setMenuVisibility(false)
-                        _fragments[index] = f
+                    }catch(e: Exception) {
+
                     }
                 }
             }

@@ -292,7 +292,7 @@ class SlidingMenu : RelativeLayout {
         } catch (e: Exception) {
             width = display.width
         }
-        behindOffset = width - 1
+        behindOffset = width - i
     }
 
     fun setBehindWidthRes(res: Int) {

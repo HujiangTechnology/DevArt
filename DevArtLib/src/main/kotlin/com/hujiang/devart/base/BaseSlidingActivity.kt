@@ -8,8 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.hujiang.devart.R
 import com.hujiang.devart.base.inner.IFragments
-import com.hujiang.devart.base.inner.ISliding
 import com.hujiang.devart.base.inner.InnerActivity
+import com.hujiang.devart.component.sliding.ISliding
 import com.hujiang.devart.component.sliding.SlidingHelper
 import com.hujiang.devart.component.sliding.SlidingMenu
 import com.hujiang.devart.utils.DrawableUtils
@@ -42,7 +42,7 @@ abstract class BaseSlidingActivity: InnerActivity(), ISliding, IFragments {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         _helper = SlidingHelper(this)
-        _helper?.onCreate(savedInstanceState)
+        _helper?.onCreate()
         loadFragments()
         super.onCreate(savedInstanceState)
         setBehindContentView(R.layout.layout_menu_replacement)
@@ -105,14 +105,14 @@ abstract class BaseSlidingActivity: InnerActivity(), ISliding, IFragments {
 
     override fun setContentView(view: View?, params: ViewGroup.LayoutParams?) {
         super.setContentView(view, params)
-        _helper?.registerAboveContentView(view, params)
+        _helper?.registerAboveContentView(view)
     }
 
     override fun setBehindContentView(id: Int) = setBehindContentView(layoutInflater.inflate(id, null))
 
     override fun setBehindContentView(v: View?) = setBehindContentView(v, ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
 
-    override fun setBehindContentView(v: View?, params: ViewGroup.LayoutParams?) = _helper!!.setBehindContentView(v, params)
+    override fun setBehindContentView(v: View?, params: ViewGroup.LayoutParams?) = _helper!!.setBehindContentView(v)
 
     override fun getSlidingMenu(): SlidingMenu? = _helper!!.slidingMenu
 
@@ -127,7 +127,7 @@ abstract class BaseSlidingActivity: InnerActivity(), ISliding, IFragments {
     override fun setSlidingActionBarEnabled(slidingActionBarEnabled: Boolean) = _helper!!.setSlidingActionBarEnabled(slidingActionBarEnabled)
 
     override fun onKeyUp(keyCode: Int, event: KeyEvent?): Boolean {
-        var b = _helper!!.onKeyUp(keyCode, event)
+        var b = _helper!!.onKeyUp(keyCode)
         if (b) {
             return true
         }

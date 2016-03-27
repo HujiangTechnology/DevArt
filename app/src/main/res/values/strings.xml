@@ -50,6 +50,50 @@
     <string name="menu_item_5">Item 5</string>
     <string name="menu_item_6">Item 6</string>
 
+    <string name="argument_name">ArgumentFragment</string>
+    <string name="argument_name_with_path">MainActivity &gt; ArgumentFragment</string>
+    <string name="adapter_name">AdapterFragment</string>
+    <string name="adapter_name_with_path">MainActivity &gt; AdapterFragment</string>
+    <string name="popup_name">PopupFragment</string>
+    <string name="service_name">Service</string>
+    <string name="scroll_name">ScrollFragment</string>
+    <string name="scroll_name_with_path">MainActivity &gt; ScrollFragment</string>
+    <string name="pulldown_listview_name">PullDownListViewFragment</string>
+    <string name="pulldown_listview_name_with_path">MainActivity &gt; PullDownListViewFragment</string>
+    <string name="pulldown_layout_name">PullDownLayoutFragment</string>
+    <string name="pulldown_layout_name_with_path">MainActivity &gt; PullDownLayoutFragment</string>
     <string name="slidemenu_name">SlideMenuFragment</string>
+    <string name="device_name">DeviceFragment</string>
+    <string name="device_name_with_path">MainActivity &gt; DeviceFragment</string>
+    <string name="download_name">DownloadFragment</string>
+    <string name="download_name_with_path">MainActivity &gt; DownloadFragment</string>
+    <string name="file_name">FileFragment</string>
+    <string name="file_name_with_path">MainActivity &gt; FileFragment</string>
+    <string name="http_request_name">HttpRequestFragment</string>
+    <string name="http_request_name_with_path">MainActivity &gt; HttpRequestFragment</string>
+    <string name="image_name">ImageFragment</string>
+    <string name="image_name_with_path">MainActivity &gt; ImageFragment</string>
+    <string name="network_name">NetworkFragment</string>
+    <string name="network_name_with_path">MainActivity &gt; NetworkFragment</string>
+    <string name="notification_name">NotificationFragment</string>
+    <string name="notification_name_with_path">MainActivity &gt; NotificationFragment</string>
+    <string name="ui_name">UIFragment</string>
+    <string name="ui_name_with_path">MainActivity &gt; UIFragment</string>
+    <string name="run_name">RunFragment</string>
+    <string name="run_name_with_path">MainActivity &gt; RunFragment</string>
+    <string name="float_window_name">FloatWindow</string>
+    <string name="float_window_name_with_path">MainActivity &gt; FloatWindow</string>
+    <string name="tab_name">TabFragment</string>
+    <string name="tab_name_with_path">MainActivity &gt; TabFragment</string>
+    <string name="drag_listview_name">DragListViewFragment</string>
+    <string name="drag_listview_name_with_path">MainActivity &gt; DragListViewFragment</string>
+    <string name="waterfall_name">WaterfallFragment</string>
+    <string name="waterfall_name_with_path">MainActivity &gt; WaterfallFragment</string>
+    <string name="flipview_name">FlipViewFragment</string>
+    <string name="flipview_name_with_path">MainActivity &gt; FlipViewFragment</string>
+    <string name="dynamic_metro_name">DynamicMetroFragment</string>
+    <string name="json_name">JsonFragment</string>
+    <string name="json_name_with_path">MainActivity &gt; JsonFragment</string>
+
 
 </resources>

@@ -11,6 +11,4 @@ abstract class BaseFragment: InnerFragment {
 
     constructor(tabTitle: String): super(tabTitle)
 
-    constructor(tagText: String, tabTitle: String): super(tabTitle)
-
 }

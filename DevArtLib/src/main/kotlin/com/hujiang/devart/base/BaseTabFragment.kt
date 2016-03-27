@@ -101,25 +101,29 @@ abstract class BaseTabFragment: InnerFragment, ActionBar.TabListener, ViewPager.
         if (listFragment!!.size <= position) {
             return
         }
-        listFragment?.removeAt(position)
-        bar?.removeTabAt(position)
-        newPosition--
-        if (newPosition < 0) {
-            newPosition = 0
-        }
-        val nPos = newPosition
-        var fm: FragmentManager?
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            fm = childFragmentManager
-        } else {
-            fm = fragmentManager
-        }
-        if (fm != null) {
-            adapter = BaseFragmentStateAdapter(fm, listFragment)
-            pager?.post {
-                pager?.adapter = adapter
-                pager?.currentItem = nPos
+        try {
+            listFragment?.removeAt(position)
+            bar?.removeTabAt(position)
+            newPosition--
+            if (newPosition < 0) {
+                newPosition = 0
             }
+            val nPos = newPosition
+            var fm: FragmentManager?
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                fm = childFragmentManager
+            } else {
+                fm = fragmentManager
+            }
+            if (fm != null) {
+                adapter = BaseFragmentStateAdapter(fm, listFragment)
+                pager?.post {
+                    pager?.adapter = adapter
+                    pager?.currentItem = nPos
+                }
+            }
+        } catch(e: Exception) {
+
         }
     }
 
@@ -165,13 +169,21 @@ abstract class BaseTabFragment: InnerFragment, ActionBar.TabListener, ViewPager.
     override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixel: Int) { }
 
     override fun onPageSelected(position: Int) {
-        currentPage = position
-        bar?.setSelectedNavigationItem(position)
+        try {
+            currentPage = position
+            bar?.setSelectedNavigationItem(position)
+        } catch(e: Exception) {
+
+        }
     }
 
     fun setTabPosition(position: Int) {
-        bar?.setSelectedNavigationItem(position)
-        pager?.post { pager?.currentItem = position }
+        try {
+            bar?.setSelectedNavigationItem(position)
+            pager?.post { pager?.currentItem = position }
+        } catch(e: Exception) {
+
+        }
     }
 
     override fun onDetach() {
