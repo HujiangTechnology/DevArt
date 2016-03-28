@@ -15,26 +15,22 @@ abstract class BasePopupActivity: InnerActivity() {
         private var screenState2 = -1
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        if (getCloseCondition()) {
-            if (screenState1 == -1 && screenState2 == -1) {
-                screenState1 = resources.configuration.orientation
-                screenState2 = resources.configuration.orientation
-            } else {
-                screenState1 = screenState2
-                screenState2 = resources.configuration.orientation
-            }
-            if (screenState1 == Configuration.ORIENTATION_LANDSCAPE && screenState2 == Configuration.ORIENTATION_PORTRAIT) {
-                screenState1 = -1
-                screenState2 = -1
-                finish()
-                return
-            }
+    override fun getCloseCondition(): Boolean {
+        var ret =  false
+        if (screenState1 == -1 && screenState2 == -1) {
+            screenState1 = resources.configuration.orientation
+            screenState2 = resources.configuration.orientation
+        } else {
+            screenState1 = screenState2
+            screenState2 = resources.configuration.orientation
         }
+        if (screenState1 == Configuration.ORIENTATION_LANDSCAPE && screenState2 == Configuration.ORIENTATION_PORTRAIT) {
+            screenState1 = -1
+            screenState2 = -1
+            ret = true
+        }
+        return ret
     }
-
-    override fun getCloseCondition(): Boolean = true
 
     override fun getBaseLayout(): Int = R.layout.layout_popup_replacement
 

@@ -29,7 +29,7 @@ abstract class InnerFragment: Fragment, ViewTreeObserver.OnGlobalLayoutListener,
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        innerBundle = arguments
+        innerBundle = innerBundle ?: arguments
         initLogic()
         if (activity.actionBar != null) {
             if (getCustomTitle() == null || getCustomTitle().equals("")) {
@@ -49,7 +49,7 @@ abstract class InnerFragment: Fragment, ViewTreeObserver.OnGlobalLayoutListener,
     }
 
     open fun setNewArguments(bn: Bundle?) {
-        innerBundle = arguments
+        innerBundle = bn
         onGetNewArguments(bn)
     }
 

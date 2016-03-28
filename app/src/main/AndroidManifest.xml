@@ -39,6 +39,31 @@
                   android:label="@string/tab_name"
                   android:configChanges="orientation">
         </activity>
+        <activity android:name=".ArgumentActivity"
+                  android:label="@string/argument_name"
+                  android:configChanges="orientation">
+
+        </activity>
+        <activity android:name=".AdapterActivity"
+                  android:label="@string/adapter_name"
+                  android:configChanges="orientation">
+
+        </activity>
+
+        <activity android:name=".DialogActivity"
+                  android:theme="@android:style/Theme.Holo.Dialog.NoActionBar">
+
+        </activity>
+        <activity
+                android:name=".PopupActivity"
+                android:label="@string/adapter_name"
+                android:configChanges="orientation">
+        </activity>
+
+
+        <service android:name=".service.DemoService">
+        </service>
+        
     </application>
 
 </manifest>

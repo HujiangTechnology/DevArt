@@ -65,7 +65,7 @@ abstract class InnerAdapter<T> : BaseAdapter, Filterable {
 
     abstract fun getValueText(item: T): String?
 
-    open fun filter(text: String) {
+    open fun filter(text: String?) {
         fileter?.filter(text)
     }
 

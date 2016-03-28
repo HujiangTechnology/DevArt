@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">DevArt</string>
 
-
     <string name="item_1_1">Arg 1.1</string>
     <string name="item_1_2">Arg 1.2</string>
     <string name="item_1_3">Arg 1.3</string>
@@ -95,5 +94,31 @@
     <string name="json_name">JsonFragment</string>
     <string name="json_name_with_path">MainActivity &gt; JsonFragment</string>
 
+    <string name="btn_show_id">Show ID</string>
+    <string name="btn_close">Close</string>
+    <string name="btn_1">Button 1</string>
+    <string name="btn_2">Button 2</string>
+    <string name="service_detail">Detail Information</string>
+    <string name="service_finished">Service finished</string>
+    <string name="btn_download">Download</string>
+    <string name="ok">OK</string>
+    <string name="btn_read">Read</string>
+    <string name="btn_write">Write</string>
+    <string name="btn_read_assets">Read Assets</string>
+    <string name="btn_http_request">Http Request</string>
+    <string name="btn_rotate">Rotate</string>
+    <string name="btn_flip">Flip</string>
+    <string name="btn_round">Round</string>
+    <string name="btn_black_white">B &amp; W</string>
+    <string name="btn_blur">Blur</string>
+    <string name="btn_show_notification">Show Notification</string>
+    <string name="btn_hide_notification">Hide Notification</string>
+    <string name="chk_can_close">Can Close</string>
+    <string name="notification_title">Notification Title</string>
+    <string name="notification_desc">Notification Description</string>
+    <string name="et_command">Enter a command</string>
+    <string name="btn_run">Run</string>
+    <string name="btn_show_float_window">Show Float Window</string>
+    <string name="btn_hide_float_window">Hide Float Window</string>
 
 </resources>

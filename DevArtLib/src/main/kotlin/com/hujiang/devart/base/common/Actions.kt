@@ -19,5 +19,8 @@ object Actions {
     val WHAT_COPY_PROGRESS = 2
     val WHAT_COPY_FINISH = 3
 
+    val WHAT_DOWNLOAD_START = 1
+    val WHAT_DOWNLOAD_PROGRESS = 2
+    val WHAT_DOWNLOAD_FINISH = 3
 
 }

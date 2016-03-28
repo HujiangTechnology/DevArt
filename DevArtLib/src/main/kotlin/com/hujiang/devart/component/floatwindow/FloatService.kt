@@ -8,6 +8,8 @@ import android.view.View
 
 /**
  * Created by rarnu on 3/25/16.
+ *
+ * android.permission.SYSTEM_ALERT_WINDOW
  */
 abstract class FloatService : Service(), FloatWindowListener {
 

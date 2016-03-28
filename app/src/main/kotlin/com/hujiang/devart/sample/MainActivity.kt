@@ -31,6 +31,8 @@ class MainActivity : BaseMainActivity() {
 
     override fun getFragment(currentFragment: Int): Fragment? {
         return when(currentFragment) {
+            1 -> Fragments.argFragment
+            2 -> Fragments.adapterFragment
             17 -> Fragments.tabFragment
             else -> Fragments.introFragment
         }
