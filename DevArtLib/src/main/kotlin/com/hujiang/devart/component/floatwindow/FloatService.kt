@@ -1,6 +1,7 @@
 package com.hujiang.devart.component.floatwindow
 
 import android.app.Service
+import android.content.Context
 import android.content.Intent
 import android.os.IBinder
 import android.view.LayoutInflater
@@ -12,6 +13,18 @@ import android.view.View
  * android.permission.SYSTEM_ALERT_WINDOW
  */
 abstract class FloatService : Service(), FloatWindowListener {
+
+    companion object {
+        fun showFloatWindow(context: Context, service: Class<out FloatService>) {
+            val inServiceFloat = Intent(context, service)
+            context.startService(inServiceFloat)
+        }
+
+        fun hideFloatWindow(context: Context, service: Class<out FloatService>) {
+            val inServiceFloat = Intent(context, service)
+            context.stopService(inServiceFloat)
+        }
+    }
 
     private var _fv: FloatWindow? = null
     private var _view: View? = null
@@ -42,4 +55,6 @@ abstract class FloatService : Service(), FloatWindowListener {
         _fv?.show(init_x, init_y)
         return super.onStartCommand(intent, flags, startId)
     }
+
+
 }
