@@ -34,6 +34,8 @@ class MainActivity : BaseMainActivity() {
         return when(currentFragment) {
             1 -> Fragments.argFragment
             2 -> Fragments.adapterFragment
+            3 -> Fragments.hscrollFragment
+            4 -> Fragments.vscrollFragment
             7 -> Fragments.deviceFragment
             8 -> Fragments.downloadFragment
             9 -> Fragments.fileFragment

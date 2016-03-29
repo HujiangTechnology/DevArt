@@ -24,6 +24,8 @@ object Fragments {
     val networkFragment = NetworkFragment()
     val notificationFragment = NotificationFragment()
     val floatFragment = FloatWindowFragment()
+    val hscrollFragment = HScrollFragment()
+    val vscrollFragment = VScrollFragment()
 
     val tabFragment = TabFragment()
 }

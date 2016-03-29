@@ -29,6 +29,8 @@ class IndexFragment : BasePreferenceFragment(), Preference.OnPreferenceClickList
     private var _p2Popup: Preference? = null
     private var _p2Mutax: Preference? = null
 
+    private var _p3HScroll: Preference? = null
+    private var _p3VScroll: Preference? = null
     private var _p3Slide: Preference? = null
     private var _p3Tab: Preference? = null
     private var _p3Float: Preference? = null
@@ -61,6 +63,8 @@ class IndexFragment : BasePreferenceFragment(), Preference.OnPreferenceClickList
         _p2Popup = findPreference(getString(R.string.id_item_2_3))
         _p2Mutax = findPreference(getString(R.string.id_item_2_4))
 
+        _p3HScroll = findPreference(getString(R.string.id_item_3_1))
+        _p3VScroll = findPreference(getString(R.string.id_item_3_2))
         _p3Slide = findPreference(getString(R.string.id_item_3_5))
         _p3Tab = findPreference(getString(R.string.id_item_3_7))
         _p3Float = findPreference(getString(R.string.id_item_3_6))
@@ -89,6 +93,8 @@ class IndexFragment : BasePreferenceFragment(), Preference.OnPreferenceClickList
         _p2Popup?.onPreferenceClickListener = this
         _p2Mutax?.onPreferenceClickListener = this
 
+        _p3HScroll?.onPreferenceClickListener = this
+        _p3VScroll?.onPreferenceClickListener = this
         _p3Slide?.onPreferenceClickListener = this
         _p3Tab?.onPreferenceClickListener = this
         _p3Float?.onPreferenceClickListener = this
@@ -151,6 +157,14 @@ class IndexFragment : BasePreferenceFragment(), Preference.OnPreferenceClickList
                 inService.putExtra("procTitle", R.string.service_name)
                 inService.putExtra("procDesc", R.string.service_detail)
                 activity.startService(inService)
+            }
+            getString(R.string.id_item_3_1) -> {
+                UIInstance.currentFragment = 3
+                FragmentStarter.showContent(activity, HScrollActivity::class.java, Fragments.hscrollFragment)
+            }
+            getString(R.string.id_item_3_2) -> {
+                UIInstance.currentFragment = 4
+                FragmentStarter.showContent(activity, VScrollActivity::class.java, Fragments.vscrollFragment)
             }
             getString(R.string.id_item_3_5) -> startActivity(Intent(activity, SlideActivity::class.java))
             getString(R.string.id_item_3_6) -> {

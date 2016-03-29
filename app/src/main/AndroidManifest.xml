@@ -106,6 +106,17 @@
                 android:configChanges="orientation">
         </activity>
 
+        <activity
+                android:name=".HScrollActivity"
+                android:label="@string/scroll_name"
+                android:configChanges="orientation">
+        </activity>
+        <activity android:name=".VScrollActivity"
+                  android:label="@string/scroll_name"
+                  android:configChanges="orientation">
+
+        </activity>
+
         <service android:name=".service.DemoService">
         </service>
 

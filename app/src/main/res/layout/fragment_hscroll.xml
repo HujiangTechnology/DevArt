@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <com.hujiang.devart.component.scroll.EndlessViewPager
+        android:id="@+id/evp"
+        android:layout_width="match_parent"
+        android:layout_height="200dip" >
+    </com.hujiang.devart.component.scroll.EndlessViewPager>
+
+    <com.hujiang.devart.component.scroll.PointBar
+        android:id="@+id/evpPoint"
+        android:layout_width="match_parent"
+        android:layout_height="16dip"
+        android:layout_below="@+id/evp"
+        android:layout_marginTop="-24dip" >
+    </com.hujiang.devart.component.scroll.PointBar>
+
+    <com.hujiang.devart.component.scroll.HScrollLayout
+        android:id="@+id/hsl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/evp" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFFF0000" >
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FF00FF00" >
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FF0000FF" >
+        </RelativeLayout>
+    </com.hujiang.devart.component.scroll.HScrollLayout>
+
+    <com.hujiang.devart.component.scroll.PointBar
+        android:id="@+id/barPoint"
+        android:layout_width="match_parent"
+        android:layout_height="16dip"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="8dip" >
+    </com.hujiang.devart.component.scroll.PointBar>
+</RelativeLayout>
