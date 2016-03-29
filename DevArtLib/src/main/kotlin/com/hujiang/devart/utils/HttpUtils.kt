@@ -1,6 +1,7 @@
 package com.hujiang.devart.utils
 
 import com.hujiang.devart.utils.http.*
+import com.hujiang.devart.utils.socket.SSLSocket
 import org.apache.http.HttpVersion
 import org.apache.http.client.CookieStore
 import org.apache.http.client.entity.UrlEncodedFormEntity

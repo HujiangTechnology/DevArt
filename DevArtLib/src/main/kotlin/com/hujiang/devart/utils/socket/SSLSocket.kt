@@ -1,4 +1,4 @@
-package com.hujiang.devart.utils.http
+package com.hujiang.devart.utils.socket
 
 import org.apache.http.conn.ssl.SSLSocketFactory
 import java.net.Socket
