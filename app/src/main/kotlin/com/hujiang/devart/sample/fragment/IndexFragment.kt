@@ -31,6 +31,16 @@ class IndexFragment : BasePreferenceFragment(), Preference.OnPreferenceClickList
 
     private var _p3Slide: Preference? = null
     private var _p3Tab: Preference? = null
+    private var _p3Float: Preference? = null
+
+    private var _p4Device: Preference? = null
+    private var _p4Download: Preference? = null
+    private var _p4File: Preference? = null
+    private var _p4Json: Preference? = null
+    private var _p4Http: Preference? = null
+    private var _p4Image: Preference? = null
+    private var _p4Network: Preference? = null
+    private var _p4Notification: Preference? = null
 
     override fun getBarTitle(): Int = R.string.app_name
 
@@ -53,6 +63,17 @@ class IndexFragment : BasePreferenceFragment(), Preference.OnPreferenceClickList
 
         _p3Slide = findPreference(getString(R.string.id_item_3_5))
         _p3Tab = findPreference(getString(R.string.id_item_3_7))
+        _p3Float = findPreference(getString(R.string.id_item_3_6))
+
+        _p4Device = findPreference(getString(R.string.id_item_4_1))
+        _p4Download = findPreference(getString(R.string.id_item_4_2))
+        _p4File = findPreference(getString(R.string.id_item_4_3))
+        _p4Json = findPreference(getString(R.string.id_item_4_3_1))
+        _p4Http = findPreference(getString(R.string.id_item_4_4))
+        _p4Image = findPreference(getString(R.string.id_item_4_5))
+        _p4Network = findPreference(getString(R.string.id_item_4_6))
+        _p4Notification = findPreference(getString(R.string.id_item_4_7))
+
     }
 
     override fun initEvents() {
@@ -70,6 +91,17 @@ class IndexFragment : BasePreferenceFragment(), Preference.OnPreferenceClickList
 
         _p3Slide?.onPreferenceClickListener = this
         _p3Tab?.onPreferenceClickListener = this
+        _p3Float?.onPreferenceClickListener = this
+
+        _p4Device?.onPreferenceClickListener = this
+        _p4Download?.onPreferenceClickListener = this
+        _p4File?.onPreferenceClickListener = this
+        _p4Json?.onPreferenceClickListener = this
+        _p4Http?.onPreferenceClickListener = this
+        _p4Image?.onPreferenceClickListener = this
+        _p4Network?.onPreferenceClickListener = this
+        _p4Notification?.onPreferenceClickListener = this
+
     }
 
     override fun initLogic() {
@@ -121,9 +153,45 @@ class IndexFragment : BasePreferenceFragment(), Preference.OnPreferenceClickList
                 activity.startService(inService)
             }
             getString(R.string.id_item_3_5) -> startActivity(Intent(activity, SlideActivity::class.java))
+            getString(R.string.id_item_3_6) -> {
+                UIInstance.currentFragment = 16
+                FragmentStarter.showContent(activity, FloatWindowActivity::class.java, Fragments.floatFragment)
+            }
             getString(R.string.id_item_3_7) -> {
                 UIInstance.currentFragment = 17
                 FragmentStarter.showContent(activity, TabActivity::class.java, Fragments.tabFragment)
+            }
+            getString(R.string.id_item_4_1) -> {
+                UIInstance.currentFragment = 7
+                FragmentStarter.showContent(activity, DeviceActivity::class.java, Fragments.deviceFragment)
+            }
+            getString(R.string.id_item_4_2) -> {
+                UIInstance.currentFragment = 8
+                FragmentStarter.showContent(activity, DownloadActivity::class.java, Fragments.downloadFragment)
+            }
+            getString(R.string.id_item_4_3) -> {
+                UIInstance.currentFragment = 9
+                FragmentStarter.showContent(activity, FileActivity::class.java, Fragments.fileFragment)
+            }
+            getString(R.string.id_item_4_3_1) -> {
+                UIInstance.currentFragment = 21
+                FragmentStarter.showContent(activity, JsonActivity::class.java, Fragments.jsonFragment)
+            }
+            getString(R.string.id_item_4_4) -> {
+                UIInstance.currentFragment = 10
+                FragmentStarter.showContent(activity, HttpActivity::class.java, Fragments.httpFragment)
+            }
+            getString(R.string.id_item_4_5) -> {
+                UIInstance.currentFragment = 11
+                FragmentStarter.showContent(activity, ImageActivity::class.java, Fragments.imageFragment)
+            }
+            getString(R.string.id_item_4_6) -> {
+                UIInstance.currentFragment = 12
+                FragmentStarter.showContent(activity, NetworkActivity::class.java, Fragments.networkFragment)
+            }
+            getString(R.string.id_item_4_7) -> {
+                UIInstance.currentFragment = 13
+                FragmentStarter.showContent(activity, NotificationActivity::class.java, Fragments.notificationFragment)
             }
         }
         return true

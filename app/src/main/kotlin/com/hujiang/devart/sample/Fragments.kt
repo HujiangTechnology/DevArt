@@ -15,6 +15,15 @@ object Fragments {
     val adapterFragment = AdapterFragment()
     val dialogFragment = DialogFragment()
     val popupFragment = PopupFragment()
+    val deviceFragment = DeviceFragment()
+    val downloadFragment = DownloadFragment()
+    val fileFragment = FileFragment()
+    val jsonFragment = JsonFragment()
+    val httpFragment = HttpFragment()
+    val imageFragment = ImageFragment()
+    val networkFragment = NetworkFragment()
+    val notificationFragment = NotificationFragment()
+    val floatFragment = FloatWindowFragment()
 
     val tabFragment = TabFragment()
 }

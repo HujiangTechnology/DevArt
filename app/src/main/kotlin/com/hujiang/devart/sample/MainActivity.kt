@@ -9,6 +9,7 @@ import android.widget.ShareActionProvider
 import com.hujiang.devart.base.BaseMainActivity
 import com.hujiang.devart.sample.fragment.IndexFragment
 import com.hujiang.devart.sample.fragment.IntroFragment
+import com.hujiang.devart.utils.NetworkUtils
 import com.hujiang.devart.utils.UIUtils
 
 class MainActivity : BaseMainActivity() {
@@ -22,7 +23,7 @@ class MainActivity : BaseMainActivity() {
     }
 
     override fun initOnce() {
-
+        NetworkUtils.doGetNetworkInfoT(this)
     }
 
     override fun getBarTitle(): String? = getString(R.string.app_name)
@@ -33,7 +34,16 @@ class MainActivity : BaseMainActivity() {
         return when(currentFragment) {
             1 -> Fragments.argFragment
             2 -> Fragments.adapterFragment
+            7 -> Fragments.deviceFragment
+            8 -> Fragments.downloadFragment
+            9 -> Fragments.fileFragment
+            10 -> Fragments.httpFragment
+            11 -> Fragments.imageFragment
+            12 -> Fragments.networkFragment
+            13 -> Fragments.notificationFragment
+            16 -> Fragments.floatFragment
             17 -> Fragments.tabFragment
+            21 -> Fragments.jsonFragment
             else -> Fragments.introFragment
         }
     }

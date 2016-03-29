@@ -8,9 +8,9 @@ import java.lang.reflect.Method
  */
 object ReflectionUtils {
 
-    fun getClassFields(obj: Any?): Array<Field>? = obj?.javaClass?.fields
+    fun getClassFields(obj: Any?): Array<Field>? = obj?.javaClass?.declaredFields
 
-    fun getClassMethods(obj: Any?): Array<Method>? = obj?.javaClass?.methods
+    fun getClassMethods(obj: Any?): Array<Method>? = obj?.javaClass?.declaredMethods
 
     fun invokeClassMethod(obj: Any?, method: String, vararg params: Any?): Any? = obj?.javaClass?.getMethod(method)?.invoke(obj, params)
 

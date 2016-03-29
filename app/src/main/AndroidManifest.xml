@@ -60,10 +60,57 @@
                 android:configChanges="orientation">
         </activity>
 
+        <activity android:name=".DeviceActivity"
+                  android:label="@string/device_name"
+                  android:configChanges="orientation">
+
+        </activity>
+        <activity android:name=".DownloadActivity"
+                  android:label="@string/download_name"
+                  android:configChanges="orientation">
+
+        </activity>
+        <activity android:name=".FileActivity"
+                  android:label="@string/file_name"
+                  android:configChanges="orientation">
+
+        </activity>
+        <activity android:name=".JsonActivity"
+                  android:label="@string/json_name"
+                  android:configChanges="orientation">
+
+        </activity>
+        <activity android:name=".HttpActivity"
+                  android:label="@string/http_request_name"
+                  android:configChanges="orientation">
+
+        </activity>
+        <activity android:name=".ImageActivity"
+                  android:label="@string/image_name"
+                  android:configChanges="orientation">
+
+        </activity>
+        <activity android:name=".NetworkActivity"
+                  android:label="@string/network_name"
+                  android:configChanges="orientation">
+
+        </activity>
+        <activity android:name=".NotificationActivity"
+                  android:label="@string/notification_name"
+                  android:configChanges="orientation">
+
+        </activity>
+        <activity
+                android:name=".FloatWindowActivity"
+                android:label="@string/float_window_name"
+                android:configChanges="orientation">
+        </activity>
 
         <service android:name=".service.DemoService">
         </service>
-        
+
+        <service android:name=".service.DemoFloatWindowService">
+        </service>
     </application>
 
 </manifest>

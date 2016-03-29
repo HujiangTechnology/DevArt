@@ -16,6 +16,7 @@ class JsonUtils<T> {
             val fs = ReflectionUtils.getClassFields(obj)
             var typeStr: String
             for (f in fs!!) {
+                f.isAccessible = true
                 typeStr = f.type.simpleName
                 when (typeStr) {
                     "String" -> try {
@@ -67,46 +68,47 @@ class JsonUtils<T> {
             val fs = ReflectionUtils.getClassFields(obj)
             var typeStr: String
             for (f in fs!!) {
+                f.isAccessible = true
                 typeStr = f.type.simpleName
                 when (typeStr) {
                     "String" -> try {
-                        str += String.format("\"%s\":\"%s\",", f.name, f.get(obj) as String)
+                        str += "\"${f.name}\":\"${f.get(obj) as String}\","
                     } catch (e: Exception) {
                     }
                     "int" -> try {
-                        str += String.format("\"%s\":%d,", f.name, f.getInt(obj))
+                        str += "\"${f.name}\":${f.getInt(obj)},"
                     } catch (e: Exception) {
                     }
                     "double" -> try {
-                        str += String.format("\"%s\":%f,", f.name, f.getDouble(obj))
+                        str += "\"${f.name}\":${f.getDouble(obj)},"
                     } catch (e: Exception) {
                     }
                     "boolean" -> try {
-                        str += String.format("\"%s\":%b,", f.name, f.getBoolean(obj))
+                        str += "\"${f.name}\":${f.getBoolean(obj)},"
                     } catch (e: Exception) {
                     }
                     "float" -> try {
-                        str += String.format("\"%s\":%f,", f.name, f.getFloat(obj))
+                        str += "\"${f.name}\":${f.getFloat(obj)},"
                     } catch (e: Exception) {
                     }
                     "long" -> try {
-                        str += String.format("\"%s\":%d,", f.name, f.getLong(obj))
+                        str += "\"${f.name}\":${f.getLong(obj)},"
                     } catch (e: Exception) {
                     }
                     "byte" -> try {
-                        str += String.format("\"%s\":%d,", f.name, f.getByte(obj))
+                        str += "\"${f.name}\":${f.getByte(obj)},"
                     } catch (e: Exception) {
                     }
                     "short" -> try {
-                        str += String.format("\"%s\":%d,", f.name, f.getShort(obj))
+                        str += "\"${f.name}\":${f.getShort(obj)},"
                     } catch (e: Exception) {
                     }
                     "char" -> try {
-                        str += String.format("\"%s\":\"%s\",", f.name, f.getChar(obj))
+                        str += "\"${f.name}\":\"${f.getChar(obj)}\","
                     } catch (e: Exception) {
                     }
                     else -> try {
-                        str += String.format("\"%s\":\"%s\",", f.name, f.get(obj).toString())
+                        str += "\"${f.name}\":\"${f.get(obj).toString()}\","
                     } catch (e: Exception) {
                     }
                 }
@@ -149,7 +151,7 @@ class JsonUtils<T> {
     }
 
     private fun objectToJson(obj: Any, jobj: JSONObject, node: JsonNode): JSONObject? {
-        for (i in 0..node.childs!!.size) {
+        for (i in 0..node.childs!!.size - 1) {
             val f = getField(obj, node.childs!![i].fieldName)
             val type = node.childs!![i].fieldType
             switchTypeDoO2J(type, jobj, node.childs!![i].fieldName, f, obj, i, node.childs!![i])
@@ -209,7 +211,7 @@ class JsonUtils<T> {
 
     private fun switchTypeDoJ2O(type: JsonNode.FieldType, o: Any, f: Field, jobj: JSONObject?, jarr: JSONArray?, name: String, key: String?, index: Int, indexj: Int, node: JsonNode, isArray: Boolean, isMap: Boolean) = when (type) {
         JsonNode.FieldType.ftList -> {
-            val fList = o.javaClass.getField(name)
+            val fList = getField(o, name)
             val cList = fList.type
             val sType = fList.genericType.toString()
             val genericClassName = sType.substring(sType.indexOf("<") + 1, sType.indexOf(">"))
@@ -227,7 +229,7 @@ class JsonUtils<T> {
         }
 
         JsonNode.FieldType.ftMap -> {
-            val fMap = o.javaClass.getField(name)
+            val fMap = getField(o, name)
             val cMap = fMap.type
             val sMapType = fMap.genericType.toString()
             val genericMapName = sMapType.substring(sMapType.indexOf(",") + 1, sMapType.indexOf(">")).trim()
@@ -245,7 +247,7 @@ class JsonUtils<T> {
         }
 
         JsonNode.FieldType.ftObject -> {
-            val fSub = o.javaClass.getField(name)
+            val fSub = getField(o, name)
             val cSub = fSub.type
             val oSub = cSub.newInstance()
             if (isMap) {
