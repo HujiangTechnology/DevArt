@@ -1,7 +1,22 @@
+# common
+/out
+/native/out
+
+# project files
 .gradle
 /local.properties
 /.idea/workspace.xml
 /.idea/libraries
-.DS_Store
 /build
 /captures
+
+# mac files
+.DS_*
+
+# fpc temp files
+*.o
+*.ppu
+*.compiled
+*.rsj
+*.lps
+
