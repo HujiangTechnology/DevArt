@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <com.hujiang.devart.component.pulltorefresh.PullToRefreshListView
+            xmlns:ptr="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/lv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            ptr:ptrDrawable="@drawable/default_ptr_flip"
+            ptr:ptrAnimationStyle="flip"
+            ptr:ptrHeaderBackground="#FF383838"
+            ptr:ptrHeaderTextColor="#FFFFFFFF"
+            ptr:ptrScrollingWhileRefreshingEnabled="true"
+            ptr:ptrListViewExtrasEnabled="true">
+
+    </com.hujiang.devart.component.pulltorefresh.PullToRefreshListView>
+
+</RelativeLayout>

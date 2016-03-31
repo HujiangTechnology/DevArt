@@ -31,9 +31,13 @@ class IndexFragment : BasePreferenceFragment(), Preference.OnPreferenceClickList
 
     private var _p3HScroll: Preference? = null
     private var _p3VScroll: Preference? = null
+    private var _p3Gif: Preference? = null
     private var _p3Slide: Preference? = null
     private var _p3Tab: Preference? = null
     private var _p3Float: Preference? = null
+    private var _p3PullToRefreshScroll: Preference? = null
+    private var _p3PullToRefreshList: Preference? = null
+    private var _p3Swipe: Preference? = null
 
     private var _p4Device: Preference? = null
     private var _p4Download: Preference? = null
@@ -65,9 +69,13 @@ class IndexFragment : BasePreferenceFragment(), Preference.OnPreferenceClickList
 
         _p3HScroll = findPreference(getString(R.string.id_item_3_1))
         _p3VScroll = findPreference(getString(R.string.id_item_3_2))
+        _p3Gif = findPreference(getString(R.string.id_item_3_2_1))
+        _p3PullToRefreshScroll = findPreference(getString(R.string.id_item_3_3))
+        _p3PullToRefreshList = findPreference(getString(R.string.id_item_3_4))
         _p3Slide = findPreference(getString(R.string.id_item_3_5))
         _p3Tab = findPreference(getString(R.string.id_item_3_7))
         _p3Float = findPreference(getString(R.string.id_item_3_6))
+        _p3Swipe = findPreference(getString(R.string.id_item_3_4_4))
 
         _p4Device = findPreference(getString(R.string.id_item_4_1))
         _p4Download = findPreference(getString(R.string.id_item_4_2))
@@ -95,9 +103,13 @@ class IndexFragment : BasePreferenceFragment(), Preference.OnPreferenceClickList
 
         _p3HScroll?.onPreferenceClickListener = this
         _p3VScroll?.onPreferenceClickListener = this
+        _p3Gif?.onPreferenceClickListener = this
+        _p3PullToRefreshScroll?.onPreferenceClickListener = this
+        _p3PullToRefreshList?.onPreferenceClickListener = this
         _p3Slide?.onPreferenceClickListener = this
         _p3Tab?.onPreferenceClickListener = this
         _p3Float?.onPreferenceClickListener = this
+        _p3Swipe?.onPreferenceClickListener = this
 
         _p4Device?.onPreferenceClickListener = this
         _p4Download?.onPreferenceClickListener = this
@@ -165,6 +177,22 @@ class IndexFragment : BasePreferenceFragment(), Preference.OnPreferenceClickList
             getString(R.string.id_item_3_2) -> {
                 UIInstance.currentFragment = 4
                 FragmentStarter.showContent(activity, VScrollActivity::class.java, Fragments.vscrollFragment)
+            }
+            getString(R.string.id_item_3_2_1) -> {
+                UIInstance.currentFragment = 22
+                FragmentStarter.showContent(activity, GifActivity::class.java, Fragments.gifFragment)
+            }
+            getString(R.string.id_item_3_3) -> {
+                UIInstance.currentFragment = 5
+                FragmentStarter.showContent(activity, PullToRefreshScrollActivity::class.java, Fragments.pullToRefreshScrollFragment)
+            }
+            getString(R.string.id_item_3_4) -> {
+                UIInstance.currentFragment = 6
+                FragmentStarter.showContent(activity, PullToRefreshListActivity::class.java, Fragments.pullToRefreshListFragment)
+            }
+            getString(R.string.id_item_3_4_4) -> {
+                UIInstance.currentFragment = 23
+                FragmentStarter.showContent(activity, SwipeActivity::class.java, Fragments.swipeFragment)
             }
             getString(R.string.id_item_3_5) -> startActivity(Intent(activity, SlideActivity::class.java))
             getString(R.string.id_item_3_6) -> {

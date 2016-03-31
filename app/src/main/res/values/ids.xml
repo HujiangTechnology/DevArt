@@ -9,11 +9,13 @@
     <string name="id_item_2_4">Loader</string>
     <string name="id_item_3_1">HScrollLayout</string>
     <string name="id_item_3_2">VScrollLayout</string>
+    <string name="id_item_3_2_1">Gif</string>
     <string name="id_item_3_3">PullDownLayout</string>
     <string name="id_item_3_4">PullDownListView</string>
     <string name="id_item_3_4_1">DragListView</string>
     <string name="id_item_3_4_2">WaterfallView</string>
     <string name="id_item_3_4_3">FlipView</string>
+    <string name="id_item_3_4_4">Swipe</string>
     <string name="id_item_3_5">SlideMenu</string>
     <string name="id_item_3_6">FloatWindow</string>
     <string name="id_item_3_7">Tab</string>

@@ -36,6 +36,8 @@ class MainActivity : BaseMainActivity() {
             2 -> Fragments.adapterFragment
             3 -> Fragments.hscrollFragment
             4 -> Fragments.vscrollFragment
+            5 -> Fragments.pullToRefreshScrollFragment
+            6 -> Fragments.pullToRefreshListFragment
             7 -> Fragments.deviceFragment
             8 -> Fragments.downloadFragment
             9 -> Fragments.fileFragment
@@ -46,6 +48,8 @@ class MainActivity : BaseMainActivity() {
             16 -> Fragments.floatFragment
             17 -> Fragments.tabFragment
             21 -> Fragments.jsonFragment
+            22 -> Fragments.gifFragment
+            23 -> Fragments.swipeFragment
             else -> Fragments.introFragment
         }
     }

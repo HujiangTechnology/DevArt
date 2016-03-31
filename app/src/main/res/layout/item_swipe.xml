@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.hujiang.devart.component.swipe.SwipeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:swipe="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/swipe"
+        android:layout_width="match_parent"
+        android:layout_height="80dip"
+        swipe:show_mode="pull_out"
+        swipe:drag_edge="right">
+
+    <LinearLayout
+            android:background="@color/red"
+            android:layout_width="80dip"
+            android:gravity="center"
+            android:layout_height="80dip">
+        <Button
+                android:id="@+id/btnTrash"
+                android:background="@color/red"
+                android:text="Delete"
+                android:textColor="@color/white"
+                android:layout_width="80dip"
+                android:layout_height="match_parent"
+        />
+    </LinearLayout>
+
+    <LinearLayout
+            android:background="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="80dip"
+            android:orientation="horizontal"
+            android:weightSum="5">
+        <TextView
+                android:id="@+id/tvPosition"
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"/>
+        <TextView
+                android:id="@+id/tvText"
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:gravity="left|center_vertical"/>
+    </LinearLayout>
+
+</com.hujiang.devart.component.swipe.SwipeLayout>

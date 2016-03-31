@@ -18,11 +18,13 @@
 
     <string name="item_3_1">HScrollLayout &amp; PointBar</string>
     <string name="item_3_2">VScrollLayout</string>
+    <string name="item_3_2_1">Gif</string>
     <string name="item_3_3">PullDownLayout</string>
     <string name="item_3_4">PullDownListView</string>
     <string name="item_3_4_1">DragListView</string>
     <string name="item_3_4_2">WaterfallView</string>
     <string name="item_3_4_3">FlipView</string>
+    <string name="item_3_4_4">Swipe</string>
     <string name="item_3_5">SlideMenu</string>
     <string name="item_3_6">FloatWindow</string>
     <string name="item_3_7">Tab</string>
@@ -93,6 +95,10 @@
     <string name="dynamic_metro_name">DynamicMetroFragment</string>
     <string name="json_name">JsonFragment</string>
     <string name="json_name_with_path">MainActivity &gt; JsonFragment</string>
+    <string name="gif_name">GifFragment</string>
+    <string name="gif_name_with_path">MainActivity &gt; GifFragment</string>
+    <string name="swipe_name">SwipeFragment</string>
+    <string name="swipe_name_with_path">MainActivity &gt; SwipeFragment</string>
 
     <string name="btn_show_id">Show ID</string>
     <string name="btn_close">Close</string>

@@ -116,6 +116,27 @@
                   android:configChanges="orientation">
 
         </activity>
+        <activity android:name=".GifActivity"
+                  android:label="@string/gif_name"
+                  android:configChanges="orientation">
+
+        </activity>
+        <activity android:name=".PullToRefreshListActivity"
+                  android:label="@string/pulldown_layout_name"
+                  android:configChanges="orientation">
+
+        </activity>
+        <activity android:name=".PullToRefreshScrollActivity"
+                  android:label="@string/pulldown_layout_name"
+                  android:configChanges="orientation">
+
+        </activity>
+
+        <activity android:name=".SwipeActivity"
+                  android:label="@string/swipe_name"
+                  android:configChanges="orientation">
+
+        </activity>
 
         <service android:name=".service.DemoService">
         </service>

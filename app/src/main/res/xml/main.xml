@@ -1,99 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory android:title="@string/test_cat_1" >
+    <PreferenceCategory android:title="@string/test_cat_1">
         <Preference
-            android:key="@string/id_item_1_1"
-            android:title="@string/item_1_1" />
+                android:key="@string/id_item_1_1"
+                android:title="@string/item_1_1"/>
         <Preference
-            android:key="@string/id_item_1_2"
-            android:title="@string/item_1_2" />
+                android:key="@string/id_item_1_2"
+                android:title="@string/item_1_2"/>
         <Preference
-            android:key="@string/id_item_1_3"
-            android:title="@string/item_1_3" />
+                android:key="@string/id_item_1_3"
+                android:title="@string/item_1_3"/>
     </PreferenceCategory>
-    <PreferenceCategory android:title="@string/test_cat_2" >
+    <PreferenceCategory android:title="@string/test_cat_2">
         <Preference
-            android:key="@string/id_item_2_1"
-            android:title="@string/item_2_1" />
+                android:key="@string/id_item_2_1"
+                android:title="@string/item_2_1"/>
         <Preference
-            android:key="@string/id_item_2_2"
-            android:title="@string/item_2_2" />
+                android:key="@string/id_item_2_2"
+                android:title="@string/item_2_2"/>
         <Preference
-            android:key="@string/id_item_2_3"
-            android:title="@string/item_2_3" />
+                android:key="@string/id_item_2_3"
+                android:title="@string/item_2_3"/>
         <Preference
-            android:key="@string/id_item_2_4"
-            android:title="@string/item_2_4" />
+                android:key="@string/id_item_2_4"
+                android:title="@string/item_2_4"/>
     </PreferenceCategory>
-    <PreferenceCategory android:title="@string/test_cat_3" >
+    <PreferenceCategory android:title="@string/test_cat_3">
         <Preference
-            android:key="@string/id_item_3_1"
-            android:title="@string/item_3_1" />
+                android:key="@string/id_item_3_1"
+                android:title="@string/item_3_1"/>
         <Preference
-            android:key="@string/id_item_3_2"
-            android:title="@string/item_3_2" />
+                android:key="@string/id_item_3_2"
+                android:title="@string/item_3_2"/>
         <Preference
-            android:key="@string/id_item_3_3"
-            android:title="@string/item_3_3" />
+                android:key="@string/id_item_3_2_1"
+                android:title="@string/item_3_2_1"/>
         <Preference
-            android:key="@string/id_item_3_4"
-            android:title="@string/item_3_4" />
+                android:key="@string/id_item_3_3"
+                android:title="@string/item_3_3"/>
         <Preference
-            android:key="@string/id_item_3_4_1"
-            android:title="@string/item_3_4_1" />
+                android:key="@string/id_item_3_4"
+                android:title="@string/item_3_4"/>
         <Preference
-            android:key="@string/id_item_3_4_2"
-            android:title="@string/item_3_4_2" />
+                android:key="@string/id_item_3_4_1"
+                android:title="@string/item_3_4_1"/>
         <Preference
-            android:key="@string/id_item_3_4_3"
-            android:title="@string/item_3_4_3" />
+                android:key="@string/id_item_3_4_4"
+                android:title="@string/item_3_4_4"/>
         <Preference
-            android:key="@string/id_item_3_5"
-            android:title="@string/item_3_5" />
+                android:key="@string/id_item_3_5"
+                android:title="@string/item_3_5"/>
         <Preference
-            android:key="@string/id_item_3_6"
-            android:title="@string/item_3_6" />
+                android:key="@string/id_item_3_6"
+                android:title="@string/item_3_6"/>
         <Preference
-            android:key="@string/id_item_3_7"
-            android:title="@string/item_3_7" />
+                android:key="@string/id_item_3_7"
+                android:title="@string/item_3_7"/>
         <Preference
-            android:key="@string/id_item_3_8"
-            android:title="@string/item_3_8" />
+                android:key="@string/id_item_3_8"
+                android:title="@string/item_3_8"/>
     </PreferenceCategory>
-    <PreferenceCategory android:title="@string/test_cat_4" >
+    <PreferenceCategory android:title="@string/test_cat_4">
         <Preference
-            android:key="@string/id_item_4_1"
-            android:title="@string/item_4_1" />
+                android:key="@string/id_item_4_1"
+                android:title="@string/item_4_1"/>
         <Preference
-            android:key="@string/id_item_4_2"
-            android:title="@string/item_4_2" />
+                android:key="@string/id_item_4_2"
+                android:title="@string/item_4_2"/>
         <Preference
-            android:key="@string/id_item_4_3"
-            android:title="@string/item_4_3" />
+                android:key="@string/id_item_4_3"
+                android:title="@string/item_4_3"/>
         <Preference
-            android:key="@string/id_item_4_3_1"
-            android:title="@string/item_4_3_1" />
+                android:key="@string/id_item_4_3_1"
+                android:title="@string/item_4_3_1"/>
         <Preference
-            android:key="@string/id_item_4_4"
-            android:title="@string/item_4_4" />
+                android:key="@string/id_item_4_4"
+                android:title="@string/item_4_4"/>
         <Preference
-            android:key="@string/id_item_4_5"
-            android:title="@string/item_4_5" />
+                android:key="@string/id_item_4_5"
+                android:title="@string/item_4_5"/>
         <Preference
-            android:key="@string/id_item_4_6"
-            android:title="@string/item_4_6" />
+                android:key="@string/id_item_4_6"
+                android:title="@string/item_4_6"/>
         <Preference
-            android:key="@string/id_item_4_7"
-            android:title="@string/item_4_7" />
+                android:key="@string/id_item_4_7"
+                android:title="@string/item_4_7"/>
         <Preference
-            android:key="@string/id_item_4_8"
-            android:title="@string/item_4_8" />
+                android:key="@string/id_item_4_8"
+                android:title="@string/item_4_8"/>
     </PreferenceCategory>
-    <PreferenceCategory android:title="@string/test_cat_5" >
+    <PreferenceCategory android:title="@string/test_cat_5">
         <Preference
-            android:key="@string/id_item_5_1"
-            android:title="@string/item_5_1" />
+                android:key="@string/id_item_5_1"
+                android:title="@string/item_5_1"/>
     </PreferenceCategory>
 
 </PreferenceScreen>

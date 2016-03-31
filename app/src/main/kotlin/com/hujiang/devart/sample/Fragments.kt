@@ -26,6 +26,10 @@ object Fragments {
     val floatFragment = FloatWindowFragment()
     val hscrollFragment = HScrollFragment()
     val vscrollFragment = VScrollFragment()
+    val gifFragment = GifFragment()
+    val pullToRefreshListFragment = PullToRefreshListFragment()
+    val pullToRefreshScrollFragment = PullToRefreshScrollFragment()
+    val swipeFragment = SwipeFragment()
 
     val tabFragment = TabFragment()
 }
