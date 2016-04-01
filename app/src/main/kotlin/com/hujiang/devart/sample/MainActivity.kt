@@ -47,6 +47,7 @@ class MainActivity : BaseMainActivity() {
             13 -> Fragments.notificationFragment
             16 -> Fragments.floatFragment
             17 -> Fragments.tabFragment
+            18 -> Fragments.dragListFragment
             21 -> Fragments.jsonFragment
             22 -> Fragments.gifFragment
             23 -> Fragments.swipeFragment

@@ -138,6 +138,12 @@
 
         </activity>
 
+        <activity android:name=".DragListActivity"
+                  android:label="@string/drag_listview_name"
+                  android:configChanges="orientation">
+            
+        </activity>
+
         <service android:name=".service.DemoService">
         </service>
 

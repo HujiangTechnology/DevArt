@@ -38,6 +38,7 @@ class IndexFragment : BasePreferenceFragment(), Preference.OnPreferenceClickList
     private var _p3PullToRefreshScroll: Preference? = null
     private var _p3PullToRefreshList: Preference? = null
     private var _p3Swipe: Preference? = null
+    private var _p3DragList: Preference? = null
 
     private var _p4Device: Preference? = null
     private var _p4Download: Preference? = null
@@ -72,6 +73,7 @@ class IndexFragment : BasePreferenceFragment(), Preference.OnPreferenceClickList
         _p3Gif = findPreference(getString(R.string.id_item_3_2_1))
         _p3PullToRefreshScroll = findPreference(getString(R.string.id_item_3_3))
         _p3PullToRefreshList = findPreference(getString(R.string.id_item_3_4))
+        _p3DragList = findPreference(getString(R.string.id_item_3_4_1))
         _p3Slide = findPreference(getString(R.string.id_item_3_5))
         _p3Tab = findPreference(getString(R.string.id_item_3_7))
         _p3Float = findPreference(getString(R.string.id_item_3_6))
@@ -106,6 +108,7 @@ class IndexFragment : BasePreferenceFragment(), Preference.OnPreferenceClickList
         _p3Gif?.onPreferenceClickListener = this
         _p3PullToRefreshScroll?.onPreferenceClickListener = this
         _p3PullToRefreshList?.onPreferenceClickListener = this
+        _p3DragList?.onPreferenceClickListener = this
         _p3Slide?.onPreferenceClickListener = this
         _p3Tab?.onPreferenceClickListener = this
         _p3Float?.onPreferenceClickListener = this
@@ -189,6 +192,10 @@ class IndexFragment : BasePreferenceFragment(), Preference.OnPreferenceClickList
             getString(R.string.id_item_3_4) -> {
                 UIInstance.currentFragment = 6
                 FragmentStarter.showContent(activity, PullToRefreshListActivity::class.java, Fragments.pullToRefreshListFragment)
+            }
+            getString(R.string.id_item_3_4_1) -> {
+                UIInstance.currentFragment = 18
+                FragmentStarter.showContent(activity, DragListActivity::class.java, Fragments.dragListFragment)
             }
             getString(R.string.id_item_3_4_4) -> {
                 UIInstance.currentFragment = 23

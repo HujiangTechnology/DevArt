@@ -30,6 +30,7 @@ object Fragments {
     val pullToRefreshListFragment = PullToRefreshListFragment()
     val pullToRefreshScrollFragment = PullToRefreshScrollFragment()
     val swipeFragment = SwipeFragment()
+    val dragListFragment = DragListFragment()
 
     val tabFragment = TabFragment()
 }
