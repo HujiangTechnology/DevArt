@@ -1,4 +1,4 @@
-{$DEFINE DEBUG}
+{.$DEFINE DEBUG}
 
 {$IFDEF DEBUG}
 program alg;
