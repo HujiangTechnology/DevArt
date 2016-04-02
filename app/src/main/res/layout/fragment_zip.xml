@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <TextView
+            android:id="@+id/tvDesc"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="Zip: zip folder /sdcard/test to test.zip\nUnzip: unzip test.zip to /sdcard/unzip/"/>
+
+    <Button
+            android:id="@+id/btnZip"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="ZIP"
+            android:layout_below="@+id/tvDesc"/>
+
+    <Button
+            android:id="@+id/btnUnzip"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="UNZIP"
+            android:layout_below="@+id/btnZip"/>
+
+</RelativeLayout>

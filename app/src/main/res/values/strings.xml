@@ -39,8 +39,10 @@
     <string name="item_4_6">Network</string>
     <string name="item_4_7">Notification</string>
     <string name="item_4_8">UI</string>
+    <string name="item_4_9">Zip</string>
 
     <string name="item_5_1">Run</string>
+    <string name="item_5_2">BlackTech</string>
 
     <string name="fragment_intro">Intro</string>
 
@@ -99,6 +101,10 @@
     <string name="gif_name_with_path">MainActivity &gt; GifFragment</string>
     <string name="swipe_name">SwipeFragment</string>
     <string name="swipe_name_with_path">MainActivity &gt; SwipeFragment</string>
+    <string name="zip_name">ZipFragment</string>
+    <string name="zip_name_with_path">MainActivity &gt; ZipFragment</string>
+    <string name="blacktech_name">BlackTechFragment</string>
+    <string name="blacktech_name_with_path">MainActivity &gt; BlackTechFragment</string>
 
     <string name="btn_show_id">Show ID</string>
     <string name="btn_close">Close</string>

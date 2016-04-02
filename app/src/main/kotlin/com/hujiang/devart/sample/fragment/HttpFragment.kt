@@ -56,7 +56,7 @@ class HttpFragment : BaseFragment(), View.OnClickListener {
     private val _hRequest = object : Handler() {
         override fun handleMessage(msg: Message?) {
             if (msg!!.what == 1) {
-                _tvResult?.text = msg.obj as String
+                _tvResult?.text = msg.obj as String?
             }
             super.handleMessage(msg)
         }

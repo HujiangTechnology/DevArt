@@ -31,6 +31,8 @@ object Fragments {
     val pullToRefreshScrollFragment = PullToRefreshScrollFragment()
     val swipeFragment = SwipeFragment()
     val dragListFragment = DragListFragment()
+    val zipFragment = ZipFragment()
+    val blackTechFragment = BlackTechFragment()
 
     val tabFragment = TabFragment()
 }

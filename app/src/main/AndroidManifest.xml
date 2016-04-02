@@ -141,7 +141,17 @@
         <activity android:name=".DragListActivity"
                   android:label="@string/drag_listview_name"
                   android:configChanges="orientation">
-            
+
+        </activity>
+        <activity android:name=".ZipActivity"
+                  android:label="@string/zip_name"
+                  android:configChanges="orientation">
+
+        </activity>
+        <activity android:name=".BlackTechActivity"
+                  android:label="@string/blacktech_name"
+                  android:configChanges="orientation">
+
         </activity>
 
         <service android:name=".service.DemoService">

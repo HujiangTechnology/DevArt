@@ -48,6 +48,9 @@ class IndexFragment : BasePreferenceFragment(), Preference.OnPreferenceClickList
     private var _p4Image: Preference? = null
     private var _p4Network: Preference? = null
     private var _p4Notification: Preference? = null
+    private var _p4Zip: Preference? = null
+
+    private var _p5BlackTech: Preference? = null
 
     override fun getBarTitle(): Int = R.string.app_name
 
@@ -87,6 +90,9 @@ class IndexFragment : BasePreferenceFragment(), Preference.OnPreferenceClickList
         _p4Image = findPreference(getString(R.string.id_item_4_5))
         _p4Network = findPreference(getString(R.string.id_item_4_6))
         _p4Notification = findPreference(getString(R.string.id_item_4_7))
+        _p4Zip = findPreference(getString(R.string.id_item_4_9))
+
+        _p5BlackTech = findPreference(getString(R.string.id_item_5_2))
 
     }
 
@@ -122,6 +128,9 @@ class IndexFragment : BasePreferenceFragment(), Preference.OnPreferenceClickList
         _p4Image?.onPreferenceClickListener = this
         _p4Network?.onPreferenceClickListener = this
         _p4Notification?.onPreferenceClickListener = this
+        _p4Zip?.onPreferenceClickListener = this
+
+        _p5BlackTech?.onPreferenceClickListener = this
 
     }
 
@@ -241,6 +250,14 @@ class IndexFragment : BasePreferenceFragment(), Preference.OnPreferenceClickList
             getString(R.string.id_item_4_7) -> {
                 UIInstance.currentFragment = 13
                 FragmentStarter.showContent(activity, NotificationActivity::class.java, Fragments.notificationFragment)
+            }
+            getString(R.string.id_item_4_9) -> {
+                UIInstance.currentFragment = 24
+                FragmentStarter.showContent(activity, ZipActivity::class.java, Fragments.zipFragment)
+            }
+            getString(R.string.id_item_5_2) -> {
+                UIInstance.currentFragment = 25
+                FragmentStarter.showContent(activity, BlackTechActivity::class.java, Fragments.blackTechFragment)
             }
         }
         return true

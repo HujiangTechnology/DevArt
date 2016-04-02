@@ -51,6 +51,8 @@ class MainActivity : BaseMainActivity() {
             21 -> Fragments.jsonFragment
             22 -> Fragments.gifFragment
             23 -> Fragments.swipeFragment
+            24 -> Fragments.zipFragment
+            25 -> Fragments.blackTechFragment
             else -> Fragments.introFragment
         }
     }
