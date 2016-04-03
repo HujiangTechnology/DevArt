@@ -45,6 +45,7 @@ _compile() {
 	${FPC} -B -Tandroid -P${CPU} -MObjFPC -Scghi -O1 -l -vewnhibq \
 		-Fl${TYPHON_BIN_LIB}/android-4.4-api19-${LIB} \
 		-Fu../jni \
+		-Fulockbox \
 		-Fusec \
 		-Fu. \
 		-Fi../out/${CPU}-android \

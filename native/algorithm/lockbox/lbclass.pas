@@ -407,7 +407,7 @@ type
 implementation
 
 uses
-  LbProc, LbString, LbConst;
+  LbProc, LbString;
 
 
 const

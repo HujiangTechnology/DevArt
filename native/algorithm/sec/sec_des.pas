@@ -26,9 +26,6 @@ var
   pikkus:integer;
   vahe:integer;
   vahealgus:integer;
-  cmd:integer;
-  Databloc2mode:boolean;
-  Data:integer;
   Mitmes:integer;
 begin
   vahe:=AnsiPos(';',rida) ;
@@ -48,7 +45,6 @@ begin
   pikkus:=Length(rida);
   mitmes:=0;
   setlength(result,pikkus);
-  Databloc2mode:=false;
   while vahe<=pikkus do begin
     if IsDelimiter(#32,rida,vahe)=true then begin
       vaherida:=trim(copy(rida,vahealgus,vahe-vahealgus));

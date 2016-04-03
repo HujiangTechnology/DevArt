@@ -35,6 +35,9 @@ unit LbCipher;
 
 {$MODE Delphi}
 
+{$Hints off}
+
+
   {-private key encryption/decryption primitives}
 
 interface

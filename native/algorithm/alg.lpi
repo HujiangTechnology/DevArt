@@ -28,7 +28,7 @@
         <CommandLineParams Value="-sha1 -f ~/Desktop/my/test.lp"/>
       </local>
     </RunParams>
-    <Units Count="12">
+    <Units Count="18">
       <Unit0>
         <Filename Value="alg.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -42,44 +42,67 @@
         <IsPartOfProject Value="True"/>
       </Unit2>
       <Unit3>
-        <Filename Value="lbcipher.pas"/>
+        <Filename Value="filestream_utils.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="LbCipher"/>
       </Unit3>
       <Unit4>
-        <Filename Value="lbutils.pas"/>
+        <Filename Value="sec/sec_md5.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="LbUtils"/>
       </Unit4>
       <Unit5>
-        <Filename Value="filestream_utils.pas"/>
+        <Filename Value="sec/sec_sha1.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit5>
       <Unit6>
-        <Filename Value="sec/sec_md5.pas"/>
+        <Filename Value="sec/sec_lmd.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit6>
       <Unit7>
-        <Filename Value="sec/sec_sha1.pas"/>
+        <Filename Value="sec/sec_elf.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit7>
       <Unit8>
-        <Filename Value="sec/sec_lmd.pas"/>
+        <Filename Value="sec/sec_des.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit8>
       <Unit9>
-        <Filename Value="sec/sec_elf.pas"/>
+        <Filename Value="sec/sec_base64.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit9>
       <Unit10>
-        <Filename Value="lbclass.pas"/>
+        <Filename Value="lockbox/lbcipher.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="LbClass"/>
       </Unit10>
       <Unit11>
-        <Filename Value="sec/sec_des.pas"/>
+        <Filename Value="lockbox/lbclass.pas"/>
         <IsPartOfProject Value="True"/>
+        <UnitName Value="LbClass"/>
       </Unit11>
+      <Unit12>
+        <Filename Value="lockbox/lbconst.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="lockbox/lbproc.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="lockbox/lbrsa.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="LbRSA"/>
+      </Unit14>
+      <Unit15>
+        <Filename Value="lockbox/lbstring.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit15>
+      <Unit16>
+        <Filename Value="lockbox/lbutils.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit16>
+      <Unit17>
+        <Filename Value="sec/sec_rsa.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit17>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -89,7 +112,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="../jni;sec"/>
+      <OtherUnitFiles Value="../jni;sec;lockbox"/>
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <CodeGeneration>
