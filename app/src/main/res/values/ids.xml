@@ -29,7 +29,9 @@
     <string name="id_item_4_6">Network</string>
     <string name="id_item_4_7">Notification</string>
     <string name="id_item_4_8">UI</string>
+    <string name="id_item_4_9">Zip</string>
     <string name="id_item_5_1">Run</string>
+    <string name="id_item_5_2">BlackTech</string>
 
     <string name="menuid_item_1">Item_1</string>
     <string name="menuid_item_2">Item_2</string>
