@@ -1,4 +1,4 @@
-{$DEFINE DEBUG}
+{.$DEFINE DEBUG}
 
 {$IFDEF DEBUG}
 program alg;
@@ -10,9 +10,10 @@ library alg;
 
 uses
   Classes, sysutils, sec_md5, sec_sha1, sec_lmd, sec_elf, sec_des, sec_base64,
-  sec_rsa;
+  sec_rsa, sec_dsa;
 
 exports
+// for iOS
   _md5EncryptString,
   _md5EncryptFile,
   _sha1EncryptString,
@@ -31,6 +32,15 @@ exports
   _rsaDecryptFile,
   _rsaGetPubkeyModules,
   _rsaGetPrivkeyModules,
+  _dsaGenerateKeys,
+  _dsaSignString,
+  _dsaSignFile,
+  _dsaVerifyString,
+  _dsaVerifyFile,
+  _dsaGetPubkeyQPGY,
+  _dsaGetPrivkeyQPGX,
+
+// for cross
   md5EncryptString,
   md5EncryptFile,
   sha1EncryptString,
@@ -49,6 +59,15 @@ exports
   rsaDecryptFile,
   rsaGetPubkeyModules,
   rsaGetPrivkeyModules,
+  dsaGenerateKeys,
+  dsaSignString,
+  dsaSignFile,
+  dsaVerifyString,
+  dsaVerifyFile,
+  dsaGetPubkeyQPGY,
+  dsaGetPrivkeyQPGX,
+
+// for jni
   Java_com_hujiang_devart_security_AlgorithmUtils_md5EncryptString,
   Java_com_hujiang_devart_security_AlgorithmUtils_md5EncryptFile,
   Java_com_hujiang_devart_security_AlgorithmUtils_sha1EncryptString,
@@ -66,7 +85,14 @@ exports
   Java_com_hujiang_devart_security_AlgorithmUtils_rsaDecryptString,
   Java_com_hujiang_devart_security_AlgorithmUtils_rsaDecryptFile,
   Java_com_hujiang_devart_security_AlgorithmUtils_rsaGetPubkeyModules,
-  Java_com_hujiang_devart_security_AlgorithmUtils_rsaGetPrivkeyModules;
+  Java_com_hujiang_devart_security_AlgorithmUtils_rsaGetPrivkeyModules,
+  Java_com_hujiang_devart_security_AlgorithmUtils_dsaGenerateKeys,
+  Java_com_hujiang_devart_security_AlgorithmUtils_dsaSignString,
+  Java_com_hujiang_devart_security_AlgorithmUtils_dsaSignFile,
+  Java_com_hujiang_devart_security_AlgorithmUtils_dsaVerifyString,
+  Java_com_hujiang_devart_security_AlgorithmUtils_dsaVerifyFile,
+  Java_com_hujiang_devart_security_AlgorithmUtils_dsaGetPubkeyQPGY,
+  Java_com_hujiang_devart_security_AlgorithmUtils_dsaGetPrivkeyQPGX;
 
 {$IFDEF DEBUG}
 var
@@ -84,6 +110,11 @@ var
   rsaStr: string;
   rsaFile: string;
   rsaOutfile: string;
+
+  // DSA
+  dsaStr: string;
+  dsaRS: string;
+  dsaFile: string;
 {$ENDIF}
 begin
   {$IFDEF DEBUG}
@@ -144,6 +175,37 @@ begin
           rsaFile:= ParamStr(6);
           rsaOutfile:= ParamStr(7);
           ret := IntToStr(rsaDecryptFile(keySize, PChar(privPass), PChar(privPath), PChar(rsaFile), PChar(rsaOutfile)));
+      end;
+    end else if (m = '-dsa') then begin
+      keySize:= StrToInt(RightStr(ParamStr(3), 1));
+      if (t = '-g') then begin
+        pubPass:= ParamStr(4);
+        pubPath:= ParamStr(5);
+        privPass:= ParamStr(6);
+        privPath:= ParamStr(7);
+        ret := IntToStr(dsaGenerateKeys(keySize, PChar(pubPass), PChar(privPass), PChar(pubPath), PChar(privPath)));
+      end else if (t = '-es') then begin
+        privPass:= ParamStr(4);
+        privPath:= ParamStr(5);
+        dsaStr:= ParamStr(6);
+        ret := string(dsaSignString(keySize, PChar(privPass), PChar(privPath), PChar(dsaStr)));
+      end else if (t = '-ef') then begin
+        privPass:= ParamStr(4);
+        privPath:= ParamStr(5);
+        dsaFile:= ParamStr(6);
+        ret := string(dsaSignFile(keySize, PChar(privPass), PChar(privPath), PChar(dsaFile)));
+      end else if (t = '-ds') then begin
+        pubPass:= ParamStr(4);
+        pubPath:= ParamStr(5);
+        dsaRS:= ParamStr(6);
+        dsaStr:= ParamStr(7);
+        ret := IntToStr(dsaVerifyString(keySize, PChar(pubPass), PChar(pubPath), PChar(dsaRS), PChar(dsaStr)));
+      end else if (t = '-df') then begin
+        pubPass:= ParamStr(4);
+        pubPath:= ParamStr(5);
+        dsaRS:= ParamStr(6);
+        dsaFile:= ParamStr(7);
+        ret := IntToStr(dsaVerifyFile(keySize, PChar(pubPass), PChar(pubPath), PChar(dsaRS), PChar(dsaFile)));
       end;
     end;
     WriteLn(ret);

@@ -25,10 +25,10 @@
     <RunParams>
       <local>
         <FormatVersion Value="1"/>
-        <CommandLineParams Value="-sha1 -f ~/Desktop/my/test.lp"/>
+        <CommandLineParams Value="-dsa -es -0 &quot;abc&quot; /home/rarnu/Desktop/dsa.pub abcdefg"/>
       </local>
     </RunParams>
-    <Units Count="18">
+    <Units Count="19">
       <Unit0>
         <Filename Value="alg.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -98,11 +98,16 @@
       <Unit16>
         <Filename Value="lockbox/lbutils.pas"/>
         <IsPartOfProject Value="True"/>
+        <UnitName Value="LbUtils"/>
       </Unit16>
       <Unit17>
         <Filename Value="sec/sec_rsa.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit17>
+      <Unit18>
+        <Filename Value="sec/sec_dsa.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit18>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -118,6 +123,11 @@
     <CodeGeneration>
       <RelocatableUnit Value="True"/>
     </CodeGeneration>
+    <Linking>
+      <Options>
+        <ExecutableType Value="Library"/>
+      </Options>
+    </Linking>
   </CompilerOptions>
   <Debugging>
     <Exceptions Count="3">

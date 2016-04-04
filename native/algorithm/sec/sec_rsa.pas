@@ -46,10 +46,8 @@ begin
     rsa.GenerateKeyPair;
     rsa.PublicKey.Passphrase:= String(pubPass);
     rsa.PublicKey.StoreToFile(string(pubSavePath));
-    WriteLn(pubSavePath);
     rsa.PrivateKey.Passphrase:= String(privPass);
     rsa.PrivateKey.StoreToFile(string(privSavePath));
-    WriteLn(privSavePath);
     Result := 0;
   finally
     rsa.Free;
