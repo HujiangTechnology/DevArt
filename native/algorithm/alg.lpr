@@ -10,7 +10,7 @@ library alg;
 
 uses
   Classes, sysutils, sec_md5, sec_sha1, sec_lmd, sec_elf, sec_des, sec_base64,
-  sec_rsa, sec_dsa;
+  sec_rsa, sec_dsa, sec_rdl, sec_rsassa;
 
 exports
 // for iOS
@@ -39,6 +39,15 @@ exports
   _dsaVerifyFile,
   _dsaGetPubkeyQPGY,
   _dsaGetPrivkeyQPGX,
+  _rdlEncryptString,
+  _rdlEncryptFile,
+  _rdlDecryptString,
+  _rdlDecryptFile,
+  _rsassaGenerateKeys,
+  _rsassaSignString,
+  _rsassaSignFile,
+  _rsassaVerifyString,
+  _rsassaVerifyFile,
 
 // for cross
   md5EncryptString,
@@ -66,6 +75,15 @@ exports
   dsaVerifyFile,
   dsaGetPubkeyQPGY,
   dsaGetPrivkeyQPGX,
+  rdlEncryptString,
+  rdlEncryptFile,
+  rdlDecryptString,
+  rdlDecryptFile,
+  rsassaGenerateKeys,
+  rsassaSignString,
+  rsassaSignFile,
+  rsassaVerifyString,
+  rsassaVerifyFile,
 
 // for jni
   Java_com_hujiang_devart_security_AlgorithmUtils_md5EncryptString,
@@ -92,7 +110,16 @@ exports
   Java_com_hujiang_devart_security_AlgorithmUtils_dsaVerifyString,
   Java_com_hujiang_devart_security_AlgorithmUtils_dsaVerifyFile,
   Java_com_hujiang_devart_security_AlgorithmUtils_dsaGetPubkeyQPGY,
-  Java_com_hujiang_devart_security_AlgorithmUtils_dsaGetPrivkeyQPGX;
+  Java_com_hujiang_devart_security_AlgorithmUtils_dsaGetPrivkeyQPGX,
+  Java_com_hujiang_devart_security_AlgorithmUtils_rdlEncryptString,
+  Java_com_hujiang_devart_security_AlgorithmUtils_rdlEncryptFile,
+  Java_com_hujiang_devart_security_AlgorithmUtils_rdlDecryptString,
+  Java_com_hujiang_devart_security_AlgorithmUtils_rdlDecryptFile,
+  Java_com_hujiang_devart_security_AlgorithmUtils_rsassaGenerateKeys,
+  Java_com_hujiang_devart_security_AlgorithmUtils_rsassaSignString,
+  Java_com_hujiang_devart_security_AlgorithmUtils_rsassaSignFile,
+  Java_com_hujiang_devart_security_AlgorithmUtils_rsassaVerifyString,
+  Java_com_hujiang_devart_security_AlgorithmUtils_rsassaVerifyFile;
 
 {$IFDEF DEBUG}
 var
