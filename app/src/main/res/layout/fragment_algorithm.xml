@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <TextView
+            android:id="@+id/tvMd5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="MD5 Calculating..."/>
+    <TextView
+            android:id="@+id/tvSha1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SHA1 Calculating..."/>
+
+    <TextView
+            android:id="@+id/tvRSA"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="RSA Calculating..."/>
+
+    <TextView
+            android:id="@+id/tvDSA"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="DSA Calculating..."/>
+</LinearLayout>

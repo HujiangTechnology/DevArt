@@ -39,6 +39,8 @@ class IndexFragment : BasePreferenceFragment(), Preference.OnPreferenceClickList
     private var _p3PullToRefreshList: Preference? = null
     private var _p3Swipe: Preference? = null
     private var _p3DragList: Preference? = null
+    private var _p3Calendar: Preference? = null
+    private var _p3LockView: Preference? = null
 
     private var _p4Device: Preference? = null
     private var _p4Download: Preference? = null
@@ -49,6 +51,7 @@ class IndexFragment : BasePreferenceFragment(), Preference.OnPreferenceClickList
     private var _p4Network: Preference? = null
     private var _p4Notification: Preference? = null
     private var _p4Zip: Preference? = null
+    private var _p4Algorithm: Preference? = null
 
     private var _p5BlackTech: Preference? = null
 
@@ -81,6 +84,8 @@ class IndexFragment : BasePreferenceFragment(), Preference.OnPreferenceClickList
         _p3Tab = findPreference(getString(R.string.id_item_3_7))
         _p3Float = findPreference(getString(R.string.id_item_3_6))
         _p3Swipe = findPreference(getString(R.string.id_item_3_4_4))
+        _p3Calendar = findPreference(getString(R.string.id_item_3_8))
+        _p3LockView = findPreference(getString(R.string.id_item_3_9))
 
         _p4Device = findPreference(getString(R.string.id_item_4_1))
         _p4Download = findPreference(getString(R.string.id_item_4_2))
@@ -91,6 +96,7 @@ class IndexFragment : BasePreferenceFragment(), Preference.OnPreferenceClickList
         _p4Network = findPreference(getString(R.string.id_item_4_6))
         _p4Notification = findPreference(getString(R.string.id_item_4_7))
         _p4Zip = findPreference(getString(R.string.id_item_4_9))
+        _p4Algorithm = findPreference(getString(R.string.id_item_4_10))
 
         _p5BlackTech = findPreference(getString(R.string.id_item_5_2))
 
@@ -119,6 +125,8 @@ class IndexFragment : BasePreferenceFragment(), Preference.OnPreferenceClickList
         _p3Tab?.onPreferenceClickListener = this
         _p3Float?.onPreferenceClickListener = this
         _p3Swipe?.onPreferenceClickListener = this
+        _p3Calendar?.onPreferenceClickListener = this
+        _p3LockView?.onPreferenceClickListener = this
 
         _p4Device?.onPreferenceClickListener = this
         _p4Download?.onPreferenceClickListener = this
@@ -129,6 +137,7 @@ class IndexFragment : BasePreferenceFragment(), Preference.OnPreferenceClickList
         _p4Network?.onPreferenceClickListener = this
         _p4Notification?.onPreferenceClickListener = this
         _p4Zip?.onPreferenceClickListener = this
+        _p4Algorithm?.onPreferenceClickListener = this
 
         _p5BlackTech?.onPreferenceClickListener = this
 
@@ -219,6 +228,14 @@ class IndexFragment : BasePreferenceFragment(), Preference.OnPreferenceClickList
                 UIInstance.currentFragment = 17
                 FragmentStarter.showContent(activity, TabActivity::class.java, Fragments.tabFragment)
             }
+            getString(R.string.id_item_3_8) -> {
+                UIInstance.currentFragment = 27
+                FragmentStarter.showContent(activity, CalendarActivity::class.java, Fragments.calendarFragment)
+            }
+            getString(R.string.id_item_3_9) -> {
+                UIInstance.currentFragment = 28
+                FragmentStarter.showContent(activity, LockViewActivity::class.java, Fragments.lockViewFragment)
+            }
             getString(R.string.id_item_4_1) -> {
                 UIInstance.currentFragment = 7
                 FragmentStarter.showContent(activity, DeviceActivity::class.java, Fragments.deviceFragment)
@@ -254,6 +271,10 @@ class IndexFragment : BasePreferenceFragment(), Preference.OnPreferenceClickList
             getString(R.string.id_item_4_9) -> {
                 UIInstance.currentFragment = 24
                 FragmentStarter.showContent(activity, ZipActivity::class.java, Fragments.zipFragment)
+            }
+            getString(R.string.id_item_4_10) -> {
+                UIInstance.currentFragment = 26
+                FragmentStarter.showContent(activity, AlgorithmActivity::class.java, Fragments.algorithmFragment)
             }
             getString(R.string.id_item_5_2) -> {
                 UIInstance.currentFragment = 25

@@ -28,7 +28,8 @@
     <string name="item_3_5">SlideMenu</string>
     <string name="item_3_6">FloatWindow</string>
     <string name="item_3_7">Tab</string>
-    <string name="item_3_8">DynamicMetro</string>
+    <string name="item_3_8">Calendar</string>
+    <string name="item_3_9">LockView</string>
 
     <string name="item_4_1">Device</string>
     <string name="item_4_2">Download</string>
@@ -40,6 +41,7 @@
     <string name="item_4_7">Notification</string>
     <string name="item_4_8">UI</string>
     <string name="item_4_9">Zip</string>
+    <string name="item_4_10">Algorithm</string>
 
     <string name="item_5_1">Run</string>
     <string name="item_5_2">BlackTech</string>
@@ -105,6 +107,12 @@
     <string name="zip_name_with_path">MainActivity &gt; ZipFragment</string>
     <string name="blacktech_name">BlackTechFragment</string>
     <string name="blacktech_name_with_path">MainActivity &gt; BlackTechFragment</string>
+    <string name="algorithm_name">AlgorithmFragment</string>
+    <string name="algorithm_name_with_path">MainActivity &gt; AlgorithmFragment</string>
+    <string name="calendar_name">CalendarFragment</string>
+    <string name="calendar_name_with_path">MainActivity &gt; CalendarFragment</string>
+    <string name="lockview_name">LockFragment</string>
+    <string name="lockview_name_with_path">MainActivity &gt; LockFragment</string>
 
     <string name="btn_show_id">Show ID</string>
     <string name="btn_close">Close</string>

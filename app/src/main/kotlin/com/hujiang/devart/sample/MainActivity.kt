@@ -53,6 +53,9 @@ class MainActivity : BaseMainActivity() {
             23 -> Fragments.swipeFragment
             24 -> Fragments.zipFragment
             25 -> Fragments.blackTechFragment
+            26 -> Fragments.algorithmFragment
+            27 -> Fragments.calendarFragment
+            28 -> Fragments.lockViewFragment
             else -> Fragments.introFragment
         }
     }
