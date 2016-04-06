@@ -153,6 +153,21 @@
                   android:configChanges="orientation">
 
         </activity>
+        <activity android:name=".AlgorithmActivity"
+                  android:label="@string/algorithm_name"
+                  android:configChanges="orientation">
+
+        </activity>
+        <activity android:name=".CalendarActivity"
+                  android:label="@string/calendar_name"
+                  android:configChanges="orientation">
+
+        </activity>
+        <activity android:name=".LockViewActivity"
+                  android:label="@string/lockview_name"
+                  android:configChanges="orientation">
+
+        </activity>
 
         <service android:name=".service.DemoService">
         </service>

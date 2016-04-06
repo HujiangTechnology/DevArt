@@ -33,6 +33,9 @@ object Fragments {
     val dragListFragment = DragListFragment()
     val zipFragment = ZipFragment()
     val blackTechFragment = BlackTechFragment()
+    val algorithmFragment = AlgorithmFragment()
+    val calendarFragment = CalendarFragment()
+    val lockViewFragment = LockViewFragment()
 
     val tabFragment = TabFragment()
 }
