@@ -36,6 +36,7 @@ object Fragments {
     val algorithmFragment = AlgorithmFragment()
     val calendarFragment = CalendarFragment()
     val lockViewFragment = LockViewFragment()
+    val flipViewFragment = FlipViewFragment()
 
     val tabFragment = TabFragment()
 }

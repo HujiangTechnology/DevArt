@@ -168,6 +168,11 @@
                   android:configChanges="orientation">
 
         </activity>
+        <activity android:name=".FlipViewActivity"
+                  android:label="@string/flipview_name"
+                  android:configChanges="orientation">
+
+        </activity>
 
         <service android:name=".service.DemoService">
         </service>

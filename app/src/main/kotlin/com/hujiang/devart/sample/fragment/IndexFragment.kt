@@ -17,7 +17,6 @@ import com.hujiang.devart.sample.service.DemoService
  */
 class IndexFragment : BasePreferenceFragment(), Preference.OnPreferenceClickListener, OnMutaxMessage {
 
-
     private var _mutax: MutaxReceiver? = null
 
     private var _p1Arg1: Preference? = null
@@ -41,6 +40,7 @@ class IndexFragment : BasePreferenceFragment(), Preference.OnPreferenceClickList
     private var _p3DragList: Preference? = null
     private var _p3Calendar: Preference? = null
     private var _p3LockView: Preference? = null
+    private var _p3FlipView: Preference? = null
 
     private var _p4Device: Preference? = null
     private var _p4Download: Preference? = null
@@ -86,6 +86,7 @@ class IndexFragment : BasePreferenceFragment(), Preference.OnPreferenceClickList
         _p3Swipe = findPreference(getString(R.string.id_item_3_4_4))
         _p3Calendar = findPreference(getString(R.string.id_item_3_8))
         _p3LockView = findPreference(getString(R.string.id_item_3_9))
+        _p3FlipView = findPreference(getString(R.string.id_item_3_4_3))
 
         _p4Device = findPreference(getString(R.string.id_item_4_1))
         _p4Download = findPreference(getString(R.string.id_item_4_2))
@@ -127,6 +128,7 @@ class IndexFragment : BasePreferenceFragment(), Preference.OnPreferenceClickList
         _p3Swipe?.onPreferenceClickListener = this
         _p3Calendar?.onPreferenceClickListener = this
         _p3LockView?.onPreferenceClickListener = this
+        _p3FlipView?.onPreferenceClickListener = this
 
         _p4Device?.onPreferenceClickListener = this
         _p4Download?.onPreferenceClickListener = this
@@ -214,6 +216,10 @@ class IndexFragment : BasePreferenceFragment(), Preference.OnPreferenceClickList
             getString(R.string.id_item_3_4_1) -> {
                 UIInstance.currentFragment = 18
                 FragmentStarter.showContent(activity, DragListActivity::class.java, Fragments.dragListFragment)
+            }
+            getString(R.string.id_item_3_4_3) -> {
+                UIInstance.currentFragment = 29
+                FragmentStarter.showContent(activity, FlipViewActivity::class.java, Fragments.flipViewFragment)
             }
             getString(R.string.id_item_3_4_4) -> {
                 UIInstance.currentFragment = 23

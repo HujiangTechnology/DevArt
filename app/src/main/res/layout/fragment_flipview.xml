@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:flipview="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <com.hujiang.devart.component.flip.FlipView
+            android:id="@+id/fv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            flipview:orientation="vertical">
+
+    </com.hujiang.devart.component.flip.FlipView>
+
+    <TextView
+            android:id="@+id/tvEmpty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Empty!!"
+            android:layout_centerInParent="true"
+            android:visibility="gone"/>
+
+</RelativeLayout>
