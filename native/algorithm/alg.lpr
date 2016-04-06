@@ -9,6 +9,7 @@ library alg;
 {$mode objfpc}{$H+}
 
 uses
+  {$IFNDEF WINDOWS}cthreads,{$ENDIF}
   Classes, sysutils, sec_md5, sec_sha1, sec_lmd, sec_elf, sec_des, sec_base64,
   sec_rsa, sec_dsa, sec_rdl, sec_rsassa;
 

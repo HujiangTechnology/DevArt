@@ -9,6 +9,7 @@ library blacktech;
 {$mode objfpc}{$H+}
 
 uses
+  {$IFNDEF WINDOWS}cthreads,{$ENDIF}
   Classes, sysutils, jni2, jni_utils, process, strutils;
 
 function parse(line1, line2: String): String;
