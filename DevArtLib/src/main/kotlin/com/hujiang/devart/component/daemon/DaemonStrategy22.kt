@@ -47,7 +47,7 @@ class DaemonStrategy22: DaemonStrategyBase() {
 
     override fun onDaemonDead() {
         if(startServiceByAmsBinder()){
-            _configs?.LISTENER?.onWatchDaemonDaed()
+            _configs?.LISTENER?.onWatchDaemonDead()
             android.os.Process.killProcess(android.os.Process.myPid())
         }
     }

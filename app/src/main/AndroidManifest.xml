@@ -15,10 +15,12 @@
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
 
     <application
+            android:name=".DevArtApplication"
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
-            android:theme="@android:style/Theme.Holo">
+            android:theme="@android:style/Theme.Holo"
+            android:supportsRtl="true">
         <activity
                 android:name=".MainActivity"
                 android:label="@string/app_name">
@@ -174,11 +176,12 @@
 
         </activity>
 
-        <service android:name=".service.DemoService">
-        </service>
-
-        <service android:name=".service.DemoFloatWindowService">
-        </service>
+        <service android:name=".service.DemoService"/>
+        <service android:name=".service.DemoFloatWindowService"/>
+        <service android:name=".service.DaemonService1" android:process=":process1"/>
+        <receiver android:name=".receiver.DaemonReceiver1" android:process=":process1"/>
+        <service android:name=".service.DaemonService2" android:process=":process2"/>
+        <receiver android:name=".receiver.DaemonReceiver2" android:process=":process2"/>
     </application>
 
 </manifest>

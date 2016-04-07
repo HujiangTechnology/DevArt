@@ -38,7 +38,7 @@ open class DaemonStrategyUnder21 : DaemonStrategyBase() {
         val component = ComponentName(context?.packageName, configs?.PERSISTENT_CONFIG?.serviceName)
         intent.component = component
         context?.startService(intent)
-        configs?.LISTENER?.onWatchDaemonDaed()
+        configs?.LISTENER?.onWatchDaemonDead()
         android.os.Process.killProcess(android.os.Process.myPid())
     }
 

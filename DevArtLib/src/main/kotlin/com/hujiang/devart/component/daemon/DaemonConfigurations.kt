@@ -28,6 +28,6 @@ class DaemonConfigurations {
     interface DaemonListener {
         fun onPersistentStart(context: Context?)
         fun onDaemonAssistantStart(context: Context?)
-        fun onWatchDaemonDaed()
+        fun onWatchDaemonDead()
     }
 }

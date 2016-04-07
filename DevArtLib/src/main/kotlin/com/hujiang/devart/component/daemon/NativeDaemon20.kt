@@ -11,6 +11,7 @@ class NativeDaemon20(context: Context?) : NativeDaemonBase(context) {
     init {
         try {
             System.loadLibrary("daemon20")
+            Log.e("LOG", "loadLibrary: daemon20")
         } catch (e: Exception) {
             Log.e("LOG", "loadLibrary: daemon20 => ${e.message}")
         }

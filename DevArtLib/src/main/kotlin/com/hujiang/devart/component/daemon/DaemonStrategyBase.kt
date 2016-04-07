@@ -1,12 +1,7 @@
 package com.hujiang.devart.component.daemon
 
-import android.app.Activity
-import android.content.ComponentName
 import android.content.Context
-import android.content.Intent
 import android.os.IBinder
-import android.os.Parcel
-import android.os.RemoteException
 import android.text.TextUtils
 import android.util.Log
 import java.io.File
@@ -32,8 +27,9 @@ abstract class DaemonStrategyBase: IDaemonStrategy {
     protected var _remote: IBinder? = null
     protected var _configs: DaemonConfigurations? = null
 
-    override fun onInitialization(context: Context?): Boolean = initIndicatorFiles(context)
+    constructor() { }
 
+    override fun onInitialization(context: Context?): Boolean = initIndicatorFiles(context)
 
     protected fun initAmsBinder() {
         try {

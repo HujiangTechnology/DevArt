@@ -2,6 +2,8 @@ package com.hujiang.devart.component.daemon
 
 import android.content.Context
 import android.os.Process
+import android.util.Log
+import com.hujiang.devart.utils.FileUtils
 import java.io.BufferedReader
 import java.io.File
 import java.io.FileReader
@@ -31,8 +33,11 @@ class DaemonClient: IDaemonClient {
         if(!isDaemonPermitting(context) || _configurations == null){
             return
         }
-        val processName = getProcessName()!!
+        val processName = getProcessName()!!.trim()
+        Log.e("LOG", "initDaemon => ${processName}")
         val packageName = context?.packageName
+        Log.e("LOG", "PERSISTENT_CONFIG.processName => ${_configurations?.PERSISTENT_CONFIG?.processName}")
+        Log.e("LOG", "DAEMON_ASSISTANT_CONFIG.processName => ${_configurations?.DAEMON_ASSISTANT_CONFIG?.processName}")
         if(processName.startsWith(_configurations?.PERSISTENT_CONFIG?.processName!!)){
             IDaemonStrategy.Fetcher.fetchStrategy()?.onPersistentCreate(context, _configurations)
         }else if(processName.startsWith(_configurations?.DAEMON_ASSISTANT_CONFIG?.processName!!)){
@@ -45,9 +50,11 @@ class DaemonClient: IDaemonClient {
 
     private fun getProcessName(): String? {
         try {
-            val file = File("/proc/" + Process.myPid() + "/" + "cmdline")
-            _bufferedReader = BufferedReader(FileReader(file))
-            return _bufferedReader?.readLine()
+            val file = File("/proc/" + Process.myPid() + "/cmdline")
+            Log.e("LOG", "file => ${file}")
+            return FileUtils.readFileString(file.absolutePath)
+            // _bufferedReader = BufferedReader(FileReader(file))
+            // return _bufferedReader?.readLine()
         } catch (e: Exception) {
             return null
         }

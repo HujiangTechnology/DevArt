@@ -36,13 +36,13 @@ class DaemonStrategyXiaomi: DaemonStrategyBase() {
         val component = ComponentName(context?.packageName, configs?.PERSISTENT_CONFIG?.serviceName)
         intent.component = component
         context?.startService(intent)
-        configs?.LISTENER?.onWatchDaemonDaed()
+        configs?.LISTENER?.onWatchDaemonDead()
         android.os.Process.killProcess(android.os.Process.myPid())
     }
 
     override fun onDaemonDead() {
         if(startServiceByAmsBinder()){
-            _configs?.LISTENER?.onWatchDaemonDaed()
+            _configs?.LISTENER?.onWatchDaemonDead()
             android.os.Process.killProcess(android.os.Process.myPid())
         }
     }

@@ -51,7 +51,7 @@ class DaemonStrategy21: DaemonStrategyBase() {
 
     override fun onDaemonDead() {
         _alarmManager?.setRepeating(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime(), 100, _pendingIntent)
-        _configs?.LISTENER?.onWatchDaemonDaed()
+        _configs?.LISTENER?.onWatchDaemonDead()
         android.os.Process.killProcess(android.os.Process.myPid())
     }
 
