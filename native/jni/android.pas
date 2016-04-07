@@ -24,18 +24,17 @@ type
 
 function __android_log_write(prio: longint; tag, Text: PChar): longint; cdecl; external libname Name '__android_log_write';
 function LOGI(prio: longint; tag, Text: PChar): longint; cdecl; varargs; external libname Name '__android_log_print';
-
 function __system_property_get(Name: PChar; Value: PChar): integer; cdecl; external 'libc.so';
 
-procedure LOGW(Text: PChar);
+// procedure LOGW(Text: PChar);
 procedure LOGE(Text: PChar);
 
 implementation
 
-procedure LOGW(Text: PChar);
-begin
-  __android_log_write(ANDROID_LOG_WARN, 'DevArt Daemon', Text);
-end;
+//procedure LOGW(Text: PChar);
+//begin
+//  __android_log_write(ANDROID_LOG_WARN, 'DevArt Daemon', Text);
+//end;
 
 procedure LOGE(Text: PChar);
 begin

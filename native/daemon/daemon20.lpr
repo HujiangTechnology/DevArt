@@ -24,6 +24,7 @@ uses
     buffer: array[0..BUFFER_SIZE] of char;
     processName: array[0..BUFFER_SIZE] of char;
   begin
+    LOGE('findPidByName');
     pidList[0] := 0;
      _dir := FpOpendir('/proc');
     if (_dir = nil) then begin
@@ -68,6 +69,7 @@ uses
     retval: integer;
     daemonPid: TPid;
   begin
+    LOGE('kill_zombie_process');
     totalNum := findPidByName(zombieName, pidList);
     LOGE(PChar(Format('zombie process name is %s, and number is %d, killing...', [zombieName, totalNum])));
     for i := 0 to totalNum - 1 do begin
@@ -103,6 +105,7 @@ uses
     strP2r: array[0..9] of char;
     strP2w: array[0..9] of char;
   begin
+    LOGE('Java_com_hujiang_devart_component_daemon_NativeDaemon20_doDaemon');
     if (pkgName = nil) or (svcName = nil) or (daemonPath = NULL) then begin
        LOGE('native doDaemon parameters cannot be NULL !');
       Exit;

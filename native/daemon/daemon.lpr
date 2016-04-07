@@ -18,6 +18,7 @@ var
   rNum: Integer;
   count: Integer = 0;
 begin
+  LOGE('DAEMON MAIN');
   pid := FpFork();
   if(pid = 0) then begin
       FpSetsid();

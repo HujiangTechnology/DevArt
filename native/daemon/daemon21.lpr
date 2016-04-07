@@ -17,77 +17,80 @@ uses
   unistd,
   Linux;
 
-procedure waitforSelfObserver(observerFilePath: PChar);
-var
-  lockFileDescriptor: Integer;
-  pBuf: Pointer;
-  maskStrLength: Integer;
-  pMaskStr: PChar;
-  fileDescriptor: Integer;
-  watchDescriptor: Integer;
-  readBytes: size_t;
-begin
-	lockFileDescriptor := FpOpen(observerFilePath, O_RDONLY);
-	if (lockFileDescriptor = -1) then begin
-		LOGE('Watched >>>>OBSERVER<<<< has been ready before watching...');
-    Exit;
-	end;
-  pBuf:= GetMem(SizeOf(inotify_event));
-	if (pBuf = nil) then begin
-		LOGE('malloc failed !!!');
-		Exit;
-	end;
-	maskStrLength := 7 + 10 + 1;
-	pMaskStr := StrAlloc(maskStrLength);
-	if (pMaskStr = nil) then begin
-		freemem(pBuf);
-		LOGE('malloc failed !!!');
-		Exit;
-	end;
-	fileDescriptor := inotify_init();
-	if (fileDescriptor < 0) then begin
-		Freemem(pBuf);
-		Freemem(pMaskStr);
-		LOGE('inotify_init failed !!!');
-		Exit;
-	end;
-	watchDescriptor := inotify_add_watch(fileDescriptor, observerFilePath, IN_ALL_EVENTS);
-	if (watchDescriptor < 0) then begin
-		Freemem(pBuf);
-		Freemem(pMaskStr);
-		LOGE('inotify_add_watch failed !!!');
-		Exit;
-  end;
+  procedure waitforSelfObserver(observerFilePath: PChar);
+  var
+    lockFileDescriptor: integer;
+    pBuf: Pointer;
+    maskStrLength: integer;
+    pMaskStr: PChar;
+    fileDescriptor: integer;
+    watchDescriptor: integer;
+    readBytes: size_t;
+  begin
+    LOGE('waitforSelfObserver');
+    lockFileDescriptor := FpOpen(observerFilePath, O_RDONLY);
+    if (lockFileDescriptor = -1) then begin
+      LOGE('Watched >>>>OBSERVER<<<< has been ready before watching...');
+      Exit;
+    end;
+    pBuf := GetMem(SizeOf(inotify_event));
+    if (pBuf = nil) then begin
+      LOGE('malloc failed !!!');
+      Exit;
+    end;
+    maskStrLength := 7 + 10 + 1;
+    pMaskStr := StrAlloc(maskStrLength);
+    if (pMaskStr = nil) then begin
+      freemem(pBuf);
+      LOGE('malloc failed !!!');
+      Exit;
+    end;
+    fileDescriptor := inotify_init();
+    if (fileDescriptor < 0) then begin
+      Freemem(pBuf);
+      Freemem(pMaskStr);
+      LOGE('inotify_init failed !!!');
+      Exit;
+    end;
+    watchDescriptor := inotify_add_watch(fileDescriptor, observerFilePath, IN_ALL_EVENTS);
+    if (watchDescriptor < 0) then begin
+      Freemem(pBuf);
+      Freemem(pMaskStr);
+      LOGE('inotify_add_watch failed !!!');
+      Exit;
+    end;
 
-	while true do begin
-		readBytes := fpread(fileDescriptor, pBuf, sizeof(inotify_event));
-    if (Pinotify_event(pBuf)^.mask = 4) then begin
-			LOGE('Watched >>>>OBSERVER<<<< has been ready...');
-			Freemem(pMaskStr);
-			Freemem(pBuf);
-			Exit;
-		end;
-	end;
-end;
-
-procedure notifyDaemonObserver(isPersistent: Char; observerFilePath: PChar);
-var
-  lockFileDescriptor: Integer;
-begin
-	if(isPersistent = #0) then begin
-		lockFileDescriptor := FpOpen(observerFilePath, O_RDONLY);
-		while(lockFileDescriptor = -1) do begin
-			lockFileDescriptor := FpOpen(observerFilePath, O_RDONLY);
+    while True do begin
+      readBytes := fpread(fileDescriptor, pBuf, sizeof(inotify_event));
+      if (Pinotify_event(pBuf)^.mask = 4) then begin
+        LOGE('Watched >>>>OBSERVER<<<< has been ready...');
+        Freemem(pMaskStr);
+        Freemem(pBuf);
+        Exit;
+      end;
     end;
   end;
-	remove(observerFilePath);
-end;
+
+  procedure notifyDaemonObserver(isPersistent: char; observerFilePath: PChar);
+  var
+    lockFileDescriptor: integer;
+  begin
+    LOGE('notifyDaemonObserver');
+    if (isPersistent = #0) then begin
+      lockFileDescriptor := FpOpen(observerFilePath, O_RDONLY);
+      while (lockFileDescriptor = -1) do begin
+        lockFileDescriptor := FpOpen(observerFilePath, O_RDONLY);
+      end;
+    end;
+    remove(observerFilePath);
+  end;
 
   procedure notifyAndWaitfor(observerSelfPath: PChar; observerDaemonPath: PChar);
   var
     observerSelfDescriptor: integer;
     observerDaemonDescriptor: integer;
   begin
+    LOGE('notifyAndWaitfor');
     observerSelfDescriptor := FpOpen(observerSelfPath, O_RDONLY);
     if (observerSelfDescriptor = -1) then begin
       observerSelfDescriptor := FpOpen(observerSelfPath, O_CREAT, S_IRUSR or S_IWUSR);
@@ -106,6 +109,7 @@ end;
     lockFileDescriptor: integer;
     lockRet: integer;
   begin
+    LOGE('lockFile');
     LOGE(PChar(Format('start try to lock file >> %s <<', [lockFilePath])));
     lockFileDescriptor := fpopen(lockFilePath, O_RDONLY);
     if (lockFileDescriptor = -1) then begin
@@ -121,7 +125,6 @@ end;
     end;
   end;
 
-
   procedure Java_com_hujiang_devart_component_daemon_NativeDaemon21_doDaemon(env: PJNIEnv; obj: jobject;
     indicatorSelfPath: jstring; indicatorDaemonPath: jstring; observerSelfPath: jstring; observerDaemonPath: jstring); stdcall;
   var
@@ -132,11 +135,11 @@ end;
     _lockStatus: integer = 0;
     _tryTime: integer = 0;
   begin
+    LOGE('Java_com_hujiang_devart_component_daemon_NativeDaemon21_doDaemon');
     if (indicatorSelfPath = nil) or (indicatorDaemonPath = nil) or (observerSelfPath = nil) or (observerDaemonPath = nil) then begin
-      LOGW('parameters cannot be NULL !');
+      LOGE('parameters cannot be NULL !');
       Exit;
     end;
-
     _indicatorSelfPath := PChar(jstringToString(env, indicatorSelfPath));
     _indicatorDaemonPath := PChar(jstringToString(env, indicatorDaemonPath));
     _observerSelfPath := PChar(jstringToString(env, observerSelfPath));
