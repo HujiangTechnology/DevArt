@@ -10,21 +10,21 @@ import android.telephony.TelephonyManager
 object DeviceUtils {
 
     val RO_BUILD_ID = "ro.build.id"
-    val RO_BUILD_VERSION_SDK = "ro.build.version.sdk";
-    val RO_BUILD_VERSION_RELEASE = "ro.build.version.release";
-    val RO_PRODUCT_MODEL = "ro.product.model";
-    val RO_PRODUCT_BRAND = "ro.product.brand";
-    val RO_PRODUCT_NAME = "ro.product.name";
-    val RO_PRODUCT_DEVICE = "ro.product.device";
-    val RO_PRODUCT_BOARD = "ro.product.board";
-    val RO_PRODUCT_CPU_ABI = "ro.product.cpu.abi";
-    val RO_PRODUCT_CPU_ABI2 = "ro.product.cpu.abi2";
-    val RO_PRODUCT_MANUFACTURER = "ro.product.manufacturer";
-    val RO_BOARD_PLATFORM = "ro.board.platform";
-    val RO_BUILD_DESCRIPTION = "ro.build.description";
-    val RO_PRODUCT_VERSION = "ro.product.version";
-    val RO_MIUI_UI_VERSION_CODE = "ro.miui.ui.version.code";
-    val RO_MIUI_UI_VERSION_NAME = "ro.miui.ui.version.name";
+    val RO_BUILD_VERSION_SDK = "ro.build.version.sdk"
+    val RO_BUILD_VERSION_RELEASE = "ro.build.version.release"
+    val RO_PRODUCT_MODEL = "ro.product.model"
+    val RO_PRODUCT_BRAND = "ro.product.brand"
+    val RO_PRODUCT_NAME = "ro.product.name"
+    val RO_PRODUCT_DEVICE = "ro.product.device"
+    val RO_PRODUCT_BOARD = "ro.product.board"
+    val RO_PRODUCT_CPU_ABI = "ro.product.cpu.abi"
+    val RO_PRODUCT_CPU_ABI2 = "ro.product.cpu.abi2"
+    val RO_PRODUCT_MANUFACTURER = "ro.product.manufacturer"
+    val RO_BOARD_PLATFORM = "ro.board.platform"
+    val RO_BUILD_DESCRIPTION = "ro.build.description"
+    val RO_PRODUCT_VERSION = "ro.product.version"
+    val RO_MIUI_UI_VERSION_CODE = "ro.miui.ui.version.code"
+    val RO_MIUI_UI_VERSION_NAME = "ro.miui.ui.version.name"
 
     private val _buildPropFile = "/system/build.prop"
     private var _buildProp: MutableList<String>? = null
@@ -65,7 +65,7 @@ object DeviceUtils {
         for (s in _buildProp!!) {
             idx = s.indexOf("=")
             if (idx < 0) {
-                continue;
+                continue
             }
             tmp = s.substring(0, idx)
             if (tmp == key) {

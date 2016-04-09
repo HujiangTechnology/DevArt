@@ -26,162 +26,68 @@
                 android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
-        <activity
-                android:name=".SlideActivity"
-                android:label="@string/slidemenu_name"
-                android:configChanges="orientation">
-        </activity>
-
-        <activity android:name=".TabActivity"
-                  android:label="@string/tab_name"
-                  android:configChanges="orientation">
-        </activity>
-        <activity android:name=".ArgumentActivity"
-                  android:label="@string/argument_name"
-                  android:configChanges="orientation">
-
-        </activity>
-        <activity android:name=".AdapterActivity"
-                  android:label="@string/adapter_name"
-                  android:configChanges="orientation">
-
-        </activity>
-
-        <activity android:name=".DialogActivity"
-                  android:theme="@android:style/Theme.Holo.Dialog.NoActionBar">
-
-        </activity>
-        <activity
-                android:name=".PopupActivity"
-                android:label="@string/adapter_name"
-                android:configChanges="orientation">
-        </activity>
-
-        <activity android:name=".DeviceActivity"
-                  android:label="@string/device_name"
-                  android:configChanges="orientation">
-
-        </activity>
-        <activity android:name=".DownloadActivity"
-                  android:label="@string/download_name"
-                  android:configChanges="orientation">
-
-        </activity>
-        <activity android:name=".FileActivity"
-                  android:label="@string/file_name"
-                  android:configChanges="orientation">
-
-        </activity>
-        <activity android:name=".JsonActivity"
-                  android:label="@string/json_name"
-                  android:configChanges="orientation">
-
-        </activity>
-        <activity android:name=".HttpActivity"
-                  android:label="@string/http_request_name"
-                  android:configChanges="orientation">
-
-        </activity>
-        <activity android:name=".ImageActivity"
-                  android:label="@string/image_name"
-                  android:configChanges="orientation">
-
-        </activity>
-        <activity android:name=".NetworkActivity"
-                  android:label="@string/network_name"
-                  android:configChanges="orientation">
-
-        </activity>
-        <activity android:name=".NotificationActivity"
-                  android:label="@string/notification_name"
-                  android:configChanges="orientation">
-
-        </activity>
-        <activity
-                android:name=".FloatWindowActivity"
-                android:label="@string/float_window_name"
-                android:configChanges="orientation">
-        </activity>
-
-        <activity
-                android:name=".HScrollActivity"
-                android:label="@string/scroll_name"
-                android:configChanges="orientation">
-        </activity>
-        <activity android:name=".VScrollActivity"
-                  android:label="@string/scroll_name"
-                  android:configChanges="orientation">
-
-        </activity>
-        <activity android:name=".GifActivity"
-                  android:label="@string/gif_name"
-                  android:configChanges="orientation">
-
-        </activity>
-        <activity android:name=".PullToRefreshListActivity"
-                  android:label="@string/pulldown_layout_name"
-                  android:configChanges="orientation">
-
-        </activity>
-        <activity android:name=".PullToRefreshScrollActivity"
-                  android:label="@string/pulldown_layout_name"
-                  android:configChanges="orientation">
-
-        </activity>
-
-        <activity android:name=".SwipeActivity"
-                  android:label="@string/swipe_name"
-                  android:configChanges="orientation">
-
-        </activity>
-
-        <activity android:name=".DragListActivity"
-                  android:label="@string/drag_listview_name"
-                  android:configChanges="orientation">
-
-        </activity>
-        <activity android:name=".ZipActivity"
-                  android:label="@string/zip_name"
-                  android:configChanges="orientation">
-
-        </activity>
-        <activity android:name=".BlackTechActivity"
-                  android:label="@string/blacktech_name"
-                  android:configChanges="orientation">
-
-        </activity>
-        <activity android:name=".AlgorithmActivity"
-                  android:label="@string/algorithm_name"
-                  android:configChanges="orientation">
-
-        </activity>
-        <activity android:name=".CalendarActivity"
-                  android:label="@string/calendar_name"
-                  android:configChanges="orientation">
-
-        </activity>
-        <activity android:name=".LockViewActivity"
-                  android:label="@string/lockview_name"
-                  android:configChanges="orientation">
-
-        </activity>
-        <activity android:name=".FlipViewActivity"
-                  android:label="@string/flipview_name"
-                  android:configChanges="orientation">
-
-        </activity>
-
+        <activity android:name=".SlideActivity" android:label="@string/slidemenu_name"
+                  android:configChanges="orientation"/>
+        <activity android:name=".TabActivity" android:label="@string/tab_name" android:configChanges="orientation"/>
+        <activity android:name=".ArgumentActivity" android:label="@string/argument_name"
+                  android:configChanges="orientation"/>
+        <activity android:name=".AdapterActivity" android:label="@string/adapter_name"
+                  android:configChanges="orientation"/>
+        <activity android:name=".DialogActivity" android:theme="@android:style/Theme.Holo.Dialog.NoActionBar"/>
+        <activity android:name=".PopupActivity" android:label="@string/adapter_name"
+                  android:configChanges="orientation"/>
+        <activity android:name=".DeviceActivity" android:label="@string/device_name"
+                  android:configChanges="orientation"/>
+        <activity android:name=".DownloadActivity" android:label="@string/download_name"
+                  android:configChanges="orientation"/>
+        <activity android:name=".FileActivity" android:label="@string/file_name" android:configChanges="orientation"/>
+        <activity android:name=".JsonActivity" android:label="@string/json_name" android:configChanges="orientation"/>
+        <activity android:name=".HttpActivity" android:label="@string/http_request_name"
+                  android:configChanges="orientation"/>
+        <activity android:name=".ImageActivity" android:label="@string/image_name" android:configChanges="orientation"/>
+        <activity android:name=".NetworkActivity" android:label="@string/network_name"
+                  android:configChanges="orientation"/>
+        <activity android:name=".NotificationActivity" android:label="@string/notification_name"
+                  android:configChanges="orientation"/>
+        <activity android:name=".FloatWindowActivity" android:label="@string/float_window_name"
+                  android:configChanges="orientation"/>
+        <activity android:name=".HScrollActivity" android:label="@string/scroll_name"
+                  android:configChanges="orientation"/>
+        <activity android:name=".VScrollActivity" android:label="@string/scroll_name"
+                  android:configChanges="orientation"/>
+        <activity android:name=".GifActivity" android:label="@string/gif_name" android:configChanges="orientation"/>
+        <activity android:name=".PullToRefreshListActivity" android:label="@string/pulldown_layout_name"
+                  android:configChanges="orientation"/>
+        <activity android:name=".PullToRefreshScrollActivity" android:label="@string/pulldown_layout_name"
+                  android:configChanges="orientation"/>
+        <activity android:name=".SwipeActivity" android:label="@string/swipe_name" android:configChanges="orientation"/>
+        <activity android:name=".DragListActivity" android:label="@string/drag_listview_name"
+                  android:configChanges="orientation"/>
+        <activity android:name=".ZipActivity" android:label="@string/zip_name" android:configChanges="orientation"/>
+        <activity android:name=".BlackTechActivity" android:label="@string/blacktech_name"
+                  android:configChanges="orientation"/>
+        <activity android:name=".AlgorithmActivity" android:label="@string/algorithm_name"
+                  android:configChanges="orientation"/>
+        <activity android:name=".CalendarActivity" android:label="@string/calendar_name"
+                  android:configChanges="orientation"/>
+        <activity android:name=".LockViewActivity" android:label="@string/lockview_name"
+                  android:configChanges="orientation"/>
+        <activity android:name=".FlipViewActivity" android:label="@string/flipview_name"
+                  android:configChanges="orientation"/>
         <service android:name=".service.DemoService"/>
         <service android:name=".service.DemoFloatWindowService"/>
         <service android:name=".service.DaemonService1" android:process=":process1"/>
         <receiver android:name=".receiver.DaemonReceiver1" android:process=":process1"/>
         <service android:name=".service.DaemonService2" android:process=":process2"/>
         <receiver android:name=".receiver.DaemonReceiver2" android:process=":process2"/>
+        <receiver android:name=".receiver.NotifyReceiver">
+            <intent-filter>
+                <action android:name="com.hujiang.devart.notify" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

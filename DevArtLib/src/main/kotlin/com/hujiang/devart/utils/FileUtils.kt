@@ -309,6 +309,9 @@ object FileUtils {
         return dirSize
     }
 
+
+    fun getFileSize(path: String): Long = File(path).length()
+
     fun getReadableFileSize(size: Long): String {
         val units = arrayOf("B", "KB", "MB", "GB", "TB", "PB")
         var nSize = size * 1L * 1.0F

@@ -59,7 +59,7 @@ class DragListView: ListView {
                     continue
                 }
                 if (position == currentRunEnd) {
-                    currentRunEnd++;
+                    currentRunEnd++
                 } else {
                     runStart!![runCount] = currentRunStart
                     runEnd!![runCount] = currentRunEnd

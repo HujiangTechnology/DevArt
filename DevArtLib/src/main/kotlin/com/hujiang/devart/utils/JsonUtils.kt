@@ -173,7 +173,7 @@ class JsonUtils<T> {
                 (obj as MutableList<Any>).add(o)
             }
         }
-        return obj;
+        return obj
     }
 
     private fun jsonToMap(jobj: JSONObject, cType: Class<*>, genericType: Class<*>, obj: Any, node: JsonNode): Any {
@@ -193,7 +193,7 @@ class JsonUtils<T> {
                 (obj as MutableMap<String, Any>).put(key, o)
             }
         }
-        return obj;
+        return obj
     }
 
     private fun getField(o: Any, name: String): Field {

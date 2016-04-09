@@ -137,9 +137,9 @@ class TouchImageView : ImageView {
                 _lastClickTime = event.eventTime
             }
             MotionEvent.ACTION_POINTER_DOWN -> {
-                _oldDist = spacing(event);
+                _oldDist = spacing(event)
                 if (_oldDist > DOUBLE_POINT_DISTANCE) {
-                    _mode = ZOOM;
+                    _mode = ZOOM
                     _savedMatrix.set(_matrix)
                     midPoint(_mid, event)
                 }
@@ -150,7 +150,7 @@ class TouchImageView : ImageView {
                     val newDist = spacing(event)
                     val scale = newDist / _oldDist
                     if (scale > 1.01 || scale < 0.99) {
-                        _preMatrix.set(_savedMatrix);
+                        _preMatrix.set(_savedMatrix)
                         _preMatrix.postScale(scale, scale, _mid.x, _mid.y)
                         if (canZoom()) {
                             _matrix.set(_preMatrix)

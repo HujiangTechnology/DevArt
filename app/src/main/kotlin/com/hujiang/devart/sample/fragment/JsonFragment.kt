@@ -76,20 +76,20 @@ class JsonFragment : BaseFragment() {
         _root!!.childs!!.add(JsonUtils.JsonNode("fa", JsonUtils.JsonNode.FieldType.ftValue)) // fa
         _root!!.childs!!.add(JsonUtils.JsonNode("fb", JsonUtils.JsonNode.FieldType.ftValue)) // fb
         val inner = JsonUtils.JsonNode("testInner", JsonUtils.JsonNode.FieldType.ftObject) // testInner
-        inner.childs!!.add(JsonUtils.JsonNode("innerFA", JsonUtils.JsonNode.FieldType.ftValue)); // testInner.innerFA
-        inner.childs!!.add(JsonUtils.JsonNode("innerFB", JsonUtils.JsonNode.FieldType.ftValue)); // testInner.innerFB
-        val innerArray = JsonUtils.JsonNode("array", JsonUtils.JsonNode.FieldType.ftList); // testInner.array
-        innerArray.subItemNode = JsonUtils.JsonNode("TestArray", JsonUtils.JsonNode.FieldType.ftObject); // testInner.array<TestArray>
-        innerArray.subItemNode!!.childs!!.add(JsonUtils.JsonNode("arr", JsonUtils.JsonNode.FieldType.ftValue)); // TestArray.arr
+        inner.childs!!.add(JsonUtils.JsonNode("innerFA", JsonUtils.JsonNode.FieldType.ftValue)) // testInner.innerFA
+        inner.childs!!.add(JsonUtils.JsonNode("innerFB", JsonUtils.JsonNode.FieldType.ftValue)) // testInner.innerFB
+        val innerArray = JsonUtils.JsonNode("array", JsonUtils.JsonNode.FieldType.ftList) // testInner.array
+        innerArray.subItemNode = JsonUtils.JsonNode("TestArray", JsonUtils.JsonNode.FieldType.ftObject) // testInner.array<TestArray>
+        innerArray.subItemNode!!.childs!!.add(JsonUtils.JsonNode("arr", JsonUtils.JsonNode.FieldType.ftValue)) // TestArray.arr
         inner.childs!!.add(innerArray)
-        inner.childs!!.add(JsonUtils.JsonNode("arrStr", JsonUtils.JsonNode.FieldType.ftList, JsonUtils.JsonNode("arrStr", JsonUtils.JsonNode.FieldType.ftValue))); // inner.arrStr
-        val innerMap = JsonUtils.JsonNode("map", JsonUtils.JsonNode.FieldType.ftMap); // inner.map
-        innerMap.subItemNode = JsonUtils.JsonNode("String", JsonUtils.JsonNode.FieldType.ftValue); // inner.map<String>
+        inner.childs!!.add(JsonUtils.JsonNode("arrStr", JsonUtils.JsonNode.FieldType.ftList, JsonUtils.JsonNode("arrStr", JsonUtils.JsonNode.FieldType.ftValue))) // inner.arrStr
+        val innerMap = JsonUtils.JsonNode("map", JsonUtils.JsonNode.FieldType.ftMap) // inner.map
+        innerMap.subItemNode = JsonUtils.JsonNode("String", JsonUtils.JsonNode.FieldType.ftValue) // inner.map<String>
         inner.childs!!.add(innerMap)
         _root!!.childs!!.add(inner)
-        val test = JsonUtils.JsonNode("test", JsonUtils.JsonNode.FieldType.ftMap); // test
-        test.subItemNode = JsonUtils.JsonNode("TestMap", JsonUtils.JsonNode.FieldType.ftObject); // test<TestMap>
-        test.subItemNode!!.childs!!.add(JsonUtils.JsonNode("map", JsonUtils.JsonNode.FieldType.ftValue)); // TestMap.map
+        val test = JsonUtils.JsonNode("test", JsonUtils.JsonNode.FieldType.ftMap) // test
+        test.subItemNode = JsonUtils.JsonNode("TestMap", JsonUtils.JsonNode.FieldType.ftObject) // test<TestMap>
+        test.subItemNode!!.childs!!.add(JsonUtils.JsonNode("map", JsonUtils.JsonNode.FieldType.ftValue)) // TestMap.map
         _root!!.childs!!.add(test)
         _ju = JsonUtils(TestClass::class.java, _root!!)
     }

@@ -30,7 +30,7 @@ open class DaemonStrategyUnder21 : DaemonStrategyBase() {
             val binaryFile = File(context?.getDir(BINARY_DEST_DIR_NAME, Context.MODE_PRIVATE), BINARY_FILE_NAME)
             NativeDaemon20(context).doDaemon(context?.packageName, configs?.DAEMON_ASSISTANT_CONFIG?.serviceName, binaryFile.absolutePath)
         }
-        configs?.LISTENER?.onPersistentStart(context);
+        configs?.LISTENER?.onPersistentStart(context)
     }
 
     override fun onDaemonAssistantCreate(context: Context?, configs: DaemonConfigurations?) {
