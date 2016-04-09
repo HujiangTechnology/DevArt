@@ -86,23 +86,5 @@
     <orderEntry type="library" exported="" name="kotlin-runtime-1.0.0" level="project" />
     <orderEntry type="library" exported="" name="android-support-v13" level="project" />
     <orderEntry type="library" exported="" name="kotlin-stdlib-1.0.0" level="project" />
-    <orderEntry type="module-library" exported="">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../DevArtLib/libs/bcpkix-jdk15on-150.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../DevArtLib/libs/bcprov-jdk15on-150.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
   </component>
 </module>
