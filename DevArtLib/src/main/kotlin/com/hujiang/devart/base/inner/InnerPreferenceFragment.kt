@@ -37,7 +37,7 @@ abstract class InnerPreferenceFragment: PreferenceFragment, IIntf {
         addPreferencesFromResource(getFragmentLayoutResId())
 
         if (activity.actionBar != null) {
-            if (getCustomTitle() == null || getCustomTitle().equals("")) {
+            if (getCustomTitle() == null || getCustomTitle() == "") {
                 if (UIInstance.dualPane) {
                     activity.actionBar.setTitle(getBarTitleWithPath())
                 } else {

@@ -171,7 +171,7 @@ object ImageUtils {
     }
 
     fun zoomDrawable(context: Context, drawable: Drawable?, w: Int, h: Int): Drawable? {
-        val width = drawable!!.intrinsicWidth;
+        val width = drawable!!.intrinsicWidth
         val height = drawable.intrinsicHeight
         val oldbmp = drawableToBitmap(drawable)
         val matrix = Matrix()

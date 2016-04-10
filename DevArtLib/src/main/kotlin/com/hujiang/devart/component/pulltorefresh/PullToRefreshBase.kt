@@ -897,6 +897,6 @@ abstract class PullToRefreshBase<T : View> : LinearLayout, IPullToRefresh<T> {
         fun onPullUpToRefresh(refreshView: PullToRefreshBase<T>?)
     }
 
-    enum class Orientation { VERTICAL, HORIZONTAL; }
+    enum class Orientation { VERTICAL, HORIZONTAL }
 
 }

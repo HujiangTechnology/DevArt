@@ -18,7 +18,7 @@ object MiscUtils {
     fun doScanMedia(context: Context) =
             context.sendBroadcast(Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://" + Environment.getExternalStorageDirectory().absolutePath)))
 
-    fun isSDCardExists(): Boolean = Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)
+    fun isSDCardExists(): Boolean = Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED
 
     fun getSecondSdcardPath(hasSplit: Boolean): String? {
         val ret = Command.runCommand("mount", false, null)
@@ -50,7 +50,7 @@ object MiscUtils {
         var ret = false
         val tm = context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
         val imei = tm.deviceId
-        if (imei != null && imei.equals("000000000000000")) {
+        if (imei != null && imei == "000000000000000") {
             ret = true
         } else {
             ret = (Build.MODEL == "sdk") || (Build.MODEL == "google_sdk")
@@ -86,7 +86,7 @@ object MiscUtils {
         val rootPath = Environment.getExternalStorageDirectory().absolutePath
         var basePath = path
         var hasNomedia = false
-        while (!basePath.equals(rootPath)) {
+        while (basePath != rootPath) {
             if (File(basePath, ".nomedia").exists()) {
                 hasNomedia = true
                 break

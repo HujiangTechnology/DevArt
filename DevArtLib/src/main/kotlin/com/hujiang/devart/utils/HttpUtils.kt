@@ -171,7 +171,7 @@ object HttpUtils {
         var ret: ClientConnectionManager? = null
         try {
             val store = KeyStore.getInstance(KeyStore.getDefaultType())
-            store.load(null, null);
+            store.load(null, null)
             val sf = SSLSocket(store)
             sf.hostnameVerifier = SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER
             val reg = SchemeRegistry()

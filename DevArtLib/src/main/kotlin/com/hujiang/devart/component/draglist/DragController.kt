@@ -46,7 +46,7 @@ class DragController: FloatViewManager, View.OnTouchListener, GestureDetector.On
         override fun onFling(e1: MotionEvent?, e2: MotionEvent?, velocityX: Float, velocityY: Float): Boolean {
             if (_removeEnabled && _isRemoving) {
                 val w = _listview!!.width
-                val minPos = w * 1.0f / 5;
+                val minPos = w * 1.0f / 5
                 if (velocityX > _flingSpeed) {
                     if (_positionX > -minPos) {
                         _listview?.stopDragWithVelocity(true, velocityX)
@@ -220,7 +220,7 @@ class DragController: FloatViewManager, View.OnTouchListener, GestureDetector.On
                 _listview!!.removeItem(_clickRemoveHitPos - _listview!!.headerViewsCount)
             }
         }
-        return true;
+        return true
     }
 
     override fun onDown(ev: MotionEvent?): Boolean {

@@ -230,7 +230,7 @@ class ExpandableListView: android.widget.ExpandableListView {
         override fun getChildType(groupPosition: Int, childPosition: Int): Int {
             val info = getGroupInfo(groupPosition)
             if (info!!.animating) {
-                return 0;
+                return 0
             } else {
                 return getRealChildType(groupPosition, childPosition) + 1
             }
@@ -323,8 +323,8 @@ class ExpandableListView: android.widget.ExpandableListView {
 
                         override fun onAnimationStart(animation: Animation?) { }
                     })
-                    dummyView.startAnimation(ani);
-                    dummyView.setTag(STATE_COLLAPSING);
+                    dummyView.startAnimation(ani)
+                    dummyView.setTag(STATE_COLLAPSING)
                 }
 
                 return convertView

@@ -7,7 +7,7 @@ import java.util.*
  */
 class SpecialCalendar {
 
-    private var _daysOfMonth = 0;
+    private var _daysOfMonth = 0
     private var _dayOfWeek = 0
 
     fun isLeapYear(year: Int): Boolean {

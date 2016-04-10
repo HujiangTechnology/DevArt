@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Environment
 import android.os.Handler
 import android.os.StatFs
+import android.util.Log
 import com.hujiang.devart.base.common.Actions
 import java.io.*
 import java.nio.charset.Charset
@@ -14,6 +15,25 @@ import javax.xml.transform.Source
  * Created by rarnu on 3/25/16.
  */
 object FileUtils {
+
+    val S_IRU = 400
+    val S_IRG = 40
+    val S_IRO = 4
+    val S_IWU = 200
+    val S_IWG = 20
+    val S_IWO = 2
+    val S_IXU = 100
+    val S_IXG = 10
+    val S_IXO = 1
+    val S_IRWU = S_IRU or S_IWU
+    val S_IRWG = S_IRG or S_IWG
+    val S_IRWO = S_IRO or S_IWO
+    val S_IRXU = S_IRU or S_IXU
+    val S_IRXG = S_IRG or S_IXG
+    val S_IRXO = S_IRO or S_IXO
+    val S_IRWXU = S_IRU or S_IWU or S_IXU
+    val S_IRWXG = S_IRG or S_IWG or S_IXG
+    val S_IRWXO = S_IRO or S_IWO or S_IXO
 
     fun mkdir(path: String): Boolean {
         var ret = false
@@ -309,6 +329,9 @@ object FileUtils {
         return dirSize
     }
 
+
+    fun getFileSize(path: String): Long = File(path).length()
+
     fun getReadableFileSize(size: Long): String {
         val units = arrayOf("B", "KB", "MB", "GB", "TB", "PB")
         var nSize = size * 1L * 1.0F
@@ -377,6 +400,17 @@ object FileUtils {
             output.close()
         } catch (e: Exception) {
 
+        }
+    }
+
+    fun setPermission(filePath: String, permission: Int) {
+        try {
+            var cls = Class.forName("android.os.FileUtils")
+            var method = cls.getDeclaredMethod("setPermissions", String::class.java, Integer.TYPE, Integer.TYPE, Integer.TYPE)
+            var ret = method.invoke(null, filePath, permission, -1, -1)
+            Log.e("LOG", "setPermission => ${ret}")
+        } catch(e: Exception) {
+            Log.e("LOG", "setPermission => ${e.message}")
         }
     }
 

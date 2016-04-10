@@ -116,7 +116,7 @@ class LunarCalendar {
     var year: Int
         get() = _year
         set(value) { _year = value }
-    private var _month = 0;
+    private var _month = 0
     private var _day = 0
     private var _lunarMonth = ""
     var lunarMonth: String
@@ -210,7 +210,7 @@ class LunarCalendar {
                     sdayV = "0" + dayLog
                 }
                 val smd = smonthV + sdayV
-                if (sd.trim().equals(smd.trim())) {
+                if (sd.trim() == smd.trim()) {
                     return sdv
                 }
             }
@@ -226,7 +226,7 @@ class LunarCalendar {
                     ldayV = "0" + _day
                 }
                 val lmd = lmonthV + ldayV
-                if (ld.trim().equals(lmd.trim())) {
+                if (ld.trim() == lmd.trim()) {
                     return ldv
                 }
             }

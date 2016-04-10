@@ -386,7 +386,7 @@ class CustomViewBehind : ViewGroup {
         }
         if (_selectorDrawable != null && _selectedView != null) {
             val tag = _selectedView!!.getTag(R.id.selected_view) as String
-            if (tag.equals(TAG + "SelectedView")) {
+            if (tag == TAG + "SelectedView") {
                 canvas?.save()
                 var left: Int
                 var right: Int

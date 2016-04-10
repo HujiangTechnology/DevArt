@@ -32,7 +32,7 @@ abstract class InnerFragment: Fragment, ViewTreeObserver.OnGlobalLayoutListener,
         innerBundle = innerBundle ?: arguments
         initLogic()
         if (activity.actionBar != null) {
-            if (getCustomTitle() == null || getCustomTitle().equals("")) {
+            if (getCustomTitle() == null || getCustomTitle() == "") {
                 if (UIInstance.dualPane) {
                     if (getBarTitleWithPath() != 0) {
                         activity.actionBar.setTitle(getBarTitleWithPath())
