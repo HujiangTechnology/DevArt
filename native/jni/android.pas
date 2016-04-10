@@ -7,7 +7,7 @@ unit android;
 interface
 
 const
-  libname = 'liblog.so';
+  libname = 'log';
 
   ANDROID_LOG_UNKNOWN = 0;
   ANDROID_LOG_DEFAULT = 1;
@@ -24,7 +24,7 @@ type
 
 function __android_log_write(prio: longint; tag, Text: PChar): longint; cdecl; external libname Name '__android_log_write';
 function LOGI(prio: longint; tag, Text: PChar): longint; cdecl; varargs; external libname Name '__android_log_print';
-function __system_property_get(Name: PChar; Value: PChar): integer; cdecl; external 'libc.so';
+function __system_property_get(Name: PChar; Value: PChar): integer; cdecl; external 'c';
 
 // procedure LOGW(Text: PChar);
 procedure LOGE(Text: PChar);
