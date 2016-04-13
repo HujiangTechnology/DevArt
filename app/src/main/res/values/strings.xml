@@ -43,7 +43,7 @@
     <string name="item_4_9">Zip</string>
     <string name="item_4_10">Algorithm</string>
 
-    <string name="item_5_1">Run</string>
+    <string name="item_5_1">Terminal</string>
     <string name="item_5_2">BlackTech</string>
 
     <string name="fragment_intro">Intro</string>
@@ -113,6 +113,8 @@
     <string name="calendar_name_with_path">MainActivity &gt; CalendarFragment</string>
     <string name="lockview_name">LockFragment</string>
     <string name="lockview_name_with_path">MainActivity &gt; LockFragment</string>
+    <string name="emuview_name">Terminal</string>
+    <string name="emuview_name_with_path">MainActivity &gt; Terminal</string>
 
     <string name="btn_show_id">Show ID</string>
     <string name="btn_close">Close</string>

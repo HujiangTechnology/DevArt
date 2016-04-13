@@ -54,6 +54,7 @@ class IndexFragment : BasePreferenceFragment(), Preference.OnPreferenceClickList
     private var _p4Algorithm: Preference? = null
 
     private var _p5BlackTech: Preference? = null
+//    private var _p5Terminal: Preference? = null
 
     override fun getBarTitle(): Int = R.string.app_name
 
@@ -100,6 +101,7 @@ class IndexFragment : BasePreferenceFragment(), Preference.OnPreferenceClickList
         _p4Algorithm = findPreference(getString(R.string.id_item_4_10))
 
         _p5BlackTech = findPreference(getString(R.string.id_item_5_2))
+//        _p5Terminal = findPreference(getString(R.string.id_item_5_1))
 
     }
 
@@ -142,6 +144,7 @@ class IndexFragment : BasePreferenceFragment(), Preference.OnPreferenceClickList
         _p4Algorithm?.onPreferenceClickListener = this
 
         _p5BlackTech?.onPreferenceClickListener = this
+//        _p5Terminal?.onPreferenceClickListener = this
 
     }
 
@@ -281,6 +284,10 @@ class IndexFragment : BasePreferenceFragment(), Preference.OnPreferenceClickList
             getString(R.string.id_item_4_10) -> {
                 UIInstance.currentFragment = 26
                 FragmentStarter.showContent(activity, AlgorithmActivity::class.java, Fragments.algorithmFragment)
+            }
+            getString(R.string.id_item_5_1) -> {
+                UIInstance.currentFragment = 30
+                FragmentStarter.showContent(activity, TerminalActivity::class.java, Fragments.terminalFragment)
             }
             getString(R.string.id_item_5_2) -> {
                 UIInstance.currentFragment = 25

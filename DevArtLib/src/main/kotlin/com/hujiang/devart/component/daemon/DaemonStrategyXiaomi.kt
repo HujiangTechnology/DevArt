@@ -14,7 +14,7 @@ import kotlin.concurrent.thread
  */
 class DaemonStrategyXiaomi: DaemonStrategyBase() {
 
-    private 	var				_serviceData: Parcel? = null
+    private var	_serviceData: Parcel? = null
 
     override fun onInitialization(context: Context?): Boolean = installBinary(context)
 

@@ -58,6 +58,7 @@ class MainActivity : BaseMainActivity() {
             27 -> Fragments.calendarFragment
             28 -> Fragments.lockViewFragment
             29 -> Fragments.flipViewFragment
+            30 -> Fragments.terminalFragment
             else -> Fragments.introFragment
         }
     }

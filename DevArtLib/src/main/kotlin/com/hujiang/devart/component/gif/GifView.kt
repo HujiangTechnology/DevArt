@@ -27,7 +27,7 @@ class GifView : ImageView, GifAction {
     private var _backView: View? = null
     private var _animationType = GifImageType.SYNC_DECODER
 
-    private val _redrawHandler = object : Handler() {
+    private var _redrawHandler = object : Handler() {
         override fun handleMessage(msg: Message?) {
             try {
                 if (_backView != null) {
@@ -140,12 +140,8 @@ class GifView : ImageView, GifAction {
                         _currentImage = BitmapFactory.decodeFile(frame.imageName)
                     }
                     val sp = frame.delay
-                    if (_redrawHandler != null) {
-                        reDraw()
-                        SystemClock.sleep(sp.toLong())
-                    } else {
-                        break
-                    }
+                    reDraw()
+                    SystemClock.sleep(sp.toLong())
                 } else {
                     SystemClock.sleep(50)
                 }

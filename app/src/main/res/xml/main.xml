@@ -106,9 +106,6 @@
         <Preference
                 android:key="@string/id_item_5_2"
                 android:title="@string/item_5_2"/>
-        <Preference
-                android:key="@string/id_item_5_1"
-                android:title="@string/item_5_1"/>
     </PreferenceCategory>
 
 </PreferenceScreen>

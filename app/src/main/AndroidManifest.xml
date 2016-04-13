@@ -77,6 +77,8 @@
                   android:configChanges="orientation"/>
         <activity android:name=".FlipViewActivity" android:label="@string/flipview_name"
                   android:configChanges="orientation"/>
+        <activity android:name=".TerminalActivity" android:label="@string/emuview_name"
+                  android:configChanges="orientation"/>
         <service android:name=".service.DemoService"/>
         <service android:name=".service.DemoFloatWindowService"/>
         <service android:name=".service.DaemonService1" android:process=":process1"/>

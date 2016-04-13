@@ -652,7 +652,7 @@ class GifDecoder : Thread {
                     null
                 }
                 if (_status == STATUS_PARSING) {
-                    if (_currentFrame!!.nextFrame != null)
+                    if (_currentFrame?.nextFrame != null)
                         _currentFrame = _currentFrame?.nextFrame
                 } else {
                     _currentFrame = _currentFrame?.nextFrame

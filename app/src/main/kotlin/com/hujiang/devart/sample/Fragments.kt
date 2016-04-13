@@ -10,7 +10,6 @@ object Fragments {
 
     val indexFragment = IndexFragment()
     val introFragment = IntroFragment()
-
     val argFragment = ArgumentFragment()
     val adapterFragment = AdapterFragment()
     val dialogFragment = DialogFragment()
@@ -37,6 +36,6 @@ object Fragments {
     val calendarFragment = CalendarFragment()
     val lockViewFragment = LockViewFragment()
     val flipViewFragment = FlipViewFragment()
-
     val tabFragment = TabFragment()
+    val terminalFragment = TerminalFragment()
 }
