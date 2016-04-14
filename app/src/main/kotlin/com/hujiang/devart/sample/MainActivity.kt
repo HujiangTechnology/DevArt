@@ -61,6 +61,7 @@ class MainActivity : BaseMainActivity() {
             30 -> Fragments.terminalFragment
             31 -> Fragments.glassBarFragment
             32 -> Fragments.dragGridFragment
+            33 -> Fragments.arcMenuFragment
             else -> Fragments.introFragment
         }
     }

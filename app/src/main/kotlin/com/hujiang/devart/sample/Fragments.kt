@@ -40,5 +40,6 @@ object Fragments {
     val terminalFragment = TerminalFragment()
     val glassBarFragment = GlassBarFragment()
     val dragGridFragment = DragGridFragment()
+    val arcMenuFragment = ArcMenuFragment()
 
 }

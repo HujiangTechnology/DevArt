@@ -32,6 +32,7 @@
     <string name="item_3_9">LockView</string>
     <string name="item_3_10">GlassBar</string>
     <string name="item_3_11">DragGrid</string>
+    <string name="item_3_12">ArcMenu</string>
 
     <string name="item_4_1">Device</string>
     <string name="item_4_2">Download</string>
@@ -121,6 +122,8 @@
     <string name="glassbar_name_with_path">MainActivity &gt; GlassBarFragment</string>
     <string name="draggrid_name">DragGridFragment</string>
     <string name="draggrid_name_with_path">MainActivity &gt; DragGridFragment</string>
+    <string name="arcmenu_name">ArcMenuFragment</string>
+    <string name="arcmenu_name_with_name">MainActivity &gt; ArcMenuFragment</string>
 
     <string name="btn_show_id">Show ID</string>
     <string name="btn_close">Close</string>

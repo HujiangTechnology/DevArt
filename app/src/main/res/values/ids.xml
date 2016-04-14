@@ -23,6 +23,8 @@
     <string name="id_item_3_9">LockView</string>
     <string name="id_item_3_10">GlassBar</string>
     <string name="id_item_3_11">DragGrid</string>
+    <string name="id_item_3_12">ArcMenu</string>
+
     <string name="id_item_4_1">Device</string>
     <string name="id_item_4_2">Download</string>
     <string name="id_item_4_3">File</string>
