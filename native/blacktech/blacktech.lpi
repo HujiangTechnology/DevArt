@@ -55,6 +55,11 @@
     <CodeGeneration>
       <RelocatableUnit Value="True"/>
     </CodeGeneration>
+    <Linking>
+      <Options>
+        <ExecutableType Value="Library"/>
+      </Options>
+    </Linking>
   </CompilerOptions>
   <Debugging>
     <Exceptions Count="3">
