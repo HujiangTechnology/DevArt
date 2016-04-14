@@ -20,28 +20,7 @@ object BlackTechnology {
         }
     }
 
-    /**
-     * ```
-     * val str = blackGetMacAddress()
-     * val macList = strToMacAddressList(str)
-     * ```
-     */
-    external fun blackGetMacAddress(): String
-
-    fun strToMacAddressList(str: String): MutableList<MacAddress>? {
-        var result: MutableList<MacAddress>? = null
-        try {
-            val strMacs = str.split("^")
-            result = arrayListOf<MacAddress>()
-            for (s in strMacs) {
-                val details = s.split("|")
-                result.add(MacAddress(details[0], details[1], details[2]))
-            }
-        } catch(e: Exception) {
-            Log.e("LOG", "strToMacAddressList => ${e.message}")
-        }
-        return result
-    }
+    external fun blackGetMacAddress(): MutableList<MacAddress?>?
 
     data class MacAddress(var identifier: String = "", var attributes: String = "", var macAddress: String = "")
 

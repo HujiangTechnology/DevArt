@@ -84,7 +84,7 @@ class GlassActionBarHelper: ViewTreeObserver.OnGlobalLayoutListener, NotifyingSc
             return
         }
         _lastScrollPosition = ntop
-        val actionBarSection = Bitmap.createBitmap(_scaled, 0, top / _downSampling, _width / _downSampling, _actionBarHeight / _downSampling)
+        val actionBarSection = Bitmap.createBitmap(_scaled, 0, ntop / _downSampling, _width / _downSampling, _actionBarHeight / _downSampling)
         var blurredBitmap: Bitmap?
         if (isBlurTaskFinished()) {
             blurredBitmap = actionBarSection
