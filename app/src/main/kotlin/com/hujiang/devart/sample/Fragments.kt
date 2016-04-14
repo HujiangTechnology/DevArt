@@ -38,4 +38,7 @@ object Fragments {
     val flipViewFragment = FlipViewFragment()
     val tabFragment = TabFragment()
     val terminalFragment = TerminalFragment()
+    val glassBarFragment = GlassBarFragment()
+    val dragGridFragment = DragGridFragment()
+
 }

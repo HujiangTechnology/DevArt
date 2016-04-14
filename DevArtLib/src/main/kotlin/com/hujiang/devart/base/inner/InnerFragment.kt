@@ -20,7 +20,11 @@ abstract class InnerFragment: Fragment, ViewTreeObserver.OnGlobalLayoutListener,
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        innerView = inflater?.inflate(getFragmentLayoutResId(), container, false)
+        if (getFragmentLayoutResId() != 0) {
+            innerView = inflater?.inflate(getFragmentLayoutResId(), container, false)
+        } else {
+            innerView = getFramgmentLayoutView()
+        }
         initComponents()
         initEvents()
         innerView?.viewTreeObserver?.addOnGlobalLayoutListener(this)
@@ -68,10 +72,18 @@ abstract class InnerFragment: Fragment, ViewTreeObserver.OnGlobalLayoutListener,
         initMenu(menu)
     }
 
+    /**
+     * do NOT override this method, use @onLayoutReady instead
+     */
     override fun onGlobalLayout() = onLayoutReady()
 
     /**
      * override the method if you want to re-layout after system layouted
      */
     protected open fun onLayoutReady() { }
+
+    /**
+     * override the method if you do not need a layout from resource and @getFragmentLayoutResId returns 0
+     */
+    protected open fun getFramgmentLayoutView(): View? = null
 }

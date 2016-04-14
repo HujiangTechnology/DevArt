@@ -30,6 +30,8 @@
     <string name="item_3_7">Tab</string>
     <string name="item_3_8">Calendar</string>
     <string name="item_3_9">LockView</string>
+    <string name="item_3_10">GlassBar</string>
+    <string name="item_3_11">DragGrid</string>
 
     <string name="item_4_1">Device</string>
     <string name="item_4_2">Download</string>
@@ -115,6 +117,10 @@
     <string name="lockview_name_with_path">MainActivity &gt; LockFragment</string>
     <string name="emuview_name">Terminal</string>
     <string name="emuview_name_with_path">MainActivity &gt; Terminal</string>
+    <string name="glassbar_name">GlassBarFragment</string>
+    <string name="glassbar_name_with_path">MainActivity &gt; GlassBarFragment</string>
+    <string name="draggrid_name">DragGridFragment</string>
+    <string name="draggrid_name_with_path">MainActivity &gt; DragGridFragment</string>
 
     <string name="btn_show_id">Show ID</string>
     <string name="btn_close">Close</string>
@@ -142,5 +148,7 @@
     <string name="btn_run">Run</string>
     <string name="btn_show_float_window">Show Float Window</string>
     <string name="btn_hide_float_window">Hide Float Window</string>
+
+    <string name="loren_ipsum">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.</string>
 
 </resources>

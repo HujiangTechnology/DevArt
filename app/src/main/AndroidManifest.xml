@@ -79,6 +79,10 @@
                   android:configChanges="orientation"/>
         <activity android:name=".TerminalActivity" android:label="@string/emuview_name"
                   android:configChanges="orientation"/>
+        <activity android:name=".GlassBarActivity" android:label="@string/glassbar_name"
+                  android:configChanges="orientation" android:theme="@style/DevArtTheme.GlassActionBar"/>
+        <activity android:name=".DragGridActivity" android:label="@string/draggrid_name"
+                  android:configChanges="orientation"/>
         <service android:name=".service.DemoService"/>
         <service android:name=".service.DemoFloatWindowService"/>
         <service android:name=".service.DaemonService1" android:process=":process1"/>
@@ -87,7 +91,7 @@
         <receiver android:name=".receiver.DaemonReceiver2" android:process=":process2"/>
         <receiver android:name=".receiver.NotifyReceiver">
             <intent-filter>
-                <action android:name="com.hujiang.devart.notify" />
+                <action android:name="com.hujiang.devart.notify"/>
             </intent-filter>
         </receiver>
     </application>

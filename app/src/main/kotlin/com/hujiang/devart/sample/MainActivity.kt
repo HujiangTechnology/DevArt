@@ -59,6 +59,8 @@ class MainActivity : BaseMainActivity() {
             28 -> Fragments.lockViewFragment
             29 -> Fragments.flipViewFragment
             30 -> Fragments.terminalFragment
+            31 -> Fragments.glassBarFragment
+            32 -> Fragments.dragGridFragment
             else -> Fragments.introFragment
         }
     }

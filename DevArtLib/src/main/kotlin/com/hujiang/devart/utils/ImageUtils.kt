@@ -10,6 +10,7 @@ import android.os.Build
 import android.os.Environment
 import android.provider.DocumentsContract
 import android.provider.MediaStore
+import android.view.View
 import java.io.BufferedInputStream
 import java.io.File
 import java.io.FileInputStream
@@ -213,6 +214,27 @@ object ImageUtils {
         bmp?.compress(format, 100, fOut)
         fOut.flush()
         fOut.close()
+    }
+
+    fun drawViewToBitmap(dest: Bitmap?, view: View?, width: Int, height: Int, downSampling: Int, drawable: Drawable?): Bitmap? {
+        val scale = 1.0f / downSampling
+        val heightCopy = view!!.height
+        view.layout(0, 0, width, height)
+        val bmpWidth = (width * scale).toInt()
+        val bmpHeight = (height * scale).toInt()
+        var ndest = dest
+        if (ndest == null || ndest.width != bmpWidth || ndest.height != bmpHeight) {
+            ndest = Bitmap.createBitmap(bmpWidth, bmpHeight, Bitmap.Config.ARGB_8888)
+        }
+        val c = Canvas(ndest)
+        drawable?.bounds = Rect(0, 0, width, height)
+        drawable?.draw(c)
+        if (downSampling > 1) {
+            c.scale(scale, scale)
+        }
+        view.draw(c)
+        view.layout(0, 0, width, heightCopy)
+        return ndest
     }
 
     fun getSmallBitmap(path: String, reqSize: Int): Bitmap {
