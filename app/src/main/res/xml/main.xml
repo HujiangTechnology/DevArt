@@ -75,6 +75,9 @@
         <Preference
                 android:key="@string/id_item_3_12"
                 android:title="@string/item_3_12"/>
+        <Preference
+                android:key="@string/id_item_3_13"
+                android:title="@string/item_3_13"/>
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/test_cat_4">
         <Preference
@@ -101,9 +104,6 @@
         <Preference
                 android:key="@string/id_item_4_7"
                 android:title="@string/item_4_7"/>
-        <Preference
-                android:key="@string/id_item_4_8"
-                android:title="@string/item_4_8"/>
         <Preference
                 android:key="@string/id_item_4_9"
                 android:title="@string/item_4_9"/>

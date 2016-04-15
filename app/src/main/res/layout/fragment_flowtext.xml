@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/layBottom"
+            android:background="@color/white"
+    >
+        <com.hujiang.devart.component.flowtext.FlowTextView
+                android:id="@+id/ftv"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+            <ImageView
+                    android:layout_width="100dip"
+                    android:layout_height="100dip"
+                    android:padding="10dip"
+                    android:layout_marginTop="100dip"
+                    android:src="@drawable/android"/>
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="400dip"
+                    android:layout_marginRight="50dip"
+                    android:padding="10dip"
+                    android:src="@drawable/android2"/>
+        </com.hujiang.devart.component.flowtext.FlowTextView>
+    </ScrollView>
+    <LinearLayout
+            android:id="@+id/layBottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true">
+        <Button
+                android:id="@+id/btnBigger"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Font Bigger"/>
+
+        <Button
+                android:id="@+id/btnSmaller"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" Font Smaller"/>
+
+        <Button
+                android:id="@+id/btnReset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reset"/>
+    </LinearLayout>
+
+</RelativeLayout>

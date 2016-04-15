@@ -44,6 +44,7 @@ class IndexFragment : BasePreferenceFragment(), Preference.OnPreferenceClickList
     private var _p3GlassBar: Preference? = null
     private var _p3DragGrid: Preference? = null
     private var _p3ArcMenu: Preference? = null
+    private var _p3FlowText: Preference? = null
 
     private var _p4Device: Preference? = null
     private var _p4Download: Preference? = null
@@ -94,6 +95,7 @@ class IndexFragment : BasePreferenceFragment(), Preference.OnPreferenceClickList
         _p3GlassBar = findPreference(getString(R.string.id_item_3_10))
         _p3DragGrid = findPreference(getString(R.string.id_item_3_11))
         _p3ArcMenu = findPreference(getString(R.string.id_item_3_12))
+        _p3FlowText = findPreference(getString(R.string.id_item_3_13))
 
         _p4Device = findPreference(getString(R.string.id_item_4_1))
         _p4Download = findPreference(getString(R.string.id_item_4_2))
@@ -140,6 +142,7 @@ class IndexFragment : BasePreferenceFragment(), Preference.OnPreferenceClickList
         _p3GlassBar?.onPreferenceClickListener = this
         _p3DragGrid?.onPreferenceClickListener = this
         _p3ArcMenu?.onPreferenceClickListener = this
+        _p3FlowText?.onPreferenceClickListener = this
 
         _p4Device?.onPreferenceClickListener = this
         _p4Download?.onPreferenceClickListener = this
@@ -265,6 +268,10 @@ class IndexFragment : BasePreferenceFragment(), Preference.OnPreferenceClickList
             getString(R.string.id_item_3_12) -> {
                 UIInstance.currentFragment = 33
                 FragmentStarter.showContent(activity, ArcMenuActivity::class.java, Fragments.arcMenuFragment)
+            }
+            getString(R.string.id_item_3_13) -> {
+                UIInstance.currentFragment = 34
+                FragmentStarter.showContent(activity, FlowTextActivity::class.java, Fragments.flowtextFragment)
             }
             getString(R.string.id_item_4_1) -> {
                 UIInstance.currentFragment = 7
