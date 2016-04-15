@@ -87,6 +87,8 @@
                   android:configChanges="orientation"/>
         <activity android:name=".FlowTextActivity" android:label="@string/flowtext_name"
                   android:configChanges="orientation"/>
+        <activity android:name=".ProgressActivity" android:label="@string/progress_name"
+                  android:configChanges="orientation"/>
         <service android:name=".service.DemoService"/>
         <service android:name=".service.DemoFloatWindowService"/>
         <service android:name=".service.DaemonService1" android:process=":process1"/>

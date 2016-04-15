@@ -140,4 +140,46 @@
         <attr name="childSize"/>
     </declare-styleable>
 
+    <!-- wheel progressbar -->
+    <declare-styleable name="WheelProgressBar">
+        <attr name="pwText" format="string" />
+        <attr name="pwTextColor" format="color" />
+        <attr name="pwTextSize" format="dimension" />
+        <attr name="pwBarColor" format="color" />
+        <attr name="pwRimColor" format="color" />
+        <attr name="pwRimWidth" format="dimension" />
+        <attr name="pwSpinSpeed" format="dimension" />
+        <attr name="pwDelayMillis" format="integer" />
+        <attr name="pwCircleColor" format="color" />
+        <attr name="pwRadius" format="dimension" />
+        <attr name="pwBarWidth" format="dimension" />
+        <attr name="pwBarLength" format="dimension" />
+        <attr name="pwContourColor" format="color"/>
+        <attr name="pwContourSize" format="dimension"/>
+    </declare-styleable>
+
+    <!-- Smooth Progressbar -->
+    <declare-styleable name="SmoothProgressBar">
+        <attr name="spbStyle" format="reference"/>
+        <attr name="spbColor" format="color"/>
+        <attr name="spbStrokeWidth" format="dimension"/>
+        <attr name="spbStrokeSeparatorLength" format="dimension"/>
+        <attr name="spbSectionsCount" format="integer"/>
+        <attr name="spbSpeed" format="float"/>
+        <attr name="spbProgressiveStartSpeed" format="float"/>
+        <attr name="spbProgressiveStopSpeed" format="float"/>
+        <attr name="spbInterpolator" format="enum">
+            <enum name="spbInterpolatorAccelerate" value="0"/>
+            <enum name="spbInterpolatorLinear" value="1"/>
+            <enum name="spbInterpolatorAccelerateDecelerate" value="2"/>
+            <enum name="spbInterpolatorDecelerate" value="3"/>
+        </attr>
+        <attr name="spbReversed" format="boolean"/>
+        <attr name="spbMirrorMode" format="boolean"/>
+        <attr name="spbColors" format="reference"/>
+        <attr name="spbProgressiveStartActivated" format="boolean"/>
+        <attr name="spbBackground" format="reference"/>
+        <attr name="spbGenerateBackgroundWithColors" format="boolean"/>
+        <attr name="spbGradients" format="boolean"/>
+    </declare-styleable>
 </resources>

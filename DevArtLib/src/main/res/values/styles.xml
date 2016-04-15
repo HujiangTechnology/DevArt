@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Glass ActionBar -->
     <style name="GlassActionBar" parent="android:Widget.ActionBar">
         <item name="android:background">@drawable/ab_transparent</item>
+    </style>
+
+    <!-- SmoothProgrsssBar -->
+    <style name="Theme.SmoothProgressBarDefaults" parent="android:Theme">
+        <item name="spbStyle">@style/SmoothProgressBar</item>
+    </style>
+    <style name="SPB" parent="android:Widget.ProgressBar.Horizontal">
+    </style>
+    <style name="SmoothProgressBar" parent="SPB">
+        <item name="spbColor">@color/spbDefaultColor</item>
+        <item name="spbSectionsCount">@integer/spbDefaultSectionsCount</item>
+        <item name="spbSpeed">@string/spbDefaultSpeed</item>
+        <item name="spbStrokeWidth">@dimen/spbDefaultStrokeWidth</item>
+        <item name="spbStrokeSeparatorLength">@dimen/spbDefaultStrokeSeparatorLength</item>
+        <item name="spbReversed">@bool/spbDefaultReversed</item>
+        <item name="spbMirrorMode">@bool/spbDefaultMirrorMode</item>
+        <item name="spbInterpolator">@integer/spbDefaultInterpolator</item>
     </style>
 </resources>

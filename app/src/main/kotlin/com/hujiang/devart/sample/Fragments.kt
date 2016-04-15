@@ -42,5 +42,6 @@ object Fragments {
     val dragGridFragment = DragGridFragment()
     val arcMenuFragment = ArcMenuFragment()
     val flowtextFragment = FlowTextFragment()
+    val progressFragment = ProgressFragment()
 
 }

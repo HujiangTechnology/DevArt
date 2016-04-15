@@ -25,6 +25,7 @@
     <string name="id_item_3_11">DragGrid</string>
     <string name="id_item_3_12">ArcMenu</string>
     <string name="id_item_3_13">FlowText</string>
+    <string name="id_item_3_14">Progress</string>
 
     <string name="id_item_4_1">Device</string>
     <string name="id_item_4_2">Download</string>

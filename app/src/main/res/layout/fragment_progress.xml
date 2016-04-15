@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:pw="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <Button
+            android:id="@+id/btnSpin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Spin"
+            android:layout_marginTop="15dp"/>
+
+    <SeekBar
+            android:id="@+id/sbAmount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_alignTop="@+id/btnSpin"
+            android:layout_alignBottom="@+id/btnSpin"
+            android:layout_toRightOf="@+id/btnSpin"
+            android:layout_toLeftOf="@+id/btnIncrement"
+            android:layout_marginLeft="8dip"
+            android:layout_marginRight="8dip"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentLeft="false"/>
+
+    <Button
+            android:id="@+id/btnIncrement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Increment"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="15dp"/>
+
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:orientation="vertical"
+            android:layout_below="@+id/btnSpin"
+            android:gravity="center_horizontal">
+        <com.hujiang.devart.component.progress.WheelProgressBar
+                android:id="@+id/pb1"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                pw:pwTextColor="#222222"
+                pw:pwTextSize="14sp"
+                pw:pwRimColor="#44000000"
+                pw:pwBarLength="60dip"
+                pw:pwBarColor="#339BB9"
+                pw:pwBarWidth="25dip"
+                pw:pwRimWidth="25dip"
+                pw:pwSpinSpeed="3dip"/>
+        <Button
+                android:id="@+id/btnRandom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Different Style"
+        />
+    </LinearLayout>
+
+
+</RelativeLayout>

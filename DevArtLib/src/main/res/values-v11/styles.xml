@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- SmoothProgrsssBar -->
+    <style name="SPB" parent="android:Widget.Holo.ProgressBar.Horizontal">
+    </style>
+</resources>
