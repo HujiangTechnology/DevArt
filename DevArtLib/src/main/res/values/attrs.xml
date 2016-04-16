@@ -182,4 +182,17 @@
         <attr name="spbGenerateBackgroundWithColors" format="boolean"/>
         <attr name="spbGradients" format="boolean"/>
     </declare-styleable>
+
+    <!-- Circular Progressbar -->
+    <declare-styleable name="CircularProgressBar">
+        <attr name="cpbStyle" format="reference"/>
+        <attr name="cpbColor" format="color"/>
+        <attr name="cpbColors" format="reference"/>
+        <attr name="cpbStrokeWidth" format="dimension"/>
+        <attr name="cpbMinSweepAngle" format="integer"/>
+        <attr name="cpbMaxSweepAngle" format="integer"/>
+        <attr name="cpbSweepSpeed" format="float"/>
+        <attr name="cpbRotationSpeed" format="float"/>
+    </declare-styleable>
+
 </resources>

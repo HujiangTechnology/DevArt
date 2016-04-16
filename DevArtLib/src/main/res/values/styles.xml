@@ -21,4 +21,96 @@
         <item name="spbMirrorMode">@bool/spbDefaultMirrorMode</item>
         <item name="spbInterpolator">@integer/spbDefaultInterpolator</item>
     </style>
+
+    <!-- Circular Progressbar -->
+    <style name="Theme.CircularProgressBarDefaults" parent="android:Theme.Holo">
+        <item name="cpbStyle">@style/CircularProgressBar</item>
+    </style>
+    <style name="CPB" parent="android:Widget.Holo.ProgressBar">
+    </style>
+    <style name="CircularProgressBar" parent="CPB">
+        <item name="cpbColor">@color/cpbDefaultColor</item>
+        <item name="cpbStrokeWidth">@dimen/cpbDefaultStrokeWidth</item>
+        <item name="cpbMinSweepAngle">@integer/cpbDefaultMinSweepAngle</item>
+        <item name="cpbMaxSweepAngle">@integer/cpbDefaultMaxSweepAngle</item>
+        <item name="cpbSweepSpeed">@string/cpbDefaultSweepSpeed</item>
+        <item name="cpbRotationSpeed">@string/cpbDefaultRotationSpeed</item>
+    </style>
+
+    <!-- Smooth Progressbar styles -->
+    <color name="pocketColor1">#85edb9</color>
+    <color name="pocketColor2">#34bdb7</color>
+    <color name="pocketColor3">#ee4458</color>
+    <color name="pocketColor4">#fcb74d</color>
+    <color name="gplusColor1">#3e802f</color>
+    <color name="gplusColor2">#f4b400</color>
+    <color name="gplusColor3">#427fed</color>
+    <color name="gplusColor4">#b23424</color>
+    <integer-array name="gplusColors">
+        <item>@color/gplusColor1</item>
+        <item>@color/gplusColor2</item>
+        <item>@color/gplusColor3</item>
+        <item>@color/gplusColor4</item>
+    </integer-array>
+    <integer-array name="pocketBarColors">
+        <item>@color/pocketColor1</item>
+        <item>@color/pocketColor1</item>
+        <item>@color/pocketColor1</item>
+        <item>@color/pocketColor1</item>
+        <item>@color/pocketColor2</item>
+        <item>@color/pocketColor2</item>
+        <item>@color/pocketColor2</item>
+        <item>@color/pocketColor2</item>
+        <item>@color/pocketColor3</item>
+        <item>@color/pocketColor3</item>
+        <item>@color/pocketColor3</item>
+        <item>@color/pocketColor3</item>
+        <item>@color/pocketColor4</item>
+        <item>@color/pocketColor4</item>
+        <item>@color/pocketColor4</item>
+        <item>@color/pocketColor4</item>
+    </integer-array>
+    <integer-array name="pocketBackgroundColors">
+        <item>@color/pocketColor1</item>
+        <item>@color/pocketColor2</item>
+        <item>@color/pocketColor3</item>
+        <item>@color/pocketColor4</item>
+    </integer-array>
+    <style name="GPlusProgressBar" parent="SmoothProgressBar">
+        <item name="spbStrokeSeparatorLength">12dp</item>
+        <item name="spbSectionsCount">4</item>
+        <item name="spbSpeed">0.7</item>
+        <item name="spbInterpolator">spbInterpolatorLinear</item>
+        <item name="spbColors">@array/gplusColors</item>
+    </style>
+    <style name="GNowProgressBar" parent="SmoothProgressBar">
+        <item name="spbStrokeSeparatorLength">8dp</item>
+        <item name="spbSectionsCount">2</item>
+        <item name="spbSpeed">1.7</item>
+        <item name="spbProgressiveStartSpeed">2</item>
+        <item name="spbProgressiveStopSpeed">3.4</item>
+        <item name="spbInterpolator">spbInterpolatorAccelerateDecelerate</item>
+        <item name="spbMirrorMode">true</item>
+        <item name="spbReversed">true</item>
+        <item name="spbColors">@array/gplusColors</item>
+        <item name="spbProgressiveStartActivated">true</item>
+        <item name="spbGenerateBackgroundWithColors">false</item>
+    </style>
+    <style name="GradientProgressBar" parent="SmoothProgressBar">
+        <item name="spbStrokeSeparatorLength">0dp</item>
+        <item name="spbSectionsCount">3</item>
+        <item name="spbSpeed">1.7</item>
+        <item name="android:interpolator">@android:anim/decelerate_interpolator</item>
+        <item name="spbColors">@array/gplusColors</item>
+        <item name="spbGradients">true</item>
+    </style>
+    <style name="PocketProgressBar" parent="SmoothProgressBar">
+        <item name="spbStrokeSeparatorLength">4dp</item>
+        <item name="spbSectionsCount">4</item>
+        <item name="spbSpeed">1</item>
+        <item name="android:interpolator">@anim/pocket_interpolator</item>
+        <item name="spbColors">@array/pocketBarColors</item>
+        <item name="spbProgressiveStartActivated">true</item>
+        <item name="spbGenerateBackgroundWithColors">false</item>
+    </style>
 </resources>

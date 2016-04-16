@@ -546,7 +546,7 @@ class SmoothProgressDrawable: Drawable, Animatable {
 
         fun build(): SmoothProgressDrawable {
             if (_generateBackgroundUsingColors) {
-                _backgroundDrawableWhenHidden = SmoothProgressBarUtils.generateDrawableWithColors(_colors, _strokeWidth)
+                _backgroundDrawableWhenHidden = ProgressBarUtils.generateDrawableWithColors(_colors, _strokeWidth)
             }
             val ret = SmoothProgressDrawable(_interpolator, _sectionsCount, _strokeSeparatorLength, _colors, _strokeWidth, _speed, _progressiveStartSpeed, _progressiveStopSpeed, _reversed, _mirrorMode, _onProgressiveStopEndedListener, _progressiveStartActivated, _backgroundDrawableWhenHidden, _gradients)
             return ret
@@ -578,19 +578,19 @@ class SmoothProgressDrawable: Drawable, Animatable {
         }
 
         fun interpolator(interpolator: Interpolator?):Builder {
-            SmoothProgressBarUtils.checkNotNull(interpolator, "Interpolator")
+            ProgressBarUtils.checkNotNull(interpolator, "Interpolator")
             _interpolator = interpolator
             return this
         }
 
         fun sectionsCount(sectionsCount: Int): Builder {
-            SmoothProgressBarUtils.checkPositive(sectionsCount, "Sections count")
+            ProgressBarUtils.checkPositive(sectionsCount, "Sections count")
             _sectionsCount = sectionsCount
             return this
         }
 
         fun separatorLength(separatorLength: Int): Builder {
-            SmoothProgressBarUtils.checkPositiveOrZero(separatorLength.toFloat(), "Separator length")
+            ProgressBarUtils.checkPositiveOrZero(separatorLength.toFloat(), "Separator length")
             _strokeSeparatorLength = separatorLength
             return this
         }
@@ -601,31 +601,31 @@ class SmoothProgressDrawable: Drawable, Animatable {
         }
 
         fun colors(colors: IntArray?): Builder {
-            SmoothProgressBarUtils.checkColors(colors)
+            ProgressBarUtils.checkColors(colors)
             _colors = colors
             return this
         }
 
         fun strokeWidth(width: Float): Builder {
-            SmoothProgressBarUtils.checkPositiveOrZero(width, "Width")
+            ProgressBarUtils.checkPositiveOrZero(width, "Width")
             _strokeWidth = width
             return this
         }
 
         fun speed(speed: Float): Builder {
-            SmoothProgressBarUtils.checkSpeed(speed)
+            ProgressBarUtils.checkSpeed(speed)
             _speed = speed
             return this
         }
 
         fun progressiveStartSpeed(progressiveStartSpeed: Float): Builder {
-            SmoothProgressBarUtils.checkSpeed(progressiveStartSpeed)
+            ProgressBarUtils.checkSpeed(progressiveStartSpeed)
             _progressiveStartSpeed = progressiveStartSpeed
             return this
         }
 
         fun progressiveStopSpeed(progressiveStopSpeed: Float): Builder {
-            SmoothProgressBarUtils.checkSpeed(progressiveStopSpeed)
+            ProgressBarUtils.checkSpeed(progressiveStopSpeed)
             _progressiveStopSpeed = progressiveStopSpeed
             return this
         }

@@ -1,12 +1,16 @@
 package com.hujiang.devart.component.progress
 
+import android.animation.ValueAnimator
+import android.content.Context
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.ShapeDrawable
+import android.os.Build
+import android.os.PowerManager
 
 /**
  * Created by rarnu on 4/15/16.
  */
-object SmoothProgressBarUtils {
+object ProgressBarUtils {
 
     fun generateDrawableWithColors(colors: IntArray?, strokeWidth: Float): Drawable? {
         if (colors == null || colors.size == 0) {
@@ -50,5 +54,29 @@ object SmoothProgressBarUtils {
             throw IllegalArgumentException("${name} must be not null")
         }
     }
+
+    fun getAnimatedFraction(animator: ValueAnimator?): Float {
+        var fraction = if (animator!!.duration > 0) animator.currentPlayTime * 1.0f / animator.duration else 0.0f
+        fraction = Math.min(fraction, 1.0f)
+        fraction = animator.interpolator.getInterpolation(fraction)
+        return fraction
+    }
+
+    fun isPowerSaveModeEnabled(powerManager: PowerManager?): Boolean {
+        if (Build.VERSION.SDK_INT < 21) {
+            return false
+        }
+        try {
+            // this method is already exists under API 21
+            // for compile under API 19, here use reflect for calling...
+            val mode = powerManager!!.javaClass.getDeclaredMethod("isPowerSaveMode")
+            val b = mode.invoke(powerManager) as Boolean
+            return b
+        } catch (e: Exception) {
+            return false
+        }
+    }
+
+    fun powerManager(context: Context): PowerManager? = context.getSystemService(Context.POWER_SERVICE) as PowerManager?
 
 }
