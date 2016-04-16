@@ -109,6 +109,12 @@ class CircularProgressDrawable: Drawable, Animatable {
 
     fun getDrawableBounds(): RectF = _bounds
 
+    fun progressiveStart() = progressiveStart(0)
+
+    fun progressiveStart(index: Int) {
+        start()
+    }
+
     fun progressiveStop(listener: CircularProgressDrawable.OnEndListener?) {
         _pbDelegate?.progressiveStop(listener)
     }

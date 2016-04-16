@@ -7,7 +7,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.SeekBar
 import com.hujiang.devart.base.BaseFragment
-import com.hujiang.devart.component.progress.WheelProgressBar
+import com.hujiang.devart.component.progress.*
 import com.hujiang.devart.sample.MainActivity
 import com.hujiang.devart.sample.R
 
@@ -41,6 +41,11 @@ class ProgressFragment: BaseFragment(), SeekBar.OnSeekBarChangeListener, View.On
     private var _isRunning = false
     private var _cachedProgress = 0
 
+    private var _googleNow: SmoothProgressBar? = null
+    private var _pocketBar: SmoothProgressBar? = null
+    private var _btnBegin: Button? = null
+    private var _btnFinish: Button? = null
+
     override fun getBarTitle(): Int = R.string.progress_name
 
     override fun getBarTitleWithPath(): Int = R.string.progress_name_with_path
@@ -53,6 +58,10 @@ class ProgressFragment: BaseFragment(), SeekBar.OnSeekBarChangeListener, View.On
         _btnSpin = innerView?.findViewById(R.id.btnSpin) as Button
         _btnIncrement = innerView?.findViewById(R.id.btnIncrement) as Button
         _btnRandom = innerView?.findViewById(R.id.btnRandom) as Button
+        _googleNow = innerView?.findViewById(R.id.googleNow) as SmoothProgressBar
+        _pocketBar = innerView?.findViewById(R.id.pocket) as SmoothProgressBar
+        _btnBegin = innerView?.findViewById(R.id.btnStart) as Button
+        _btnFinish = innerView?.findViewById(R.id.btnFinish) as Button
     }
 
     override fun initEvents() {
@@ -60,9 +69,15 @@ class ProgressFragment: BaseFragment(), SeekBar.OnSeekBarChangeListener, View.On
         _btnSpin?.setOnClickListener(this)
         _btnIncrement?.setOnClickListener(this)
         _btnRandom?.setOnClickListener(this)
+        _btnBegin?.setOnClickListener(this)
+        _btnFinish?.setOnClickListener(this)
     }
 
-    override fun initLogic() { }
+    override fun initLogic() {
+        _pocketBar?.setSmoothProgressDrawableBackgroundDrawable(
+                ProgressBarUtils.generateDrawableWithColors(
+                        resources.getIntArray(R.array.pocketBackgroundColors), (_pocketBar?.indeterminateDrawable as SmoothProgressDrawable).getStrokeWidth()))
+    }
 
     override fun getFragmentLayoutResId(): Int = R.layout.fragment_progress
 
@@ -104,6 +119,8 @@ class ProgressFragment: BaseFragment(), SeekBar.OnSeekBarChangeListener, View.On
             }
             R.id.btnIncrement -> _pb1?.incrementProgress(36)
             R.id.btnRandom -> styleRandom(_pb1, activity)
+            R.id.btnStart -> _pocketBar?.progressiveStart()
+            R.id.btnFinish -> _pocketBar?.progressiveStop()
         }
     }
 

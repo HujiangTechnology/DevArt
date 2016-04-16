@@ -34,7 +34,6 @@ class CircularProgressBar : ProgressBar {
         if (colorsId != 0) {
             colors = res.getIntArray(colorsId)
         }
-        var indeterminateDrawable: Drawable?
         val builder = CircularProgressDrawable.Builder(context)
                 .sweepSpeed(sweepSpeed)
                 .rotationSpeed(rotationSpeed)
@@ -46,8 +45,8 @@ class CircularProgressBar : ProgressBar {
         } else {
             builder.color(color)
         }
-        indeterminateDrawable = builder.build()
-        this.indeterminateDrawable = indeterminateDrawable
+        val d = builder.build()
+        indeterminateDrawable = d
     }
 
     private fun checkIndeterminateDrawable(): CircularProgressDrawable {
@@ -57,6 +56,8 @@ class CircularProgressBar : ProgressBar {
         }
         return ret
     }
+
+    fun progressiveStart() = checkIndeterminateDrawable().progressiveStart()
 
     fun progressiveStop() = checkIndeterminateDrawable().progressiveStop()
 
