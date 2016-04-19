@@ -64,6 +64,7 @@ class MainActivity : BaseMainActivity() {
             33 -> Fragments.arcMenuFragment
             34 -> Fragments.flowtextFragment
             35 -> Fragments.progressFragment
+            36 -> Fragments.badgerFragment
             else -> Fragments.introFragment
         }
     }

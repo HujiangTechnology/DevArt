@@ -46,6 +46,7 @@ class IndexFragment : BasePreferenceFragment(), Preference.OnPreferenceClickList
     private var _p3ArcMenu: Preference? = null
     private var _p3FlowText: Preference? = null
     private var _p3Progress: Preference? = null
+    private var _p3Badger: Preference? = null
 
     private var _p4Device: Preference? = null
     private var _p4Download: Preference? = null
@@ -98,6 +99,7 @@ class IndexFragment : BasePreferenceFragment(), Preference.OnPreferenceClickList
         _p3ArcMenu = findPreference(getString(R.string.id_item_3_12))
         _p3FlowText = findPreference(getString(R.string.id_item_3_13))
         _p3Progress = findPreference(getString(R.string.id_item_3_14))
+        _p3Badger = findPreference(getString(R.string.id_item_3_15))
 
         _p4Device = findPreference(getString(R.string.id_item_4_1))
         _p4Download = findPreference(getString(R.string.id_item_4_2))
@@ -146,6 +148,7 @@ class IndexFragment : BasePreferenceFragment(), Preference.OnPreferenceClickList
         _p3ArcMenu?.onPreferenceClickListener = this
         _p3FlowText?.onPreferenceClickListener = this
         _p3Progress?.onPreferenceClickListener = this
+        _p3Badger?.onPreferenceClickListener = this
 
         _p4Device?.onPreferenceClickListener = this
         _p4Download?.onPreferenceClickListener = this
@@ -279,6 +282,10 @@ class IndexFragment : BasePreferenceFragment(), Preference.OnPreferenceClickList
             getString(R.string.id_item_3_14) -> {
                 UIInstance.currentFragment = 35
                 FragmentStarter.showContent(activity, ProgressActivity::class.java, Fragments.progressFragment)
+            }
+            getString(R.string.id_item_3_15) -> {
+                UIInstance.currentFragment = 36
+                FragmentStarter.showContent(activity, BadgerActivity::class.java, Fragments.badgerFragment)
             }
             getString(R.string.id_item_4_1) -> {
                 UIInstance.currentFragment = 7
