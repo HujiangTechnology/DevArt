@@ -36,6 +36,7 @@
     <string name="item_3_13">FlowText</string>
     <string name="item_3_14">Progress</string>
     <string name="item_3_15">Badger</string>
+    <string name="item_3_16">CoverFlow</string>
 
     <string name="item_4_1">Device</string>
     <string name="item_4_2">Download</string>
@@ -133,6 +134,8 @@
     <string name="progress_name_with_path">MainActivity &gt; ProgressFragment</string>
     <string name="badger_name">BadgerFragment</string>
     <string name="badger_name_with_path">MainActivity &gt; BadgerFragment</string>
+    <string name="coverflow_name">CoverFlow</string>
+    <string name="coverflow_name_with_path">MainActivity &gt; CoverFlow</string>
 
     <string name="btn_show_id">Show ID</string>
     <string name="btn_close">Close</string>

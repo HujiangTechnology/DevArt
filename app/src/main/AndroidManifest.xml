@@ -91,6 +91,8 @@
                   android:configChanges="orientation"/>
         <activity android:name=".BadgerActivity" android:label="@string/badger_name"
                   android:configChanges="orientation"/>
+        <activity android:name=".CoverFlowActivity" android:label="@string/coverflow_name"
+                  android:configChanges="orientation"/>
         <service android:name=".service.DemoService"/>
         <service android:name=".service.DemoFloatWindowService"/>
         <service android:name=".service.DaemonService1" android:process=":process1"/>

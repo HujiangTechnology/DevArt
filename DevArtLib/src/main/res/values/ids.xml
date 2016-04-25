@@ -5,4 +5,6 @@
     <item name="webview" type="id"/>
     <item name="scrollview" type="id"/>
     <item name="viewpager" type="id"/>
+
+    <item type="id" name="item_touch_helper_previous_elevation"/>
 </resources>

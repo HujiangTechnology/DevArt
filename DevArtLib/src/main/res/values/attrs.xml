@@ -195,4 +195,13 @@
         <attr name="cpbRotationSpeed" format="float"/>
     </declare-styleable>
 
+    <!-- RecyclerView(merge support v7) -->
+    <declare-styleable name="RecyclerView">
+        <attr name="layoutManager" format="string" />
+        <attr name="android:orientation" />
+        <attr name="spanCount" format="integer"/>
+        <attr name="reverseLayout" format="boolean" />
+        <attr name="stackFromEnd" format="boolean" />
+    </declare-styleable>
+
 </resources>
