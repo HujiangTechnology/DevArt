@@ -93,6 +93,8 @@
                   android:configChanges="orientation"/>
         <activity android:name=".CropActivity" android:label="@string/crop_name"
                   android:configChanges="orientation"/>
+        <activity android:name=".CoverflowActivity" android:label="@string/coverflow_name"
+                  android:configChanges="orientation"/>
         <service android:name=".service.DemoService"/>
         <service android:name=".service.DemoFloatWindowService"/>
         <service android:name=".service.DaemonService1" android:process=":process1"/>

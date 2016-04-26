@@ -66,6 +66,7 @@ class MainActivity : BaseMainActivity() {
             35 -> Fragments.progressFragment
             36 -> Fragments.badgerFragment
             38 -> Fragments.cropFragment
+            39 -> Fragments.coverflowFragment
             else -> Fragments.introFragment
         }
     }

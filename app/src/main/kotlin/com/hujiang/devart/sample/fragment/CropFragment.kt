@@ -29,7 +29,6 @@ class CropFragment: BaseFragment(), CompoundButton.OnCheckedChangeListener, Seek
     private var _croppedImageView: ImageView? = null
     private var _cropButton: Button? = null
 
-
     override fun getBarTitle(): Int = R.string.crop_name
 
     override fun getBarTitleWithPath(): Int = R.string.crop_name_with_path

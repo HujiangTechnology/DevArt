@@ -324,4 +324,34 @@ object ImageUtils {
                 null
             }
 
+    fun createReflectedBitmap(srcBitmap: Bitmap?, reflectHeight: Float): Bitmap? {
+        if (null == srcBitmap) {
+            return null
+        }
+        val srcWidth = srcBitmap.width
+        val srcHeight = srcBitmap.height
+        val reflectionWidth = srcBitmap.width
+        val reflectionHeight = if (reflectHeight == 0.0f) srcHeight / 3 else (reflectHeight * srcHeight).toInt()
+        if (0 == srcWidth || srcHeight == 0) {
+            return null
+        }
+        val matrix = Matrix()
+        matrix.preScale(1.0f, -1.0f)
+        try {
+            val reflectionBitmap = Bitmap.createBitmap(srcBitmap, 0, srcHeight - reflectionHeight, reflectionWidth, reflectionHeight, matrix, false) ?: return null
+            val canvas = Canvas(reflectionBitmap)
+            val paint = Paint()
+            paint.isAntiAlias = true
+            val shader = LinearGradient(0.0f, 0.0f, 0.0f, reflectionBitmap.height.toFloat(), 0x70FFFFFF, 0x00FFFFFF, Shader.TileMode.MIRROR)
+            paint.shader = shader
+            paint.xfermode = PorterDuffXfermode(android.graphics.PorterDuff.Mode.DST_IN)
+            canvas.drawRect(0.0f, 0.0f, reflectionBitmap.width.toFloat(), reflectionBitmap.height.toFloat(), paint)
+            return reflectionBitmap
+        } catch (e: Exception) {
+
+        }
+        return null
+    }
+
+
 }
