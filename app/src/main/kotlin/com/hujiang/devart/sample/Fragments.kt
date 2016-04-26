@@ -44,6 +44,7 @@ object Fragments {
     val flowtextFragment = FlowTextFragment()
     val progressFragment = ProgressFragment()
     val badgerFragment = BadgerFragment()
-    val coverflowFragment = CoverFlowFragment()
+    val cropFragment = CropFragment()
+
 
 }

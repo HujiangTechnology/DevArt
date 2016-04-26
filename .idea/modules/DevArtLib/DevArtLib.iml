@@ -87,6 +87,5 @@
     <orderEntry type="library" exported="" name="kotlin-runtime-1.0.0" level="project" />
     <orderEntry type="library" exported="" name="android-support-v13" level="project" />
     <orderEntry type="library" exported="" name="kotlin-stdlib-1.0.0" level="project" />
-    <orderEntry type="library" exported="" name="universal-image-loader" level="project" />
   </component>
 </module>

@@ -90,6 +90,5 @@
     <orderEntry type="library" exported="" name="kotlin-runtime-1.0.0" level="project" />
     <orderEntry type="library" exported="" name="kotlin-stdlib-1.0.0" level="project" />
     <orderEntry type="module" module-name="DevArtLib" exported="" />
-    <orderEntry type="library" name="universal-image-loader" level="project" />
   </component>
 </module>

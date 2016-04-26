@@ -195,13 +195,17 @@
         <attr name="cpbRotationSpeed" format="float"/>
     </declare-styleable>
 
-    <!-- RecyclerView(merge support v7) -->
-    <declare-styleable name="RecyclerView">
-        <attr name="layoutManager" format="string" />
-        <attr name="android:orientation" />
-        <attr name="spanCount" format="integer"/>
-        <attr name="reverseLayout" format="boolean" />
-        <attr name="stackFromEnd" format="boolean" />
-    </declare-styleable>
 
+    <!-- CropImageView -->
+    <declare-styleable name="CropImageView">
+        <attr name="guidelines">
+            <enum name="off" value="0"/>
+            <enum name="onTouch" value="1"/>
+            <enum name="on" value="2"/>
+        </attr>
+        <attr name="fixAspectRatio" format="boolean"/>
+        <attr name="aspectRatioX" format="integer"/>
+        <attr name="aspectRatioY" format="integer"/>
+
+    </declare-styleable>
 </resources>

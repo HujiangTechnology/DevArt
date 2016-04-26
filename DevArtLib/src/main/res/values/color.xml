@@ -149,8 +149,10 @@
 	<color name="black">#000000</color><!--黑色 -->
 
     <!-- extra -->
-	<color name="transparent">#00000000</color>
-	<color name="half_transparent">#AA000000</color>
-    <color name="dark_transparent">#DD000000</color>
+	<color name="translucent">#00000000</color>
+	<color name="half_translucent">#AA000000</color>
+    <color name="dark_translucent">#DD000000</color>
+	<color name="white_translucent">#AAFFFFFF</color>
+	<color name="black_translucent">#B0000000</color>
 
 </resources>
