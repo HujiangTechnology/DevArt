@@ -12,11 +12,17 @@ import com.hujiang.devart.sample.service.DaemonService2
 /**
  * Created by rarnu on 4/7/16.
  */
-class DevArtApplication: DaemonApplication() {
+class DevArtApplication: DaemonApplication {
 
     companion object {
+        private var _instance: DevArtApplication? = null
+        fun instance(): DevArtApplication? = _instance
         val PROCESS1 = "com.hujiang.devart.sample:process1"
         val PROCESS2 = "com.hujiang.devart.sample:process2"
+    }
+
+    constructor(): super() {
+        _instance = this
     }
 
     override fun attachBaseContextByDaemon(context: Context?) {

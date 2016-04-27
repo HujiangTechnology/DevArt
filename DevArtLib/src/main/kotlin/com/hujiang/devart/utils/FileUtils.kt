@@ -1,6 +1,7 @@
 package com.hujiang.devart.utils
 
 import android.content.Context
+import android.os.Build
 import android.os.Environment
 import android.os.Handler
 import android.os.StatFs
@@ -348,17 +349,61 @@ object FileUtils {
     fun getTotalDataSzie(): Long {
         val path = Environment.getDataDirectory()
         val stat = StatFs(path.path)
-        val blockSize = stat.blockSize
-        val blockCount = stat.blockCount
-        return Math.abs(blockSize * blockCount * 1L)
+        val blockSize: Long
+        val blockCount: Long
+        if (Build.VERSION.SDK_INT >= 21) {
+            blockSize = stat.blockSizeLong
+            blockCount = stat.blockCountLong
+        } else {
+            blockSize = stat.blockSize.toLong()
+            blockCount = stat.blockCount.toLong()
+        }
+        return Math.abs(blockSize * blockCount)
     }
 
     fun getAvailableDataSize(): Long {
         val path = Environment.getDataDirectory()
         val stat = StatFs(path.path)
-        val blockSize = stat.blockSize
-        val blocks = stat.availableBlocks
-        return Math.abs(blocks * blockSize * 1L)
+        val blockSize: Long
+        val blocks: Long
+        if (Build.VERSION.SDK_INT >= 21) {
+            blockSize = stat.blockSizeLong
+            blocks = stat.availableBlocksLong
+        } else {
+            blockSize = stat.blockSize.toLong()
+            blocks = stat.availableBlocks.toLong()
+        }
+        return Math.abs(blocks * blockSize)
+    }
+
+    fun getTotalSdcardSize(): Long {
+        val path = Environment.getExternalStorageDirectory()
+        val stat = StatFs(path.path)
+        val blockSize: Long
+        val totalBlocks: Long
+        if (Build.VERSION.SDK_INT >= 21) {
+            blockSize = stat.blockSizeLong
+            totalBlocks = stat.blockCountLong
+        } else {
+            blockSize = stat.blockSize.toLong()
+            totalBlocks = stat.blockCount.toLong()
+        }
+        return Math.abs(blockSize * totalBlocks)
+    }
+
+    fun getAvailableSdcardSize(): Long {
+        val path = Environment.getExternalStorageDirectory()
+        val stat = StatFs(path.path)
+        val blockSize: Long
+        val availableBlocks: Long
+        if (Build.VERSION.SDK_INT >= 21) {
+            blockSize = stat.blockSizeLong
+            availableBlocks = stat.availableBlocksLong
+        } else {
+            blockSize = stat.blockSize.toLong()
+            availableBlocks = stat.availableBlocks.toLong()
+        }
+        return Math.abs(blockSize * availableBlocks)
     }
 
     fun getPackageSize(context: Context): Long {
@@ -413,5 +458,7 @@ object FileUtils {
             Log.e("LOG", "setPermission => ${e.message}")
         }
     }
+
+
 
 }

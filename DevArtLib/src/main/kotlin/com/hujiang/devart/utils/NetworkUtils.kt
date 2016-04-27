@@ -8,6 +8,9 @@ import com.hujiang.devart.command.Command
 import java.io.BufferedReader
 import java.io.DataInputStream
 import java.io.InputStreamReader
+import java.net.Inet4Address
+import java.net.NetworkInterface
+import java.net.SocketException
 import java.text.DecimalFormat
 import java.util.*
 
@@ -138,6 +141,27 @@ object NetworkUtils {
         NetworkInfo.State.UNKNOWN -> context.getString(R.string.network_unknown)
         else -> context.getString(R.string.network_unknown)
     }
+
+    val ipAddressV4: String?
+        get() {
+            try {
+                val en = NetworkInterface.getNetworkInterfaces()
+                while (en.hasMoreElements()) {
+                    val intf = en.nextElement()
+                    val enumIpAddr = intf.inetAddresses
+                    while (enumIpAddr.hasMoreElements()) {
+                        val inetAddress = enumIpAddr.nextElement()
+                        if (!inetAddress.isLoopbackAddress && inetAddress is Inet4Address) {
+                            return inetAddress.getHostAddress().toString()
+                        }
+                    }
+                }
+            } catch (ex: SocketException) {
+
+            }
+
+            return null
+        }
 
     class PingInfo {
         var byteCount = 0

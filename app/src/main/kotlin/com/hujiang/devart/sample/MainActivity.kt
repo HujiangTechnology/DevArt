@@ -9,6 +9,7 @@ import android.widget.ShareActionProvider
 import com.hujiang.devart.base.BaseMainActivity
 import com.hujiang.devart.sample.fragment.IndexFragment
 import com.hujiang.devart.sample.fragment.IntroFragment
+import com.hujiang.devart.sample.server.DevServer
 import com.hujiang.devart.sample.service.DaemonService1
 import com.hujiang.devart.utils.NetworkUtils
 import com.hujiang.devart.utils.UIUtils
@@ -17,10 +18,19 @@ class MainActivity : BaseMainActivity() {
 
     private var _itemShare: MenuItem? = null
 
+    private var _server: DevServer? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         UIUtils.initDisplayMetrics(this, windowManager, false)
         super.onCreate(savedInstanceState)
         startService(Intent(this, DaemonService1::class.java))
+        _server = DevServer(8899)
+        _server?.start()
+    }
+
+    override fun onDestroy() {
+        _server?.stop()
+        super.onDestroy()
     }
 
     override fun initOnce() {
