@@ -117,6 +117,7 @@ class FlowTextView: RelativeLayout {
                 layoutParams = child.layoutParams as LayoutParams
                 val obstacle = Obstacle()
                 obstacle.topLeftx = child.left - layoutParams.leftMargin
+                @Suppress("UNUSED_VARIABLE")
                 val top = child.top
                 obstacle.topLefty = child.top
                 obstacle.bottomRightx = obstacle.topLeftx + layoutParams.leftMargin + child.width + layoutParams.rightMargin
@@ -158,11 +159,11 @@ class FlowTextView: RelativeLayout {
         var charOffsetStart = 0
         var charOffsetEnd = 0
         var lineIndex = 0
-        var xOffset = 0.0f
-        var maxWidth = 0.0f
+        var xOffset: Float
+        var maxWidth: Float
         var yOffset = 0.0f
         var thisLineStr: String
-        var chunkSize = 0
+        var chunkSize: Int
         var lineHeight = getLineHeight()
         // var paddingTop = paddingTop
         _lineObjects.clear()
@@ -179,7 +180,7 @@ class FlowTextView: RelativeLayout {
                     lineIndex++
                     yOffset = paddingTop + lineIndex * lineHeight - (getLineHeight() + _textPaint!!.fontMetrics.ascent)
                     val thisLine = CollisionHelper.calculateLineSpaceForGivenYOffset(yOffset, lineHeight, viewWidth, _obstacles)
-                    xOffset = thisLine.leftBound;
+                    xOffset = thisLine.leftBound
                     maxWidth = thisLine.rightBound - thisLine.leftBound
                     var actualWidth: Float
                     do {

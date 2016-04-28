@@ -133,6 +133,7 @@ abstract class PullToRefreshAdapterViewBase<T: AbsListView>: PullToRefreshBase<T
             when (getCurrentMode()) {
                 Mode.PULL_FROM_END -> _indicatorIvBottom?.pullToRefresh()
                 Mode.PULL_FROM_START -> _indicatorIvTop?.pullToRefresh()
+                else -> { }
             }
         }
     }
@@ -150,6 +151,7 @@ abstract class PullToRefreshAdapterViewBase<T: AbsListView>: PullToRefreshBase<T
             when (getCurrentMode()) {
                 Mode.PULL_FROM_END -> _indicatorIvBottom?.releaseToRefresh()
                 Mode.PULL_FROM_START -> _indicatorIvTop?.releaseToRefresh()
+                else -> { }
             }
         }
     }

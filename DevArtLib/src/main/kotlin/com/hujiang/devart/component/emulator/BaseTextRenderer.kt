@@ -87,6 +87,7 @@ abstract class BaseTextRenderer: TextRenderer {
     private var _lastCharWidth = 0.0f
     private var _lastCharHeight = 0.0f
 
+    @Suppress("DEPRECATION")
     constructor(scheme: ColorScheme?) {
         var nscheme = scheme
         if (nscheme == null) {
@@ -122,7 +123,7 @@ abstract class BaseTextRenderer: TextRenderer {
     }
 
     override fun setReverseVideo(reverseVideo: Boolean) {
-        _reverseVideo = reverseVideo;
+        _reverseVideo = reverseVideo
     }
 
     private fun setDefaultColors(forePaintColor: Int, backPaintColor: Int) {

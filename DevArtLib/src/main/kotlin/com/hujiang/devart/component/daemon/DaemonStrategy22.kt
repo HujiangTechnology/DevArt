@@ -3,7 +3,6 @@ package com.hujiang.devart.component.daemon
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
-import android.os.IBinder
 import android.os.Parcel
 import android.os.RemoteException
 import android.util.Log

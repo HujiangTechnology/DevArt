@@ -4,4 +4,11 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
+    <WebView
+            android:id="@+id/mdv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+    </WebView>
+
 </LinearLayout>

@@ -19,6 +19,7 @@ class ByteQueue {
         }
     }
 
+    @Suppress("PLATFORM_CLASS_MAPPED_TO_KOTLIN")
     fun read(buffer: ByteArray?, offset: Int, length: Int): Int {
         if (length + offset > buffer!!.size) {
             throw IllegalArgumentException("length + offset > buffer.length")
@@ -35,7 +36,7 @@ class ByteQueue {
             while (_storedBytes == 0) {
                 (this as Object).wait()
             }
-            var totalRead = 0;
+            var totalRead = 0
             var bufferLength = _buffer!!.size
             val wasFull = bufferLength == _storedBytes
             while (nlength > 0 && _storedBytes > 0) {
@@ -58,6 +59,7 @@ class ByteQueue {
         }
     }
 
+    @Suppress("PLATFORM_CLASS_MAPPED_TO_KOTLIN")
     fun write(buffer: ByteArray?, offset: Int, length: Int): Int {
         if (length + offset > buffer!!.size) {
             throw IllegalArgumentException("length + offset > buffer.length")

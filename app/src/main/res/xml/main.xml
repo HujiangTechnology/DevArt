@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <PreferenceCategory android:title="@string/fragment_intro">
+        <Preference
+                android:key="@string/id_item_0"
+                android:title="@string/item_0"/>
+    </PreferenceCategory>
+
     <PreferenceCategory android:title="@string/test_cat_1">
         <Preference
                 android:key="@string/id_item_1_1"

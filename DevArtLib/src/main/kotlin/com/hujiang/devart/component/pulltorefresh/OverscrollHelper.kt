@@ -18,9 +18,9 @@ object OverscrollHelper {
 
     fun overScrollBy(view: PullToRefreshBase<*>?, deltaX: Int, scrollX: Int, deltaY: Int, scrollY: Int, scrollRange: Int, fuzzyThreshold: Int, scaleFactor: Float, isTouchEvent: Boolean) {
 
-        var deltaValue = 0
-        var currentScrollValue = 0
-        var scrollValue = 0
+        var deltaValue: Int
+        var currentScrollValue: Int
+        var scrollValue: Int
         when (view!!.getPullToRefreshScrollDirection()) {
             PullToRefreshBase.Orientation.HORIZONTAL -> {
                 deltaValue = deltaX

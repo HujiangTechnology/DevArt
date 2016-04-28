@@ -18,35 +18,35 @@ interface IDaemonStrategy {
 
     object Fetcher {
 
-            private var _daemonStrategy: IDaemonStrategy? = null
+        private var _daemonStrategy: IDaemonStrategy? = null
 
-            fun fetchStrategy(): IDaemonStrategy? {
-                if (_daemonStrategy != null) {
-                    return _daemonStrategy
-                }
-                val sdk = Build.VERSION.SDK_INT
-                when (sdk) {
-                    23 -> _daemonStrategy = DaemonStrategy23()
-                    22 -> _daemonStrategy = DaemonStrategy22()
-                    21 -> {
-                        if(Build.MODEL.toLowerCase() == "mx4 pro"){
-                            _daemonStrategy = DaemonStrategyUnder21()
-                        }else{
-                            _daemonStrategy = DaemonStrategy21()
-                        }
-                    }
-                    else -> {
-                        if(Build.MODEL != null && Build.MODEL.toLowerCase().startsWith("mi")){
-                            _daemonStrategy = DaemonStrategyXiaomi()
-                        }else if(Build.MODEL != null && Build.MODEL.toLowerCase().startsWith("a31")){
-                            _daemonStrategy = DaemonStrategy21()
-                        }else{
-                            _daemonStrategy = DaemonStrategyUnder21()
-                        }
-                    }
-                }
+        fun fetchStrategy(): IDaemonStrategy? {
+            if (_daemonStrategy != null) {
                 return _daemonStrategy
             }
+            val sdk = Build.VERSION.SDK_INT
+            when (sdk) {
+                23 -> _daemonStrategy = DaemonStrategy23()
+                22 -> _daemonStrategy = DaemonStrategy22()
+                21 -> {
+                    if (Build.MODEL.toLowerCase() == "mx4 pro") {
+                        _daemonStrategy = DaemonStrategyUnder21()
+                    } else {
+                        _daemonStrategy = DaemonStrategy21()
+                    }
+                }
+                else -> {
+                    if (Build.MODEL != null && Build.MODEL.toLowerCase().startsWith("mi")) {
+                        _daemonStrategy = DaemonStrategyXiaomi()
+                    } else if (Build.MODEL != null && Build.MODEL.toLowerCase().startsWith("a31")) {
+                        _daemonStrategy = DaemonStrategy21()
+                    } else {
+                        _daemonStrategy = DaemonStrategyUnder21()
+                    }
+                }
+            }
+            return _daemonStrategy
+        }
     }
 
 }

@@ -6,14 +6,13 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
-import android.util.DisplayMetrics
 
 /**
  * Created by rarnu on 4/8/16.
  */
 object AutobootUtils {
 
-    fun getAutobootApps(context: Context, dm: DisplayMetrics?): MutableList<AutobootInfo?>? {
+    fun getAutobootApps(context: Context): MutableList<AutobootInfo?>? {
         var list = arrayListOf<AutobootInfo?>()
 
         val pm = context.packageManager
@@ -22,11 +21,10 @@ object AutobootUtils {
             apps = pm.getInstalledPackages(0)
         } catch (e: Exception) {
         }
-        var status = -1
         if (apps != null && apps.size != 0) {
             for (pi in apps) {
                 if (pm.checkPermission(Manifest.permission.RECEIVE_BOOT_COMPLETED, pi?.packageName) == PackageManager.PERMISSION_GRANTED) {
-                    status = isEnabled(context, pi)
+                    val status = isEnabled(context, pi)
                     if (status != -1) {
                         val info = AutobootInfo()
                         info.info = pi
@@ -41,7 +39,6 @@ object AutobootUtils {
 
     fun switchAutoboot(context: Context, info: AutobootInfo?, enabled: Boolean): Boolean {
         var ret = true
-        var operatingResult = true
         val /* PackageParser.Package */ pkg = ComponentUtils.parsePackageInfo(info?.info)
         val receivers = PackageParserUtils.packageReceivers(pkg)
         for (/* PackageParser.Activity */ riobj in receivers!!) {
@@ -52,6 +49,7 @@ object AutobootUtils {
                     if (aii.countActions() > 0) {
                         for (i in 0..aii.countActions() - 1) {
                             if (aii.getAction(i) == Intent.ACTION_BOOT_COMPLETED) {
+                                var operatingResult: Boolean
                                 if (enabled) {
                                     operatingResult = ComponentUtils.enabledComponent(context, ri.getComponentName())
                                 } else {

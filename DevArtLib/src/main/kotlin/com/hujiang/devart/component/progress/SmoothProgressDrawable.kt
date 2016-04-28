@@ -67,7 +67,7 @@ class SmoothProgressDrawable: Drawable, Animatable {
             _currentOffset += (OFFSET_PER_FRAME * _speed)
         }
         if (_currentOffset >= _maxOffset) {
-            _newTurn = true;
+            _newTurn = true
             _currentOffset -= _maxOffset
         }
         if (isRunning) {
@@ -232,11 +232,11 @@ class SmoothProgressDrawable: Drawable, Animatable {
         }
         if (nfirstX > 0) {
             if (_mirrorMode) {
-                canvas.save();
+                canvas.save()
                 canvas.translate(canvas.width * 1.0f / 2, 0.0f)
                 if (_reversed) {
                     drawBackground(canvas, 0.0f, nfirstX)
-                    canvas.scale(-1.0f, 1.0f);
+                    canvas.scale(-1.0f, 1.0f)
                     drawBackground(canvas, 0.0f, nfirstX)
                 } else {
                     drawBackground(canvas, canvas.width / 2 - nfirstX, (canvas.width / 2).toFloat())
@@ -292,7 +292,7 @@ class SmoothProgressDrawable: Drawable, Animatable {
         }
     }
 
-    private fun drawGradient(canvas: Canvas?) {
+    private fun drawGradient(@Suppress("UNUSED_PARAMETER") canvas: Canvas?) {
         val xSectionWidth = 1.0f / _sectionsCount
         var currentIndexColor = _colorsIndex
         _linearGradientPositions!![0] = 0.0f
@@ -378,7 +378,7 @@ class SmoothProgressDrawable: Drawable, Animatable {
 
     private fun checkColorIndex(index: Int) {
         if (index < 0 || index >= _colors!!.size) {
-            throw IllegalArgumentException("Index ${index} not valid")
+            throw IllegalArgumentException("Index $index not valid")
         }
     }
 

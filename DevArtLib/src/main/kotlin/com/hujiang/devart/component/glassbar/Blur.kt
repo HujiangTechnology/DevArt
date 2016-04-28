@@ -20,7 +20,7 @@ object Blur {
             val bitmap = sentBitmap?.copy(sentBitmap.config, true)
             val rs = RenderScript.create(context)
             val input = Allocation.createFromBitmap(rs, sentBitmap, Allocation.MipmapControl.MIPMAP_NONE, Allocation.USAGE_SCRIPT)
-            val output = Allocation.createTyped(rs, input.getType())
+            val output = Allocation.createTyped(rs, input.type)
             val script = ScriptIntrinsicBlur.create(rs, Element.U8_4(rs))
             script.setRadius(radius.toFloat())
             script.setInput(input)
@@ -58,22 +58,22 @@ object Blur {
         var yi = 0
         // int[][] stack = new int[div][3];
         val stack = Array(div) { IntArray(3) }
-        var stackpointer = 0
-        var stackstart = 0
+        var stackpointer: Int
+        var stackstart: Int
         var sir: IntArray
-        var rbs = 0
+        var rbs: Int
         var r1 = radius + 1
-        var routsum = 0
-        var goutsum = 0
-        var boutsum = 0
-        var rinsum = 0
-        var ginsum = 0
-        var binsum = 0
-        var rsum = 0
-        var gsum = 0
-        var bsum = 0
-        var yp = 0
-        var p = 0
+        var routsum: Int
+        var goutsum: Int
+        var boutsum: Int
+        var rinsum: Int
+        var ginsum: Int
+        var binsum: Int
+        var rsum: Int
+        var gsum: Int
+        var bsum: Int
+        var yp: Int
+        var p: Int
         for (y in 0..h - 1) {
             rinsum = 0
             ginsum = 0

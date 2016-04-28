@@ -16,5 +16,5 @@ class NameServer : DNSRR() {
 
     fun getNameServer(): String? = _nameServer
 
-    override fun toString(): String = getRRName() + "\tnameserver = ${_nameServer}"
+    override fun toString(): String = getRRName() + "\tnameserver = $_nameServer"
 }

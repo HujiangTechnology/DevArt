@@ -16,5 +16,5 @@ class MailForwarder : DNSRR() {
 
     fun getMailForwarder(): String? = _mailForwarder
 
-    override fun toString(): String = getRRName() + "\tmail forwarder = ${_mailForwarder}"
+    override fun toString(): String = getRRName() + "\tmail forwarder = $_mailForwarder"
 }

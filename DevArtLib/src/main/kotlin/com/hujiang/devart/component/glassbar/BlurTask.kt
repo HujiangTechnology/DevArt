@@ -51,6 +51,7 @@ class BlurTask {
         _task?.execute()
     }
 
+    @Suppress("UNUSED_VARIABLE")
     private fun blurSourceBitmap() {
         var section: Bitmap? = _source ?: return
         val start = System.nanoTime()

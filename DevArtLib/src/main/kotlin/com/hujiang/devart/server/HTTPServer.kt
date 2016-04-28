@@ -105,9 +105,10 @@ abstract class HTTPServer {
             return MIME_TYPES
         }
 
+        @Suppress("UNCHECKED_CAST")
         fun loadMimeTypes(result: MutableMap<String?, String?>?, resourceName: String?) {
             try {
-                val resources = HTTPServer.javaClass.classLoader.getResources(resourceName)
+                val resources = HTTPServer::class.java.classLoader.getResources(resourceName)
                 while (resources.hasMoreElements()) {
                     val url = resources.nextElement()
                     val properties = Properties()
@@ -116,14 +117,14 @@ abstract class HTTPServer {
                         stream = url.openStream()
                         properties.load(url.openStream())
                     } catch (e: IOException) {
-                        Log.e("LOG", "could not load mimetypes from ${url}, ${e.message}")
+                        Log.e("LOG", "could not load mimetypes from $url, ${e.message}")
                     } finally {
                         safeClose(stream)
                     }
                     result?.putAll(properties as Map<String?, String?>)
                 }
             } catch (e: IOException) {
-                Log.e("LOG", "no mime types available at ${resourceName}")
+                Log.e("LOG", "no mime types available at $resourceName")
             }
         }
 
@@ -151,8 +152,8 @@ abstract class HTTPServer {
 
         fun makeSSLSocketFactory(keyAndTrustStoreClasspathPath: String?, passphrase: CharArray?): SSLServerSocketFactory? {
             try {
-                val keystore = KeyStore.getInstance(KeyStore.getDefaultType());
-                val keystoreStream = HTTPServer.javaClass.getResourceAsStream(keyAndTrustStoreClasspathPath) ?: throw IOException("Unable to load keystore from classpath: ${keyAndTrustStoreClasspathPath}")
+                val keystore = KeyStore.getInstance(KeyStore.getDefaultType())
+                val keystoreStream = HTTPServer::class.java.getResourceAsStream(keyAndTrustStoreClasspathPath) ?: throw IOException("Unable to load keystore from classpath: $keyAndTrustStoreClasspathPath")
                 keystore.load(keystoreStream, passphrase)
                 val keyManagerFactory = KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm())
                 keyManagerFactory.init(keystore, passphrase)
@@ -226,7 +227,7 @@ abstract class HTTPServer {
     open fun serve(session: IHTTPSession?): Response? {
         val files = hashMapOf<String?, String?>()
         val method = session?.getMethod()
-        if (Method.PUT.equals(method) || Method.POST.equals(method)) {
+        if (Method.PUT == method || Method.POST == method) {
             try {
                 session?.parseBody(files)
             } catch (ioe: IOException) {
@@ -240,7 +241,7 @@ abstract class HTTPServer {
         return serve(session?.getUri(), method, session?.getHeaders(), parms, files)
     }
 
-    open fun serve(uri: String?, method: Method?, headers: MutableMap<String?, String?>?, parms: MutableMap<String?, String?>?, files: MutableMap<String?, String?>?): Response?  =newFixedLengthResponse(Response.Status.NOT_FOUND, MIME_PLAINTEXT, "Not Found")
+    open fun serve(uri: String?, method: Method?, headers: MutableMap<String?, String?>?, parms: MutableMap<String?, String?>?, files: MutableMap<String?, String?>?): Response?  = newFixedLengthResponse(Response.Status.NOT_FOUND, MIME_PLAINTEXT, "Not Found")
 
     fun closeAllConnections() = stop()
 

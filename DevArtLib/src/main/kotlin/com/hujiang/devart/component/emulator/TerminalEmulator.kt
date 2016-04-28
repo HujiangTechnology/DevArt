@@ -318,7 +318,7 @@ class TerminalEmulator {
             continueSequence()
         } else if (b == ';'.toByte()) {
             if (_argIndex < _args.size) {
-                _argIndex++;
+                _argIndex++
             }
             continueSequence()
         } else {
@@ -367,7 +367,7 @@ class TerminalEmulator {
             'J'.toByte() -> {
                 when (getArg0(0)) {
                     0 -> {
-                        blockClear(_cursorCol, _cursorRow, _columns - _cursorCol);
+                        blockClear(_cursorCol, _cursorRow, _columns - _cursorCol)
                         blockClear(0, _cursorRow + 1, _columns, _rows - (_cursorRow + 1))
                     }
                     1 -> {
@@ -428,7 +428,7 @@ class TerminalEmulator {
             'l'.toByte() -> doSetMode(false)
             'm'.toByte() -> selectGraphicRendition()
             'r'.toByte() -> {
-                val top = Math.max(0, Math.min(getArg0(1) - 1, _rows - 2));
+                val top = Math.max(0, Math.min(getArg0(1) - 1, _rows - 2))
                 val bottom = Math.max(top + 2, Math.min(getArg1(_rows), _rows))
                 _topMargin = top
                 _bottomMargin = bottom
@@ -445,6 +445,7 @@ class TerminalEmulator {
             var code = _args[i]
             if (code < 0) {
                 if (_argIndex > 0) {
+                    i++
                     continue
                 } else {
                     code = 0
@@ -491,7 +492,7 @@ class TerminalEmulator {
                 }
                 i += 2
             } else if (code == 39) {
-                _foreColor = _defaultForeColor;
+                _foreColor = _defaultForeColor
             } else if (code >= 40 && code <= 47) {
                 _backColor = code - 40
             } else if (code == 48 && i + 2 <= _argIndex && _args[i + 1] == 5) {
@@ -524,7 +525,7 @@ class TerminalEmulator {
         }
     }
 
-    private fun unknownParameter(parameter: Int) {
+    private fun unknownParameter(@Suppress("UNUSED_PARAMETER") parameter: Int) {
         logError()
     }
 
@@ -542,7 +543,7 @@ class TerminalEmulator {
         return 0
     }
 
-    private fun unimplementedSequence(b: Byte) {
+    private fun unimplementedSequence(@Suppress("UNUSED_PARAMETER") b: Byte) {
         logError()
         finishSequence()
     }
@@ -580,7 +581,7 @@ class TerminalEmulator {
         computeEffectiveCharSet()
     }
 
-    private fun unknownSequence(b: Byte) {
+    private fun unknownSequence(@Suppress("UNUSED_PARAMETER") b: Byte) {
         logError()
         finishSequence()
     }
@@ -838,7 +839,7 @@ class TerminalEmulator {
         }
     }
 
-    fun setColorScheme(scheme: ColorScheme?) {
+    fun setColorScheme(@Suppress("UNUSED_PARAMETER") scheme: ColorScheme?) {
         _defaultForeColor = TextStyle.ciForeground
         _defaultBackColor = TextStyle.ciBackground
     }
@@ -848,10 +849,10 @@ class TerminalEmulator {
             return
         }
         if (columns <= 0) {
-            throw IllegalArgumentException("rows:${columns}")
+            throw IllegalArgumentException("rows:$columns")
         }
         if (rows <= 0) {
-            throw IllegalArgumentException("rows:${rows}")
+            throw IllegalArgumentException("rows:$rows")
         }
         val cursor = intArrayOf(_cursorCol, _cursorRow)
         val fastResize = _screen!!.fastResize(columns, rows, cursor)

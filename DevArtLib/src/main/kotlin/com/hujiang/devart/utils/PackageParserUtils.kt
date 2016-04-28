@@ -9,6 +9,7 @@ import android.util.DisplayMetrics
 import android.util.Log
 import java.io.File
 
+@Suppress("UNCHECKED_CAST")
 /**
  * Created by rarnu on 4/8/16.
  */
@@ -363,7 +364,7 @@ class PackageParserUtils {
                     val fLabelRes = component.javaClass.getDeclaredField("labelRes")
                     fLabelRes.isAccessible = true
                     ret.labelRes = fLabelRes.getInt(component)
-                    val fNonLocalizedLabel = component!!.javaClass.getDeclaredField("nonLocalizedLabel")
+                    val fNonLocalizedLabel = component.javaClass.getDeclaredField("nonLocalizedLabel")
                     fNonLocalizedLabel.isAccessible = true
                     ret.nonLocalizedLabel = fNonLocalizedLabel.get(component) as CharSequence?
                     val fIcon = component.javaClass.getDeclaredField("icon")

@@ -107,6 +107,7 @@ class DNSQuery {
         }
     }
 
+    @Suppress("UNUSED_VARIABLE")
     protected fun decodeFlags(flags: Int) {
         val isResponse = ((flags shr DNS.SHIFT_QUERY) and 1) != 0
         if (!isResponse) {
@@ -119,7 +120,7 @@ class DNSQuery {
         _recursive = ((flags shr DNS.SHIFT_RECURSE_AVAILABLE) and 1) != 0
         val code = (flags shr DNS.SHIFT_RESPONSE_CODE) and 15
         if (code != 0) {
-            throw IOException(DNS.codeName(code) + " (${code})")
+            throw IOException(DNS.codeName(code) + " ($code)")
         }
     }
 

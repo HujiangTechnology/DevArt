@@ -19,7 +19,7 @@ object PaintUtil {
 
     fun newGuidelinePaint(resources: Resources): Paint {
         val paint = Paint()
-        paint.style = Paint.Style.STROKE;
+        paint.style = Paint.Style.STROKE
         paint.strokeWidth = resources.getDimension(R.dimen.guideline_thickness)
         paint.color = resources.getColor(R.color.white_translucent)
         return paint

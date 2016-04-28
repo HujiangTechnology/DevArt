@@ -8,6 +8,7 @@ import android.os.IBinder
 import android.os.Message
 import com.hujiang.devart.base.common.Actions
 import com.hujiang.devart.utils.NotificationUtils
+import kotlin.concurrent.thread
 
 /**
  * Created by rarnu on 3/23/16.
@@ -33,7 +34,7 @@ abstract class BaseService: Service() {
     override fun onBind(intent: Intent?): IBinder? = null
 
     private fun doSendMessage() {
-        Thread({
+        thread() {
             while (true) {
                 if (!operating) {
                     break
@@ -41,7 +42,7 @@ abstract class BaseService: Service() {
                 sendBroadcast(getSendIntent())
                 Thread.sleep(500)
             }
-        }).start()
+        }
     }
 
     private fun operation(command: String, id: Int, title: Int, desc: Int, procId: Int, procTitle: Int, procDesc: Int) {
@@ -63,10 +64,10 @@ abstract class BaseService: Service() {
                 super.handleMessage(msg)
             }
         }
-        Thread({
+        thread {
             doOperation(command, n)
             h.sendEmptyMessage(1)
-        }).start()
+        }
     }
 
     private fun doNotification(id: Int, title: Int, desc: Int, canClose: Boolean, action: String) =

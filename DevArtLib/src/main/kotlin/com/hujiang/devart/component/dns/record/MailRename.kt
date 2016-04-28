@@ -16,5 +16,5 @@ class MailRename : DNSRR() {
 
     fun getMailRename(): String? = _mailRename
 
-    override fun toString(): String = getRRName() + "\tmail rename = ${_mailRename}"
+    override fun toString(): String = getRRName() + "\tmail rename = $_mailRename"
 }

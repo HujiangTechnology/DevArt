@@ -3,7 +3,6 @@ package com.hujiang.devart.utils.http
 import org.apache.http.util.EncodingUtils
 import java.io.File
 import java.io.OutputStream
-import java.nio.charset.Charset
 
 /**
  * Created by rarnu on 3/25/16.

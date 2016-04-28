@@ -40,7 +40,7 @@ class CropImageView: ImageView {
         init(context, null)
     }
     constructor(context: Context, attrs: AttributeSet?): super(context, attrs) {
-        init(context, attrs);
+        init(context, attrs)
     }
     constructor(context: Context, attrs: AttributeSet?, defStyle: Int): super(context, attrs, defStyle) {
         init(context, attrs)
@@ -217,7 +217,7 @@ class CropImageView: ImageView {
         _pressedHandle = HandleUtil.getPressedHandle(x, y, left, top, right, bottom, _handleRadius)
         if (_pressedHandle != null) {
             HandleUtil.getOffset(_pressedHandle, x, y, left, top, right, bottom, _touchOffset)
-            invalidate();
+            invalidate()
         }
     }
 

@@ -29,7 +29,7 @@ class PointBar: RelativeLayout {
         addView(_layBase)
         _iPoint = arrayOfNulls<ImageView>(10)
         for (i in 0..9) {
-            _iPoint!![i] = findViewById(resources.getIdentifier("imgP${i}", "id", context.packageName)) as ImageView?
+            _iPoint!![i] = findViewById(resources.getIdentifier("imgP$i", "id", context.packageName)) as ImageView?
         }
     }
 

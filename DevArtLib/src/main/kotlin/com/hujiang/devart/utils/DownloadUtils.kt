@@ -31,7 +31,7 @@ object  DownloadUtils {
         }
     }
 
-    fun downloadFileT(context: Context, iv: ImageView?, url: String, localDir: String, localFile: String, hProgress: Handler?, bop: BitmapFactory.Options?, isRound: Boolean, radis: Int) {
+    fun downloadFileT(@Suppress("UNUSED_PARAMETER") context: Context, iv: ImageView?, url: String, localDir: String, localFile: String, hProgress: Handler?, bop: BitmapFactory.Options?, isRound: Boolean, radis: Int) {
         var nlocalDir = localDir
         if (!nlocalDir.endsWith("/")) {
             nlocalDir += "/"
@@ -155,7 +155,7 @@ object  DownloadUtils {
                     position += count
                     MessageUtils.sendMessage(h, Actions.WHAT_DOWNLOAD_PROGRESS, position, filesize)
                     if (callback != null) {
-                        if (!callback!!.getRunningState()) {
+                        if (!callback.getRunningState()) {
                             isDownloadNormal = false
                             break
                         }

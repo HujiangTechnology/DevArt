@@ -47,7 +47,7 @@ object MiscUtils {
 
 
     fun isEmulator(context: Context): Boolean = try {
-        var ret = false
+        var ret: Boolean
         val tm = context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
         val imei = tm.deviceId
         if (imei != null && imei == "000000000000000") {

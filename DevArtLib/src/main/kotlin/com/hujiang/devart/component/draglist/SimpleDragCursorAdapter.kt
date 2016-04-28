@@ -99,9 +99,10 @@ class SimpleDragCursorAdapter: ResourceDragCursorAdapter {
         return super.convertToString(cursor)
     }
 
-    override fun swapCursor(c: Cursor?): Cursor? {
-        findColumns(c, _originalFrom)
-        return super.swapCursor(c)
+
+    override fun swapCursor(newCursor: Cursor?): Cursor? {
+        findColumns(newCursor, _originalFrom)
+        return super.swapCursor(newCursor)
     }
 
     fun getStringConversionColumn(): Int = _stringConversionColumn

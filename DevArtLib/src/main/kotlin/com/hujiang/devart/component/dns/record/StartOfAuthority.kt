@@ -40,5 +40,5 @@ class StartOfAuthority : DNSRR() {
 
     fun getTTL(): Long = _ttl
 
-    override fun toString(): String = getRRName() + "\tstart of authority\n\torigin = ${_origin}\n\tmail address = ${_mailAddress}\n\tserial = ${_serial}\n\trefresh = ${_refresh}\n\tretry = ${_retry}\n\texpire = ${_expire}\n\tminimum TTL = ${_ttl}"
+    override fun toString(): String = getRRName() + "\tstart of authority\n\torigin = $_origin\n\tmail address = $_mailAddress\n\tserial = $_serial\n\trefresh = $_refresh\n\tretry = $_retry\n\texpire = $_expire\n\tminimum TTL = $_ttl"
 }

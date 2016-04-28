@@ -202,7 +202,7 @@ object FileUtils {
     fun fileList2string(list: MutableList<String>?): String? {
         var ret = ""
         for (s in list!!) {
-            ret += "${s}\n"
+            ret += "$s\n"
         }
         return ret
     }
@@ -346,6 +346,7 @@ object FileUtils {
         return "${df.format(nSize)} ${units[i]}"
     }
 
+    @Suppress("DEPRECATION")
     fun getTotalDataSzie(): Long {
         val path = Environment.getDataDirectory()
         val stat = StatFs(path.path)
@@ -361,6 +362,7 @@ object FileUtils {
         return Math.abs(blockSize * blockCount)
     }
 
+    @Suppress("DEPRECATION")
     fun getAvailableDataSize(): Long {
         val path = Environment.getDataDirectory()
         val stat = StatFs(path.path)
@@ -376,6 +378,7 @@ object FileUtils {
         return Math.abs(blocks * blockSize)
     }
 
+    @Suppress("DEPRECATION")
     fun getTotalSdcardSize(): Long {
         val path = Environment.getExternalStorageDirectory()
         val stat = StatFs(path.path)
@@ -391,6 +394,7 @@ object FileUtils {
         return Math.abs(blockSize * totalBlocks)
     }
 
+    @Suppress("DEPRECATION")
     fun getAvailableSdcardSize(): Long {
         val path = Environment.getExternalStorageDirectory()
         val stat = StatFs(path.path)
@@ -453,7 +457,7 @@ object FileUtils {
             var cls = Class.forName("android.os.FileUtils")
             var method = cls.getDeclaredMethod("setPermissions", String::class.java, Integer.TYPE, Integer.TYPE, Integer.TYPE)
             var ret = method.invoke(null, filePath, permission, -1, -1)
-            Log.e("LOG", "setPermission => ${ret}")
+            Log.e("LOG", "setPermission => $ret")
         } catch(e: Exception) {
             Log.e("LOG", "setPermission => ${e.message}")
         }

@@ -119,7 +119,7 @@ class ShellTermSession: TermSession {
             } else if (state == INQUOTE) {
                 if (c == '\\') {
                     if (i + 1 < cmdLen) {
-                        i += 1;
+                        i += 1
                         builder.append(cmd[i])
                     }
                 } else if (c == '"') {
@@ -156,7 +156,7 @@ class ShellTermSession: TermSession {
         }
     }
 
-    private fun onProcessExit(result: Int) {
+    private fun onProcessExit(@Suppress("UNUSED_PARAMETER") result: Int) {
         if (_processExitMessage != null) {
             try {
                 val msg = ("\r\n[$_processExitMessage]").toByteArray(Charset.forName("UTF-8"))

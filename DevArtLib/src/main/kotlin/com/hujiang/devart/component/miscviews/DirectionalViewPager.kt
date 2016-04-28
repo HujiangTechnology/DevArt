@@ -773,7 +773,7 @@ class DirectionalViewPager: ViewPager {
             dest?.writeParcelable(_adapterState, flags)
         }
 
-        override fun toString(): String = "FragmentPager.SavedState{${Integer.toHexString(System.identityHashCode(this))} position=${_position}}"
+        override fun toString(): String = "FragmentPager.SavedState{${Integer.toHexString(System.identityHashCode(this))} position=$_position}"
 
         constructor(superState: Parcelable?): super(superState)
 

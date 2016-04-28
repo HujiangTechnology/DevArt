@@ -56,7 +56,7 @@ object DatetimeUtils {
         cNow.set(Calendar.MONTH, currentMonth - 1)
         cNow.set(Calendar.DAY_OF_MONTH, 1)
         val listNow = arrayListOf<Int>()
-        var weekNow = -1
+        var weekNow: Int
         for (i in 0..7 - 1) {
             weekNow = cNow.get(Calendar.DAY_OF_WEEK)
             if (weekNow == weekThen) {
@@ -94,7 +94,7 @@ object DatetimeUtils {
         val weekThen = cThen.get(Calendar.DAY_OF_WEEK)
         val cNow = Calendar.getInstance()
         cNow.add(Calendar.DAY_OF_MONTH, 1)
-        var weekNow = -1
+        var weekNow: Int
         for (i in 0..7-1) {
             weekNow = cNow.get(Calendar.DAY_OF_WEEK)
             if (weekNow == weekThen) {

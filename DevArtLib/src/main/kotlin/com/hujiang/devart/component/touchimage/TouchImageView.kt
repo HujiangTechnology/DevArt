@@ -299,6 +299,7 @@ class TouchImageView : ImageView {
         return true
     }
 
+    @Suppress("UNUSED_PARAMETER")
     private fun changeSize(x: Float, y: Float) =
             if (_isBig) {
                 val subX = (_widthScreen - _touchImgWidth * _defaultScale) / 2

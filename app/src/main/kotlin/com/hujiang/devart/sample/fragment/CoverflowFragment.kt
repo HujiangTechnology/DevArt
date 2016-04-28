@@ -25,6 +25,7 @@ class CoverflowFragment: BaseFragment(), View.OnClickListener, CoverFlowView.Cov
 
     override fun getCustomTitle(): String? = null
 
+    @Suppress("UNCHECKED_CAST")
     override fun initComponents() {
         _coverFlowView = innerView?.findViewById(R.id.coverflow) as CoverFlowView<ImageCoverFlowAdapter>
         _adapter = ImageCoverFlowAdapter(activity)

@@ -111,7 +111,7 @@ class CircularProgressDrawable: Drawable, Animatable {
 
     fun progressiveStart() = progressiveStart(0)
 
-    fun progressiveStart(index: Int) {
+    fun progressiveStart(@Suppress("UNUSED_PARAMETER") index: Int) {
         start()
     }
 

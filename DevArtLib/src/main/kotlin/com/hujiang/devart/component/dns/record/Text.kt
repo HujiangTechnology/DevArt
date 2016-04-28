@@ -33,6 +33,6 @@ class Text : DNSRR() {
             }
             result.append(_texts.elementAt(i))
         }
-        return getRRName() + "\ttext = ${result}"
+        return getRRName() + "\ttext = $result"
     }
 }

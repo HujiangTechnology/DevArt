@@ -92,7 +92,7 @@ class GifDecoder : Thread {
     fun setCacheImage(context: Context, cache: Boolean) = try {
         _cacheImage = cache
         if (_cacheImage) {
-            var f = true
+            var f: Boolean
             if (Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED) {
                 _imagePath = Environment.getExternalStorageDirectory().path + File.separator + "gifView_tmp_dir" + File.separator + getDir()
                 f = !createDir(_imagePath)
@@ -128,13 +128,14 @@ class GifDecoder : Thread {
         false
     }
 
-    private fun delDir(folderPath: String?, dirDel: Boolean) = try {
-        delAllFile(folderPath)
-        if (dirDel) {
-            File(folderPath).delete()
-        } else {
+    private fun delDir(folderPath: String?, dirDel: Boolean) {
+        try {
+            delAllFile(folderPath)
+            if (dirDel) {
+                File(folderPath).delete()
+            }
+        } catch (e: Exception) {
         }
-    } catch (e: Exception) {
     }
 
     private fun delAllFile(path: String?): Boolean {
@@ -161,8 +162,8 @@ class GifDecoder : Thread {
         return bea
     }
 
-    private fun saveImage(image: Bitmap?, name: String?) = try {
-        val fos = FileOutputStream("${_imagePath}/${getDir()}.png")
+    private fun saveImage(image: Bitmap?, @Suppress("UNUSED_PARAMETER") name: String?) = try {
+        val fos = FileOutputStream("$_imagePath/${getDir()}.png")
         image?.compress(Bitmap.CompressFormat.PNG, 100, fos)
     } catch (e: Exception) {
 
@@ -379,7 +380,7 @@ class GifDecoder : Thread {
         if (_gifFrame == null) {
             if (_cacheImage) {
                 val name = getDir()
-                _gifFrame = GifFrame("${_imagePath}/${name}.png", _delay)
+                _gifFrame = GifFrame("$_imagePath/$name.png", _delay)
                 saveImage(_image, name)
             } else {
                 _gifFrame = GifFrame(_image, _delay)
@@ -392,7 +393,7 @@ class GifDecoder : Thread {
             }
             if (_cacheImage) {
                 val name = getDir()
-                f?.nextFrame = GifFrame("${_imagePath}/${name}.png", _delay)
+                f?.nextFrame = GifFrame("$_imagePath/$name.png", _delay)
                 saveImage(_image, name)
             } else {
                 f?.nextFrame = GifFrame(_image, _delay)
@@ -528,8 +529,8 @@ class GifDecoder : Thread {
             _pixels!![pi++] = _pixelStack!![top]
             i++
         }
-        for (i in pi..npix - 1) {
-            _pixels!![i] = 0
+        for (ii in pi..npix - 1) {
+            _pixels!![ii] = 0
         }
     }
 
@@ -643,25 +644,26 @@ class GifDecoder : Thread {
         return null
     }
 
-    fun next(): GifFrame? =
-            if (_isShow == false) {
-                _isShow = true
-                _gifFrame
-            } else {
-                if (_currentFrame == null) {
-                    null
-                }
-                if (_status == STATUS_PARSING) {
-                    if (_currentFrame?.nextFrame != null)
-                        _currentFrame = _currentFrame?.nextFrame
-                } else {
-                    _currentFrame = _currentFrame?.nextFrame
-                    if (_currentFrame == null) {
-                        _currentFrame = _gifFrame
-                    }
-                }
-                _currentFrame
+    fun next(): GifFrame? {
+        if (_isShow == false) {
+            _isShow = true
+            return _gifFrame
+        } else {
+            if (_currentFrame == null) {
+                return null
             }
+            if (_status == STATUS_PARSING) {
+                if (_currentFrame?.nextFrame != null)
+                    _currentFrame = _currentFrame?.nextFrame
+            } else {
+                _currentFrame = _currentFrame?.nextFrame
+                if (_currentFrame == null) {
+                    _currentFrame = _gifFrame
+                }
+            }
+            return _currentFrame
+        }
+    }
 
     fun reset() {
         _currentFrame = _gifFrame
@@ -694,8 +696,8 @@ class GifDecoder : Thread {
         var fg = _gifFrame
         if (_cacheImage == false) {
             while (fg != null) {
-                if (fg.image != null && !fg!!.image!!.isRecycled) {
-                    fg?.image?.recycle()
+                if (fg.image != null && !fg.image!!.isRecycled) {
+                    fg.image?.recycle()
                 }
                 fg.image = null
                 _gifFrame = _gifFrame?.nextFrame

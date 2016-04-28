@@ -13,6 +13,7 @@ import com.hujiang.devart.sample.MainActivity
 import com.hujiang.devart.sample.R
 import com.hujiang.devart.utils.ZipUtils
 import java.io.File
+import kotlin.concurrent.thread
 
 /**
  * Created by rarnu on 4/2/16.
@@ -71,26 +72,25 @@ class ZipFragment: BaseFragment(), View.OnClickListener {
     }
 
     private fun threadZip() {
-        Thread({
+        thread {
             val dest = "/sdcard/test.zip"
             val dir = File("/sdcard/test/")
             if (!dir.exists() || !dir.isDirectory) {
                 hZip.sendEmptyMessage(2)
-                return@Thread
+                return@thread
             }
             val count = ZipUtils.compress(dest, dir.absolutePath)
             Log.e("LOG", "ZipFragment => Zipped ${count} files")
             hZip.sendEmptyMessage(0)
-
-        }).start()
+        }
     }
 
     private fun threadUnzip() {
-        Thread({
+        thread {
             var src = File("/sdcard/test.zip")
             if (!src.exists()) {
                 hZip.sendEmptyMessage(2)
-                return@Thread
+                return@thread
             }
             val dest = File("/sdcard/unzip/")
             if (!dest.exists()) {
@@ -99,6 +99,6 @@ class ZipFragment: BaseFragment(), View.OnClickListener {
             val count = ZipUtils.uncompress(src.absolutePath, dest.absolutePath)
             Log.e("LOG", "ZipFragment => Unzipped ${count} files")
             hZip.sendEmptyMessage(1)
-        }).start()
+        }
     }
 }

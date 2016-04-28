@@ -13,7 +13,7 @@ class TranscriptScreen: Screen {
     private var _screenRows = 0
     private var _data: UnicodeTranscript? = null
 
-    constructor(columns: Int, totalRows: Int, screenRows: Int, scheme: ColorScheme?) {
+    constructor(columns: Int, totalRows: Int, screenRows: Int, @Suppress("UNUSED_PARAMETER") scheme: ColorScheme?) {
         init(columns, totalRows, screenRows, TextStyle.kNormalTextStyle)
     }
 
@@ -25,7 +25,7 @@ class TranscriptScreen: Screen {
         _data?.blockSet(0, 0, _columns, _screenRows, ' '.toInt(), style)
     }
 
-    fun setColorScheme(scheme: ColorScheme?) {
+    fun setColorScheme(@Suppress("UNUSED_PARAMETER") scheme: ColorScheme?) {
         _data?.setDefaultStyle(TextStyle.kNormalTextStyle)
     }
 
@@ -163,11 +163,11 @@ class TranscriptScreen: Screen {
         val builder = StringBuilder()
         var data = _data
         val columns = _columns
-        var line: CharArray? = null
+        var line: CharArray?
         var rowColorBuffer: StyleRow? = null
         var nselY1 = selY1
         if (nselY1 < -data!!.getActiveTranscriptRows()) {
-            nselY1 = -data!!.getActiveTranscriptRows()
+            nselY1 = -data.getActiveTranscriptRows()
         }
         var nselY2 = selY2
         if (nselY2 >= _screenRows) {
@@ -217,7 +217,7 @@ class TranscriptScreen: Screen {
                 ++i
             }
             if (data.getLineWrap(row) && lastPrintingChar > -1 && x2 == columns) {
-                lastPrintingChar = i - 1;
+                lastPrintingChar = i - 1
             }
             builder.append(line, 0, lastPrintingChar + 1)
             if (colors != null) {

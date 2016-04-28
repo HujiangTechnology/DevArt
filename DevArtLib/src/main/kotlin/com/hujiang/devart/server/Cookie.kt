@@ -35,6 +35,6 @@ class Cookie {
         _v = value
         _e = expires
     }
-    fun getHTTPHeader(): String? = "${_n}=${_v}; expires=${_e}"
+    fun getHTTPHeader(): String? = "$_n=$_v; expires=$_e"
 
 }

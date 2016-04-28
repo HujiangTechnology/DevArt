@@ -33,25 +33,25 @@ object ProgressBarUtils {
 
     fun checkAngle(angle: Int) {
         if (angle < 0 || angle > 360) {
-            throw IllegalArgumentException("Illegal angle ${angle}: must be >=0 and <= 360")
+            throw IllegalArgumentException("Illegal angle $angle: must be >=0 and <= 360")
         }
     }
 
     fun checkPositiveOrZero(number: Float, name: String?) {
         if (number < 0) {
-            throw IllegalArgumentException("${name} ${number} must be positive")
+            throw IllegalArgumentException("$name $number must be positive")
         }
     }
 
     fun checkPositive(number: Int, name: String?){
         if(number <= 0) {
-            throw IllegalArgumentException("${name} must not be null")
+            throw IllegalArgumentException("$name must not be null")
         }
     }
 
     fun checkNotNull(o: Any?, name: String?) {
         if (o == null) {
-            throw IllegalArgumentException("${name} must be not null")
+            throw IllegalArgumentException("$name must be not null")
         }
     }
 

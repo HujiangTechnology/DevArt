@@ -333,7 +333,7 @@ class DragListView: ListView {
                 return lp.height
             }
         }
-        var childHeight = child.getHeight()
+        var childHeight = child.height
         if (childHeight == 0 || invalidChildHeight) {
             measureItem(child)
             childHeight = child.measuredHeight
@@ -575,7 +575,7 @@ class DragListView: ListView {
     private fun adjustScroll(movePos: Int, moveItem: View?, oldFirstExpPos: Int, oldSecondExpPos: Int): Int {
         var adjust = 0
         val childHeight = getChildHeight(movePos)
-        var moveHeightBefore = moveItem!!.getHeight()
+        var moveHeightBefore = moveItem!!.height
         var moveHeightAfter = calcItemHeight(movePos, childHeight)
         var moveBlankBefore = moveHeightBefore
         var moveBlankAfter = moveHeightAfter

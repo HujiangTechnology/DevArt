@@ -99,7 +99,7 @@ open class TermSession {
                     return
                 }
                 try {
-                    writeQueue?.read(buffer, 0, bytesToWrite)
+                    writeQueue.read(buffer, 0, bytesToWrite)
                     termOut?.write(buffer, 0, bytesToWrite)
                     termOut?.flush()
                 } catch (e: Exception) {
@@ -137,11 +137,13 @@ open class TermSession {
     }
 
     fun write(data: ByteArray?, offset: Int, count: Int) {
+        var noffset = offset
+        var ncount = count
         try {
-            while (count > 0) {
-                val written = _writeQueue!!.write(data, offset, count)
-                //                offset += written
-                //                count -= written
+            while (ncount > 0) {
+                val written = _writeQueue!!.write(data, noffset, ncount)
+                noffset += written
+                ncount -= written
                 notifyNewOutput()
             }
         } catch (e: InterruptedException) {

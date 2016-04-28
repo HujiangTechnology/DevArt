@@ -29,6 +29,8 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".IntroActtivity" android:label="@string/fragment_intro"
+                  android:configChanges="orientation"/>
         <activity android:name=".SlideActivity" android:label="@string/slidemenu_name"
                   android:configChanges="orientation"/>
         <activity android:name=".TabActivity" android:label="@string/tab_name" android:configChanges="orientation"/>

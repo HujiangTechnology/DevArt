@@ -82,7 +82,7 @@ class WheelProgressBar: View {
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-        var size = 0
+        var size: Int
         val width = measuredWidth
         val height = measuredHeight
         val widthWithoutPadding = width - paddingLeft - paddingRight

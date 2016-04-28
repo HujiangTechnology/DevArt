@@ -69,7 +69,7 @@ class ContentLoadingSmoothProgressBar : SmoothProgressBar {
         removeCallbacks(_delayedHide)
         if (!_postedShow) {
             postDelayed(_delayedShow, MIN_DELAY.toLong())
-            _postedShow = true;
+            _postedShow = true
         }
     }
 

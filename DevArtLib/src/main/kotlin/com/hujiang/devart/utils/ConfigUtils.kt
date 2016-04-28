@@ -121,11 +121,11 @@ object ConfigUtils {
                 "int" -> try { setIntConfig(context, keyStr, f.getInt(obj)) } catch (e: Exception) { }
                 "double" -> try { setFloatConfig(context, keyStr, f.getFloat(obj)) } catch (e: Exception) { }
                 "boolean" -> try { setBooleanConfig(context, keyStr, f.getBoolean(obj)) } catch (e: Exception) { }
-                "float" -> try { setFloatConfig(context, keyStr, f.getDouble(obj) as Float) } catch (e: Exception) { }
+                "float" -> try { setFloatConfig(context, keyStr, f.getDouble(obj).toFloat()) } catch (e: Exception) { }
                 "long" -> try { setLongConfig(context, keyStr, f.getLong(obj)) } catch (e: Exception) { }
                 "byte" -> try { setIntConfig(context, keyStr, f.getByte(obj).toInt()) } catch (e: Exception) { }
                 "short" -> try { setIntConfig(context, keyStr, f.getShort(obj).toInt()) } catch (e: Exception) { }
-                "char" -> try { setStringConfig(context, keyStr, f.getChar(obj) as String) } catch (e: Exception) { }
+                "char" -> try { setStringConfig(context, keyStr, f.getChar(obj).toString()) } catch (e: Exception) { }
                 else -> { }
             }
         }

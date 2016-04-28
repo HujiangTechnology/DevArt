@@ -33,8 +33,9 @@ class RayLayout: ViewGroup {
             return (normalizedDelay * totalDelay).toLong()
         }
 
-        private fun getTransformedIndex(expanded: Boolean, count: Int, index: Int): Int = count - 1 - index
+        private fun getTransformedIndex(@Suppress("UNUSED_PARAMETER") expanded: Boolean, count: Int, index: Int): Int = count - 1 - index
 
+        @Suppress("UNUSED_PARAMETER")
         private fun createExpandAnimation(fromXDelta: Float, toXDelta: Float, fromYDelta: Float, toYDelta: Float, startOffset: Long, duration: Long, interpolator: Interpolator?): Animation? {
             val animation = RotateAndTranslateAnimation(0.0f, toXDelta, 0.0f, toYDelta, 0.0f, 720.0f)
             animation.startOffset = startOffset
@@ -44,6 +45,7 @@ class RayLayout: ViewGroup {
             return animation
         }
 
+        @Suppress("UNUSED_PARAMETER")
         private fun createShrinkAnimation(fromXDelta: Float, toXDelta: Float, fromYDelta: Float, toYDelta: Float, startOffset: Long, duration: Long, interpolator: Interpolator?): Animation? {
             val animationSet = AnimationSet(false)
             animationSet.fillAfter = true

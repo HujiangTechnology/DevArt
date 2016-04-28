@@ -1,6 +1,7 @@
 package com.hujiang.devart.utils.socket
 
 import java.net.ServerSocket
+import kotlin.concurrent.thread
 
 /**
  * Created by rarnu on 3/29/16.
@@ -20,18 +21,18 @@ class MessageSocketServer {
         _port = port
     }
 
-    fun startListen() = Thread({
+    fun startListen() = thread {
         try {
             _running = true
             _server = ServerSocket(_port)
             while (_running) {
                 val client = _server?.accept()
-                Thread(MessageInnerSocket(client, _callback, _endChar)).start()
+                thread { MessageInnerSocket(client, _callback, _endChar) }
             }
         } catch (e: Exception) {
             _callback?.onError(e.message)
         }
-    }).start()
+    }
 
 
     fun stopListen() {

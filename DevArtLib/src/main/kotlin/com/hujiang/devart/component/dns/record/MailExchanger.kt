@@ -20,5 +20,5 @@ class MailExchanger : DNSRR() {
 
     fun getPreference(): Int = _preference
 
-    override fun toString(): String = getRRName() + "\tpreference = ${_preference}, mail exchanger = ${_mx}"
+    override fun toString(): String = getRRName() + "\tpreference = $_preference, mail exchanger = $_mx"
 }

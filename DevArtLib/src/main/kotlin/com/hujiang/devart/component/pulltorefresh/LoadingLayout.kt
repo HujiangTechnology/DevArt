@@ -253,10 +253,10 @@ abstract class LoadingLayout: FrameLayout, ILoadingLayout {
         }
     }
 
-    override fun setLoadingDrawable(imageDrawable: Drawable?) {
-        headerImage?.setImageDrawable(imageDrawable)
-        _useIntrinsicAnimation = (imageDrawable is AnimationDrawable)
-        onLoadingDrawableSet(imageDrawable)
+    override fun setLoadingDrawable(drawable: Drawable?) {
+        headerImage?.setImageDrawable(drawable)
+        _useIntrinsicAnimation = (drawable is AnimationDrawable)
+        onLoadingDrawableSet(drawable)
     }
 
     override fun setPullLabel(pullLabel: CharSequence?) {

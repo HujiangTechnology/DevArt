@@ -49,6 +49,6 @@ class WellKnownServices : DNSRR() {
                 services.append((_data!![i].toInt() ushr j) and 1)
             }
         }
-        return getRRName() + "\twell-known services" + "\n\taddress = ${toByteString()}\n\tprotocol = ${_protocol}\n\tservices = ${services}"
+        return getRRName() + "\twell-known services" + "\n\taddress = ${toByteString()}\n\tprotocol = $_protocol\n\tservices = $services"
     }
 }

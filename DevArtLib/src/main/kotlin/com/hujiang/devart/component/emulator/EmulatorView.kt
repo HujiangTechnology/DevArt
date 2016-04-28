@@ -428,7 +428,7 @@ class EmulatorView: View, GestureDetector.OnGestureListener {
     }
 
     private fun setImeBuffer(buffer: String) {
-        if (!buffer.equals(_imeBuffer)) {
+        if (buffer != _imeBuffer) {
             invalidate()
         }
         _imeBuffer = buffer
@@ -632,7 +632,7 @@ class EmulatorView: View, GestureDetector.OnGestureListener {
 
     private fun isInterceptedSystemKey(keyCode: Int): Boolean = keyCode == KeyEvent.KEYCODE_BACK && _backKeySendsCharacter
 
-    private fun isSystemKey(keyCode: Int, event: KeyEvent?): Boolean = event!!.isSystem
+    private fun isSystemKey(@Suppress("UNUSED_PARAMETER") keyCode: Int, event: KeyEvent?): Boolean = event!!.isSystem
 
     private fun handleControlKey(keyCode: Int, down: Boolean): Boolean {
         if (keyCode == _controlKeyCode) {
@@ -750,14 +750,17 @@ class EmulatorView: View, GestureDetector.OnGestureListener {
         _useCookedIme = useCookedIME
     }
 
+    @Suppress("UNUSED_PARAMETER")
     fun onSingleTapConfirmed(e: MotionEvent?) { }
 
+    @Suppress("UNUSED_PARAMETER")
     fun onJumpTapDown(e1: MotionEvent?, e2: MotionEvent?): Boolean {
         _topRow = 0
         invalidate()
         return true
     }
 
+    @Suppress("UNUSED_PARAMETER")
     fun onJumpTapUp(e1: MotionEvent?, e2: MotionEvent?): Boolean {
         _topRow = -_transcriptScreen!!.getActiveTranscriptRows()
         invalidate()

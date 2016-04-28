@@ -66,6 +66,7 @@ open class PullToRefreshWebView: PullToRefreshBase<WebView> {
         return webView
     }
 
+    @Suppress("DEPRECATION")
     override fun isReadyForPullEnd(): Boolean {
         val exactContentHeight = FloatMath.floor(_refreshableView!!.contentHeight * _refreshableView!!.scale)
         return _refreshableView!!.scrollY >= (exactContentHeight - _refreshableView!!.height)
@@ -93,6 +94,7 @@ open class PullToRefreshWebView: PullToRefreshBase<WebView> {
             return returnValue
         }
 
+        @Suppress("DEPRECATION")
         private fun getScrollRange(): Int = Math.max(0.0f, FloatMath.floor(_refreshableView!!.contentHeight * _refreshableView!!.scale)- (height - paddingBottom - paddingTop)).toInt()
     }
 }

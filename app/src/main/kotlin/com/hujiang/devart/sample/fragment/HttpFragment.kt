@@ -13,6 +13,7 @@ import com.hujiang.devart.sample.R
 import com.hujiang.devart.utils.HttpUtils
 import com.hujiang.devart.utils.MessageUtils
 import org.apache.http.protocol.HTTP
+import kotlin.concurrent.thread
 
 /**
  * Created by rarnu on 3/29/16.
@@ -63,9 +64,9 @@ class HttpFragment : BaseFragment(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        Thread({
+        thread {
             val ret = HttpUtils.get("http://www.hujiang.com", "", HTTP.UTF_8)
             MessageUtils.sendMessage(_hRequest, 1, 0, 0, ret)
-        }).start()
+        }
     }
 }

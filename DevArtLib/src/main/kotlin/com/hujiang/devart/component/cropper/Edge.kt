@@ -161,14 +161,14 @@ enum class Edge {
         val offset = edge.snapOffset(imageRect)
         when (this) {
             LEFT -> {
-                if (edge.equals(Edge.TOP)) {
+                if (edge == Edge.TOP) {
                     val top = imageRect.top
                     val bottom = Edge.BOTTOM.getCoordinate() - offset
                     val right = Edge.RIGHT.getCoordinate()
                     val left = AspectRatioUtil.calculateLeft(top, right, bottom, aspectRatio)
                     return isOutOfBounds(top, left, bottom, right, imageRect)
 
-                } else if (edge.equals(Edge.BOTTOM)) {
+                } else if (edge == Edge.BOTTOM) {
                     val bottom = imageRect.bottom
                     val top = Edge.TOP.getCoordinate() - offset
                     val right = Edge.RIGHT.getCoordinate()
@@ -177,13 +177,13 @@ enum class Edge {
                 }
             }
             TOP -> {
-                if (edge.equals(Edge.LEFT)) {
+                if (edge == Edge.LEFT) {
                     val left = imageRect.left
                     val right = Edge.RIGHT.getCoordinate() - offset
                     val bottom = Edge.BOTTOM.getCoordinate()
                     val top = AspectRatioUtil.calculateTop(left, right, bottom, aspectRatio)
                     return isOutOfBounds(top, left, bottom, right, imageRect)
-                } else if (edge.equals(Edge.RIGHT)) {
+                } else if (edge == Edge.RIGHT) {
                     val right = imageRect.right
                     val left = Edge.LEFT.getCoordinate() - offset
                     val bottom = Edge.BOTTOM.getCoordinate()
@@ -192,14 +192,14 @@ enum class Edge {
                 }
             }
             RIGHT -> {
-                if (edge.equals(Edge.TOP)) {
+                if (edge == Edge.TOP) {
                     val top = imageRect.top
                     val bottom = Edge.BOTTOM.getCoordinate() - offset
                     val left = Edge.LEFT.getCoordinate()
                     val right = AspectRatioUtil.calculateRight(left, top, bottom, aspectRatio)
                     return isOutOfBounds(top, left, bottom, right, imageRect)
 
-                } else if (edge.equals(Edge.BOTTOM)) {
+                } else if (edge == Edge.BOTTOM) {
                     val bottom = imageRect.bottom
                     val top = Edge.TOP.getCoordinate() - offset
                     val left = Edge.LEFT.getCoordinate()
@@ -208,13 +208,13 @@ enum class Edge {
                 }
             }
             BOTTOM -> {
-                if (edge.equals(Edge.LEFT)) {
+                if (edge == Edge.LEFT) {
                     val left = imageRect.left
                     val right = Edge.RIGHT.getCoordinate() - offset
                     val top = Edge.TOP.getCoordinate()
                     val bottom = AspectRatioUtil.calculateBottom(left, top, right, aspectRatio)
                     return isOutOfBounds(top, left, bottom, right, imageRect)
-                } else if (edge.equals(Edge.RIGHT)) {
+                } else if (edge == Edge.RIGHT) {
                     val right = imageRect.right
                     val left = Edge.LEFT.getCoordinate() - offset
                     val top = Edge.TOP.getCoordinate()

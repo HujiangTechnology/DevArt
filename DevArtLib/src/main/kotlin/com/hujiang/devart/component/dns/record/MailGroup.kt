@@ -16,5 +16,5 @@ class MailGroup : DNSRR() {
 
     fun getMailGroup(): String? = _mailGroup
 
-    override fun toString(): String = getRRName() + "\tmail group = ${_mailGroup}"
+    override fun toString(): String = getRRName() + "\tmail group = $_mailGroup"
 }

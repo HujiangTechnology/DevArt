@@ -23,7 +23,7 @@ object CursorUtils {
                 "long" -> cv.put(f.name, f.getLong(obj))
                 "byte" -> cv.put(f.name, f.getByte(obj))
                 "short" -> cv.put(f.name, f.getShort(obj))
-                "char" -> cv.put(f.name, f.getChar(obj) as String)
+                "char" -> cv.put(f.name, f.getChar(obj).toString())
                 else -> {
                 }
             }
@@ -56,7 +56,7 @@ object CursorUtils {
 
         }
 
-    fun buildSplittedString(list: MutableList<*>?, splitter: String): String {
+    fun buildSplittedString(list: MutableList<*>?, @Suppress("UNUSED_PARAMETER") splitter: String): String {
         var result = ""
         for (o in list!!) {
             result += "${o.toString()},"

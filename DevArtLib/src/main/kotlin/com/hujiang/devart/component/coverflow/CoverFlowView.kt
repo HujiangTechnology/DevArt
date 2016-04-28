@@ -21,7 +21,7 @@ import com.hujiang.devart.utils.ImageUtils
 /**
  * Created by rarnu on 4/26/16.
  */
-class CoverFlowView<T: CoverFlowAdapter>: View {
+open class CoverFlowView<T: CoverFlowAdapter>: View {
 
     companion object {
         val DURATION = 200L
@@ -30,7 +30,7 @@ class CoverFlowView<T: CoverFlowAdapter>: View {
         val NO_POSITION = -1
         val CHILD_SPACING = -200
         val ALPHA_DATUM = 76
-        val CARD_SCALE = 0.15f;
+        val CARD_SCALE = 0.15f
         val MOVE_POS_MULTIPLE = 3.0f
         val TOUCH_MINIMUM_MOVE = 5
         val MOVE_SPEED_MULTIPLE = 1.0f
@@ -75,7 +75,7 @@ class CoverFlowView<T: CoverFlowAdapter>: View {
     var _reflectionTranslateY = 0
     var _reflectHeightFraction = 0.0f
     var _reflectGap = 0
-    var _topImageClickEnable = true;
+    var _topImageClickEnable = true
     var _coverFlowListener: CoverFlowListener<T>? = null
     var _longClickListener: TopImageLongClickListener? = null
     var _longClickRunnable: LongClickRunnable? = null
@@ -191,7 +191,7 @@ class CoverFlowView<T: CoverFlowAdapter>: View {
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
         if (_adapter == null) {
             return
         }
@@ -286,7 +286,7 @@ class CoverFlowView<T: CoverFlowAdapter>: View {
         for (i in startPos..mid - 1) {
             drawChild(canvas, mid, i, i - offset)
         }
-        val endPos = mid + rightChild;
+        val endPos = mid + rightChild
         for (i in endPos downTo mid) {
             drawChild(canvas, mid, i, i - offset)
         }
@@ -322,7 +322,7 @@ class CoverFlowView<T: CoverFlowAdapter>: View {
             wAndh[0] = child!!.width
             wAndh[1] = child.height
         }
-        if (child != null && !child.isRecycled && canvas != null) {
+        if (!child.isRecycled && canvas != null) {
             makeChildTransformer(child, mid, position, offset)
             canvas.drawBitmap(child, _childTransformer, _drawChildPaint)
             if (reflection != null) {
@@ -344,7 +344,7 @@ class CoverFlowView<T: CoverFlowAdapter>: View {
                 return reflection
             }
         }
-        return reflection;
+        return reflection
     }
 
     private fun makeChildTransformer(child: Bitmap?, mid: Int, position: Int, offset: Float) {
@@ -425,7 +425,7 @@ class CoverFlowView<T: CoverFlowAdapter>: View {
                 stopLongClick()
                 triggleLongClick(event.x, event.y)
                 touchBegan(event)
-                return true;
+                return true
             }
             MotionEvent.ACTION_MOVE -> {
                 touchMoved(event)
@@ -708,7 +708,7 @@ class CoverFlowView<T: CoverFlowAdapter>: View {
     fun setTopImageLongClickListener(listener: TopImageLongClickListener?) {
         _longClickListener = listener
         if (listener == null) {
-            _longClickRunnable = null;
+            _longClickRunnable = null
         } else {
             if (_longClickRunnable == null) {
                 _longClickRunnable = LongClickRunnable()

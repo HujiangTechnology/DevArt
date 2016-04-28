@@ -29,8 +29,8 @@ class ContentType {
             _contentType = getDetailFromContentHeader(contentTypeHeader, MIME_PATTERN, "", 1)
             _encoding = getDetailFromContentHeader(contentTypeHeader, CHARSET_PATTERN, null, 2)
         } else {
-            _contentType = "";
-            _encoding = "UTF-8";
+            _contentType = ""
+            _encoding = "UTF-8"
         }
         if (MULTIPART_FORM_DATA_HEADER.toLowerCase() == _contentType?.toLowerCase()) {
             _boundary = getDetailFromContentHeader(contentTypeHeader, BOUNDARY_PATTERN, null, 2)

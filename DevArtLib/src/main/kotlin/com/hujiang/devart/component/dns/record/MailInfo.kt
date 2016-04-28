@@ -20,5 +20,5 @@ class MailInfo : DNSRR() {
 
     fun getErrorMailbox(): String? = _eBox
 
-    override fun toString(): String = getRRName() + "\tresponsible mailbox = ${_rBox}, error mailbox = ${_eBox}"
+    override fun toString(): String = getRRName() + "\tresponsible mailbox = $_rBox, error mailbox = $_eBox"
 }

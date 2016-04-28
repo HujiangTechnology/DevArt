@@ -6,12 +6,11 @@ import android.util.Log
 import com.hujiang.devart.utils.FileUtils
 import java.io.BufferedReader
 import java.io.File
-import java.io.FileReader
 
 /**
  * Created by rarnu on 4/7/16.
  */
-class DaemonClient: IDaemonClient {
+open class DaemonClient: IDaemonClient {
 
 
     private val DAEMON_PERMITTING_SP_FILENAME 	= "d_permit"
@@ -34,7 +33,7 @@ class DaemonClient: IDaemonClient {
             return
         }
         val processName = getProcessName()!!.trim()
-        Log.e("LOG", "initDaemon => ${processName}")
+        Log.e("LOG", "initDaemon => $processName")
         val packageName = context?.packageName
         Log.e("LOG", "PERSISTENT_CONFIG.processName => ${_configurations?.PERSISTENT_CONFIG?.processName}")
         Log.e("LOG", "DAEMON_ASSISTANT_CONFIG.processName => ${_configurations?.DAEMON_ASSISTANT_CONFIG?.processName}")
@@ -51,10 +50,8 @@ class DaemonClient: IDaemonClient {
     private fun getProcessName(): String? {
         try {
             val file = File("/proc/" + Process.myPid() + "/cmdline")
-            Log.e("LOG", "file => ${file}")
+            Log.e("LOG", "file => $file")
             return FileUtils.readFileString(file.absolutePath)
-            // _bufferedReader = BufferedReader(FileReader(file))
-            // return _bufferedReader?.readLine()
         } catch (e: Exception) {
             return null
         }

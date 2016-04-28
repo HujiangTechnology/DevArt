@@ -221,8 +221,8 @@
             <enum name="center_vertical" value="2" />
         </attr>
         <attr name="coverflowLayoutMode" format="enum">
-            <enum name="match_parent" value="0"></enum>
-            <enum name="wrap_content" value="1"></enum>
+            <enum name="match_parent" value="0"/>
+            <enum name="wrap_content" value="1"/>
         </attr>
     </declare-styleable>
 </resources>

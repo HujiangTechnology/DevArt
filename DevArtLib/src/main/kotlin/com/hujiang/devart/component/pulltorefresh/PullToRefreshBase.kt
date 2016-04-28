@@ -221,9 +221,9 @@ abstract class PullToRefreshBase<T : View> : LinearLayout, IPullToRefresh<T> {
         val nvalue = Math.min(maximumPullScroll, Math.max(-maximumPullScroll, value))
 
         if (_layoutVisibilityChangesEnabled) {
-            if (value < 0) {
+            if (nvalue < 0) {
                 _headerLayout?.visibility = View.VISIBLE
-            } else if (value > 0) {
+            } else if (nvalue > 0) {
                 _footerLayout?.visibility = View.VISIBLE
             } else {
                 _headerLayout?.visibility = View.INVISIBLE
@@ -232,12 +232,12 @@ abstract class PullToRefreshBase<T : View> : LinearLayout, IPullToRefresh<T> {
         }
 
         if (USE_HW_LAYERS) {
-            _refreshableViewWrapper?.setLayerType(if (value != 0) View.LAYER_TYPE_HARDWARE else View.LAYER_TYPE_NONE, Paint())
+            _refreshableViewWrapper?.setLayerType(if (nvalue != 0) View.LAYER_TYPE_HARDWARE else View.LAYER_TYPE_NONE, Paint())
         }
 
         when (getPullToRefreshScrollDirection()) {
-            Orientation.VERTICAL -> scrollTo(0, value)
-            Orientation.HORIZONTAL -> scrollTo(value, 0)
+            Orientation.VERTICAL -> scrollTo(0, nvalue)
+            Orientation.HORIZONTAL -> scrollTo(nvalue, 0)
         }
     }
 
@@ -352,6 +352,7 @@ abstract class PullToRefreshBase<T : View> : LinearLayout, IPullToRefresh<T> {
         when (_currentMode) {
             Mode.PULL_FROM_END -> _footerLayout?.pullToRefresh()
             Mode.PULL_FROM_START -> _headerLayout?.pullToRefresh()
+            else -> { }
         }
     }
 
@@ -638,7 +639,7 @@ abstract class PullToRefreshBase<T : View> : LinearLayout, IPullToRefresh<T> {
         super.onSizeChanged(w, h, oldw, oldh)
         refreshLoadingViewsSize()
         refreshRefreshableViewSize(w, h)
-        post({ requestLayout() })
+        post { requestLayout() }
     }
 
     protected fun refreshRefreshableViewSize(width: Int, height: Int) {

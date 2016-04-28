@@ -16,5 +16,5 @@ class CanonicalName : DNSRR() {
 
     fun getCanonicalName(): String? = _canonicalName
 
-    override fun toString(): String = getRRName() + "\tcanonical name = ${_canonicalName}"
+    override fun toString(): String = getRRName() + "\tcanonical name = $_canonicalName"
 }

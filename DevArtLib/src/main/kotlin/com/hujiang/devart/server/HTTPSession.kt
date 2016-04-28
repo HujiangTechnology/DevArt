@@ -76,7 +76,7 @@ class HTTPSession: IHTTPSession {
                 throw SocketException("HTTPServer Shutdown")
             }
             while (read > 0) {
-                _rlen += read;
+                _rlen += read
                 _splitbyte = findHeaderEnd(buf, _rlen)
                 if (_splitbyte > 0) {
                     break
@@ -115,10 +115,10 @@ class HTTPSession: IHTTPSession {
             } else {
                 val acceptEncoding = _headers?.get("accept-encoding")
                 _cookies?.unloadQueue(r)
-                r.setRequestMethod(_method);
-                r.setGzipEncoding(HTTPServer.useGzipWhenAccepted(r) && acceptEncoding != null && acceptEncoding.contains("gzip"));
-                r.setKeepAlive(keepAlive);
-                r.send(_outputStream);
+                r.setRequestMethod(_method)
+                r.setGzipEncoding(HTTPServer.useGzipWhenAccepted(r) && acceptEncoding != null && acceptEncoding.contains("gzip"))
+                r.setKeepAlive(keepAlive)
+                r.send(_outputStream)
             }
             if (!keepAlive || r.isCloseConnection()) {
                 throw SocketException("HTTPServer Shutdown")
@@ -176,7 +176,7 @@ class HTTPSession: IHTTPSession {
         try {
             var size = getBodySize()
             var baos: ByteArrayOutputStream? = null
-            var requestDataOutput: DataOutput? = null
+            var requestDataOutput: DataOutput?
             if (size < MEMORY_STORE_LIMIT) {
                 baos = ByteArrayOutputStream()
                 requestDataOutput = DataOutputStream(baos)
@@ -194,15 +194,16 @@ class HTTPSession: IHTTPSession {
             }
             var fbuf: ByteBuffer?
             if (baos != null) {
-                fbuf = ByteBuffer.wrap(baos.toByteArray(), 0, baos.size());
+                fbuf = ByteBuffer.wrap(baos.toByteArray(), 0, baos.size())
             } else {
                 fbuf = randomAccessFile?.channel?.map(FileChannel.MapMode.READ_ONLY, 0, randomAccessFile.length())
                 randomAccessFile?.seek(0)
             }
 
-            if (Method.POST.equals(_method)) {
+            if (Method.POST == _method) {
                 val contentType = ContentType(_headers?.get("content-type"))
                 if (contentType.isMultipart()) {
+                    @Suppress("UNUSED_VARIABLE")
                     val boundary = contentType.getBoundary() ?: throw ResponseException(Response.Status.BAD_REQUEST, "BAD REQUEST: Content type is multipart/form-data but boundary missing. Usage: GET /example/file.html")
                     decodeMultipartFormData(contentType, fbuf, _parms, files)
                 } else {
@@ -352,12 +353,12 @@ class HTTPSession: IHTTPSession {
                 while (mpline != null && mpline.trim().length > 0) {
                     var matcher = HTTPServer.CONTENT_DISPOSITION_PATTERN.matcher(mpline)
                     if (matcher.matches()) {
-                        val attributeString = matcher.group(2);
+                        val attributeString = matcher.group(2)
                         matcher = HTTPServer.CONTENT_DISPOSITION_ATTRIBUTE_PATTERN.matcher(attributeString)
                         while (matcher.find()) {
                             val key = matcher.group(1)
                             if (key.toLowerCase() == "name") {
-                                partName = matcher.group(2);
+                                partName = matcher.group(2)
                             } else if (key.toLowerCase() == "filename") {
                                 fileName = matcher.group(2)
                                 if (!fileName.isEmpty()) {

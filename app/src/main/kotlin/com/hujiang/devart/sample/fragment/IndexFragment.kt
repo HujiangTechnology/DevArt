@@ -11,6 +11,7 @@ import com.hujiang.devart.component.mutax.MutaxReceiver
 import com.hujiang.devart.component.mutax.OnMutaxMessage
 import com.hujiang.devart.sample.*
 import com.hujiang.devart.sample.service.DemoService
+import com.hujiang.devart.utils.UIUtils
 
 /**
  * Created by rarnu on 3/25/16.
@@ -19,6 +20,7 @@ class IndexFragment : BasePreferenceFragment(), Preference.OnPreferenceClickList
 
     private var _mutax: MutaxReceiver? = null
 
+    private var _p0Intro: Preference? = null
     private var _p1Arg1: Preference? = null
     private var _p1Arg2: Preference? = null
     private var _p1Arg3: Preference? = null
@@ -74,6 +76,8 @@ class IndexFragment : BasePreferenceFragment(), Preference.OnPreferenceClickList
 
         _mutax = MutaxReceiver(DemoService.DEMO_SERVICE_ACTION, null, null)
 
+        _p0Intro = findPreference(getString(R.string.id_item_0))
+
         _p1Arg1 = findPreference(getString(R.string.id_item_1_1))
         _p1Arg2 = findPreference(getString(R.string.id_item_1_2))
         _p1Arg3 = findPreference(getString(R.string.id_item_1_3))
@@ -125,6 +129,7 @@ class IndexFragment : BasePreferenceFragment(), Preference.OnPreferenceClickList
 
         _mutax?.onReceive = this
 
+        _p0Intro?.onPreferenceClickListener = this
         _p1Arg1?.onPreferenceClickListener = this
         _p1Arg2?.onPreferenceClickListener = this
         _p1Arg3?.onPreferenceClickListener = this
@@ -192,6 +197,10 @@ class IndexFragment : BasePreferenceFragment(), Preference.OnPreferenceClickList
     override fun onPreferenceClick(preference: Preference?): Boolean {
         val key = preference!!.key
         when (key) {
+            getString(R.string.id_item_0) -> {
+                UIInstance.currentFragment = 0
+                FragmentStarter.showContent(activity, IntroActtivity::class.java, Fragments.introFragment)
+            }
             getString(R.string.id_item_1_1),
             getString(R.string.id_item_1_2),
             getString(R.string.id_item_1_3) -> {

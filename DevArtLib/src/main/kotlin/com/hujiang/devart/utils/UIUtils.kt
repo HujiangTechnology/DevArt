@@ -35,7 +35,7 @@ object UIUtils {
     fun initDisplayMetrics(ctx: Context, wm: WindowManager, follow: Boolean) {
         context = ctx
         dm = DisplayMetrics()
-        wm.getDefaultDisplay().getMetrics(dm)
+        wm.defaultDisplay.getMetrics(dm)
         isFollowSystemBackground = follow
     }
 

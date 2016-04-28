@@ -38,9 +38,9 @@ object FileCommandUtils {
         val owner = (if (permission.ownerRead) 4 else 0) + (if (permission.ownerWrite) 2 else 0) + (if (permission.ownerExec) 1 else 0)
         val group = (if (permission.groupRead) 4 else 0) + (if (permission.groupWrite) 2 else 0) + (if (permission.groupExec) 1 else 0)
         val other = (if (permission.otherRead) 4 else 0) + (if (permission.otherWrite) 2 else 0) + (if (permission.otherExec) 1 else 0)
-        val permStr = "${owner}${group}${other}"
+        val permStr = "$owner$group$other"
         val nfilePath = filePath.replace(" ", "\\ ")
-        val result = Command.runCommand("chmod ${permStr} ${filePath}", true)
+        val result = Command.runCommand("chmod $permStr $nfilePath", true)
         return result.error == ""
     }
 
@@ -51,7 +51,7 @@ object FileCommandUtils {
         if (!npath.endsWith("/")) {
             npath += "/"
         }
-        val cmd = "ls -a ${npath}"
+        val cmd = "ls -a $npath"
         val result = Command.runCommand(cmd, root)
         val list = arrayListOf<FileSystemFileInfo>()
         if (result.error == "") {
@@ -126,7 +126,7 @@ object FileCommandUtils {
             var type = ""
             try {
                 val fileNameMap = URLConnection.getFileNameMap()
-                type = fileNameMap.getContentTypeFor("file://${fullPath}")
+                type = fileNameMap.getContentTypeFor("file://$fullPath")
             } catch (e: Exception) {
 
             }

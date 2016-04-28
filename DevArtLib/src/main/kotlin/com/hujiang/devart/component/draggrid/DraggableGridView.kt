@@ -300,16 +300,16 @@ class DraggableGridView: ViewGroup, View.OnTouchListener, View.OnClickListener, 
             }
             MotionEvent.ACTION_UP -> {
                 if (_dragged != -1) {
-                    val v = getChildAt(_dragged)
+                    val v1 = getChildAt(_dragged)
                     if (_lastTarget != -1) {
                         reorderChildren()
                     } else {
                         val xy = getCoorFromIndex(_dragged)
-                        v.layout(xy.x, xy.y, xy.x + _childSize, xy.y + _childSize)
+                        v1.layout(xy.x, xy.y, xy.x + _childSize, xy.y + _childSize)
                     }
-                    v.clearAnimation()
-                    if (v is ImageView) {
-                        v.imageAlpha = 255
+                    v1.clearAnimation()
+                    if (v1 is ImageView) {
+                        v1.imageAlpha = 255
                     }
                     _lastTarget = -1
                     _dragged = -1

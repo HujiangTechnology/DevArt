@@ -282,6 +282,7 @@ class SlidingMenu : RelativeLayout {
         setAboveOffset(i)
     }
 
+    @Suppress("DEPRECATION")
     fun setBehindWidth(i: Int) {
         var width: Int
         val display = (context.getSystemService(Context.WINDOW_SERVICE) as WindowManager).defaultDisplay

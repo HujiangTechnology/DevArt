@@ -3,6 +3,7 @@ package com.hujiang.devart.utils.socket
 import java.io.DataInputStream
 import java.io.DataOutputStream
 import java.net.Socket
+import kotlin.concurrent.thread
 
 /**
  * Created by rarnu on 3/29/16.
@@ -16,7 +17,7 @@ class MessageSocketClient {
 
     constructor(callback: SocketClientCallback?, ip: String?, port: Int) {
         _callback = callback
-        Thread({
+        thread {
             try {
                 _socket = Socket(ip, port)
                 _dos = DataOutputStream(_socket?.outputStream)
@@ -24,7 +25,7 @@ class MessageSocketClient {
             } catch (e: Exception) {
                 _callback?.onError(e.message)
             }
-        }).start()
+        }
     }
 
     fun close() {
@@ -36,7 +37,7 @@ class MessageSocketClient {
         }
     }
 
-    fun sendMessage(msg: String) = Thread({
+    fun sendMessage(msg: String) = thread {
         try {
             _dos?.writeUTF(msg)
             val res = _dis?.readUTF()
@@ -44,7 +45,7 @@ class MessageSocketClient {
         } catch (e: Exception) {
             _callback?.onError(e.message)
         }
-    }).start()
+    }
 
 
 }

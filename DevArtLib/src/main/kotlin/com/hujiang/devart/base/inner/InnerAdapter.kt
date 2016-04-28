@@ -99,6 +99,7 @@ abstract class InnerAdapter<T> : BaseAdapter, Filterable {
             return results
         }
 
+        @Suppress("UNCHECKED_CAST")
         override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
             if (results != null) {
                 list = results.values as MutableList<T>?

@@ -9,7 +9,6 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 import java.util.*
-import kotlin.concurrent.timer
 
 /**
  * Created by rarnu on 4/5/16.

@@ -25,5 +25,5 @@ class Null : DNSRR() {
         return copy
     }
 
-    override fun toString(): String = getRRName() + "\tnull data = [${_text}]"
+    override fun toString(): String = getRRName() + "\tnull data = [$_text]"
 }

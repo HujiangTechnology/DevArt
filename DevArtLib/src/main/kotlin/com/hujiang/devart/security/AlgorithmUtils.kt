@@ -77,7 +77,7 @@ object AlgorithmUtils {
     fun toHex(b: Byte): String {
         var result = Integer.toHexString(b.toInt())
         if (result.length == 1) {
-            result = "0${result}"
+            result = "0$result"
         }
         return result
     }

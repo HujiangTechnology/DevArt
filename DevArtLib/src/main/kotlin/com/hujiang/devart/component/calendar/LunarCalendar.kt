@@ -134,7 +134,7 @@ class LunarCalendar {
         } catch (e: ParseException) {
 
         }
-
+        @Suppress("RemoveCurlyBracesFromTemplate")
         val nowadays = "${yearLog}年${monthLog}月${dayLog}日"
         try {
             nowaday = chineseDateFormat.parse(nowadays)
@@ -142,6 +142,7 @@ class LunarCalendar {
         }
 
         var offset = ((nowaday!!.time - baseDate!!.time) / 86400000L).toInt()
+        @Suppress("UNUSED_VARIABLE")
         var dayCyl = offset + 40
         var monCyl = 14
         var daysOfYear = 0
@@ -158,6 +159,7 @@ class LunarCalendar {
             monCyl -= 12
         }
         _year = iYear
+        @Suppress("UNUSED_VARIABLE")
         var yearCyl = iYear - 1864
         leapMonth = leapMonth(iYear)
         _leap = false

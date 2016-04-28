@@ -48,7 +48,7 @@ class Response: Closeable {
             _description = description
         }
 
-        override fun getDescription(): String? = "${_requestStatus} ${_description}"
+        override fun getDescription(): String? = "$_requestStatus $_description"
         override fun getRequestStatus(): Int = _requestStatus
     }
 
@@ -191,10 +191,10 @@ class Response: Closeable {
             try {
                 size = contentLengthString.toLong()
             } catch (e: Exception) {
-                Log.e("LOG", "content-length was no number ${contentLengthString}")
+                Log.e("LOG", "content-length was no number $contentLengthString")
             }
         }
-        pw?.print("Content-Length: ${size}\r\n")
+        pw?.print("Content-Length: $size\r\n")
         return size
     }
 

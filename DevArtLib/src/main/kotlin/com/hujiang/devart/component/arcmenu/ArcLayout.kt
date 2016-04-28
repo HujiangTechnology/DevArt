@@ -51,6 +51,7 @@ class ArcLayout: ViewGroup {
             return index
         }
 
+        @Suppress("UNUSED_PARAMETER")
         private fun createExpandAnimation(fromXDelta: Float, toXDelta: Float, fromYDelta: Float, toYDelta: Float, startOffset: Long, duration: Long, interpolator: Interpolator?): Animation? {
             val animation = RotateAndTranslateAnimation(0.0f, toXDelta, 0.0f, toYDelta, 0.0f, 720.0f)
             animation.startOffset = startOffset
@@ -60,6 +61,7 @@ class ArcLayout: ViewGroup {
             return animation
         }
 
+        @Suppress("UNUSED_PARAMETER")
         private fun createShrinkAnimation(fromXDelta: Float, toXDelta: Float, fromYDelta: Float, toYDelta: Float, startOffset: Long, duration: Long, interpolator: Interpolator?): Animation? {
             val animationSet = AnimationSet(false)
             animationSet.fillAfter = true
@@ -140,7 +142,7 @@ class ArcLayout: ViewGroup {
     private fun bindChildAnimation(child: View?, index: Int, duration: Long) {
         val expanded = _expanded
         val centerX = width / 2
-        val centerY =height / 2;
+        val centerY =height / 2
         val radius = if (expanded) 0 else _radius
         val perDegrees = (_toDegrees - _fromDegrees) / (childCount - 1)
         val frame = computeChildFrame(centerX, centerY, radius, _fromDegrees + index * perDegrees, _childSize)

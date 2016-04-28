@@ -16,5 +16,5 @@ class Pointer : DNSRR() {
 
     fun getPointer(): String? = _pointer
 
-    override fun toString(): String = getRRName() + "\tpointer = ${_pointer}"
+    override fun toString(): String = getRRName() + "\tpointer = $_pointer"
 }

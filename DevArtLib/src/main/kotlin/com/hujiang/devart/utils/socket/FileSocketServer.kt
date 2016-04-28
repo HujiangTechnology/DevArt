@@ -6,6 +6,7 @@ import java.io.FileOutputStream
 import java.net.ServerSocket
 import java.net.Socket
 import java.util.*
+import kotlin.concurrent.thread
 
 /**
  * Created by rarnu on 3/29/16.
@@ -24,7 +25,7 @@ class FileSocketServer {
         _callback = callback
     }
 
-    fun startListen() = Thread({
+    fun startListen() = thread {
         try {
             _receiving = true
             _server = ServerSocket(_port)
@@ -36,8 +37,7 @@ class FileSocketServer {
         } catch (e: Exception) {
             _callback?.onError(e.message)
         }
-
-    }).start()
+    }
 
     private fun doReceiveFile(client: Socket?) = try {
         val randomId = Random(System.currentTimeMillis()).nextInt(65536)

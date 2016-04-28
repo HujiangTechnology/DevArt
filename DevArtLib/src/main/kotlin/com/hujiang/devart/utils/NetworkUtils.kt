@@ -13,6 +13,7 @@ import java.net.NetworkInterface
 import java.net.SocketException
 import java.text.DecimalFormat
 import java.util.*
+import kotlin.concurrent.thread
 
 /**
  * Created by rarnu on 3/28/16.
@@ -93,12 +94,12 @@ object NetworkUtils {
             }
 
     fun doGetNetworkInfoT(context: Context) {
-        Thread({
+        thread {
             loadingNetwork = true
             networkInfo = getNetworkInfo(context)
             networkSpeed = testNetworkSpeed()
             loadingNetwork = false
-        }).start()
+        }
     }
 
     private fun parseString(str: String?): PingInfo? {
@@ -110,7 +111,7 @@ object NetworkUtils {
                 var nstr = str.replace(" ", "").trim()
                 nstr = nstr.substring(str.lastIndexOf("="))
                 nstr = nstr.replace("ms", "").replace("=", "").trim()
-                info.time = str.toDouble()
+                info.time = nstr.toDouble()
             }
         } catch (e: Exception) {
 

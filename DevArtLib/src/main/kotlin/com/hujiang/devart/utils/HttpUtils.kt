@@ -57,7 +57,7 @@ object HttpUtils {
         while(true) {
             content = br.readLine()
             if (content != null) {
-                result += "${content}\n"
+                result += "$content\n"
             } else {
                 break
             }
@@ -69,7 +69,7 @@ object HttpUtils {
 
     fun simplePost(host: String, param: String, encoding: String): String = simplePostWithHeader(host, param, encoding, null)
 
-    fun post(host: String, getParams: String, params: MutableList<BasicNameValuePair>?, encoding: String): String? = post("${host}?${getParams}", params, encoding)
+    fun post(host: String, getParams: String, params: MutableList<BasicNameValuePair>?, encoding: String): String? = post("$host?$getParams", params, encoding)
 
     fun post(host: String, params: MutableList<BasicNameValuePair>?, encoding: String): String? {
         val httpPost = HttpPost(host)
@@ -142,17 +142,17 @@ object HttpUtils {
 
 
     fun get(host: String, params: String, encoding: String): String? {
-        val request = HttpGet("${host}?${params}")
+        val request = HttpGet("$host?$params")
         return executeForResult(request, encoding)
     }
 
     fun delete(host: String, params: String, encoding: String): String? {
-        val request = HttpDelete("${host}?${params}")
+        val request = HttpDelete("$host?$params")
         return executeForResult(request, encoding)
     }
 
     fun getWithCookie(host: String, params: String, cookie: CookieStore?, encoding: String): HttpRequestResponseData? {
-        val request = HttpGet("${host}?${params}")
+        val request = HttpGet("$host?$params")
         return executeForData(request, cookie, encoding)
     }
 

@@ -16,5 +16,5 @@ class MailDomain : DNSRR() {
 
     fun getMailDestination(): String? = _mailDestination
 
-    override fun toString(): String = getRRName() + "\tmail destination = ${_mailDestination}"
+    override fun toString(): String = getRRName() + "\tmail destination = $_mailDestination"
 }

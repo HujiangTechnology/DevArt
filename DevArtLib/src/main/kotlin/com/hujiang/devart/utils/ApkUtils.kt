@@ -88,7 +88,7 @@ object ApkUtils {
 
     fun getDataSize(path: String): String? {
         var ret = ""
-        val result = Command.runCommand("busybox du -s ${path}", true, null)
+        val result = Command.runCommand("busybox du -s $path", true, null)
         if (result.error == "") {
             ret = result.result
             try {
@@ -101,12 +101,12 @@ object ApkUtils {
     }
 
     fun installApp(filePath: String): Boolean {
-        val result = Command.runCommand("pm install -r ${filePath}", true)
+        val result = Command.runCommand("pm install -r $filePath", true)
         return result.result.toLowerCase().contains("success")
     }
 
     fun installAppWithResult(filePath: String): String {
-        val result = Command.runCommand("pm install -r ${filePath}", true)
+        val result = Command.runCommand("pm install -r $filePath", true)
         return result.error
     }
 
@@ -224,7 +224,7 @@ object ApkUtils {
 
     fun uninstallApk(packageName: String): Boolean {
         try {
-            val cmdRet = Command.runCommand("pm uninstall ${packageName}", true, null)
+            val cmdRet = Command.runCommand("pm uninstall $packageName", true, null)
             return cmdRet.error == ""
         } catch (e: Exception) {
             return false
@@ -242,7 +242,7 @@ object ApkUtils {
 
     fun startApplication(namespace: String, activity: String): Boolean {
         try {
-            val cmd = "am start -a android.intent.action.MAIN -c android.intent.category.LAUNCHER -n ${namespace}/${activity}"
+            val cmd = "am start -a android.intent.action.MAIN -c android.intent.category.LAUNCHER -n $namespace/$activity"
             Runtime.getRuntime().exec(cmd)
             return true
         } catch (e: Exception) {
@@ -266,12 +266,12 @@ object ApkUtils {
 
     fun openGooglePlayForApp(context: Context, namespace: String) {
         val inPlay = Intent(Intent.ACTION_VIEW)
-        inPlay.data = Uri.parse("market://details?id=${namespace}")
+        inPlay.data = Uri.parse("market://details?id=$namespace")
         context.startActivity(inPlay)
     }
 
     fun setInstallLocation(location: Int) {
-        Command.runCommand("pm set-install-location ${location}", true, null)
+        Command.runCommand("pm set-install-location $location", true, null)
     }
 
     fun openApp(context: Context, packageName: String): Boolean = openApp(context, packageName, false)
@@ -355,7 +355,7 @@ object ApkUtils {
             if (newVer <= oldVer) {
                 return 2
             }
-            val compare = SignatureUtils.compareSignature(newinfo!!.localPath!!, installedInfo.sourceDir)
+            val compare = SignatureUtils.compareSignature(newinfo.localPath!!, installedInfo.sourceDir)
             return if (compare) 0 else 1
         } catch (e: Exception) {
             return 4
@@ -406,7 +406,7 @@ object ApkUtils {
 
     fun openInstallApk(context: Context, apkPath: String) {
         val intent = Intent(Intent.ACTION_VIEW)
-        intent.setDataAndType(Uri.parse("file://${apkPath}"), "application/vnd.android.package-archive")
+        intent.setDataAndType(Uri.parse("file://$apkPath"), "application/vnd.android.package-archive")
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
         context.startActivity(intent)
     }

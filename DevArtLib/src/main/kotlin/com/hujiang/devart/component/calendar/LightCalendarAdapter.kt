@@ -60,6 +60,7 @@ class LightCalendarAdapter: BaseAdapter {
         getCalendar(_currentYear.toInt(), _currentMonth.toInt())
     }
 
+    @Suppress("UNUSED_PARAMETER")
     constructor(context: Context, year: Int, month: Int, day: Int) {
         _context = context
         _sc = SpecialCalendar()

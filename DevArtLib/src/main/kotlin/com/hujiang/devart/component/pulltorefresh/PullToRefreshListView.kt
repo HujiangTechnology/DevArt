@@ -63,7 +63,7 @@ class PullToRefreshListView: PullToRefreshAdapterViewBase<ListView> {
             _footerLoadingView = createLoadingLayout(context, Mode.PULL_FROM_END, a)
             _footerLoadingView?.visibility = View.GONE
             _lvFooterLoadingFrame?.addView(_footerLoadingView, lp)
-            if (!a!!.hasValue(R.styleable.PullToRefresh_ptrScrollingWhileRefreshingEnabled)) {
+            if (!a.hasValue(R.styleable.PullToRefresh_ptrScrollingWhileRefreshingEnabled)) {
                 setScrollingWhileRefreshingEnabled(true)
             }
         }
@@ -113,7 +113,7 @@ class PullToRefreshListView: PullToRefreshAdapterViewBase<ListView> {
         }
         if (listViewLoadingLayout!!.visibility == View.VISIBLE) {
             originalLoadingLayout?.showInvisibleViews()
-            listViewLoadingLayout?.visibility = View.GONE
+            listViewLoadingLayout.visibility = View.GONE
             if (scrollLvToEdge && getState() != State.MANUAL_REFRESHING) {
                 _refreshableView?.setSelection(selection)
                 setHeaderScroll(scrollToHeight)

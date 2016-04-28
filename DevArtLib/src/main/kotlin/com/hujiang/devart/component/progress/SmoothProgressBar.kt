@@ -98,7 +98,7 @@ open class SmoothProgressBar: ProgressBar {
         if (a.hasValue(R.styleable.SmoothProgressBar_spbColors)) {
             val colorsId = a.getResourceId(R.styleable.SmoothProgressBar_spbColors, 0)
             if (colorsId != 0) {
-                val colors = getResources().getIntArray(colorsId)
+                val colors = resources.getIntArray(colorsId)
                 if (colors != null && colors.size > 0)
                     setSmoothProgressDrawableColors(colors)
             }

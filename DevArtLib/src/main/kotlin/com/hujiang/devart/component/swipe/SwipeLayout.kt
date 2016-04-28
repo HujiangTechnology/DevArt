@@ -533,7 +533,7 @@ class SwipeLayout: FrameLayout {
         return r
     }
 
-    protected fun isViewShowing(child: View?, relativePosition: Rect, availableEdge: DragEdge, surfaceLeft: Int, surfaceTop: Int, surfaceRight: Int, surfaceBottom: Int): Boolean {
+    protected fun isViewShowing(@Suppress("UNUSED_PARAMETER") child: View?, relativePosition: Rect, availableEdge: DragEdge, surfaceLeft: Int, surfaceTop: Int, surfaceRight: Int, surfaceBottom: Int): Boolean {
         val childLeft = relativePosition.left
         val childRight = relativePosition.right
         val childTop = relativePosition.top
@@ -925,7 +925,7 @@ class SwipeLayout: FrameLayout {
         }
     }
 
-    private fun performAdapterViewItemClick(e: MotionEvent?) {
+    private fun performAdapterViewItemClick(@Suppress("UNUSED_PARAMETER") e: MotionEvent?) {
         var t = parent
         while (t != null) {
             if (t is AdapterView<*>) {

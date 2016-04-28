@@ -17,8 +17,6 @@ import com.hujiang.devart.utils.ImageUtils
  */
 class GlassActionBarHelper: ViewTreeObserver.OnGlobalLayoutListener, NotifyingScrollView.OnScrollChangedListener, BlurTask.Listener, ListViewScrollObserver.OnListViewScrollListener {
 
-
-
     private var _contentLayout = 0
     private var _frame: FrameLayout? = null
     private var _content: View? = null
@@ -35,7 +33,6 @@ class GlassActionBarHelper: ViewTreeObserver.OnGlobalLayoutListener, NotifyingSc
     private var _listView: ListView? = null
     private var _downSampling = GlassActionBar.DEFAULT_DOWNSAMPLING
     private var _windowBackground: Drawable? = null
-
 
     fun contentLayout(layout: Int): GlassActionBarHelper? {
         _contentLayout = layout
@@ -107,6 +104,7 @@ class GlassActionBarHelper: ViewTreeObserver.OnGlobalLayoutListener, NotifyingSc
         if (_scrollView != null) {
             scrollPosition = _scrollView!!.scrollY
         }
+        @Suppress("UNUSED_VARIABLE")
         val start = System.nanoTime()
         _scaled = ImageUtils.drawViewToBitmap(_scaled, _content, _width, _height, _downSampling, _windowBackground)
         startBlurTask()

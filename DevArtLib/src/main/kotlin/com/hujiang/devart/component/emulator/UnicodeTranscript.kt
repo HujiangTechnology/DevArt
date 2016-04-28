@@ -78,7 +78,7 @@ class UnicodeTranscript {
 
     private fun externalToInternalRow(extRow: Int): Int {
         if (extRow < -_activeTranscriptRows || extRow > _screenRows) {
-            val errorMessage = "externalToInternalRow ${extRow} ${_screenRows} ${_activeTranscriptRows}"
+            val errorMessage = "externalToInternalRow $extRow $_screenRows $_activeTranscriptRows"
             throw IllegalArgumentException(errorMessage)
         }
         if (extRow >= 0) {
@@ -358,7 +358,7 @@ class UnicodeTranscript {
                 if (_tmpLine == null || _tmpLine!!.size < columns + 1) {
                     _tmpLine = CharArray(columns + 1)
                 }
-                val length = x2 - x1;
+                val length = x2 - x1
                 System.arraycopy(_lines!![nrow], x1, _tmpLine, 0, length)
                 _tmpLine!![length] = 0.toChar()
                 return _tmpLine
@@ -447,7 +447,7 @@ class UnicodeTranscript {
 
     fun setChar(column: Int, row: Int, codePoint: Int, style: Int): Boolean {
         if (!setChar(column, row, codePoint)) {
-            return false;
+            return false
         }
         var nrow = externalToInternalRow(row)
         _color!![nrow]?.set(column, style)
@@ -460,17 +460,17 @@ class UnicodeTranscript {
         }
         var nrow =externalToInternalRow(row)
         var basicMode = -1
-        if (_lines!![row] == null) {
+        if (_lines!![nrow] == null) {
             if (isBasicChar(codePoint)) {
-                allocateBasicLine(row, _columns)
+                allocateBasicLine(nrow, _columns)
                 basicMode = 1
             } else {
-                allocateFullLine(row, _columns)
+                allocateFullLine(nrow, _columns)
                 basicMode = 0
             }
         }
-        if (_lines!![row] is CharArray) {
-            val line = _lines!![row] as CharArray
+        if (_lines!![nrow] is CharArray) {
+            val line = _lines!![nrow] as CharArray
             if (basicMode == -1) {
                 if (isBasicChar(codePoint)) {
                     basicMode = 1
@@ -482,9 +482,9 @@ class UnicodeTranscript {
                 line[column] = codePoint.toChar()
                 return true
             }
-            _lines!![row] = FullUnicodeLine(line)
+            _lines!![nrow] = FullUnicodeLine(line)
         }
-        val line = _lines!![row] as FullUnicodeLine?
+        val line = _lines!![nrow] as FullUnicodeLine?
         line?.setChar(column, codePoint)
         return true
     }

@@ -4,6 +4,7 @@ import org.json.JSONArray
 import org.json.JSONObject
 import java.lang.reflect.Field
 
+@Suppress("UNCHECKED_CAST")
 /**
  * Created by rarnu on 3/28/16.
  */
@@ -159,7 +160,7 @@ class JsonUtils<T> {
         return jobj
     }
 
-    private fun jsonToList(jarr: JSONArray, cType: Class<*>, genericType: Class<*>, obj: Any, node: JsonNode): Any {
+    private fun jsonToList(jarr: JSONArray, @Suppress("UNUSED_PARAMETER") cType: Class<*>, genericType: Class<*>, obj: Any, node: JsonNode): Any {
         for (i in 0..jarr.length() - 1) {
             if (node.subItemNode!!.fieldType == JsonNode.FieldType.ftValue) {
                 (obj as MutableList<Any>).add(jarr.get(i))
@@ -176,7 +177,7 @@ class JsonUtils<T> {
         return obj
     }
 
-    private fun jsonToMap(jobj: JSONObject, cType: Class<*>, genericType: Class<*>, obj: Any, node: JsonNode): Any {
+    private fun jsonToMap(jobj: JSONObject, @Suppress("UNUSED_PARAMETER") cType: Class<*>, genericType: Class<*>, obj: Any, node: JsonNode): Any {
         val iter = jobj.keys()
         var key: String
         while (iter.hasNext()) {
@@ -202,7 +203,7 @@ class JsonUtils<T> {
         return f
     }
 
-    private fun switchTypeDoO2J(type: JsonNode.FieldType, jobj: JSONObject, name: String, f: Field, o: Any, index: Int, node: JsonNode) = when (type) {
+    private fun switchTypeDoO2J(type: JsonNode.FieldType, jobj: JSONObject, name: String, f: Field, o: Any, @Suppress("UNUSED_PARAMETER") index: Int, node: JsonNode) = when (type) {
         JsonNode.FieldType.ftValue -> jobj.put(name, f.get(o))
         JsonNode.FieldType.ftObject -> jobj.put(name, objectToJson(f.get(o), JSONObject(), node))
         JsonNode.FieldType.ftList -> jobj.put(name, listToJsonArray(f.get(o), JSONArray(), node))
@@ -274,7 +275,7 @@ class JsonUtils<T> {
         }
     }
 
-    private fun jsonToObject(jobj: JSONObject, cType: Class<*>, obj: Any, node: JsonNode): Any {
+    private fun jsonToObject(jobj: JSONObject, @Suppress("UNUSED_PARAMETER") cType: Class<*>, obj: Any, node: JsonNode): Any {
         for (i in 0..node.childs!!.size - 1) {
             val f = getField(obj, node.childs!![i].fieldName)
             val type = node.childs!![i].fieldType

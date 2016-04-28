@@ -16,5 +16,5 @@ class MailBox : DNSRR() {
 
     fun getMailbox(): String? = _mailBox
 
-    override fun toString(): String = getRRName() + "\tmailbox = ${_mailBox}"
+    override fun toString(): String = getRRName() + "\tmailbox = $_mailBox"
 }

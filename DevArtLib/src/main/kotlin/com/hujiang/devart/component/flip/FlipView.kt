@@ -310,7 +310,7 @@ class FlipView: FrameLayout {
         _leftRect.right = width / 2
         _leftRect.bottom = height
         _rightRect.top = 0
-        _rightRect.left = getWidth() / 2
+        _rightRect.left = width / 2
         _rightRect.right = width
         _rightRect.bottom = height
     }
@@ -496,7 +496,7 @@ class FlipView: FrameLayout {
                 if (_isFlipping) {
                     val velocityTracker = _velocityTracker
                     velocityTracker?.computeCurrentVelocity(1000, _maximumVelocity.toFloat())
-                    var velocity = 0
+                    var velocity: Int
                     if (isFlippingVertically()) {
                         velocity = velocityTracker!!.getYVelocity(_activePointerId).toInt()
                     } else {
@@ -780,7 +780,7 @@ class FlipView: FrameLayout {
                 endPeak()
             }
         })
-        _peakAnim?.setDuration(PEAK_ANIM_DURATION.toLong())
+        _peakAnim?.duration = PEAK_ANIM_DURATION.toLong()
         _peakAnim?.repeatMode = ValueAnimator.REVERSE
         _peakAnim?.repeatCount = if (once) 1 else ValueAnimator.INFINITE
         _peakAnim?.start()

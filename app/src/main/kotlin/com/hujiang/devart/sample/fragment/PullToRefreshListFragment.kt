@@ -13,6 +13,7 @@ import com.hujiang.devart.sample.R
 import com.hujiang.devart.sample.adapter.StringAdapter
 import com.hujiang.devart.sample.loader.StringLoader
 import java.util.*
+import kotlin.concurrent.thread
 
 /**
  * Created by rarnu on 3/31/16.
@@ -79,16 +80,16 @@ class PullToRefreshListFragment: BaseFragment(), PullToRefreshBase.OnRefreshList
     }
 
     override fun onPullDownToRefresh(refreshView: PullToRefreshBase<ListView>?) {
-        Thread({
+        thread {
             Thread.sleep(1000)
             _hPull.sendEmptyMessage(0)
-        }).start()
+        }
     }
 
     override fun onPullUpToRefresh(refreshView: PullToRefreshBase<ListView>?) {
-        Thread({
+        thread {
             Thread.sleep(1000)
             _hPull.sendEmptyMessage(1)
-        }).start()
+        }
     }
 }

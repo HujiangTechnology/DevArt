@@ -20,5 +20,5 @@ class HostInfo : DNSRR() {
 
     fun getOSInfo(): String? = _os
 
-    override fun toString(): String = getRRName() + "\tOS = ${_os}, CPU = ${_cpu}"
+    override fun toString(): String = getRRName() + "\tOS = $_os, CPU = $_cpu"
 }

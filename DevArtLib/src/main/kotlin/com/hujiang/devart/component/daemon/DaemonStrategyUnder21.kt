@@ -7,11 +7,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.SystemClock
-import android.text.TextUtils
-import android.util.Log
 import java.io.File
-import java.io.FileOutputStream
-import java.io.InputStream
 import kotlin.concurrent.thread
 
 /**

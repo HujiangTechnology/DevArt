@@ -25,7 +25,7 @@ class DefaultAsyncRunner: AsyncRunner {
         ++_requestCount
         val t = Thread(code)
         t.isDaemon = true
-        t.name = "HTTPServer Request Processor (#${_requestCount})"
+        t.name = "HTTPServer Request Processor (#$_requestCount)"
         _running.add(code)
         t.start()
     }

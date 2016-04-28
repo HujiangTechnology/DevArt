@@ -11,6 +11,7 @@ import com.hujiang.devart.component.pulltorefresh.PullToRefreshBase
 import com.hujiang.devart.component.pulltorefresh.PullToRefreshScrollView
 import com.hujiang.devart.sample.MainActivity
 import com.hujiang.devart.sample.R
+import kotlin.concurrent.thread
 
 /**
  * Created by rarnu on 3/31/16.
@@ -61,16 +62,16 @@ class PullToRefreshScrollFragment: BaseFragment(), PullToRefreshBase.OnRefreshLi
     }
 
     override fun onPullDownToRefresh(refreshView: PullToRefreshBase<ScrollView>?) {
-        Thread({
+        thread {
             Thread.sleep(1000)
             _hPull.sendEmptyMessage(0)
-        }).start()
+        }
     }
 
     override fun onPullUpToRefresh(refreshView: PullToRefreshBase<ScrollView>?) {
-        Thread({
+        thread {
             Thread.sleep(1000)
             _hPull.sendEmptyMessage(1)
-        }).start()
+        }
     }
 }

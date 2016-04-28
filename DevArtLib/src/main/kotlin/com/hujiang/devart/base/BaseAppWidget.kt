@@ -96,14 +96,14 @@ abstract class BaseAppWidget: AppWidgetProvider() {
         views?.setOnClickPendingIntent(viewId, pi)
     }
 
-    fun setViewText(context: Context?, componentId: Int, text: String?) = views?.setTextViewText(componentId, text)
+    fun setViewText(@Suppress("UNUSED_PARAMETER") context: Context?, componentId: Int, text: String?) = views?.setTextViewText(componentId, text)
 
-    fun setViewImage(context: Context?, componentId: Int, bmp: Bitmap?) = views?.setImageViewBitmap(componentId, bmp)
+    fun setViewImage(@Suppress("UNUSED_PARAMETER") context: Context?, componentId: Int, bmp: Bitmap?) = views?.setImageViewBitmap(componentId, bmp)
 
-    fun setViewProgress(context: Context?, componentId: Int, max: Int, progress: Int, indeterminate: Boolean) = views?.setProgressBar(componentId, max, progress, indeterminate)
+    fun setViewProgress(@Suppress("UNUSED_PARAMETER") context: Context?, componentId: Int, max: Int, progress: Int, indeterminate: Boolean) = views?.setProgressBar(componentId, max, progress, indeterminate)
 
-    fun setViewVisibility(context: Context?, componentId: Int, visibility: Int) = views?.setViewVisibility(componentId, visibility)
+    fun setViewVisibility(@Suppress("UNUSED_PARAMETER") context: Context?, componentId: Int, visibility: Int) = views?.setViewVisibility(componentId, visibility)
 
-    fun setViewTextColor(context: Context?, componentId: Int, color: Int) = views?.setTextColor(componentId, color)
+    fun setViewTextColor(@Suppress("UNUSED_PARAMETER") context: Context?, componentId: Int, color: Int) = views?.setTextColor(componentId, color)
 
 }
