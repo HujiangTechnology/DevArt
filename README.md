@@ -6,7 +6,7 @@ DevArt is a develop framework for `KOTLIN`. It provides many utils and component
 ### Base Components
 
 | Base                      | Type                  |
-| :-----------------------: | :-------------------: |
+| :------------------------ | :-------------------- |
 | BaseActivity              | Activity              |
 | BaseAdapter               | Generic Adapter       |
 | BaseAppWidget             | DesktopWidget         |
@@ -36,7 +36,7 @@ DevArt is a develop framework for `KOTLIN`. It provides many utils and component
 ### Base Utils
 
 | Util               | Function                             |
-| :----------------: | :----------------------------------: |
+| :----------------- | :----------------------------------- |
 | AccountUtils       | emails or accounts bind on device    |
 | AlarmUtils         | alarm operations                     |
 | ApkUtils           | get APK info                         |
@@ -69,7 +69,7 @@ DevArt is a develop framework for `KOTLIN`. It provides many utils and component
 ### Visible Components
 
 | Component     | Description                                  |
-| :-----------: | :------------------------------------------: |
+| :------------ | :------------------------------------------- |
 | ArcMenu       | popup menu like PATH                         |
 | Badger        | show badge icon on views                     |
 | Calendar      | show calendar with customized events         |
@@ -95,7 +95,7 @@ DevArt is a develop framework for `KOTLIN`. It provides many utils and component
 ### Invisible Components
 
 | Component | Description                                         |
-| :-------: | :-------------------------------------------------: |
+| :-------- | :-------------------------------------------------- |
 | Cache     | weak cache for data, files and images               |
 | Daemon    | daemon service for un-killable                      |
 | Dns       | DNS lookup and operations                           |
