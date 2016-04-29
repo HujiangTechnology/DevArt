@@ -37,18 +37,19 @@ class DevServer(port: Int) : HTTPServer(port) {
                 4 -> ret = if (n2 == 0) "error" else "${n1 * 1.0f / n2}"
             }
             return loadData(ret)
+        } else if (uri == "/intro") {
+            return loadFile("devart.html")
         } else if (uri.startsWith("/json")) {
             val retStr = "{\"result\": \"ok\"}"
             return loadData(retStr)
-        } else if (uri == "/jquery.js") {
-            return loadFile("jquery.js")
+        } else {
+            var localFile = uri.substring(1)
+            return loadFile(localFile)
         }
-        val r = Response(if (served) Response.Status.OK else Response.Status.BAD_REQUEST, MIME_PLAINTEXT, null, 0L)
-        return r
     }
 
     fun loadFile(fileName: String?): Response? {
-        val indexText = FileUtils.readAssetFile(DevArtApplication.instance()!!.baseContext, "server/${fileName}")
+        val indexText = FileUtils.readAssetFile(DevArtApplication.instance()!!.baseContext, fileName!!)
         val data = ByteArrayInputStream(indexText?.toByteArray())
         return Response(Response.Status.OK, MIME_HTML, data, indexText!!.length.toLong())
     }

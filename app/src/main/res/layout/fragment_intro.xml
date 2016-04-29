@@ -4,6 +4,11 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
+    <TextView
+            android:id="@+id/tvHint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dip"/>
     <WebView
             android:id="@+id/mdv"
             android:layout_width="match_parent"
