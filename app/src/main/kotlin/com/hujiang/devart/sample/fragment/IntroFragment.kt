@@ -38,7 +38,7 @@ class IntroFragment: BaseFragment() {
         settings?.cacheMode = WebSettings.LOAD_DEFAULT
         settings?.domStorageEnabled = true
         settings?.loadsImagesAutomatically = true
-        _mdv?.loadUrl("http://127.0.0.1:8899/intro")
+        _mdv?.loadUrl("https://github.com/HujiangTechnology/DevArt")
     }
 
     override fun initEvents() { }
