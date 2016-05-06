@@ -11,7 +11,7 @@ import java.util.*
  */
 object AlarmUtils {
 
-    fun startAlarm(context: Context, type: Int, index: Int, hour: Int, minute: Int, action: String) {
+    fun startAlarmOnce(context: Context, type: Int, index: Int, hour: Int, minute: Int, action: String) {
         val calendar = Calendar.getInstance()
         calendar.timeInMillis = System.currentTimeMillis()
         calendar.set(Calendar.HOUR_OF_DAY, hour)
@@ -34,7 +34,17 @@ object AlarmUtils {
         am.set(type, calendar.timeInMillis, pendingIntent)
     }
 
-    fun startAlarm(context: Context, type: Int, index: Int, interval: Long, action: String) {
+    fun startAlarmOnce(context: Context, type: Int, index: Int, interval: Long, action: String) {
+        val c = Calendar.getInstance()
+        c.add(Calendar.MILLISECOND, interval.toInt())
+        val intent = Intent(action)
+        intent.putExtra("index", index)
+        val pendingIntent = PendingIntent.getBroadcast(context, index, intent, 0)
+        val am = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        am.setExact(type, c.timeInMillis, pendingIntent)
+    }
+
+    fun startAlarmRepeat(context: Context, type: Int, index: Int, interval: Long, action: String) {
         val intent = Intent(action)
         intent.putExtra("index", index)
         val pendingIntent = PendingIntent.getBroadcast(context, index, intent, 0)

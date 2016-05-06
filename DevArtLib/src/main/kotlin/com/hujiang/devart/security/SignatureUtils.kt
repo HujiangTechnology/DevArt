@@ -45,9 +45,9 @@ object SignatureUtils {
         for (j in 0 .. n-1) {
             val v = sig[j]
             var d = (v.toInt() shr 4) and 0xf
-            text[j * 2] = (if (d >= 10) ('a' + d - 10) else ('0' + d)).toChar()
+            text[j * 2] = (if (d >= 10) ('a'.toByte() + d - 10) else ('0'.toByte() + d)).toChar()
             d = v.toInt() and 0xf
-            text[j * 2 + 1] = (if (d >= 10) ('a' + d - 10) else ('0' + d)).toChar()
+            text[j * 2 + 1] = (if (d >= 10) ('a'.toByte() + d - 10) else ('0'.toByte() + d)).toChar()
         }
         return String(text)
     }
