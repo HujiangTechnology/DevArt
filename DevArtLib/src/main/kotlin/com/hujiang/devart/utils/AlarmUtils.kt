@@ -4,6 +4,7 @@ import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import java.util.*
 
 /**
@@ -41,7 +42,11 @@ object AlarmUtils {
         intent.putExtra("index", index)
         val pendingIntent = PendingIntent.getBroadcast(context, index, intent, 0)
         val am = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        am.setExact(type, c.timeInMillis, pendingIntent)
+        if (Build.VERSION.SDK_INT >= 19) {
+            am.setExact(type, c.timeInMillis, pendingIntent)
+        } else {
+            am.set(type, c.timeInMillis, pendingIntent)
+        }
     }
 
     fun startAlarmRepeat(context: Context, type: Int, index: Int, interval: Long, action: String) {

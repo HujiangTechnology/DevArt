@@ -1,5 +1,6 @@
 package com.hujiang.devart.utils
 
+import android.accounts.Account
 import android.accounts.AccountManager
 import android.content.Context
 import java.util.regex.Pattern
@@ -8,6 +9,11 @@ import java.util.regex.Pattern
  * Created by rarnu on 3/29/16.
  */
 object AccountUtils {
+
+    fun getAllAccounts(context: Context): List<Account?>? {
+        val am = AccountManager.get(context)
+        return am.accounts.asList()
+    }
 
     fun getBindedEmailAddress(context: Context): String = try {
         var ret = ""
