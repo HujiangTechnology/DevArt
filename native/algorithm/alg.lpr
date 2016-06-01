@@ -13,6 +13,7 @@ uses
   Classes, sysutils, sec_md5, sec_sha1, sec_lmd, sec_elf, sec_des, sec_base64,
   sec_rsa, sec_dsa, sec_rdl, sec_rsassa;
 
+{$IFNDEF DEBUG}
 exports
 // for iOS
   _md5EncryptString,
@@ -121,6 +122,7 @@ exports
   Java_com_hujiang_devart_security_AlgorithmUtils_rsassaSignFile,
   Java_com_hujiang_devart_security_AlgorithmUtils_rsassaVerifyString,
   Java_com_hujiang_devart_security_AlgorithmUtils_rsassaVerifyFile;
+{$ENDIF}
 
 {$IFDEF DEBUG}
 var
