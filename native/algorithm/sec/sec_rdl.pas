@@ -5,7 +5,7 @@ unit sec_rdl;
 interface
 
 uses
-  Classes, SysUtils, LbClass, LbCipher, jni2, jni_utils;
+  Classes, SysUtils, lockbox, jni2, jni_utils;
 
 // keySize: (ks128 = 0, ks192 = 1, ks256 = 2);
 // cipherMode: (cmECB = 0, cmCBC = 1);

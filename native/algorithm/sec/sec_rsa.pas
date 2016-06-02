@@ -5,7 +5,7 @@ unit sec_rsa;
 interface
 
 uses
-  Classes, SysUtils, LbRSA, LbAsym, jni2, jni_utils;
+  Classes, SysUtils, lockbox, jni2, jni_utils;
 
 // keysize:  (aks128 = 0, aks256 = 1, aks512 = 2, aks768 = 3, aks1024 = 4)
 // return Integer: succ = 0, other = error code

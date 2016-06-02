@@ -5,7 +5,7 @@ unit sec_dsa;
 interface
 
 uses
-  Classes, SysUtils, jni2, jni_utils, LbDSA, LbCipher, LbAsym, LbUtils, math;
+  Classes, SysUtils, jni2, jni_utils, lockbox, math;
 
 type
 

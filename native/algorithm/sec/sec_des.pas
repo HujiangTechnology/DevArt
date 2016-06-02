@@ -5,7 +5,7 @@ unit sec_des;
 interface
 
 uses
-  Classes, SysUtils, LbClass, LbCipher, jni2, jni_utils;
+  Classes, SysUtils, lockbox, jni2, jni_utils;
 
 function _desEncryptString(str: PChar; key: PChar): PChar; stdcall;
 function _desDecryptString(str: PChar; key: PChar): PChar; stdcall;

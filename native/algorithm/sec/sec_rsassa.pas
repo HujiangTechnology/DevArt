@@ -5,7 +5,7 @@ unit sec_rsassa;
 interface
 
 uses
-  Classes, SysUtils, LbRSA, LbCipher, LbAsym, LbUtils, math, jni_utils, jni2;
+  Classes, SysUtils, lockbox, math, jni_utils, jni2;
 
 type
 

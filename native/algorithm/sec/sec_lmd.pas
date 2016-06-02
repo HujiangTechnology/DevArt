@@ -5,7 +5,7 @@ unit sec_lmd;
 interface
 
 uses
-  Classes, SysUtils, jni2, jni_utils, lbcipher, lbutils, filestream_utils;
+  Classes, SysUtils, jni2, jni_utils, lockbox, filestream_utils;
 
 function _lmdEncryptString(str: PChar): PChar; stdcall;
 function _lmdEncryptFile(filePath: PChar): PChar; stdcall;

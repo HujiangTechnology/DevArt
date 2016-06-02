@@ -5,7 +5,7 @@ unit sec_sha1;
 interface
 
 uses
-  Classes, SysUtils, jni2, jni_utils, lbcipher, lbutils, filestream_utils;
+  Classes, SysUtils, jni2, jni_utils, lockbox, filestream_utils;
 
 function _sha1EncryptString(str: PChar): PChar; stdcall;
 function _sha1EncryptFile(filePath: PChar): PChar; stdcall;

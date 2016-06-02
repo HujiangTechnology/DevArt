@@ -5,7 +5,7 @@ unit sec_elf;
 interface
 
 uses
-  Classes, SysUtils, jni2, jni_utils, lbcipher, lbutils;
+  Classes, SysUtils, jni2, jni_utils, lockbox;
 
 function _elfEncryptString(str: PChar): PChar; stdcall;
 function elfEncryptString(str: PChar): PChar; stdcall;

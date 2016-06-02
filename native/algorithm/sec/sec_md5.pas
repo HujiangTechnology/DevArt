@@ -5,7 +5,7 @@ unit sec_md5;
 interface
 
 uses
-  Classes, SysUtils, jni2, jni_utils, lbcipher, lbutils, filestream_utils;
+  Classes, SysUtils, jni2, jni_utils, lockbox, filestream_utils;
 
 function _md5EncryptString(str: PChar): PChar; stdcall;
 function _md5EncryptFile(filePath: PChar): PChar; stdcall;
