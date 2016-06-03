@@ -38,7 +38,7 @@ implementation
 
 procedure LOGE(Text: PChar);
 begin
-  __android_log_write(ANDROID_LOG_ERROR, 'DevArt Daemon', Text);
+  __android_log_write(ANDROID_LOG_ERROR, 'DevArt Copress', Text);
 end;
 
 end.

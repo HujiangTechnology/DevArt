@@ -7,7 +7,7 @@ unit unt_zip;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, strutils, zipper, unt_error;
+  Classes, SysUtils, FileUtil, strutils, zipper, unt_error, android;
 
 function DoZip(filePath: string; srcDir: string): integer;
 function DoUnzip(filePath: string; destDir: string): integer;
@@ -20,6 +20,7 @@ var
   zentries: TZipFileEntries;
   i: integer;
   fileList: TStringList;
+  relaPath: string;
 begin
   Result := 0;
   try
@@ -34,10 +35,14 @@ begin
             srcDir += '/';
           end;
           fileList := TStringList.Create;
+
           try
             fileList := FindAllFiles(srcDir);
+            LOGE(PChar('fileList => ' + fileList.Text));
             for i := 0 to fileList.Count - 1 do begin
-              zentries.AddFileEntry(fileList[i], CreateRelativePath(fileList[i], srcDir));
+              relaPath:= CreateRelativePath(fileList[i], srcDir);
+              LOGE(PChar('relapath => ' + relaPath));
+              zentries.AddFileEntry(fileList[i], relaPath);
             end;
           finally
             fileList.Free;
