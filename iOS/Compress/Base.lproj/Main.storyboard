@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Compress" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Wip-dU-9uP"/>
+                        <viewControllerLayoutGuide type="bottom" id="Nlg-Qr-FLh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tYv-zS-Nmm">
+                                <rect key="frame" x="20" y="20" width="280" height="30"/>
+                                <state key="normal" title="Compress"/>
+                                <connections>
+                                    <action selector="btnCompressClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="f9l-hT-0Xt"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tsc-2W-2z0">
+                                <rect key="frame" x="20" y="58" width="280" height="30"/>
+                                <state key="normal" title="Uncompress"/>
+                                <connections>
+                                    <action selector="btnUncompressClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="P8x-zg-iwS"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4pI-eh-V4d">
+                                <rect key="frame" x="20" y="96" width="280" height="30"/>
+                                <state key="normal" title="Get Help"/>
+                                <connections>
+                                    <action selector="btnGetHelp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qSJ-Yc-9Fi"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="btnCompress" destination="tYv-zS-Nmm" id="Z0x-7K-zJL"/>
+                        <outlet property="btnGetHelp" destination="4pI-eh-V4d" id="8ao-76-Uza"/>
+                        <outlet property="btnUncompress" destination="tsc-2W-2z0" id="8BC-Ha-ari"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="162" y="406"/>
+        </scene>
+    </scenes>
+</document>

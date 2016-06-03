@@ -1,18 +1,9 @@
-{.$DEFINE DEBUG}
-
-{$IFDEF DEBUG}
-program hjz;
-{$ELSE}
 library hjz;
-{$ENDIF}
 
 {$mode objfpc}{$H+}
 
 uses
-  {$IFNDEF WINDOWS}
   cthreads,
-  {$ENDIF}
-  jni2, jni_utils,
   Classes, sysutils, strutils, unt_zip, unt_error, unt_tar,
   unt_gz, unt_bz2, unt_hjz, unt_targz, unt_tarbz;
 
@@ -49,7 +40,7 @@ end;
 //        -1: unsupported file format
 //        -2: uncompress error
 //        >=0: uncompressed file count
-function _uncompress(filePath: PChar; dest: PChar): Integer;
+function uncompress(filePath: PChar; dest: PChar): Integer; cdecl;
 var
   strPath: string;
   strDest: string;
@@ -79,7 +70,7 @@ begin
   end;
 end;
 
-function _compress(filePath: PChar; src: PChar): Integer;
+function compress(filePath: PChar; src: PChar): Integer; cdecl;
 var
   strPath: string;
   strSrc: string;
@@ -108,73 +99,18 @@ begin
   end;
 end;
 
-function uncompress(filePath: PChar; dest: PChar): Integer; cdecl;
-begin
-  Result := _uncompress(filePath, dest);
-end;
-
-function compress(filePath: PChar; src: PChar): Integer; cdecl;
-begin
-  Result := _compress(filePath, src);
-end;
-
-// Java_com_hujiang_devart_utils_ZipUtils
-
-function Java_com_hujiang_devart_utils_ZipUtils_uncompress(env: PJNIEnv; obj:jobject; filePath: jstring; dest: jstring): jint; stdcall;
-var
-  strFilePath: string;
-  strDest: string;
-begin
-  strFilePath:= jstringToString(env, filePath);
-  strDest:= jstringToString(env, dest);
-  Result := _uncompress(PChar(strFilePath), PChar(strDest));
-end;
-
-function Java_com_hujiang_devart_utils_ZipUtils_compress(env: PJNIEnv; obj: jobject; filePath: jstring; src: jstring): jint; stdcall;
-var
-  strFilePath: string;
-  strSrc: string;
-begin
-  strFilePath:= jstringToString(env, filePath);
-  strSrc:= jstringToString(env, src);
-  Result := _compress(PChar(strFilePath), PChar(strSrc));
-end;
-
-function _getLastError(): Integer;
+function getLastError(): Integer; cdecl;
 begin
   Result := ERROR_CODE;
 end;
 
-function getLastError(): Integer; cdecl;
-begin
-  Result := _getLastError();
-end;
-
-function Java_com_hujiang_devart_utils_ZipUtils_getLastError(env: PJNIEnv; obj: jobject): jint; stdcall;
-begin
-  Result := _getLastError();
-end;
-
-function _getLastErrorMessage(): PChar; 
+function getLastErrorMessage(): PChar; cdecl;
 begin
   Result := StrAlloc(Length(ERROR_MESSAGE));
   strcopy(Result, Pchar(ERROR_MESSAGE));
 end;
 
-function getLastErrorMessage(): PChar; cdecl;
-begin
-  Result := _getLastErrorMessage();
-end;
-
-function Java_com_hujiang_devart_utils_ZipUtils_getLastErrorMessage(env: PJNIEnv; obj: jobject): jstring; stdcall;
-var
-  str: string;
-begin
-  str := string(_getLastErrorMessage());
-  Result := stringToJString(env, str);
-end;
-
-function _getHelp(): PChar; 
+function getHelp(): PChar; cdecl;
 var
   str: string;
 begin
@@ -189,65 +125,14 @@ begin
   strcopy(Result, PChar(str));
 end;
 
-function getHelp(): PChar; cdecl;
-begin
-  Result := _getHelp();
-end;
-
-function Java_com_hujiang_devart_utils_ZipUtils_getHelp(env: PJNIEnv; obj: jobject): jstring; stdcall;
-var
-  ret: string;
-begin
-  ret := string(_getHelp());
-  Result := stringToJString(env, ret);
-end;
-
 exports
   uncompress,
   compress,
-  Java_com_hujiang_devart_utils_ZipUtils_uncompress,
-  Java_com_hujiang_devart_utils_ZipUtils_compress,
   getLastError,
-  Java_com_hujiang_devart_utils_ZipUtils_getLastError,
   getLastErrorMessage,
-  Java_com_hujiang_devart_utils_ZipUtils_getLastErrorMessage,
-  getHelp,
-  Java_com_hujiang_devart_utils_ZipUtils_getHelp;
+  getHelp;
 
-
-{$IFDEF DEBUG}
-var
-  pCount: Integer;
-  funType: string;
-  ret: Integer;
-  p1: string;
-  p2: string;
-{$ENDIF}
 begin
-  {$IFDEF DEBUG}
-  pCount:= ParamCount;
-  if (pCount = 1) and (ParamStr(1) = '-h') then begin
-    WriteLn(string(_getHelp()));
-    Exit;
-  end else if (pCount <> 3) then begin
-    WriteLn(string(_getHelp()));
-    Exit;
-  end;
-  funType:= ParamStr(1);
-  p1 := ParamStr(2);
-  p2 := ParamStr(3);
-  if (funType = '-c') then begin
-    ret := _compress(PChar(p1), PChar(p2));
-    WriteLn(Format('Compress %s to %s => %d', [p2, p1, ret]));
-    WriteLn(Format('Error Code => %d', [_getLastError()]));
-    WriteLn(Format('Error Message => %s', [string(_getLastErrorMessage())]));
-  end else if (funType = '-d') then begin
-    ret := _uncompress(PChar(p1), PChar(p2));
-    WriteLn(Format('Decompress %s to %s => %d', [p1, p2, ret]));
-    WriteLn(Format('Error Code => %d', [_getLastError()]));
-    WriteLn(Format('Error Message => %s', [string(_getLastErrorMessage())]));
-  end;
-  {$ENDIF}
 
 end.
 
