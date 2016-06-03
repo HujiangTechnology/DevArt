@@ -5,11 +5,10 @@ unit unt_tar;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, LibTar, unt_error;
+  Classes, SysUtils, unt_files, LibTar, unt_error;
 
 function DoTar(filePath: string; srcDir: string): Integer;
 function DoUntar(filePath: string; destDir: string): Integer;
-
 
 implementation
 
@@ -25,7 +24,7 @@ begin
     tar := TTarWriter.Create(filePath);
     try
       try
-        fileList := FindAllFiles(srcDir);
+        FindAllFiles(srcDir, fileList);
         for i := 0 to fileList.Count - 1 do begin
           tar.AddFile(fileList[i], CreateRelativePath(fileList[i], srcDir));
         end;

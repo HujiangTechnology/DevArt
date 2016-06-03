@@ -14,7 +14,7 @@ uses
   {$ENDIF}
   jni2, jni_utils,
   Classes, sysutils, strutils, unt_zip, unt_error, unt_tar,
-  unt_gz, unt_bz2, unt_hjz, unt_targz, unt_tarbz;
+  unt_gz, unt_bz2, unt_hjz, unt_targz, unt_tarbz, unt_files;
 
 const
   ZIP_FORMAT: array[0..10] of string = (

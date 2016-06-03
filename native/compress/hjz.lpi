@@ -25,15 +25,10 @@
     <RunParams>
       <local>
         <FormatVersion Value="1"/>
-        <CommandLineParams Value="-d /home/rarnu/Desktop/my.hjz /home/rarnu/Desktop/"/>
+        <CommandLineParams Value="-c /home/rarnu/Desktop/my.zip /home/rarnu/Desktop/test/"/>
       </local>
     </RunParams>
-    <RequiredPackages Count="1">
-      <Item1>
-        <PackageName Value="bs_Utils"/>
-      </Item1>
-    </RequiredPackages>
-    <Units Count="29">
+    <Units Count="30">
       <Unit0>
         <Filename Value="hjz.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -150,6 +145,10 @@
         <Filename Value="../jni/jni_utils.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit28>
+      <Unit29>
+        <Filename Value="unt_files.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit29>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -165,14 +164,7 @@
     </SearchPaths>
     <CodeGeneration>
       <RelocatableUnit Value="True"/>
-      <TargetCPU Value="x86_64"/>
-      <TargetOS Value="win64"/>
     </CodeGeneration>
-    <Linking>
-      <Options>
-        <ExecutableType Value="Library"/>
-      </Options>
-    </Linking>
   </CompilerOptions>
   <Debugging>
     <Exceptions Count="3">
