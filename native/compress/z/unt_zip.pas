@@ -55,6 +55,10 @@ begin
         Result := zentries.Count;
         ERROR_CODE := ERROR_NONE;
         ERROR_MESSAGE := ERRMSG_NONE;
+        if (Result = 0) then begin
+          ERROR_CODE:= ERROR_COMPRESS;
+          ERROR_MESSAGE:= ERRMSG_COMPRESS;
+        end;
       end;
     except
       Result := -2;
@@ -86,6 +90,10 @@ begin
       end;
       ERROR_CODE := ERROR_NONE;
       ERROR_MESSAGE := ERRMSG_NONE;
+      if (Result = 0) then begin
+        ERROR_CODE:= ERROR_UNCOMPRESS;
+        ERROR_MESSAGE:= ERRMSG_UNCOMPRESS;
+      end;
     except
       Result := -2;
       ERROR_CODE := ERROR_UNCOMPRESS;
