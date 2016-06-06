@@ -27,8 +27,26 @@ class ViewController: UIViewController {
         return paths[0]
     }
     
+    private func clean() {
+        let path = getDocumentPath()
+        let testPath = "\(path)/test/"
+        let zipPath = "\(path)/test.zip"
+        let mgr = NSFileManager.defaultManager()
+        do {
+            try mgr.removeItemAtPath(testPath)
+        } catch {
+            
+        }
+        do {
+            try mgr.removeItemAtPath(zipPath)
+        } catch {
+            
+        }
+    }
+    
 
     @IBAction func btnCompressClick(sender: AnyObject?) {
+        clean()
         // base files
         let path = getDocumentPath()
         let testPath = "\(path)/test/"
@@ -45,8 +63,6 @@ class ViewController: UIViewController {
         
         let mgr = NSFileManager.defaultManager()
         do {
-            try mgr.removeItemAtPath(testPath)
-            try mgr.removeItemAtPath(zipPath)
             try mgr.createDirectoryAtPath(testPath, withIntermediateDirectories: true, attributes: nil)
             mgr.createFileAtPath(fileA, contents: nil, attributes: nil)
             mgr.createFileAtPath(fileB, contents: nil, attributes: nil)
