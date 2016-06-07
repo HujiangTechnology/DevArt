@@ -31,6 +31,7 @@ class ViewController: UIViewController {
         let path = getDocumentPath()
         let testPath = "\(path)/test/"
         let zipPath = "\(path)/test.zip"
+        let unzipPath = "\(path)/unzip"
         let mgr = NSFileManager.defaultManager()
         do {
             try mgr.removeItemAtPath(testPath)
@@ -42,9 +43,13 @@ class ViewController: UIViewController {
         } catch {
             
         }
+        do {
+            try mgr.removeItemAtPath(unzipPath)
+        } catch {
+            
+        }
     }
     
-
     @IBAction func btnCompressClick(sender: AnyObject?) {
         clean()
         // base files
