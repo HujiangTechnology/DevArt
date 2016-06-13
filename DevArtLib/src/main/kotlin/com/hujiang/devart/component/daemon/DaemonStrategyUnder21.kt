@@ -24,7 +24,11 @@ open class DaemonStrategyUnder21 : DaemonStrategyBase() {
         initAlarm(context, configs?.DAEMON_ASSISTANT_CONFIG?.serviceName)
         thread(priority = Thread.MAX_PRIORITY) {
             val binaryFile = File(context?.getDir(BINARY_DEST_DIR_NAME, Context.MODE_PRIVATE), BINARY_FILE_NAME)
-            NativeDaemon20(context).doDaemon(context?.packageName, configs?.DAEMON_ASSISTANT_CONFIG?.serviceName, binaryFile.absolutePath)
+            try {
+                NativeDaemon20(context).doDaemon(context?.packageName, configs?.DAEMON_ASSISTANT_CONFIG?.serviceName, binaryFile.absolutePath)
+            } catch(t: Throwable) {
+
+            }
         }
         configs?.LISTENER?.onPersistentStart(context)
     }

@@ -28,21 +28,25 @@ interface IDaemonStrategy {
             when (sdk) {
                 23 -> _daemonStrategy = DaemonStrategy23()
                 22 -> _daemonStrategy = DaemonStrategy22()
-                21 -> {
-                    if (Build.MODEL.toLowerCase() == "mx4 pro") {
-                        _daemonStrategy = DaemonStrategyUnder21()
-                    } else {
-                        _daemonStrategy = DaemonStrategy21()
-                    }
-                }
+                21 -> _daemonStrategy = DaemonStrategy21()
+//                {
+//                    if (Build.MODEL.toLowerCase() == "mx4 pro") {
+//                        _daemonStrategy = DaemonStrategyUnder21()
+//                    } else {
+//                        _daemonStrategy = DaemonStrategy21()
+//                    }
+//                }
                 else -> {
                     if (Build.MODEL != null && Build.MODEL.toLowerCase().startsWith("mi")) {
                         _daemonStrategy = DaemonStrategyXiaomi()
-                    } else if (Build.MODEL != null && Build.MODEL.toLowerCase().startsWith("a31")) {
-                        _daemonStrategy = DaemonStrategy21()
                     } else {
-                        _daemonStrategy = DaemonStrategyUnder21()
+                        _daemonStrategy = DaemonStrategy21()
                     }
+//                    else if (Build.MODEL != null && Build.MODEL.toLowerCase().startsWith("a31")) {
+//                        _daemonStrategy = DaemonStrategy21()
+//                    } else {
+//                        _daemonStrategy = DaemonStrategyUnder21()
+//                    }
                 }
             }
             return _daemonStrategy
