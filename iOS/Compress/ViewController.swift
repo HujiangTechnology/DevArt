@@ -8,14 +8,23 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet var btnCompress: UIButton?
     @IBOutlet var btnUncompress: UIButton?
+    @IBOutlet var btnClean: UIButton?
     @IBOutlet var btnGetHelp: UIButton?
+    @IBOutlet var table: UITableView?
 
+    var listFiles = NSMutableArray()
+    var basePath = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        basePath = getDocumentPath()
+        table?.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: "Cell")
+        table?.tableFooterView = UIView(frame: CGRectZero)
+        getFilesInFolder(basePath)
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,10 +37,9 @@ class ViewController: UIViewController {
     }
     
     private func clean() {
-        let path = getDocumentPath()
-        let testPath = "\(path)/test/"
-        let zipPath = "\(path)/test.zip"
-        let unzipPath = "\(path)/unzip"
+        let testPath = "\(basePath)/test/"
+        let zipPath = "\(basePath)/test.zip"
+        let unzipPath = "\(basePath)/unzip"
         let mgr = NSFileManager.defaultManager()
         do {
             try mgr.removeItemAtPath(testPath)
@@ -50,12 +58,49 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func btnCompressClick(sender: AnyObject?) {
+    private func getFilesInFolder(folder: String) {
+        let mgr = NSFileManager.defaultManager()
+        let files = mgr.subpathsAtPath(folder)
+        listFiles.removeAllObjects()
+        if (files != nil) {
+            for s in files! {
+                listFiles.addObject(s)
+            }
+        }
+        table?.reloadData()
+    }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return listFiles.count
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let path = "\(basePath)/\(listFiles.objectAtIndex(indexPath.row) as! String)"
+        let info = getPathInfo(path)
+        if (info != "") {
+            showAlertMessage(info)
+        }
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = table!.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
+        cell.textLabel?.text = listFiles.objectAtIndex(indexPath.row) as? String
+        return cell
+    }
+    
+    @IBAction func btnCleanClick(sender: AnyObject?) {
         clean()
+        getFilesInFolder(basePath)
+    }
+    
+    @IBAction func btnCompressClick(sender: AnyObject?) {
         // base files
-        let path = getDocumentPath()
-        let testPath = "\(path)/test/"
-        let zipPath = "\(path)/test.zip"
+        let testPath = "\(basePath)/test/"
+        let zipPath = "\(basePath)/test.zip"
         
         let fileA = "\(testPath)a"
         let fileB = "\(testPath)b"
@@ -78,31 +123,60 @@ class ViewController: UIViewController {
             mgr.createFileAtPath(fileE, contents: nil, attributes: nil)
             mgr.createFileAtPath(fileF, contents: nil, attributes: nil)
             let ret = compress(NSString(string: zipPath).UTF8String, NSString(string:testPath).UTF8String)
-            print("compressed: \(ret)")
+            showAlertMessage("Compressed: \(ret)")
         } catch (let e) {
-            print("error: \(e)")
+            showAlertMessage("Compress Error: \(e)")
         }
+        getFilesInFolder(basePath)
     }
     
     @IBAction func btnUncompressClick(sender: AnyObject?) {
-        let path = getDocumentPath()
-        let unzipPath = "\(path)/unzip"
-        let zipPath = "\(path)/test.zip"
+        let unzipPath = "\(basePath)/unzip"
+        let zipPath = "\(basePath)/test.zip"
         let mgr = NSFileManager.defaultManager()
         
         do {
             try mgr.createDirectoryAtPath(unzipPath, withIntermediateDirectories: true, attributes: nil)
             let ret = uncompress(NSString(string: zipPath).UTF8String, NSString(string: unzipPath).UTF8String)
-            print("uncompressed: \(ret)")
+            showAlertMessage("Uncompressed: \(ret)")
         } catch (let e) {
-            print("error: \(e)")
+            showAlertMessage("Uncompress Error: \(e)")
         }
+        getFilesInFolder(basePath)
     }
     
     @IBAction func btnGetHelp(sender: AnyObject?) {
         let help = getHelp()
         let helpStr = NSString(UTF8String: help)
-        print("helpinfo: \n\(helpStr)")
+        showAlertMessage("\(helpStr)")
+    }
+    
+    private func showAlertMessage(msg: String) {
+        let alert = UIAlertController(title: "Hint", message: msg, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: false, completion: nil)
+    }
+    
+    private func getPathInfo(path: String) -> String {
+        let mgr = NSFileManager.defaultManager()
+        var isDir: ObjCBool = false
+        let exist = mgr.fileExistsAtPath(path, isDirectory: &isDir)
+        var fileSize: Int64 = 0
+        var ret = ""
+        if (exist) {
+            do {
+                var attrs: [String: AnyObject]?
+                try attrs = mgr.attributesOfItemAtPath(path)
+                fileSize = (attrs![NSFileSize] as! NSNumber).longLongValue
+                ret = "Path: \(path)\nIsDir: \(isDir ? "TRUE" : "FALSE")\nSize: \(fileSize)"
+            } catch(let e) {
+                showAlertMessage("GetInfo Error: \(e)")
+            }
+        } else {
+            ret = "Path: \(path)\nNot Exist"
+        }
+        return ret
+        
     }
 }
 
