@@ -19,16 +19,11 @@ type
     procedure evtGetSignatre(Sender: TObject; var Sig: TRSASignatureBlock);
   end;
 
-function _rsassaGenerateKeys(keySize: Integer; pubPass: PChar; privPass: PChar; pubSavePath: PChar; privSavePath: PChar): Integer; stdcall;
-function _rsassaSignString(keySize: Integer; hashMethod: Integer; privPass: PChar; privPath: PChar; str: PChar): PChar; stdcall;
-function _rsassaSignFile(keySize: Integer; hashMethod: Integer; privPass: PChar; privPath: PChar; filePath: PChar): PChar; stdcall;
-function _rsassaVerifyString(keySize: Integer; hashMethod: Integer; pubPass: PChar; pubPath: PChar; sig: PChar; str: PChar): Integer; stdcall;
-function _rsassaVerifyFile(keySize: Integer; hashMethod: Integer; pubPass: PChar; pubPath: PChar; sig: PChar; filePath: PChar): Integer; stdcall;
-function rsassaGenerateKeys(keySize: Integer; pubPass: PChar; privPass: PChar; pubSavePath: PChar; privSavePath: PChar): Integer; stdcall;
-function rsassaSignString(keySize: Integer; hashMethod: Integer; privPass: PChar; privPath: PChar; str: PChar): PChar; stdcall;
-function rsassaSignFile(keySize: Integer; hashMethod: Integer; privPass: PChar; privPath: PChar; filePath: PChar): PChar; stdcall;
-function rsassaVerifyString(keySize: Integer; hashMethod: Integer; pubPass: PChar; pubPath: PChar; sig: PChar; str: PChar): Integer; stdcall;
-function rsassaVerifyFile(keySize: Integer; hashMethod: Integer; pubPass: PChar; pubPath: PChar; sig: PChar; filePath: PChar): Integer; stdcall;
+function rsassaGenerateKeys(keySize: Integer; pubPass: PChar; privPass: PChar; pubSavePath: PChar; privSavePath: PChar): Integer; cdecl;
+function rsassaSignString(keySize: Integer; hashMethod: Integer; privPass: PChar; privPath: PChar; str: PChar): PChar; cdecl;
+function rsassaSignFile(keySize: Integer; hashMethod: Integer; privPass: PChar; privPath: PChar; filePath: PChar): PChar; cdecl;
+function rsassaVerifyString(keySize: Integer; hashMethod: Integer; pubPass: PChar; pubPath: PChar; sig: PChar; str: PChar): Integer; cdecl;
+function rsassaVerifyFile(keySize: Integer; hashMethod: Integer; pubPass: PChar; pubPath: PChar; sig: PChar; filePath: PChar): Integer; cdecl;
 function Java_com_hujiang_devart_security_AlgorithmUtils_rsassaGenerateKeys(env: PJNIEnv; obj: jobject; keySize: jint; pubPass: jstring; privPass: jstring; pubSavePath: jstring;  privSavePath: jstring): jint; stdcall;
 function Java_com_hujiang_devart_security_AlgorithmUtils_rsassaSignString(env: PJNIEnv; obj: jobject; keySize: jint; hashMethod: jint; privPass: jstring; privPath: jstring; str: jstring): jstring; stdcall;
 function Java_com_hujiang_devart_security_AlgorithmUtils_rsassaSignFile(env: PJNIEnv; obj: jobject; keySize: jint; hashMethod: jint; privPass: jstring; privPath: jstring; filePath: jstring): jstring; stdcall;
@@ -38,7 +33,7 @@ function Java_com_hujiang_devart_security_AlgorithmUtils_rsassaVerifyFile(env: P
 implementation
 
 function _rsassaGenerateKeys(keySize: Integer; pubPass: PChar; privPass: PChar;
-  pubSavePath: PChar; privSavePath: PChar): Integer; stdcall;
+  pubSavePath: PChar; privSavePath: PChar): Integer;
 var
   rsassa: TLbRSASSA;
 begin
@@ -59,7 +54,7 @@ begin
 end;
 
 function _rsassaSignString(keySize: Integer; hashMethod: Integer;
-  privPass: PChar; privPath: PChar; str: PChar): PChar; stdcall;
+  privPass: PChar; privPath: PChar; str: PChar): PChar;
 var
   rsassa: TLbRSASSA;
   ret: string = '';
@@ -81,7 +76,7 @@ begin
 end;
 
 function _rsassaSignFile(keySize: Integer; hashMethod: Integer;
-  privPass: PChar; privPath: PChar; filePath: PChar): PChar; stdcall;
+  privPass: PChar; privPath: PChar; filePath: PChar): PChar;
 var
   rsassa: TLbRSASSA;
   ret: string = '';
@@ -103,7 +98,7 @@ begin
 end;
 
 function _rsassaVerifyString(keySize: Integer; hashMethod: Integer;
-  pubPass: PChar; pubPath: PChar; sig: PChar; str: PChar): Integer; stdcall;
+  pubPass: PChar; pubPath: PChar; sig: PChar; str: PChar): Integer;
 var
   rsassa: TLbRSASSA;
   evt: TRSASSABlockEvent;
@@ -129,7 +124,6 @@ end;
 
 function _rsassaVerifyFile(keySize: Integer; hashMethod: Integer;
   pubPass: PChar; pubPath: PChar; sig: PChar; filePath: PChar): Integer;
-  stdcall;
 var
   rsassa: TLbRSASSA;
   evt: TRSASSABlockEvent;
@@ -154,32 +148,32 @@ begin
 end;
 
 function rsassaGenerateKeys(keySize: Integer; pubPass: PChar; privPass: PChar;
-  pubSavePath: PChar; privSavePath: PChar): Integer; stdcall;
+  pubSavePath: PChar; privSavePath: PChar): Integer; cdecl;
 begin
   Result := _rsassaGenerateKeys(keySize, pubPass, privPass, pubSavePath,privSavePath);
 end;
 
 function rsassaSignString(keySize: Integer; hashMethod: Integer;
-  privPass: PChar; privPath: PChar; str: PChar): PChar; stdcall;
+  privPass: PChar; privPath: PChar; str: PChar): PChar; cdecl;
 begin
   Result := _rsassaSignString(keySize, hashMethod, privPass, privPath, str);
 end;
 
 function rsassaSignFile(keySize: Integer; hashMethod: Integer; privPass: PChar;
-  privPath: PChar; filePath: PChar): PChar; stdcall;
+  privPath: PChar; filePath: PChar): PChar; cdecl;
 begin
   Result := _rsassaSignFile(keySize, hashMethod, privPass, privPath, filePath);
 end;
 
 function rsassaVerifyString(keySize: Integer; hashMethod: Integer;
-  pubPass: PChar; pubPath: PChar; sig: PChar; str: PChar): Integer; stdcall;
+  pubPass: PChar; pubPath: PChar; sig: PChar; str: PChar): Integer; cdecl;
 begin
   Result := _rsassaVerifyString(keySize, hashMethod, pubPass, pubPath, sig, str);
 end;
 
 function rsassaVerifyFile(keySize: Integer; hashMethod: Integer;
   pubPass: PChar; pubPath: PChar; sig: PChar; filePath: PChar): Integer;
-  stdcall;
+  cdecl;
 begin
   Result := _rsassaVerifyFile(keySize, hashMethod, pubPass, pubPath, sig, filePath);
 end;

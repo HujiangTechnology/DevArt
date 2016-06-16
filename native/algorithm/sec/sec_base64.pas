@@ -7,16 +7,14 @@ interface
 uses
   Classes, SysUtils, jni2, jni_utils, base64;
 
-function _base64EncryptString(str: PChar): PChar; stdcall;
-function _base64DecryptString(str: Pchar): PChar; stdcall;
-function base64EncryptString(str: PChar): PChar; stdcall;
-function base64DecryptString(str: Pchar): PChar; stdcall;
+function base64EncryptString(str: PChar): PChar; cdecl;
+function base64DecryptString(str: Pchar): PChar; cdecl;
 function Java_com_hujiang_devart_security_AlgorithmUtils_base64EncryptString(env: PJNIEnv; obj: jobject; str: jstring): jstring; stdcall;
 function Java_com_hujiang_devart_security_AlgorithmUtils_base64DecryptString(env: PJNIEnv; obj: jobject; str: jstring): jstring; stdcall;
 
 implementation
 
-function _base64EncryptString(str: PChar): PChar; stdcall;
+function _base64EncryptString(str: PChar): PChar;
 var
   ret: string;
 begin
@@ -25,7 +23,7 @@ begin
   strcopy(Result, PChar(ret));
 end;
 
-function _base64DecryptString(str: Pchar): PChar; stdcall;
+function _base64DecryptString(str: Pchar): PChar;
 var
   ret: string;
 begin
@@ -34,12 +32,12 @@ begin
   strcopy(Result, PChar(ret));
 end;
 
-function base64EncryptString(str: PChar): PChar; stdcall;
+function base64EncryptString(str: PChar): PChar; cdecl;
 begin
   Result := _base64DecryptString(str);
 end;
 
-function base64DecryptString(str: Pchar): PChar; stdcall;
+function base64DecryptString(str: Pchar): PChar; cdecl;
 begin
   Result := _base64DecryptString(str);
 end;

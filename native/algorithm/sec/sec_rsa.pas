@@ -9,20 +9,13 @@ uses
 
 // keysize:  (aks128 = 0, aks256 = 1, aks512 = 2, aks768 = 3, aks1024 = 4)
 // return Integer: succ = 0, other = error code
-function _rsaGenerateKeys(keySize: Integer; pubPass: PChar; privPass: PChar; pubSavePath: PChar; privSavePath: PChar): Integer; stdcall;
-function _rsaEncryptString(keySize: Integer; pubPass: PChar; pubPath: PChar; str: PChar): PChar; stdcall;
-function _rsaEncryptFile(keySize: Integer; pubPass: PChar; pubPath: PChar; filePath: PChar; outFilePath: PChar): Integer; stdcall;
-function _rsaDecryptString(keySize: Integer; privPass: PChar; privPath: PChar; str: PChar): PChar; stdcall;
-function _rsaDecryptFile(keySize: Integer; privPass: PChar; privPath: PChar; filePath: PChar; outFilePath: PChar): Integer; stdcall;
-function _rsaGetPubkeyModules(keySize: Integer; pubPass: PChar; pubPath: PChar): PChar; stdcall;
-function _rsaGetPrivkeyModules(keySize: Integer; privPass: PChar; privPath: PChar): PChar; stdcall;
-function rsaGenerateKeys(keySize: Integer; pubPass: PChar; privPass: PChar; pubSavePath: PChar; privSavePath: PChar): Integer; stdcall;
-function rsaEncryptString(keySize: Integer; pubPass: PChar; pubPath: PChar; str: PChar): PChar; stdcall;
-function rsaEncryptFile(keySize: Integer; pubPass: PChar; pubPath: PChar; filePath: PChar; outFilePath: PChar): Integer; stdcall;
-function rsaDecryptString(keySize: Integer; privPass: PChar; privPath: PChar; str: PChar): PChar; stdcall;
-function rsaDecryptFile(keySize: Integer; privPass: PChar; privPath: PChar; filePath: PChar; outFilePath: PChar): Integer; stdcall;
-function rsaGetPubkeyModules(keySize: Integer; pubPass: PChar; pubPath: PChar): PChar; stdcall;
-function rsaGetPrivkeyModules(keySize: Integer; privPass: PChar; privPath: PChar): PChar; stdcall;
+function rsaGenerateKeys(keySize: Integer; pubPass: PChar; privPass: PChar; pubSavePath: PChar; privSavePath: PChar): Integer; cdecl;
+function rsaEncryptString(keySize: Integer; pubPass: PChar; pubPath: PChar; str: PChar): PChar; cdecl;
+function rsaEncryptFile(keySize: Integer; pubPass: PChar; pubPath: PChar; filePath: PChar; outFilePath: PChar): Integer; cdecl;
+function rsaDecryptString(keySize: Integer; privPass: PChar; privPath: PChar; str: PChar): PChar; cdecl;
+function rsaDecryptFile(keySize: Integer; privPass: PChar; privPath: PChar; filePath: PChar; outFilePath: PChar): Integer; cdecl;
+function rsaGetPubkeyModules(keySize: Integer; pubPass: PChar; pubPath: PChar): PChar; cdecl;
+function rsaGetPrivkeyModules(keySize: Integer; privPass: PChar; privPath: PChar): PChar; cdecl;
 function Java_com_hujiang_devart_security_AlgorithmUtils_rsaGenerateKeys(env: PJNIEnv; obj: jobject; keySize: jint; pubPass: jstring; privPass: jstring; pubSavePath: jstring; privSavePath: jstring): jint; stdcall;
 function Java_com_hujiang_devart_security_AlgorithmUtils_rsaEncryptString(env: PJNIEnv; obj: jobject; keySize: jint; pubPass: jstring; pubPath: jstring; str: jstring): jstring; stdcall;
 function Java_com_hujiang_devart_security_AlgorithmUtils_rsaEncryptFile(env: PJNIEnv; obj: jobject; keySize: jint; pubPass: jstring; pubPath: jstring; filePath: jstring; outFilePath: jstring): jint; stdcall;
@@ -34,7 +27,7 @@ function Java_com_hujiang_devart_security_AlgorithmUtils_rsaGetPrivkeyModules(en
 implementation
 
 function _rsaGenerateKeys(keySize: Integer; pubPass: PChar; privPass: PChar;
-  pubSavePath: PChar; privSavePath: PChar): Integer; stdcall;
+  pubSavePath: PChar; privSavePath: PChar): Integer;
 var
   rsa: TLbRSA;
 begin
@@ -55,7 +48,7 @@ begin
 end;
 
 function _rsaEncryptString(keySize: Integer; pubPass: PChar; pubPath: PChar;
-  str: PChar): PChar; stdcall;
+  str: PChar): PChar;
 var
   rsa: TLbRSA;
   ret: String = '';
@@ -75,7 +68,7 @@ begin
 end;
 
 function _rsaEncryptFile(keySize: Integer; pubPass: PChar; pubPath: PChar;
-  filePath: PChar; outFilePath: PChar): Integer; stdcall;
+  filePath: PChar; outFilePath: PChar): Integer;
 var
   rsa: TLbRSA;
 begin
@@ -94,7 +87,7 @@ begin
 end;
 
 function _rsaDecryptString(keySize: Integer; privPass: PChar; privPath: PChar;
-  str: PChar): PChar; stdcall;
+  str: PChar): PChar;
 var
   rsa: TLbRSA;
   ret: String = '';
@@ -114,7 +107,7 @@ begin
 end;
 
 function _rsaDecryptFile(keySize: Integer; privPass: PChar; privPath: PChar;
-  filePath: PChar; outFilePath: PChar): Integer; stdcall;
+  filePath: PChar; outFilePath: PChar): Integer;
 var
   rsa: TLbRSA;
 begin
@@ -133,7 +126,7 @@ begin
 end;
 
 function _rsaGetPubkeyModules(keySize: Integer; pubPass: PChar; pubPath: PChar
-  ): PChar; stdcall;
+  ): PChar;
 var
   rsa: TLbRSA;
   ret: string = '';
@@ -153,7 +146,7 @@ begin
 end;
 
 function _rsaGetPrivkeyModules(keySize: Integer; privPass: PChar;
-  privPath: PChar): PChar; stdcall;
+  privPath: PChar): PChar;
 var
   rsa: TLbRSA;
   ret: string = '';
@@ -173,43 +166,43 @@ begin
 end;
 
 function rsaGenerateKeys(keySize: Integer; pubPass: PChar; privPass: PChar;
-  pubSavePath: PChar; privSavePath: PChar): Integer; stdcall;
+  pubSavePath: PChar; privSavePath: PChar): Integer; cdecl;
 begin
   Result := _rsaGenerateKeys(keySize, pubPass, privPass, pubSavePath, privSavePath);
 end;
 
 function rsaEncryptString(keySize: Integer; pubPass: PChar; pubPath: PChar;
-  str: PChar): PChar; stdcall;
+  str: PChar): PChar; cdecl;
 begin
   Result := _rsaEncryptString(keySize, pubPass, pubPath, str);
 end;
 
 function rsaEncryptFile(keySize: Integer; pubPass: PChar; pubPath: PChar;
-  filePath: PChar; outFilePath: PChar): Integer; stdcall;
+  filePath: PChar; outFilePath: PChar): Integer; cdecl;
 begin
   Result := _rsaEncryptFile(keySize, pubPass, pubPath, filePath, outFilePath);
 end;
 
 function rsaDecryptString(keySize: Integer; privPass: PChar; privPath: PChar;
-  str: PChar): PChar; stdcall;
+  str: PChar): PChar; cdecl;
 begin
   Result := _rsaDecryptString(keySize, privPass, privPath, str);
 end;
 
 function rsaDecryptFile(keySize: Integer; privPass: PChar; privPath: PChar;
-  filePath: PChar; outFilePath: PChar): Integer; stdcall;
+  filePath: PChar; outFilePath: PChar): Integer; cdecl;
 begin
   Result := _rsaDecryptFile(keySize, privPass, privPath, filePath, outFilePath);
 end;
 
 function rsaGetPubkeyModules(keySize: Integer; pubPass: PChar; pubPath: PChar
-  ): PChar; stdcall;
+  ): PChar; cdecl;
 begin
   Result := _rsaGetPubkeyModules(keySize, pubPass, pubPath);
 end;
 
 function rsaGetPrivkeyModules(keySize: Integer; privPass: PChar; privPath: PChar
-  ): PChar; stdcall;
+  ): PChar; cdecl;
 begin
   Result := _rsaGetPrivkeyModules(keySize, privPass, privPath);
 end;

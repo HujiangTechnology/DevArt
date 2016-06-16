@@ -7,13 +7,12 @@ interface
 uses
   Classes, SysUtils, jni2, jni_utils, lockbox;
 
-function _elfEncryptString(str: PChar): PChar; stdcall;
-function elfEncryptString(str: PChar): PChar; stdcall;
+function elfEncryptString(str: PChar): PChar; cdecl;
 function Java_com_hujiang_devart_security_AlgorithmUtils_elfEncryptString(env: PJNIEnv; obj: jobject; str: jstring): jstring; stdcall;
 
 implementation
 
-function _elfEncryptString(str: PChar): PChar; stdcall;
+function _elfEncryptString(str: PChar): PChar;
 var
   d: LongInt;
   ret: string;
@@ -24,7 +23,7 @@ begin
   strcopy(Result, PChar(ret));
 end;
 
-function elfEncryptString(str: PChar): PChar; stdcall;
+function elfEncryptString(str: PChar): PChar; cdecl;
 begin
   Result := _elfEncryptString(str);
 end;

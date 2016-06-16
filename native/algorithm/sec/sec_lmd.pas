@@ -7,10 +7,8 @@ interface
 uses
   Classes, SysUtils, jni2, jni_utils, lockbox, filestream_utils;
 
-function _lmdEncryptString(str: PChar): PChar; stdcall;
-function _lmdEncryptFile(filePath: PChar): PChar; stdcall;
-function lmdEncryptString(str: PChar): PChar; stdcall;
-function lmdEncryptFile(filePath: PChar): PChar; stdcall;
+function lmdEncryptString(str: PChar): PChar; cdecl;
+function lmdEncryptFile(filePath: PChar): PChar; cdecl;
 function Java_com_hujiang_devart_security_AlgorithmUtils_lmdEncryptString(env: PJNIEnv; obj: jobject; str: jstring): jstring; stdcall;
 function Java_com_hujiang_devart_security_AlgorithmUtils_lmdEncryptFile(env: PJNIEnv; obj: jobject; filePath: jstring): jstring; stdcall;
 
@@ -19,7 +17,7 @@ implementation
 var
   Buffer: array[0..1023] of Byte;
 
-function _lmdEncryptString(str: PChar): PChar; stdcall;
+function _lmdEncryptString(str: PChar): PChar;
 var
   d: LongInt;
   ret: string;
@@ -30,7 +28,7 @@ begin
   strcopy(Result, PChar(ret));
 end;
 
-function _lmdEncryptFile(filePath: PChar): PChar; stdcall;
+function _lmdEncryptFile(filePath: PChar): PChar;
 var
   s: TStream;
   c: TLMDContext;
@@ -55,12 +53,12 @@ begin
   strcopy(Result, PChar(ret));
 end;
 
-function lmdEncryptString(str: PChar): PChar; stdcall;
+function lmdEncryptString(str: PChar): PChar; cdecl;
 begin
   Result := _lmdEncryptString(str);
 end;
 
-function lmdEncryptFile(filePath: PChar): PChar; stdcall;
+function lmdEncryptFile(filePath: PChar): PChar; cdecl;
 begin
   Result := _lmdEncryptFile(filePath);
 end;

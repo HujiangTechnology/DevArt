@@ -9,14 +9,10 @@ uses
 
 // keySize: (ks128 = 0, ks192 = 1, ks256 = 2);
 // cipherMode: (cmECB = 0, cmCBC = 1);
-function _rdlEncryptString(keySize: Integer; cipherMode: Integer; key: PChar; str: PChar): PChar; stdcall;
-function _rdlEncryptFile(keySize: Integer; cipherMode: Integer; key: PChar; filePath: PChar; outFilePath: PChar): Integer; stdcall;
-function _rdlDecryptString(keySize: Integer; cipherMode: Integer; key: PChar; str: PChar): PChar; stdcall;
-function _rdlDecryptFile(keySize: Integer; cipherMode: Integer; key: PChar; filePath: PChar; outFilePath: PChar): Integer; stdcall;
-function rdlEncryptString(keySize: Integer; cipherMode: Integer; key: PChar; str: PChar): PChar; stdcall;
-function rdlEncryptFile(keySize: Integer; cipherMode: Integer; key: PChar; filePath: PChar; outFilePath: PChar): Integer; stdcall;
-function rdlDecryptString(keySize: Integer; cipherMode: Integer; key: PChar; str: PChar): PChar; stdcall;
-function rdlDecryptFile(keySize: Integer; cipherMode: Integer; key: PChar; filePath: PChar; outFilePath: PChar): Integer; stdcall;
+function rdlEncryptString(keySize: Integer; cipherMode: Integer; key: PChar; str: PChar): PChar; cdecl;
+function rdlEncryptFile(keySize: Integer; cipherMode: Integer; key: PChar; filePath: PChar; outFilePath: PChar): Integer; cdecl;
+function rdlDecryptString(keySize: Integer; cipherMode: Integer; key: PChar; str: PChar): PChar; cdecl;
+function rdlDecryptFile(keySize: Integer; cipherMode: Integer; key: PChar; filePath: PChar; outFilePath: PChar): Integer; cdecl;
 function Java_com_hujiang_devart_security_AlgorithmUtils_rdlEncryptString(env: PJNIEnv; obj: jobject; keySize: jint; cipherMode: jint; key: jstring; str: jstring): jstring; stdcall;
 function Java_com_hujiang_devart_security_AlgorithmUtils_rdlEncryptFile(env: PJNIEnv; obj: jobject; keySize: jint; cipherMode: jint; key: jstring; filePath: jstring; outFilePath: jstring): jint; stdcall;
 function Java_com_hujiang_devart_security_AlgorithmUtils_rdlDecryptString(env: PJNIEnv; obj: jobject; keySize: jint; cipherMode: jint; key: jstring; str: jstring): jstring; stdcall;
@@ -25,7 +21,7 @@ function Java_com_hujiang_devart_security_AlgorithmUtils_rdlDecryptFile(env: PJN
 implementation
 
 function _rdlEncryptString(keySize: Integer; cipherMode: Integer; key: PChar;
-  str: PChar): PChar; stdcall;
+  str: PChar): PChar;
 var
   rdl: TLbRijndael;
   ret: string = '';
@@ -44,7 +40,7 @@ begin
 end;
 
 function _rdlEncryptFile(keySize: Integer; cipherMode: Integer; key: PChar;
-  filePath: PChar; outFilePath: PChar): Integer; stdcall;
+  filePath: PChar; outFilePath: PChar): Integer;
 var
   rdl: TLbRijndael;
 begin
@@ -62,7 +58,7 @@ begin
 end;
 
 function _rdlDecryptString(keySize: Integer; cipherMode: Integer; key: PChar;
-  str: PChar): PChar; stdcall;
+  str: PChar): PChar;
 var
   rdl: TLbRijndael;
   ret: string = '';
@@ -81,7 +77,7 @@ begin
 end;
 
 function _rdlDecryptFile(keySize: Integer; cipherMode: Integer; key: PChar;
-  filePath: PChar; outFilePath: PChar): Integer; stdcall;
+  filePath: PChar; outFilePath: PChar): Integer;
 var
   rdl: TLbRijndael;
 begin
@@ -99,25 +95,25 @@ begin
 end;
 
 function rdlEncryptString(keySize: Integer; cipherMode: Integer; key: PChar;
-  str: PChar): PChar; stdcall;
+  str: PChar): PChar; cdecl;
 begin
   Result := _rdlEncryptString(keySize, cipherMode, key, str);
 end;
 
 function rdlEncryptFile(keySize: Integer; cipherMode: Integer; key: PChar;
-  filePath: PChar; outFilePath: PChar): Integer; stdcall;
+  filePath: PChar; outFilePath: PChar): Integer; cdecl;
 begin
   Result := _rdlEncryptFile(keySize, cipherMode, key, filePath, outFilePath);
 end;
 
 function rdlDecryptString(keySize: Integer; cipherMode: Integer; key: PChar;
-  str: PChar): PChar; stdcall;
+  str: PChar): PChar; cdecl;
 begin
   Result := _rdlDecryptString(keySize, cipherMode, key, str);
 end;
 
 function rdlDecryptFile(keySize: Integer; cipherMode: Integer; key: PChar;
-  filePath: PChar; outFilePath: PChar): Integer; stdcall;
+  filePath: PChar; outFilePath: PChar): Integer; cdecl;
 begin
   Result := _rdlDecryptFile(keySize, cipherMode, key, filePath, outFilePath);
 end;

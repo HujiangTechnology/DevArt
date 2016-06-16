@@ -7,10 +7,8 @@ interface
 uses
   Classes, SysUtils, lockbox, jni2, jni_utils;
 
-function _desEncryptString(str: PChar; key: PChar): PChar; stdcall;
-function _desDecryptString(str: PChar; key: PChar): PChar; stdcall;
-function desEncryptString(str: PChar; key: PChar): PChar; stdcall;
-function desDecryptString(str: PChar; key: PChar): PChar; stdcall;
+function desEncryptString(str: PChar; key: PChar): PChar; cdecl;
+function desDecryptString(str: PChar; key: PChar): PChar; cdecl;
 function Java_com_hujiang_devart_security_AlgorithmUtils_desEncryptString(env: PJNIEnv; obj: jobject; str: jstring; key: jstring): jstring; stdcall;
 function Java_com_hujiang_devart_security_AlgorithmUtils_desDecryptString(env: PJNIEnv; obj: jobject; str: jstring; key: jstring): jstring; stdcall;
 
@@ -84,7 +82,7 @@ begin
   des.SetKey(aKey);
 end;
 
-function _desEncryptString(str: PChar; key: PChar): PChar; stdcall;
+function _desEncryptString(str: PChar; key: PChar): PChar;
 var
   des: TLb3DES;
   inBuffer: TDataBytes;
@@ -112,7 +110,7 @@ end;
 
 
 
-function _desDecryptString(str: PChar; key: PChar): PChar; stdcall;
+function _desDecryptString(str: PChar; key: PChar): PChar;
 var
   des: TLb3DES;
   inBuffer: TDataBytes;
@@ -137,12 +135,12 @@ begin
   strcopy(Result, PChar(S));
 end;
 
-function desEncryptString(str: PChar; key: PChar): PChar; stdcall;
+function desEncryptString(str: PChar; key: PChar): PChar; cdecl;
 begin
   Result := _desEncryptString(str, key);
 end;
 
-function desDecryptString(str: PChar; key: PChar): PChar; stdcall;
+function desDecryptString(str: PChar; key: PChar): PChar; cdecl;
 begin
   Result := _desDecryptString(str, key);
 end;

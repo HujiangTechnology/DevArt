@@ -11,47 +11,11 @@ library alg;
 uses
   {$IFNDEF WINDOWS}cthreads,{$ENDIF}
   Classes, sysutils, sec_md5, sec_sha1, sec_lmd, sec_elf, sec_des, sec_base64,
-  sec_rsa, sec_dsa, sec_rdl, sec_rsassa;
+  sec_rsa, sec_dsa, sec_rdl, sec_rsassa, sec_aes;
 
 {$IFNDEF DEBUG}
 exports
-// for iOS
-  _md5EncryptString,
-  _md5EncryptFile,
-  _sha1EncryptString,
-  _sha1EncryptFile,
-  _lmdEncryptString,
-  _lmdEncryptFile,
-  _elfEncryptString,
-  _desEncryptString,
-  _desDecryptString,
-  _base64EncryptString,
-  _base64DecryptString,
-  _rsaGenerateKeys,
-  _rsaEncryptString,
-  _rsaEncryptFile,
-  _rsaDecryptString,
-  _rsaDecryptFile,
-  _rsaGetPubkeyModules,
-  _rsaGetPrivkeyModules,
-  _dsaGenerateKeys,
-  _dsaSignString,
-  _dsaSignFile,
-  _dsaVerifyString,
-  _dsaVerifyFile,
-  _dsaGetPubkeyQPGY,
-  _dsaGetPrivkeyQPGX,
-  _rdlEncryptString,
-  _rdlEncryptFile,
-  _rdlDecryptString,
-  _rdlDecryptFile,
-  _rsassaGenerateKeys,
-  _rsassaSignString,
-  _rsassaSignFile,
-  _rsassaVerifyString,
-  _rsassaVerifyFile,
-
-// for cross
+  // for cross
   md5EncryptString,
   md5EncryptFile,
   sha1EncryptString,
@@ -87,6 +51,31 @@ exports
   rsassaVerifyString,
   rsassaVerifyFile,
 
+  aesEncryptECB128,
+  aesEncryptECB192,
+  aesEncryptECB256,
+  aesEncryptECB128Exp,
+  aesEncryptECB192Exp,
+  aesEncryptECB256Exp,
+  aesEncryptCBC128,
+  aesEncryptCBC192,
+  aesEncryptCBC256,
+  aesEncryptCBC128Exp,
+  aesEncryptCBC192Exp,
+  aesEncryptCBC256Exp,
+  aesDecryptECB128,
+  aesDecryptECB192,
+  aesDecryptECB256,
+  aesDecryptECB128Exp,
+  aesDecryptECB192Exp,
+  aesDecryptECB256Exp,
+  aesDecryptCBC128,
+  aesDecryptCBC192,
+  aesDecryptCBC256,
+  aesDecryptCBC128Exp,
+  aesDecryptCBC192Exp,
+  aesDecryptCBC256Exp,
+
 // for jni
   Java_com_hujiang_devart_security_AlgorithmUtils_md5EncryptString,
   Java_com_hujiang_devart_security_AlgorithmUtils_md5EncryptFile,
@@ -121,7 +110,34 @@ exports
   Java_com_hujiang_devart_security_AlgorithmUtils_rsassaSignString,
   Java_com_hujiang_devart_security_AlgorithmUtils_rsassaSignFile,
   Java_com_hujiang_devart_security_AlgorithmUtils_rsassaVerifyString,
-  Java_com_hujiang_devart_security_AlgorithmUtils_rsassaVerifyFile;
+  Java_com_hujiang_devart_security_AlgorithmUtils_rsassaVerifyFile,
+
+  Java_com_hujiang_devart_security_AlgorithmUtils_aesEncryptECB128,
+  Java_com_hujiang_devart_security_AlgorithmUtils_aesEncryptECB192,
+  Java_com_hujiang_devart_security_AlgorithmUtils_aesEncryptECB256,
+  Java_com_hujiang_devart_security_AlgorithmUtils_aesEncryptECB128Exp,
+  Java_com_hujiang_devart_security_AlgorithmUtils_aesEncryptECB192Exp,
+  Java_com_hujiang_devart_security_AlgorithmUtils_aesEncryptECB256Exp,
+  Java_com_hujiang_devart_security_AlgorithmUtils_aesEncryptCBC128,
+  Java_com_hujiang_devart_security_AlgorithmUtils_aesEncryptCBC192,
+  Java_com_hujiang_devart_security_AlgorithmUtils_aesEncryptCBC256,
+  Java_com_hujiang_devart_security_AlgorithmUtils_aesEncryptCBC128Exp,
+  Java_com_hujiang_devart_security_AlgorithmUtils_aesEncryptCBC192Exp,
+  Java_com_hujiang_devart_security_AlgorithmUtils_aesEncryptCBC256Exp,
+  Java_com_hujiang_devart_security_AlgorithmUtils_aesDecryptECB128,
+  Java_com_hujiang_devart_security_AlgorithmUtils_aesDecryptECB192,
+  Java_com_hujiang_devart_security_AlgorithmUtils_aesDecryptECB256,
+  Java_com_hujiang_devart_security_AlgorithmUtils_aesDecryptECB128Exp,
+  Java_com_hujiang_devart_security_AlgorithmUtils_aesDecryptECB192Exp,
+  Java_com_hujiang_devart_security_AlgorithmUtils_aesDecryptECB256Exp,
+  Java_com_hujiang_devart_security_AlgorithmUtils_aesDecryptCBC128,
+  Java_com_hujiang_devart_security_AlgorithmUtils_aesDecryptCBC192,
+  Java_com_hujiang_devart_security_AlgorithmUtils_aesDecryptCBC256,
+  Java_com_hujiang_devart_security_AlgorithmUtils_aesDecryptCBC128Exp,
+  Java_com_hujiang_devart_security_AlgorithmUtils_aesDecryptCBC192Exp,
+  Java_com_hujiang_devart_security_AlgorithmUtils_aesDecryptCBC256Exp;
+
+
 {$ENDIF}
 
 {$IFDEF DEBUG}
@@ -239,7 +255,6 @@ begin
       end;
     end;
     WriteLn(ret);
-
   except
   end;
   {$ENDIF}

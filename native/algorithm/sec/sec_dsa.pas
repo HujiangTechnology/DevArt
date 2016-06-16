@@ -23,20 +23,13 @@ type
 
 // keysize:  (aks128 = 0, aks256 = 1, aks512 = 2, aks768 = 3, aks1024 = 4)
 // return Integer: succ = 0, other = error code
-function _dsaGenerateKeys(keySize: Integer; pubPass: PChar; privPass: PChar; pubSavePath: PChar; privSavePath: PChar): Integer; stdcall;
-function _dsaSignString(keySize: Integer; privPass: PChar; privPath: PChar; str: PChar): PChar; stdcall;
-function _dsaSignFile(keySize: Integer; privPass: PChar; privPath: PChar; filePath: PChar): PChar; stdcall;
-function _dsaVerifyString(keySize: Integer; pubPass: PChar; pubPath: PChar; rs: PChar; str: PChar): Integer; stdcall;
-function _dsaVerifyFile(keySize: Integer; pubPass: PChar; pubPath: PChar; rs: PChar; filePath: PChar): Integer; stdcall;
-function _dsaGetPubkeyQPGY(keySize: Integer; pubPass: PChar; pubPath: PChar): PChar; stdcall;
-function _dsaGetPrivkeyQPGX(keySize: Integer; privPass: PChar; privPath: PChar): PChar; stdcall;
-function dsaGenerateKeys(keySize: Integer; pubPass: PChar; privPass: PChar; pubSavePath: PChar; privSavePath: PChar): Integer; stdcall;
-function dsaSignString(keySize: Integer; privPass: PChar; privPath: PChar; str: PChar): PChar; stdcall;
-function dsaSignFile(keySize: Integer; privPass: PChar; privPath: PChar; filePath: PChar): PChar; stdcall;
-function dsaVerifyString(keySize: Integer; pubPass: PChar; pubPath: PChar; rs: PChar; str: PChar): Integer; stdcall;
-function dsaVerifyFile(keySize: Integer; pubPass: PChar; pubPath: PChar; rs: PChar; filePath: PChar): Integer; stdcall;
-function dsaGetPubkeyQPGY(keySize: Integer; pubPass: PChar; pubPath: PChar): PChar; stdcall;
-function dsaGetPrivkeyQPGX(keySize: Integer; privPass: PChar; privPath: PChar): PChar; stdcall;
+function dsaGenerateKeys(keySize: Integer; pubPass: PChar; privPass: PChar; pubSavePath: PChar; privSavePath: PChar): Integer; cdecl;
+function dsaSignString(keySize: Integer; privPass: PChar; privPath: PChar; str: PChar): PChar; cdecl;
+function dsaSignFile(keySize: Integer; privPass: PChar; privPath: PChar; filePath: PChar): PChar; cdecl;
+function dsaVerifyString(keySize: Integer; pubPass: PChar; pubPath: PChar; rs: PChar; str: PChar): Integer; cdecl;
+function dsaVerifyFile(keySize: Integer; pubPass: PChar; pubPath: PChar; rs: PChar; filePath: PChar): Integer; cdecl;
+function dsaGetPubkeyQPGY(keySize: Integer; pubPass: PChar; pubPath: PChar): PChar; cdecl;
+function dsaGetPrivkeyQPGX(keySize: Integer; privPass: PChar; privPath: PChar): PChar; cdecl;
 function Java_com_hujiang_devart_security_AlgorithmUtils_dsaGenerateKeys(env: PJNIEnv; obj: jobject; keySize: jint; pubPass: jstring; privPass: jstring; pubSavePath: jstring; privSavePath: jstring): jint; stdcall;
 function Java_com_hujiang_devart_security_AlgorithmUtils_dsaSignString(env: PJNIEnv; obj: jobject; keySize: jint; privPass: jstring; privPath: jstring; str: jstring): jstring; stdcall;
 function Java_com_hujiang_devart_security_AlgorithmUtils_dsaSignFile(env: PJNIEnv; obj: jobject; keySize: jint; privPass: jstring; privPath: jstring; filePath: jstring): jstring; stdcall;
@@ -48,7 +41,7 @@ function Java_com_hujiang_devart_security_AlgorithmUtils_dsaGetPrivkeyQPGX(env: 
 implementation
 
 function _dsaGenerateKeys(keySize: Integer; pubPass: PChar; privPass: PChar;
-  pubSavePath: PChar; privSavePath: PChar): Integer; stdcall;
+  pubSavePath: PChar; privSavePath: PChar): Integer;
 var
   dsa: TLbDSA;
 begin
@@ -69,7 +62,7 @@ begin
 end;
 
 function _dsaSignString(keySize: Integer; privPass: PChar; privPath: PChar;
-  str: PChar): PChar; stdcall;
+  str: PChar): PChar;
 var
   dsa: TLbDSA;
   ret: string = '';
@@ -90,7 +83,7 @@ begin
 end;
 
 function _dsaSignFile(keySize: Integer; privPass: PChar; privPath: PChar;
-  filePath: PChar): PChar; stdcall;
+  filePath: PChar): PChar;
 var
   dsa: TLbDSA;
   ret: string = '';
@@ -111,7 +104,7 @@ begin
 end;
 
 function _dsaVerifyString(keySize: Integer; pubPass: PChar; pubPath: PChar;
-  rs: PChar; str: PChar): Integer; stdcall;
+  rs: PChar; str: PChar): Integer;
 var
   dsa: TLbDSA;
   evt: TDsaBlockEvent;
@@ -136,7 +129,7 @@ begin
 end;
 
 function _dsaVerifyFile(keySize: Integer; pubPass: PChar; pubPath: PChar;
-  rs: PChar; filePath: PChar): Integer; stdcall;
+  rs: PChar; filePath: PChar): Integer;
 var
   dsa: TLbDSA;
   evt: TDsaBlockEvent;
@@ -162,7 +155,7 @@ begin
 end;
 
 function _dsaGetPubkeyQPGY(keySize: Integer; pubPass: PChar; pubPath: PChar
-  ): PChar; stdcall;
+  ): PChar;
 var
   dsa: TLbDSA;
   ret: string = '';
@@ -182,7 +175,7 @@ begin
 end;
 
 function _dsaGetPrivkeyQPGX(keySize: Integer; privPass: PChar; privPath: PChar
-  ): PChar; stdcall;
+  ): PChar;
 var
   dsa: TLbDSA;
   ret: string = '';
@@ -202,43 +195,43 @@ begin
 end;
 
 function dsaGenerateKeys(keySize: Integer; pubPass: PChar; privPass: PChar;
-  pubSavePath: PChar; privSavePath: PChar): Integer; stdcall;
+  pubSavePath: PChar; privSavePath: PChar): Integer; cdecl;
 begin
   Result := _dsaGenerateKeys(keySize, pubPass, privPass, pubSavePath, privSavePath);
 end;
 
 function dsaSignString(keySize: Integer; privPass: PChar; privPath: PChar;
-  str: PChar): PChar; stdcall;
+  str: PChar): PChar; cdecl;
 begin
   Result := _dsaSignString(keySize, privPass, privPath, str);
 end;
 
 function dsaSignFile(keySize: Integer; privPass: PChar; privPath: PChar;
-  filePath: PChar): PChar; stdcall;
+  filePath: PChar): PChar; cdecl;
 begin
   Result := _dsaSignFile(keySize, privPass, privPath, filePath);
 end;
 
 function dsaVerifyString(keySize: Integer; pubPass: PChar; pubPath: PChar;
-  rs: PChar; str: PChar): Integer; stdcall;
+  rs: PChar; str: PChar): Integer; cdecl;
 begin
   Result := _dsaVerifyString(keySize, pubPass, pubPath, rs, str);
 end;
 
 function dsaVerifyFile(keySize: Integer; pubPass: PChar; pubPath: PChar;
-  rs: PChar; filePath: PChar): Integer; stdcall;
+  rs: PChar; filePath: PChar): Integer; cdecl;
 begin
   Result := _dsaVerifyFile(keySize, pubPass, pubPath, rs, filePath);
 end;
 
 function dsaGetPubkeyQPGY(keySize: Integer; pubPass: PChar; pubPath: PChar
-  ): PChar; stdcall;
+  ): PChar; cdecl;
 begin
   Result := _dsaGetPubkeyQPGY(keySize, pubPass, pubPath);
 end;
 
 function dsaGetPrivkeyQPGX(keySize: Integer; privPass: PChar; privPath: PChar
-  ): PChar; stdcall;
+  ): PChar; cdecl;
 begin
   Result := _dsaGetPrivkeyQPGX(keySize, privPass, privPath);
 end;

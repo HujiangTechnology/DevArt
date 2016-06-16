@@ -7,10 +7,8 @@ interface
 uses
   Classes, SysUtils, jni2, jni_utils, lockbox, filestream_utils;
 
-function _md5EncryptString(str: PChar): PChar; stdcall;
-function _md5EncryptFile(filePath: PChar): PChar; stdcall;
-function md5EncryptString(str: PChar): PChar; stdcall;
-function md5EncryptFile(filePath: PChar): PChar; stdcall;
+function md5EncryptString(str: PChar): PChar; cdecl;
+function md5EncryptFile(filePath: PChar): PChar; cdecl;
 function Java_com_hujiang_devart_security_AlgorithmUtils_md5EncryptString(env: PJNIEnv; obj: jobject; str: jstring): jstring; stdcall;
 function Java_com_hujiang_devart_security_AlgorithmUtils_md5EncryptFile(env: PJNIEnv; obj: jobject; filePath: jstring): jstring; stdcall;
 
@@ -19,7 +17,7 @@ implementation
 var
   Buffer: array[0..1023] of Byte;
 
-function _md5EncryptString(str: PChar): PChar; stdcall;
+function _md5EncryptString(str: PChar): PChar;
 var
   d: TMD5Digest;
   ret: string;
@@ -30,7 +28,7 @@ begin
   strcopy(Result, PChar(ret));
 end;
 
-function _md5EncryptFile(filePath: PChar): PChar; stdcall;
+function _md5EncryptFile(filePath: PChar): PChar;
 var
   s: TStream;
   c: TMD5Context;
@@ -55,12 +53,12 @@ begin
   strcopy(Result, PChar(ret));
 end;
 
-function md5EncryptString(str: PChar): PChar; stdcall;
+function md5EncryptString(str: PChar): PChar; cdecl;
 begin
   Result := _md5EncryptString(str);
 end;
 
-function md5EncryptFile(filePath: PChar): PChar; stdcall;
+function md5EncryptFile(filePath: PChar): PChar; cdecl;
 begin
   Result := _md5EncryptFile(filePath);
 end;

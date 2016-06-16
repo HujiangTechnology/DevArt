@@ -7,10 +7,8 @@ interface
 uses
   Classes, SysUtils, jni2, jni_utils, lockbox, filestream_utils;
 
-function _sha1EncryptString(str: PChar): PChar; stdcall;
-function _sha1EncryptFile(filePath: PChar): PChar; stdcall;
-function sha1EncryptString(str: PChar): PChar; stdcall;
-function sha1EncryptFile(filePath: PChar): PChar; stdcall;
+function sha1EncryptString(str: PChar): PChar; cdecl;
+function sha1EncryptFile(filePath: PChar): PChar; cdecl;
 function Java_com_hujiang_devart_security_AlgorithmUtils_sha1EncryptString(env: PJNIEnv; obj: jobject; str: jstring): jstring; stdcall;
 function Java_com_hujiang_devart_security_AlgorithmUtils_sha1EncryptFile(env: PJNIEnv; obj: jobject; filePath: jstring): jstring; stdcall;
 
@@ -19,7 +17,7 @@ implementation
 var
   Buffer: array[0..1023] of Byte;
 
-function _sha1EncryptString(str: PChar): PChar; stdcall;
+function _sha1EncryptString(str: PChar): PChar;
 var
   d: TSHA1Digest;
   ret: string;
@@ -30,7 +28,7 @@ begin
   strcopy(Result, PChar(ret));
 end;
 
-function _sha1EncryptFile(filePath: PChar): PChar; stdcall;
+function _sha1EncryptFile(filePath: PChar): PChar;
 var
   s: TStream;
   c: TSHA1Context;
@@ -55,12 +53,12 @@ begin
   strcopy(Result, PChar(ret));
 end;
 
-function sha1EncryptString(str: PChar): PChar; stdcall;
+function sha1EncryptString(str: PChar): PChar; cdecl;
 begin
   Result := _sha1EncryptString(str);
 end;
 
-function sha1EncryptFile(filePath: PChar): PChar; stdcall;
+function sha1EncryptFile(filePath: PChar): PChar; cdecl;
 begin
   Result := _sha1EncryptFile(filePath);
 end;
