@@ -127,4 +127,31 @@ object AlgorithmUtils {
     external fun rsassaVerifyString(keySize: Int, hashMethod: Int, pubPass: String, pubPath: String, sig: String, str: String): Int
     external fun rsassaVerifyFile(keySize: Int, hashMethod: Int, pubPass: String, pubPath: String, sig: String, filePath: String): Int
 
+    // AES ================================================================================
+    external fun aesEncryptECB128(key: String, src: String): String
+    external fun aesEncryptECB192(key: String, src: String): String
+    external fun aesEncryptECB256(key: String, src: String): String
+    external fun aesEncryptECB128Exp(key: String, src: String): String
+    external fun aesEncryptECB192Exp(key: String, src: String): String
+    external fun aesEncryptECB256Exp(key: String, src: String): String
+    external fun aesEncryptCBC128(init: String, key: String, src: String): String
+    external fun aesEncryptCBC192(init: String, key: String, src: String): String
+    external fun aesEncryptCBC256(init: String, key: String, src: String): String
+    external fun aesEncryptCBC128Exp(init: String, key: String, src: String): String
+    external fun aesEncryptCBC192Exp(init: String, key: String, src: String): String
+    external fun aesEncryptCBC256Exp(init: String, key: String, src: String): String
+    external fun aesDecryptECB128(key: String, src: String): String
+    external fun aesDecryptECB192(key: String, src: String): String
+    external fun aesDecryptECB256(key: String, src: String): String
+    external fun aesDecryptECB128Exp(key: String, src: String): String
+    external fun aesDecryptECB192Exp(key: String, src: String): String
+    external fun aesDecryptECB256Exp(key: String, src: String): String
+    external fun aesDecryptCBC128(init: String, key: String, src: String): String
+    external fun aesDecryptCBC192(init: String, key: String, src: String): String
+    external fun aesDecryptCBC256(init: String, key: String, src: String): String
+    external fun aesDecryptCBC128Exp(init: String, key: String, src: String): String
+    external fun aesDecryptCBC192Exp(init: String, key: String, src: String): String
+    external fun aesDecryptCBC256Exp(init: String, key: String, src: String): String
+
+
 }
