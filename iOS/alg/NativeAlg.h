@@ -29,13 +29,13 @@ extern char* des3DecryptString(const char* str, const char* key);
 // RSA ==============================================================================
 // keysize:  (aks128 = 0, aks256 = 1, aks512 = 2, aks768 = 3, aks1024 = 4)
 // return int: succ = 0, other = error code
-extern int rsaGenerateKeysEx(int keySize, const char* pubPass, const char* privPass, const char* pubSavePath, const char* privSavePath);
-extern char* rsaEncryptStringEx(int keySize, const char* pubPass, const char* pubPath, const char* str);
-extern int rsaEncryptFileEx(int keySize, const char* pubPass, const char* pubPath, const char* filePath, const char* outFilePath);
-extern char* rsaDecryptStringEx(int keySize, const char* privPass, const char* privPath, const char* str);
-extern int rsaDecryptFileEx(int keySize, const char* privPass, const char* privPath, const char* filePath, const char* outFilePath);
-extern char* rsaGetPubkeyModulesEx(int keySize, const char* pubPass, const char* pubPath);
-extern char* rsaGetPrivkeyModulesEx(int keySize, const char* privPass, const char* privPath);
+extern int rsaGenerateKeys(int keySize, const char* pubPass, const char* privPass, const char* pubSavePath, const char* privSavePath);
+extern char* rsaEncryptString(int keySize, const char* pubPass, const char* pubPath, const char* str);
+extern int rsaEncryptFile(int keySize, const char* pubPass, const char* pubPath, const char* filePath, const char* outFilePath);
+extern char* rsaDecryptString(int keySize, const char* privPass, const char* privPath, const char* str);
+extern int rsaDecryptFile(int keySize, const char* privPass, const char* privPath, const char* filePath, const char* outFilePath);
+extern char* rsaGetPubkeyModules(int keySize, const char* pubPass, const char* pubPath);
+extern char* rsaGetPrivkeyModules(int keySize, const char* privPass, const char* privPath);
 
 // DSA ==============================================================================
 // keysize:  (aks128 = 0, aks256 = 1, aks512 = 2, aks768 = 3, aks1024 = 4)
@@ -52,10 +52,10 @@ extern char* dsaGetPrivkeyQPGX(int keySize, const char* privPass, const char* pr
 // keySize: (ks128 = 0, ks192 = 1, ks256 = 2);
 // cipherMode: (cmECB = 0, cmCBC = 1);
 // return int: succ = 0, other = error code
-extern char* rdlEncryptStringEx2(int keySize, int cipherMode, const char* key, const char* str);
-extern int rdlEncryptFileEx2(int keySize, int cipherMode, const char* key, const char* filePath, const char* outFilePath);
-extern char* rdlDecryptStringEx2(int keySize, int cipherMode, const char* key, const char* str);
-extern int rdlDecryptFileEx2(int keySize, int cipherMode, const char* key, const char* filePath, const char* outFilePath);
+extern char* rdlEncryptString(int keySize, int cipherMode, const char* key, const char* str);
+extern int rdlEncryptFile(int keySize, int cipherMode, const char* key, const char* filePath, const char* outFilePath);
+extern char* rdlDecryptString(int keySize, int cipherMode, const char* key, const char* str);
+extern int rdlDecryptFile(int keySize, int cipherMode, const char* key, const char* filePath, const char* outFilePath);
 
 // RSASSA ==============================================================================
 // keysize:  (aks128 = 0, aks256 = 1, aks512 = 2, aks768 = 3, aks1024 = 4)
@@ -66,5 +66,38 @@ extern char* rsassaSignString(int keySize, int hashMethod, const char* privPass,
 extern char* rsassaSignFile(int keySize, int hashMethod, const char* privPass, const char* privPath, const char* filePath);
 extern int rsassaVerifyString(int keySize, int hashMethod, const char* pubPass, const char* pubPath, const char* sig, const char* str);
 extern int rsassaVerifyFile(int keySize, int hashMethod, const char* pubPass, const char* pubPath, const char* sig, const char* filePath);
+
+// AES =================================================================================
+extern char* aesEncryptECB128(const char* key, const char* src);
+extern char* aesEncryptECB192(const char* key, const char* src);
+extern char* aesEncryptECB256(const char* key, const char* src);
+// AES Encrypt ECB Exp
+extern char* aesEncryptECB128Exp(const char* key, const char* src);
+extern char* aesEncryptECB192Exp(const char* key, const char* src);
+extern char* aesEncryptECB256Exp(const char* key, const char* src);
+// AES Encrypt CBC
+extern char* aesEncryptCBC128(const char* init, const char* key, const char* src);
+extern char* aesEncryptCBC192(const char* init, const char* key, const char* src);
+extern char* aesEncryptCBC256(const char* init, const char* key, const char* src);
+// AES Encrypt CBC Exp
+extern char* aesEncryptCBC128Exp(const char* init, const char* key, const char* src);
+extern char* aesEncryptCBC192Exp(const char* init, const char* key, const char* src);
+extern char* aesEncryptCBC256Exp(const char* init, const char* key, const char* src);
+// AES Decrypt ECB
+extern char* aesDecryptECB128(const char* key, const char* src);
+extern char* aesDecryptECB192(const char* key, const char* src);
+extern char* aesDecryptECB256(const char* key, const char* src);
+// AES Decrypt ECB Exp
+extern char* aesDecryptECB128Exp(const char* key, const char* src);
+extern char* aesDecryptECB192Exp(const char* key, const char* src);
+extern char* aesDecryptECB256Exp(const char* key, const char* src);
+// AES Decrypt CBC
+extern char* aesDecryptCBC128(const char* init, const char* key, const char* src);
+extern char* aesDecryptCBC192(const char* init, const char* key, const char* src);
+extern char* aesDecryptCBC256(const char* init, const char* key, const char* src);
+// AES Decrypt CBC Exp
+extern char* aesDecryptCBC128Exp(const char* init, const char* key, const char* src);
+extern char* aesDecryptCBC192Exp(const char* init, const char* key, const char* src);
+extern char* aesDecryptCBC256Exp(const char* init, const char* key, const char* src);
 
 #endif /* NativeAlg_h */

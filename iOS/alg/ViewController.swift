@@ -49,12 +49,12 @@ class ViewController: UIViewController {
         let pubPath = "\(getDocumentPath())/rsa.pub"
         let privPathPChar = NSString(string: privPath).UTF8String
         let pubPathPChar = NSString(string: pubPath).UTF8String
-        let retGK = rsaGenerateKeysEx(0, emptyPChar, emptyPChar, pubPathPChar, privPathPChar)
+        let retGK = rsaGenerateKeys(0, emptyPChar, emptyPChar, pubPathPChar, privPathPChar)
         if (retGK == 0) {
             s += "RSA Generate key ok\n"
-            let retEncrypt = rsaEncryptStringEx(0, emptyPChar, pubPathPChar, strPChar)
+            let retEncrypt = rsaEncryptString(0, emptyPChar, pubPathPChar, strPChar)
             s += "RSA Encrypt: \(NSString(UTF8String: retEncrypt)!)\n"
-            let retDecrypt = rsaDecryptStringEx(0, emptyPChar, privPathPChar, retEncrypt)
+            let retDecrypt = rsaDecryptString(0, emptyPChar, privPathPChar, retEncrypt)
             s += "RSA Decrypt: \(NSString(UTF8String: retDecrypt)!)\n"
         } else {
             s += "RSA Generate key failed\n"

@@ -25,7 +25,7 @@ _compile() {
 	ARCH=$1
 	CMD="FPC_${ARCH}"
     TARGET="T_${ARCH}"
-    ${!CMD} -T${!TARGET} -Cn -Fulockbox alg_ios.lpr
+    ${!CMD} -T${!TARGET} -Cn -Fulockbox -Fusec -Fu../jni alg.lpr
 	ar -q libalg_${ARCH}.a `grep "\.o$" link.res`
 	ranlib libalg_${ARCH}.a 
 }
