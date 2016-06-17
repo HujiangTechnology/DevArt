@@ -49,7 +49,7 @@ end;
 //        -1: unsupported file format
 //        -2: uncompress error
 //        >=0: uncompressed file count
-function _uncompress(filePath: PChar; dest: PChar): Integer; stdcall;
+function _uncompress(filePath: PChar; dest: PChar): Integer;
 var
   strPath: string;
   strDest: string;
@@ -62,7 +62,7 @@ begin
   Result := -1;
   ERROR_CODE:= ERROR_FORMAT_NOT_SUPPORT;
   ERROR_MESSAGE:= ERRMSG_FORMAT_NOT_SUPPORT;
-  if (ext = '.zip') or (ext = '.jar') then begin
+  if (ext = '.zip') or (ext = '.jar') or (ext = '.hjp') then begin
     Result := DoUnzip(strPath, strDest);
   end else if (ext = '.bz2') then begin
     Result := DoUnbz2(strPath, strDest);
@@ -79,7 +79,7 @@ begin
   end;
 end;
 
-function _compress(filePath: PChar; src: PChar): Integer; stdcall;
+function _compress(filePath: PChar; src: PChar): Integer;
 var
   strPath: string;
   strSrc: string;
@@ -91,7 +91,7 @@ begin
   Result := -1;
   ERROR_CODE:= ERROR_FORMAT_NOT_SUPPORT;
   ERROR_MESSAGE:= ERRMSG_FORMAT_NOT_SUPPORT;
-  if (ext = '.zip') or (ext = '.jar') then begin
+  if (ext = '.zip') or (ext = '.jar') or (ext = '.hjp') then begin
     Result := DoZip(strPath, strSrc);
   end else if (ext = '.bz2') then begin
     Result := DoBz2(strPath, strSrc);
@@ -108,12 +108,12 @@ begin
   end;
 end;
 
-function uncompress(filePath: PChar; dest: PChar): Integer; stdcall;
+function uncompress(filePath: PChar; dest: PChar): Integer; cdecl;
 begin
   Result := _uncompress(filePath, dest);
 end;
 
-function compress(filePath: PChar; src: PChar): Integer; stdcall;
+function compress(filePath: PChar; src: PChar): Integer; cdecl;
 begin
   Result := _compress(filePath, src);
 end;
@@ -140,12 +140,12 @@ begin
   Result := _compress(PChar(strFilePath), PChar(strSrc));
 end;
 
-function _getLastError(): Integer; stdcall;
+function _getLastError(): Integer;
 begin
   Result := ERROR_CODE;
 end;
 
-function getLastError(): Integer; stdcall;
+function getLastError(): Integer; cdecl;
 begin
   Result := _getLastError();
 end;
@@ -155,13 +155,13 @@ begin
   Result := _getLastError();
 end;
 
-function _getLastErrorMessage(): PChar; stdcall;
+function _getLastErrorMessage(): PChar;
 begin
   Result := StrAlloc(Length(ERROR_MESSAGE));
   strcopy(Result, Pchar(ERROR_MESSAGE));
 end;
 
-function getLastErrorMessage(): PChar; stdcall;
+function getLastErrorMessage(): PChar; cdecl;
 begin
   Result := _getLastErrorMessage();
 end;
@@ -174,7 +174,7 @@ begin
   Result := stringToJString(env, str);
 end;
 
-function _getHelp(): PChar; stdcall;
+function _getHelp(): PChar;
 var
   str: string;
 begin
@@ -189,7 +189,7 @@ begin
   strcopy(Result, PChar(str));
 end;
 
-function getHelp(): PChar; stdcall;
+function getHelp(): PChar; cdecl;
 begin
   Result := _getHelp();
 end;
@@ -203,20 +203,15 @@ begin
 end;
 
 exports
-  _uncompress,
-  _compress,
   uncompress,
   compress,
+  getLastError,
+  getLastErrorMessage,
+  getHelp,
   Java_com_hujiang_devart_utils_ZipUtils_uncompress,
   Java_com_hujiang_devart_utils_ZipUtils_compress,
-  _getLastError,
-  getLastError,
   Java_com_hujiang_devart_utils_ZipUtils_getLastError,
-  _getLastErrorMessage,
-  getLastErrorMessage,
   Java_com_hujiang_devart_utils_ZipUtils_getLastErrorMessage,
-  _getHelp,
-  getHelp,
   Java_com_hujiang_devart_utils_ZipUtils_getHelp;
 
 
