@@ -17,8 +17,9 @@ uses
   unt_gz, unt_bz2, unt_hjz, unt_targz, unt_tarbz, unt_files;
 
 const
-  ZIP_FORMAT: array[0..10] of string = (
+  ZIP_FORMAT: array[0..11] of string = (
     '.hjz',   // 0
+    '.hjp',   //
     '.zip',   // 1
     '.bz2',   // 2
     '.jar',   // 3
