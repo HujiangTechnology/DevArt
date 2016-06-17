@@ -203,17 +203,45 @@ begin
   Result := stringToJString(env, ret);
 end;
 
+function getFileSize(path: PChar): PChar; cdecl;
+var
+  fs: TFileStream;
+  size: Int64;
+  ret: string;
+begin
+  ret := '0';
+  if (FileExists(path)) and (not DirectoryExists(path)) then
+  begin
+    fs := TFileStream.Create(path, fmOpenRead);
+    size:= fs.Size;
+    fs.Free;
+    ret := IntToStr(size);
+  end;
+  Result := StrAlloc(Length(ret));
+  strcopy(Result, PChar(ret));
+end;
+
+function Java_com_hujiang_devart_utils_ZipUtils_getFileSize(env: PJNIEnv; obj: jobject; path: jstring): jstring; stdcall;
+var
+  ret: PChar;
+begin
+  ret := getFileSize(PChar(jstringToString(env, path)));
+  Result := stringToJString(env, string(ret));
+end;
+
 exports
   uncompress,
   compress,
   getLastError,
   getLastErrorMessage,
   getHelp,
+  getFileSize,
   Java_com_hujiang_devart_utils_ZipUtils_uncompress,
   Java_com_hujiang_devart_utils_ZipUtils_compress,
   Java_com_hujiang_devart_utils_ZipUtils_getLastError,
   Java_com_hujiang_devart_utils_ZipUtils_getLastErrorMessage,
-  Java_com_hujiang_devart_utils_ZipUtils_getHelp;
+  Java_com_hujiang_devart_utils_ZipUtils_getHelp,
+  Java_com_hujiang_devart_utils_ZipUtils_getFileSize;
 
 
 {$IFDEF DEBUG}
