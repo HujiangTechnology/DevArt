@@ -33,7 +33,7 @@ _compile() {
     ARCH=$1
     CMD="FPC_${ARCH}"
     TARGET="T_${ARCH}"
-    ${!CMD} -T${!TARGET} -Cn -Fuz -Fu3rd/bzip2 -Fu3rd/exlz hjz_ios.lpr
+    ${!CMD} -T${!TARGET} -Cn -Fuz -Fu3rd/bzip2 -Fu3rd/exlz -Fu../jni hjz.lpr
     ar -q libcompress_${ARCH}.a `grep "\.o$" link.res`
     ranlib libcompress_${ARCH}.a
 }
