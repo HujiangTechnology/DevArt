@@ -81,7 +81,7 @@ class ZipFragment: BaseFragment(), View.OnClickListener {
             }
             val count = ZipUtils.compress(dest, dir.absolutePath)
             Log.e("LOG", "ZipFragment => Zipped ${count} files")
-            hZip.sendEmptyMessage(if (count == 0) 2 else 0)
+            hZip.sendEmptyMessage(if (count <= 0) 2 else 0)
         }
     }
 
@@ -98,7 +98,7 @@ class ZipFragment: BaseFragment(), View.OnClickListener {
             }
             val count = ZipUtils.uncompress(src.absolutePath, dest.absolutePath)
             Log.e("LOG", "ZipFragment => Unzipped ${count} files")
-            hZip.sendEmptyMessage(if (count == 0) 2 else 1)
+            hZip.sendEmptyMessage(if (count <= 0) 2 else 1)
         }
     }
 }
