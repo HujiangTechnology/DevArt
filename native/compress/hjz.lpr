@@ -203,29 +203,36 @@ begin
   Result := stringToJString(env, ret);
 end;
 
-function getFileSize(path: PChar): PChar; cdecl;
+function _getFileSize(path: PChar): PChar;
 var
-  fs: TFileStream;
+  pathStr: string;
   size: Int64;
   ret: string;
+  fx: THandle;
 begin
+  pathStr:= string(path);
   ret := '0';
-  if (FileExists(path)) and (not DirectoryExists(path)) then
+  if FileExists(pathStr) and (not DirectoryExists(pathStr)) then
   begin
-    fs := TFileStream.Create(path, fmOpenRead);
-    size:= fs.Size;
-    fs.Free;
+    fx := FileOpen(pathStr, 0);
+    size:= FileSeek(fx, 0, 2);
+    FileClose(fx);
     ret := IntToStr(size);
   end;
   Result := StrAlloc(Length(ret));
   strcopy(Result, PChar(ret));
 end;
 
+function getFileSize(path: PChar): PChar;
+begin
+  Result := _getFileSize(path);
+end;
+
 function Java_com_hujiang_devart_utils_ZipUtils_getFileSize(env: PJNIEnv; obj: jobject; path: jstring): jstring; stdcall;
 var
   ret: PChar;
 begin
-  ret := getFileSize(PChar(jstringToString(env, path)));
+  ret := _getFileSize(PChar(jstringToString(env, path)));
   Result := stringToJString(env, string(ret));
 end;
 
@@ -249,6 +256,7 @@ var
   pCount: Integer;
   funType: string;
   ret: Integer;
+  retStr: PChar;
   p1: string;
   p2: string;
 {$ENDIF}
@@ -275,6 +283,9 @@ begin
     WriteLn(Format('Decompress %s to %s => %d', [p1, p2, ret]));
     WriteLn(Format('Error Code => %d', [_getLastError()]));
     WriteLn(Format('Error Message => %s', [string(_getLastErrorMessage())]));
+  end else if (funType = '-s') then begin
+    retStr:= _getFileSize(PChar(p1));
+    WriteLn(Format('File Size => %s', [string(retStr)]));
   end;
   {$ENDIF}
 

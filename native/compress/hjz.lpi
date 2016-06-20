@@ -166,9 +166,9 @@
       <RelocatableUnit Value="True"/>
     </CodeGeneration>
     <Linking>
-      <Options>
-        <ExecutableType Value="Library"/>
-      </Options>
+      <Debugging>
+        <UseHeaptrc Value="True"/>
+      </Debugging>
     </Linking>
   </CompilerOptions>
   <Debugging>
