@@ -169,6 +169,9 @@
       <Debugging>
         <UseHeaptrc Value="True"/>
       </Debugging>
+      <Options>
+        <ExecutableType Value="Library"/>
+      </Options>
     </Linking>
   </CompilerOptions>
   <Debugging>

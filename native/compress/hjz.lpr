@@ -206,34 +206,47 @@ end;
 function _getFileSize(path: PChar): PChar;
 var
   pathStr: string;
-  size: Int64;
+  fs: TFileStream;
   ret: string;
-  fx: THandle;
 begin
   pathStr:= string(path);
   ret := '0';
   if FileExists(pathStr) and (not DirectoryExists(pathStr)) then
   begin
-    fx := FileOpen(pathStr, 0);
-    size:= FileSeek(fx, 0, 2);
-    FileClose(fx);
-    ret := IntToStr(size);
+    with TFileStream.Create(pathStr, fmOpenRead and fmShareDenyWrite) do begin
+      ret := IntToStr(Size);
+      Free;
+    end;
   end;
   Result := StrAlloc(Length(ret));
   strcopy(Result, PChar(ret));
 end;
 
-function getFileSize(path: PChar): PChar;
+function getFileSize(path: PChar): PChar; cdecl;
 begin
   Result := _getFileSize(path);
 end;
 
 function Java_com_hujiang_devart_utils_ZipUtils_getFileSize(env: PJNIEnv; obj: jobject; path: jstring): jstring; stdcall;
 var
-  ret: PChar;
+  pathStr: string;
+  clsFile: jclass;
+  initFile: jmethodID;
+  objFile: jobject;
+  mLength: jmethodID;
+  size: Int64;
+  ret: string;
 begin
-  ret := _getFileSize(PChar(jstringToString(env, path)));
-  Result := stringToJString(env, string(ret));
+  pathStr:= jstringToString(env, path);
+
+  clsFile:= env^^.FindClass(env, 'java/io/File');
+  initFile:= env^^.GetMethodID(env, clsFile, '<init>', '(Ljava/lang/String;)V');
+  objFile:= env^^.NewObjectA(env, clsFile, initFile, argsToJValues(env, [pathStr]));
+  mLength:= env^^.GetMethodID(env, clsFile, 'length', '()J');
+
+  size := Int64(env^^.CallLongMethodA(env, objFile, mLength, nil));
+  ret := IntToStr(size);
+  Result := stringToJString(env, ret);
 end;
 
 exports
