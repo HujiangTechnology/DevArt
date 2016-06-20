@@ -7,7 +7,7 @@ unit unt_zip;
 interface
 
 uses
-  Classes, SysUtils, strutils, zipper, unt_error, unt_files;
+  Classes, SysUtils, strutils, zipper, unt_error, unt_files, unt_status;
 
 
 
@@ -20,11 +20,14 @@ function DoZip(filePath: string; srcDir: string): integer;
 var
   zip: TZipper;
   zentries: TZipFileEntries;
+  relaPath: string;
   i: integer;
   fileList: TStringList;
-  relaPath: string;
+  fileCount: Integer = 0;
+  zipCount: Integer = 0;
+  errCode: Integer = 0;
+  errMsg: string = '';
 begin
-  Result := 0;
   try
     zip := TZipper.Create;
     try
@@ -37,7 +40,6 @@ begin
             srcDir += '/';
           end;
           fileList := TStringList.Create;
-
           try
             FindAllFiles(srcDir, fileList);
             WriteLn('fileList => ' + fileList.Text);
@@ -49,21 +51,21 @@ begin
             fileList.Free;
           end;
         end;
+        fileCount:= zentries.Count;
         if (zentries.Count > 0) then begin
           ZipFiles(zentries);
         end;
-        Result := zentries.Count;
-        ERROR_CODE := ERROR_NONE;
-        ERROR_MESSAGE := ERRMSG_NONE;
-        if (Result = 0) then begin
-          ERROR_CODE:= ERROR_COMPRESS;
-          ERROR_MESSAGE:= ERRMSG_COMPRESS;
+        zipCount := fileCount;
+        errCode := ERROR_NONE;
+        errMsg := ERRMSG_NONE;
+        if (zipCount = 0) then begin
+          errCode:= ERROR_COMPRESS;
+          errMsg:= ERRMSG_COMPRESS;
         end;
       end;
     except
-      Result := -2;
-      ERROR_CODE := ERROR_COMPRESS;
-      ERROR_MESSAGE := ERRMSG_COMPRESS;
+      errCode := ERROR_COMPRESS;
+      errMsg := ERRMSG_COMPRESS;
     end;
   finally
     if (zentries <> nil) then begin
@@ -71,13 +73,18 @@ begin
     end;
     zip.Free;
   end;
+  AddCompressStatus(filePath, fileCount, zipCount, errCode, errMsg);
+  Result := errCode;
 end;
 
 function DoUnzip(filePath: string; destDir: string): integer;
 var
   unzip: TUnZipper;
+  fileCount: Integer = 0;
+  unzipCount: Integer = 0;
+  errCode: Integer = 0;
+  errMsg: string = '';
 begin
-  Result := 0;
   try
     unzip := TUnZipper.Create;
     try
@@ -85,23 +92,25 @@ begin
         FileName := filePath;
         OutputPath := destDir;
         Examine;
+        fileCount:= Entries.Count;
         UnZipAllFiles;
-        Result := Entries.Count;
+        unzipCount := fileCount;
       end;
-      ERROR_CODE := ERROR_NONE;
-      ERROR_MESSAGE := ERRMSG_NONE;
-      if (Result = 0) then begin
-        ERROR_CODE:= ERROR_UNCOMPRESS;
-        ERROR_MESSAGE:= ERRMSG_UNCOMPRESS;
+      errCode := ERROR_NONE;
+      errMsg := ERRMSG_NONE;
+      if (unzipCount = 0) then begin
+        errCode:= ERROR_UNCOMPRESS;
+        errMsg:= ERRMSG_UNCOMPRESS;
       end;
     except
-      Result := -2;
-      ERROR_CODE := ERROR_UNCOMPRESS;
-      ERROR_MESSAGE := ERRMSG_UNCOMPRESS;
+      errCode := ERROR_UNCOMPRESS;
+      errMsg := ERRMSG_UNCOMPRESS;
     end;
   finally
     unzip.Free;
   end;
+  AddUncompressStatus(filePath, fileCount, unzipCount, errCode, errMsg);
+  Result := errCode;
 end;
 
 end.

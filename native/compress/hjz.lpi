@@ -28,7 +28,7 @@
         <CommandLineParams Value="-c /home/rarnu/Desktop/my.zip /home/rarnu/Desktop/test/"/>
       </local>
     </RunParams>
-    <Units Count="30">
+    <Units Count="31">
       <Unit0>
         <Filename Value="hjz.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -149,6 +149,10 @@
         <Filename Value="unt_files.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit29>
+      <Unit30>
+        <Filename Value="unt_status.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit30>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

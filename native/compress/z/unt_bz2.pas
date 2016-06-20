@@ -5,7 +5,7 @@ unit unt_bz2;
 interface
 
 uses
-  Classes, SysUtils, bzip2lib, unt_error;
+  Classes, SysUtils, bzip2lib, unt_error, unt_status;
 
 function DoBz2(filePath: string; src: string): Integer;
 function DoUnbz2(filePath: string; dest: string): integer;
@@ -19,8 +19,10 @@ var
   infile: TFileStream;
   count: Integer;
   buf: array[0..1023] of Byte;
+  errCode: Integer = 0;
+  errMsg: string = '';
+  bzCount: Integer = 0;
 begin
-  Result := 0;
   try
     infile := TFileStream.Create(filePath, fmCreate);
     bfile := TBzip2CompressStream.Create(infile);
@@ -30,19 +32,20 @@ begin
         count := ofile.Read(buf, SizeOf(buf));
         bfile.Write(buf, count);
       until count < SizeOf(buf);
-      Result := 1;
-      ERROR_CODE := ERROR_NONE;
-      ERROR_MESSAGE := ERRMSG_NONE;
+      bzCount:= 1;
+      errCode := ERROR_NONE;
+      errMsg := ERRMSG_NONE;
     except
-      Result := -2;
-      ERROR_CODE := ERROR_UNCOMPRESS;
-      ERROR_MESSAGE := ERRMSG_UNCOMPRESS;
+      errCode := ERROR_UNCOMPRESS;
+      errMsg := ERRMSG_UNCOMPRESS;
     end;
   finally
     ofile.Free;
     bfile.Free;
     infile.Free;
   end;
+  AddCompressStatus(filePath, 1, bzCount, errCode, errMsg);
+  Result := errCode;
 end;
 
 function DoUnbz2(filePath: string; dest: string): integer;
@@ -52,8 +55,10 @@ var
   unfile: TFileStream;
   Count: integer;
   buf: array[0..1023] of byte;
+  errCode: Integer = 0;
+  errMsg: string = '';
+  unbzCount: Integer = 0;
 begin
-  Result := 0;
   try
     try
       ofile := TFileStream.Create(filePath, fmOpenRead);
@@ -64,13 +69,12 @@ begin
           Count := bfile.Read(buf, SizeOf(buf));
           unfile.Write(buf, Count);
         until Count < SizeOf(buf);
-        Result := 1;
-        ERROR_CODE := ERROR_NONE;
-        ERROR_MESSAGE := ERRMSG_NONE;
+        unbzCount:= 1;
+        errCode := ERROR_NONE;
+        errMsg := ERRMSG_NONE;
       except
-        Result := -2;
-        ERROR_CODE := ERROR_UNCOMPRESS;
-        ERROR_MESSAGE := ERRMSG_UNCOMPRESS;
+        errCode := ERROR_UNCOMPRESS;
+        errMsg := ERRMSG_UNCOMPRESS;
       end;
     finally
       unfile.Free;
@@ -78,10 +82,11 @@ begin
       ofile.Free;
     end;
   except
-    Result := -2;
-    ERROR_CODE := ERROR_UNCOMPRESS;
-    ERROR_MESSAGE := ERRMSG_UNCOMPRESS;
+    errCode := ERROR_UNCOMPRESS;
+    errMsg := ERRMSG_UNCOMPRESS;
   end;
+  AddUncompressStatus(filePath, 1, unbzCount, errCode, errMsg);
+  Result := errCode;
 end;
 
 end.

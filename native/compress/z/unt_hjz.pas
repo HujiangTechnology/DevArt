@@ -5,7 +5,7 @@ unit unt_hjz;
 interface
 
 uses
-  Classes, SysUtils, tplHjzUnit, unt_tar, unt_error;
+  Classes, SysUtils, tplHjzUnit, unt_tar, unt_error, unt_status;
 
 function DoHjz(filePath: string; srcDir: string): Integer;
 function DoUnhjz(filePath: string; destDir: string): integer;
@@ -18,13 +18,14 @@ var
   count: Integer;
   hjz: TplLzmaCompress;
   ofile: TFileStream;
-
+  errCode: Integer = 0;
+  errMsg: string = '';
+  hjzCount: Integer = 0;
 begin
-  Result := 0;
   // hjz
   tmpFile:= filePath + '.tmp';
   count := DoTar(tmpFile, srcDir);
-  Result := count;
+  hjzCount := count;
   if (count > 0) then begin
     try
       ofile := TFileStream.Create(filePath, fmCreate);
@@ -34,14 +35,13 @@ begin
         hjz.InputFiles.Clear;
         hjz.InputFiles.Add(tmpFile);
         if hjz.CreateArchive then begin
-          Result := 1;
+          hjzCount += 1;
         end;
-        ERROR_CODE:= ERROR_NONE;
-        ERROR_MESSAGE:= ERRMSG_NONE;
+        errCode:= ERROR_NONE;
+        errMsg:= ERRMSG_NONE;
       except
-        Result := -2;
-        ERROR_CODE:= ERROR_COMPRESS;
-        ERROR_MESSAGE:= ERRMSG_COMPRESS;
+        errCode:= ERROR_COMPRESS;
+        errMsg:= ERRMSG_COMPRESS;
       end;
     finally
       hjz.Free;
@@ -49,6 +49,8 @@ begin
     end;
   end;
   DeleteFile(tmpFile);
+  AddCompressStatus(filePath, hjzCount, hjzCount, errCode, errMsg);
+  Result := errCode;
 end;
 
 function DoUnhjz(filePath: string; destDir: string): integer;
@@ -58,10 +60,12 @@ var
   ulzma: TplLzmaUnCompress;
   ofile: TFileStream;
   dfile: TFileStream;
+  errCode: Integer = 0;
+  errMsg: string = '';
+  unhjzCount: Integer = 0;
 begin
   tmpFile:= filePath + '.tmp';
   count := 0;
-  Result := 0;
   try
     ofile := TFileStream.Create(filePath, fmOpenRead);
     ulzma := TplLzmaUnCompress.Create(nil);
@@ -71,13 +75,12 @@ begin
       try
         ulzma.ExtractFileToStream(ulzma.FilesInArchive[0].FileName, dfile);
         count := 1;
-        Result := 1;
-        ERROR_CODE := ERROR_NONE;
-        ERROR_MESSAGE := ERRMSG_NONE;
+        unhjzCount := 1;
+        errCode := ERROR_NONE;
+        errMsg := ERRMSG_NONE;
       except
-        Result := -2;
-        ERROR_CODE := ERROR_UNCOMPRESS;
-        ERROR_MESSAGE := ERRMSG_UNCOMPRESS;
+        errCode := ERROR_UNCOMPRESS;
+        errMsg := ERRMSG_UNCOMPRESS;
       end;
     finally
       dfile.Free;
@@ -85,15 +88,16 @@ begin
       ofile.Free;
     end;
   except
-    Result := -2;
-    ERROR_CODE := ERROR_UNCOMPRESS;
-    ERROR_MESSAGE := ERRMSG_UNCOMPRESS;
+    errCode := ERROR_UNCOMPRESS;
+    errMsg := ERRMSG_UNCOMPRESS;
   end;
   if (count > 0) then begin
     count := DoUntar(tmpFile, destDir);
-    Result += count;
+    unhjzCount += count;
   end;
   DeleteFile(tmpFile);
+  AddUncompressStatus(filePath, unhjzCount, unhjzCount, errCode, errMsg);
+  Result := errCode;
 end;
 
 end.

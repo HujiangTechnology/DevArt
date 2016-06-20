@@ -5,7 +5,7 @@ unit unt_gz;
 interface
 
 uses
-  Classes, SysUtils, zstream, unt_error;
+  Classes, SysUtils, zstream, unt_error, unt_status;
 
 function DoGz(filePath: string; src: string): Integer;
 function DoUnGz(filePath: string; dest: string): integer;
@@ -18,9 +18,11 @@ var
   ofile: TFileStream;
   count: Integer;
   buf: array[0..1023] of Byte;
+  errCode: Integer = 0;
+  errMsg: string = '';
+  gzCount: Integer = 0;
 begin
   // gz
-  Result := 0;
   try
     try
       gfile := TGZFileStream.create(filePath, gzopenwrite);
@@ -30,23 +32,23 @@ begin
           count := ofile.Read(buf, SizeOf(buf));
           gfile.write(buf, count);
         until count < SizeOf(buf);
-        Result := 1;
-        ERROR_CODE := ERROR_NONE;
-        ERROR_MESSAGE := ERRMSG_NONE;
+        gzCount := 1;
+        errCode := ERROR_NONE;
+        errMsg := ERRMSG_NONE;
       except
-        Result := -2;
-        ERROR_CODE := ERROR_UNCOMPRESS;
-        ERROR_MESSAGE := ERRMSG_UNCOMPRESS;
+        errCode := ERROR_UNCOMPRESS;
+        errMsg := ERRMSG_UNCOMPRESS;
       end;
     finally
       ofile.Free;
       gfile.Free;
     end;
   except
-    Result := -2;
-    ERROR_CODE := ERROR_UNCOMPRESS;
-    ERROR_MESSAGE := ERRMSG_UNCOMPRESS;
+    errCode := ERROR_UNCOMPRESS;
+    errMsg := ERRMSG_UNCOMPRESS;
   end;
+  AddCompressStatus(filePath, 1, gzCount, errCode, errMsg);
+  Result := errCode;
 end;
 
 function DoUnGz(filePath: string; dest: string): integer;
@@ -55,8 +57,10 @@ var
   unfile: TFileStream;
   Count: integer;
   buf: array[0..1023] of byte;
+  ungzCount: Integer = 0;
+  errCode: Integer = 0;
+  errMsg: string = '';
 begin
-  Result := 0;
   try
     try
       gfile := TGZFileStream.Create(filePath, gzopenread);
@@ -66,23 +70,23 @@ begin
           Count := gfile.Read(buf, SizeOf(buf));
           unfile.Write(buf, Count);
         until Count < SizeOf(buf);
-        Result := 1;
-        ERROR_CODE := ERROR_NONE;
-        ERROR_MESSAGE := ERRMSG_NONE;
+        ungzCount:= 1;
+        errCode := ERROR_NONE;
+        errMsg := ERRMSG_NONE;
       except
-        Result := -2;
-        ERROR_CODE := ERROR_UNCOMPRESS;
-        ERROR_MESSAGE := ERRMSG_UNCOMPRESS;
+        errCode := ERROR_UNCOMPRESS;
+        errMsg := ERRMSG_UNCOMPRESS;
       end;
     finally
       unfile.Free;
       gfile.Free;
     end;
   except
-    Result := -2;
-    ERROR_CODE := ERROR_UNCOMPRESS;
-    ERROR_MESSAGE := ERRMSG_UNCOMPRESS;
+    errCode := ERROR_UNCOMPRESS;
+    errMsg := ERRMSG_UNCOMPRESS;
   end;
+  AddUncompressStatus(filePath, 1, ungzCount, errCode, errMsg);
+  Result := errCode;
 end;
 
 end.

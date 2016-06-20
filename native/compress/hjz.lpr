@@ -12,9 +12,21 @@ uses
   {$IFNDEF WINDOWS}
   cthreads,
   {$ENDIF}
-  jni2, jni_utils,
-  Classes, sysutils, strutils, unt_zip, unt_error, unt_tar,
-  unt_gz, unt_bz2, unt_hjz, unt_targz, unt_tarbz, unt_files;
+  jni2,
+  jni_utils,
+  Classes,
+  sysutils,
+  strutils,
+  unt_error,
+  unt_status,
+  unt_files,
+  unt_zip,
+  unt_tar,
+  unt_gz,
+  unt_bz2,
+  unt_hjz,
+  unt_targz,
+  unt_tarbz;
 
 const
   ZIP_FORMAT: array[0..11] of string = (
@@ -55,29 +67,34 @@ var
   strPath: string;
   strDest: string;
   ext: string;
+  errCode: Integer = 0;
+  errMsg: string = '';
 begin
   strPath:= string(filePath);
   strDest:= string(dest);
   ext := extractFileRealExt(strPath);
   WriteLn(Format('file format => %s', [ext]));
-  Result := -1;
-  ERROR_CODE:= ERROR_FORMAT_NOT_SUPPORT;
-  ERROR_MESSAGE:= ERRMSG_FORMAT_NOT_SUPPORT;
+  errCode:= ERROR_FORMAT_NOT_SUPPORT;
+  errMsg:= ERRMSG_FORMAT_NOT_SUPPORT;
   if (ext = '.zip') or (ext = '.jar') or (ext = '.hjp') then begin
-    Result := DoUnzip(strPath, strDest);
+    errCode := DoUnzip(strPath, strDest);
   end else if (ext = '.bz2') then begin
-    Result := DoUnbz2(strPath, strDest);
+    errCode := DoUnbz2(strPath, strDest);
   end else if (ext = '.tar') then begin
-    Result := DoUntar(strPath, strDest);
+    errCode := DoUntar(strPath, strDest);
   end else if (ext = '.tgz') or (ext = '.tar.gz') then begin
-    Result := DoUnTarGz(strPath, strDest);
+    errCode := DoUnTarGz(strPath, strDest);
   end else if (ext = '.gz') or (ext = '.gzip') then begin
-    Result := DoUnGz(strPath, strDest);
+    errCode := DoUnGz(strPath, strDest);
   end else if (ext = '.tbz') or (ext = '.tar.bz2') then begin
-    Result := DoUnTarBz(strPath, strDest);
+    errCode := DoUnTarBz(strPath, strDest);
   end else if (ext = '.hjz') then begin
-    Result := DoUnhjz(strPath, strDest);
+    errCode := DoUnhjz(strPath, strDest);
   end;
+  if (errCode = ERROR_FORMAT_NOT_SUPPORT) then begin
+    AddCompressStatus(string(filePath), 0, 0, errCode, errMsg);
+  end;
+  Result := errCode;
 end;
 
 function _compress(filePath: PChar; src: PChar): Integer;
@@ -85,28 +102,33 @@ var
   strPath: string;
   strSrc: string;
   ext: string;
+  errCode: Integer = 0;
+  errMsg: string = '';
 begin
   strPath := string(filePath);
   strSrc := string(src);
   ext := extractFileRealExt(strPath);
-  Result := -1;
-  ERROR_CODE:= ERROR_FORMAT_NOT_SUPPORT;
-  ERROR_MESSAGE:= ERRMSG_FORMAT_NOT_SUPPORT;
+  errCode:= ERROR_FORMAT_NOT_SUPPORT;
+  errMsg:= ERRMSG_FORMAT_NOT_SUPPORT;
   if (ext = '.zip') or (ext = '.jar') or (ext = '.hjp') then begin
-    Result := DoZip(strPath, strSrc);
+    errCode := DoZip(strPath, strSrc);
   end else if (ext = '.bz2') then begin
-    Result := DoBz2(strPath, strSrc);
+    errCode := DoBz2(strPath, strSrc);
   end else if (ext = '.tar') then begin
-    Result := DoTar(strPath, strSrc);
+    errCode := DoTar(strPath, strSrc);
   end else if (ext = '.tgz') or (ext = '.tar.gz') then begin
-    Result := DoTarGz(strPath, strSrc);
+    errCode := DoTarGz(strPath, strSrc);
   end else if (ext = '.gz') or (ext = '.gzip') then begin
-    Result := DoGz(strPath, strSrc);
+    errCode := DoGz(strPath, strSrc);
   end else if (ext = '.tbz') or (ext = '.tar.bz2') then begin
-    Result := DoTarBz(strPath, strSrc);
+    errCode := DoTarBz(strPath, strSrc);
   end else if (ext = '.hjz') then begin
-    Result := DoHjz(strPath, strSrc);
+    errCode := DoHjz(strPath, strSrc);
   end;
+  if (errCode = ERROR_FORMAT_NOT_SUPPORT) then begin
+    AddUncompressStatus(string(filePath), 0, 0, errCode, errMsg);
+  end;
+  Result := errCode;
 end;
 
 function uncompress(filePath: PChar; dest: PChar): Integer; cdecl;
@@ -139,40 +161,6 @@ begin
   strFilePath:= jstringToString(env, filePath);
   strSrc:= jstringToString(env, src);
   Result := _compress(PChar(strFilePath), PChar(strSrc));
-end;
-
-function _getLastError(): Integer;
-begin
-  Result := ERROR_CODE;
-end;
-
-function getLastError(): Integer; cdecl;
-begin
-  Result := _getLastError();
-end;
-
-function Java_com_hujiang_devart_utils_ZipUtils_getLastError(env: PJNIEnv; obj: jobject): jint; stdcall;
-begin
-  Result := _getLastError();
-end;
-
-function _getLastErrorMessage(): PChar;
-begin
-  Result := StrAlloc(Length(ERROR_MESSAGE));
-  strcopy(Result, Pchar(ERROR_MESSAGE));
-end;
-
-function getLastErrorMessage(): PChar; cdecl;
-begin
-  Result := _getLastErrorMessage();
-end;
-
-function Java_com_hujiang_devart_utils_ZipUtils_getLastErrorMessage(env: PJNIEnv; obj: jobject): jstring; stdcall;
-var
-  str: string;
-begin
-  str := string(_getLastErrorMessage());
-  Result := stringToJString(env, str);
 end;
 
 function _getHelp(): PChar;
@@ -252,17 +240,26 @@ end;
 exports
   uncompress,
   compress,
-  getLastError,
-  getLastErrorMessage,
-  getHelp,
   getFileSize,
+  getCompressErrorCode,
+  getCompressErrorMessage,
+  getCompressFileCount,
+  getCompressedCount,
+  getUncompressErrorCode,
+  getUncompressErrorMessage,
+  getUncompressFileCount,
+  getUncompressedCount,
   Java_com_hujiang_devart_utils_ZipUtils_uncompress,
   Java_com_hujiang_devart_utils_ZipUtils_compress,
-  Java_com_hujiang_devart_utils_ZipUtils_getLastError,
-  Java_com_hujiang_devart_utils_ZipUtils_getLastErrorMessage,
-  Java_com_hujiang_devart_utils_ZipUtils_getHelp,
-  Java_com_hujiang_devart_utils_ZipUtils_getFileSize;
-
+  Java_com_hujiang_devart_utils_ZipUtils_getFileSize,
+  Java_com_hujiang_devart_utils_ZipUtils_getCompressErrorCode,
+  Java_com_hujiang_devart_utils_ZipUtils_getCompressErrorMessage,
+  Java_com_hujiang_devart_utils_ZipUtils_getCompressFileCount,
+  Java_com_hujiang_devart_utils_ZipUtils_getCompressedCount,
+  Java_com_hujiang_devart_utils_ZipUtils_getUncompressErrorCode,
+  Java_com_hujiang_devart_utils_ZipUtils_getUncompressErrorMessage,
+  Java_com_hujiang_devart_utils_ZipUtils_getUncompressFileCount,
+  Java_com_hujiang_devart_utils_ZipUtils_getUncompressedCount;
 
 {$IFDEF DEBUG}
 var

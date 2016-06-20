@@ -18,10 +18,6 @@ const
   ERRMSG_UNCOMPRESS = 'uncompress error';
   ERRMSG_COMPRESS = 'compress error';
 
-var
-  ERROR_CODE: Integer = 0;
-  ERROR_MESSAGE: string = '';
-
 implementation
 
 end.
