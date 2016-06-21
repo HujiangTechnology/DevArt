@@ -163,34 +163,6 @@ begin
   Result := _compress(PChar(strFilePath), PChar(strSrc));
 end;
 
-function _getHelp(): PChar;
-var
-  str: string;
-begin
-  str := 'Usage: hjz <switcher> <parameters ...>'#13#10;
-  str += ''#13#10;
-  str += '    -c <dest file> <source dir|file>'#13#10;
-  str += '        compress source dir or file to dest file'#13#10;
-  str += '    -d <source file> <dest dir|file>'#13#10;
-  str += '        decompress source file to dest dir or file'#13#10;
-  str += ''#13#10;
-  Result := StrAlloc(Length(str));
-  strcopy(Result, PChar(str));
-end;
-
-function getHelp(): PChar; cdecl;
-begin
-  Result := _getHelp();
-end;
-
-function Java_com_hujiang_devart_utils_ZipUtils_getHelp(env: PJNIEnv; obj: jobject): jstring; stdcall;
-var
-  ret: string;
-begin
-  ret := string(_getHelp());
-  Result := stringToJString(env, ret);
-end;
-
 function _getFileSize(path: PChar): PChar;
 var
   pathStr: string;
