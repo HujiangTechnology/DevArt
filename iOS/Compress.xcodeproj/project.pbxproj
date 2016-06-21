@@ -13,6 +13,7 @@
 		929A3D461D015AF8008B0942 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 929A3D451D015AF8008B0942 /* Assets.xcassets */; };
 		929A3D491D015AF8008B0942 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 929A3D471D015AF8008B0942 /* LaunchScreen.storyboard */; };
 		92D5D5521D01BA3400175930 /* libcompress.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D5D5511D01BA3400175930 /* libcompress.a */; };
+		92E3491A1D18E0240067EE16 /* NativeCompressStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E349191D18E0240067EE16 /* NativeCompressStatus.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,8 @@
 		929A3D541D017A6F008B0942 /* NativeCompress.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NativeCompress.h; sourceTree = "<group>"; };
 		929A3D551D017A76008B0942 /* compress-bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "compress-bridge.h"; sourceTree = "<group>"; };
 		92D5D5511D01BA3400175930 /* libcompress.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcompress.a; sourceTree = "<group>"; };
+		92E349181D18E0240067EE16 /* NativeCompressStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeCompressStatus.h; sourceTree = "<group>"; };
+		92E349191D18E0240067EE16 /* NativeCompressStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NativeCompressStatus.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +71,8 @@
 				929A3D451D015AF8008B0942 /* Assets.xcassets */,
 				929A3D471D015AF8008B0942 /* LaunchScreen.storyboard */,
 				929A3D4A1D015AF8008B0942 /* Info.plist */,
+				92E349181D18E0240067EE16 /* NativeCompressStatus.h */,
+				92E349191D18E0240067EE16 /* NativeCompressStatus.m */,
 			);
 			path = Compress;
 			sourceTree = "<group>";
@@ -99,11 +104,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = rarnu;
 				TargetAttributes = {
 					929A3D3A1D015AF8008B0942 = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -143,6 +149,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92E3491A1D18E0240067EE16 /* NativeCompressStatus.m in Sources */,
 				929A3D411D015AF8008B0942 /* ViewController.swift in Sources */,
 				929A3D3F1D015AF8008B0942 /* AppDelegate.swift in Sources */,
 			);
@@ -269,6 +276,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.hujiang.compress.Compress;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Compress/compress-bridge.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -286,6 +294,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.hujiang.compress.Compress;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Compress/compress-bridge.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

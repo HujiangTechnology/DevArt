@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11129.15" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11103.10"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -14,91 +15,60 @@
                         <viewControllerLayoutGuide type="bottom" id="Nlg-Qr-FLh"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tYv-zS-Nmm">
-                                <rect key="frame" x="0.0" y="20" width="320" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tYv-zS-Nmm">
+                                <frame key="frameInset" minY="20" width="375" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Compress"/>
                                 <connections>
                                     <action selector="btnCompressClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="f9l-hT-0Xt"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tsc-2W-2z0">
-                                <rect key="frame" x="0.0" y="58" width="320" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tsc-2W-2z0">
+                                <frame key="frameInset" minY="58" width="375" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Uncompress"/>
                                 <connections>
                                     <action selector="btnUncompressClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="P8x-zg-iwS"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SiS-RP-Bbe">
-                                <rect key="frame" x="0.0" y="134" width="320" height="434"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="itU-zQ-OQc">
+                                <frame key="frameInset" minY="96" width="375" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Clean"/>
+                                <connections>
+                                    <action selector="btnCleanClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0a6-0I-95D"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SiS-RP-Bbe">
+                                <frame key="frameInset" minY="134" width="375" height="533"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="8Tv-op-Sr6"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="c7a-cx-sso"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BNd-cn-Mid">
-                                <rect key="frame" x="0.0" y="96" width="320" height="30"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="itU-zQ-OQc">
-                                        <rect key="frame" x="0.0" y="0.0" width="164" height="30"/>
-                                        <state key="normal" title="Clean"/>
-                                        <connections>
-                                            <action selector="btnCleanClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0a6-0I-95D"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="12Q-A8-eta">
-                                        <rect key="frame" x="172" y="0.0" width="148" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="148" id="2Ph-1v-Pvi"/>
-                                        </constraints>
-                                        <state key="normal" title="Help"/>
-                                        <connections>
-                                            <action selector="btnGetHelp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="v8a-JL-jar"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="itU-zQ-OQc" secondAttribute="bottom" id="U1w-lm-TPd"/>
-                                    <constraint firstItem="12Q-A8-eta" firstAttribute="leading" secondItem="itU-zQ-OQc" secondAttribute="trailing" constant="8" symbolic="YES" id="ZWn-Hv-rAp"/>
-                                    <constraint firstItem="itU-zQ-OQc" firstAttribute="top" secondItem="BNd-cn-Mid" secondAttribute="top" id="cVL-TS-QLT"/>
-                                    <constraint firstItem="itU-zQ-OQc" firstAttribute="leading" secondItem="BNd-cn-Mid" secondAttribute="leading" id="fkS-xz-wpj"/>
-                                    <constraint firstItem="itU-zQ-OQc" firstAttribute="baseline" secondItem="12Q-A8-eta" secondAttribute="baseline" id="hmQ-Zw-mN0"/>
-                                    <constraint firstAttribute="trailing" secondItem="12Q-A8-eta" secondAttribute="trailing" id="mrF-wJ-e7L"/>
-                                </constraints>
-                            </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="tsc-2W-2z0" firstAttribute="trailing" secondItem="BNd-cn-Mid" secondAttribute="trailing" id="26H-at-iMU"/>
-                            <constraint firstItem="BNd-cn-Mid" firstAttribute="trailing" secondItem="SiS-RP-Bbe" secondAttribute="trailing" id="7E6-bO-Knd"/>
-                            <constraint firstItem="tYv-zS-Nmm" firstAttribute="leading" secondItem="tsc-2W-2z0" secondAttribute="leading" id="ASp-cy-36V"/>
-                            <constraint firstItem="tYv-zS-Nmm" firstAttribute="top" secondItem="Wip-dU-9uP" secondAttribute="bottom" id="EeT-44-ygz"/>
-                            <constraint firstItem="tYv-zS-Nmm" firstAttribute="trailing" secondItem="tsc-2W-2z0" secondAttribute="trailing" id="ILg-9s-q6R"/>
-                            <constraint firstAttribute="trailing" secondItem="tYv-zS-Nmm" secondAttribute="trailing" id="Qhu-tu-gkA"/>
-                            <constraint firstItem="tsc-2W-2z0" firstAttribute="leading" secondItem="BNd-cn-Mid" secondAttribute="leading" id="ahn-7V-OcX"/>
-                            <constraint firstItem="tYv-zS-Nmm" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="ow8-wD-8S0"/>
-                            <constraint firstItem="BNd-cn-Mid" firstAttribute="leading" secondItem="SiS-RP-Bbe" secondAttribute="leading" id="tGI-ti-KSv"/>
-                            <constraint firstItem="SiS-RP-Bbe" firstAttribute="top" secondItem="BNd-cn-Mid" secondAttribute="bottom" constant="8" symbolic="YES" id="uSf-eR-hKw"/>
-                            <constraint firstItem="BNd-cn-Mid" firstAttribute="top" secondItem="tsc-2W-2z0" secondAttribute="bottom" constant="8" symbolic="YES" id="xCB-hc-fmU"/>
-                            <constraint firstItem="tsc-2W-2z0" firstAttribute="top" secondItem="tYv-zS-Nmm" secondAttribute="bottom" constant="8" symbolic="YES" id="xEu-dz-1bl"/>
-                            <constraint firstItem="SiS-RP-Bbe" firstAttribute="bottom" secondItem="Nlg-Qr-FLh" secondAttribute="top" id="ztx-Tu-wst"/>
-                        </constraints>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
-                        <outlet property="btnClean" destination="itU-zQ-OQc" id="HPj-yF-eAV"/>
+                        <outlet property="btnClean" destination="itU-zQ-OQc" id="eTg-3B-7hZ"/>
                         <outlet property="btnCompress" destination="tYv-zS-Nmm" id="Z0x-7K-zJL"/>
-                        <outlet property="btnGetHelp" destination="12Q-A8-eta" id="aHd-le-Xj4"/>
                         <outlet property="btnUncompress" destination="tsc-2W-2z0" id="8BC-Ha-ari"/>
                         <outlet property="table" destination="SiS-RP-Bbe" id="xOe-qH-SdF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="162" y="406"/>
+            <point key="canvasLocation" x="161.5" y="405.5"/>
         </scene>
     </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
+    </simulatedMetricsContainer>
 </document>

@@ -10,5 +10,6 @@
 #define compress_bridge_h
 
 #import "NativeCompress.h"
+#import "NativeCompressStatus.h"
 
 #endif /* compress_bridge_h */
