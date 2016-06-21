@@ -62,10 +62,13 @@ class ZipFragment: BaseFragment(), View.OnClickListener {
 
     private val hZip = object : Handler() {
         override fun handleMessage(msg: Message?) {
-            Toast.makeText(activity, when(msg!!.what) {
-                0 -> "Zip Completed"
-                1 -> "Unzip Completed"
-                else -> "Error!!"
+            Log.e("handleMessage", "msg.what => ${msg!!.what}")
+            Toast.makeText(activity, if (msg.what == 0) {
+                val c = msg.obj as ZipUtils.CompressStatus
+                "compress => msg: ${c.errMsg}, files: ${c.fileCount}, compress: ${c.compressCount}"
+            } else {
+                val uc = msg.obj as ZipUtils.UncompressStatus
+                "uncompress => msg: ${uc.errMsg}, files: ${uc.fileCount}, uncompress: ${uc.uncompressCount}"
             }, Toast.LENGTH_SHORT).show()
             super.handleMessage(msg)
         }
@@ -75,30 +78,32 @@ class ZipFragment: BaseFragment(), View.OnClickListener {
         thread {
             val dest = "/sdcard/test.zip"
             val dir = File("/sdcard/test/")
-            if (!dir.exists() || !dir.isDirectory) {
-                hZip.sendEmptyMessage(2)
-                return@thread
-            }
-            val count = ZipUtils.compress(dest, dir.absolutePath)
-            Log.e("LOG", "ZipFragment => Zipped ${count} files")
-            hZip.sendEmptyMessage(if (count <= 0) 2 else 0)
+            val errCode = ZipUtils.compress(dest, dir.absolutePath)
+            Log.e("threadZip", "Error Code => $errCode")
+            val size = ZipUtils.getFileSize(dest)
+            Log.e("threadZip", "File Size => $size")
+            val status = ZipUtils.getCompressStatus(dest)
+            val msg = Message.obtain(hZip, 0, status)
+            hZip.sendMessage(msg)
+            msg.recycle()
         }
     }
 
     private fun threadUnzip() {
         thread {
             var src = File("/sdcard/test.zip")
-            if (!src.exists()) {
-                hZip.sendEmptyMessage(2)
-                return@thread
-            }
             val dest = File("/sdcard/unzip/")
             if (!dest.exists()) {
                 dest.mkdirs()
             }
-            val count = ZipUtils.uncompress(src.absolutePath, dest.absolutePath)
-            Log.e("LOG", "ZipFragment => Unzipped ${count} files")
-            hZip.sendEmptyMessage(if (count <= 0) 2 else 1)
+            val size = ZipUtils.getFileSize(src.absolutePath)
+            Log.e("threadUnzip", "File Size => $size")
+            val errCode = ZipUtils.uncompress(src.absolutePath, dest.absolutePath)
+            Log.e("threadUnzip", "Error Code => $errCode")
+            val status = ZipUtils.getUncompressStatus(src.absolutePath)
+            val msg = Message.obtain(hZip, 1, status)
+            hZip.sendMessage(msg)
+            msg.recycle()
         }
     }
 }
