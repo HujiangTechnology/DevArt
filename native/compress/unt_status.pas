@@ -75,7 +75,7 @@ begin
   idx := _GetCompressIndex(filePath);
   item := TCompressStatus.Create;
   item.filePath:= filePath;
-  item.fileCompressed:= fileCount;
+  item.fileCount:= fileCount;
   item.fileCompressed:= fileCompressed;
   item.errorCode:= errorCode;
   item.errorMessage:= errorMessage;
