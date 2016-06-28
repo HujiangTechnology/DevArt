@@ -79,13 +79,11 @@ begin
   item.fileCompressed:= fileCompressed;
   item.errorCode:= errorCode;
   item.errorMessage:= errorMessage;
-  if (idx = -1) then begin
-    compressList.Add(item);
-  end else begin
+  if (idx <> -1) then begin
     TCompressStatus(compressList.Items[idx]).Free;
     compressList.Delete(idx);
-    compressList.Add(item);
   end;
+  compressList.Add(item);
 end;
 
 procedure CleanCompressStatus;
@@ -138,16 +136,11 @@ begin
   item.fileUncompressed:= fileUncompressed;
   item.errorCode:= errorCode;
   item.errorMessage:= errorMessage;
-  if (idx = -1) then begin
-    uncompressList.Add(item);
-  end else begin
+  if (idx <> -1) then begin
     TUncompressStatus(uncompressList.Items[idx]).Free;
     uncompressList.Delete(idx);
-    uncompressList.Add(item);
   end;
-
-
-
+  uncompressList.Add(item);
 end;
 
 procedure CleanUncompressStatus;
