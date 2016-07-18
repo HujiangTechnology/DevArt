@@ -48,10 +48,10 @@ end;
 
 function CreateRelativePath(path: string; base: string): string;
 begin
-  // /sdcard/test/a => a
+  // base => base => /sdcard/test
   Result := path;
   if (AnsiStartsStr(base, path)) then begin
-    Result := Copy(path, Length(base), Length(path) - Length(base) + 1);
+    Result := Copy(path, Length(base) + 1, Length(path) - Length(base) + 1);
     if (AnsiStartsStr('/', Result)) then begin
        Result := RightStr(Result, Length(Result) - 1);
     end;

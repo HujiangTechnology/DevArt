@@ -26,6 +26,7 @@ begin
   try
     tar := TTarWriter.Create(filePath);
     try
+      fileList := TStringList.Create;
       try
         FindAllFiles(srcDir, fileList);
         fileCount:= fileList.Count;
@@ -40,12 +41,12 @@ begin
       errCode := ERROR_NONE;
       errMsg := ERRMSG_NONE;
       if (tarCount = 0) then begin
-        errCode := ERROR_UNCOMPRESS;
-        errMsg := ERRMSG_UNCOMPRESS;
+        errCode := ERROR_COMPRESS;
+        errMsg := ERRMSG_COMPRESS;
       end;
     except
-      errCode := ERROR_UNCOMPRESS;
-      errMsg := ERRMSG_UNCOMPRESS;
+      errCode := ERROR_COMPRESS;
+      errMsg := ERRMSG_COMPRESS;
     end;
   finally
     tar.Free;
@@ -68,32 +69,37 @@ begin
   try
     untar := TTarArchive.Create(filePath);
     try
-      while untar.FindNext(drec) do begin
-        filename:= destDir + drec.Name;
-        if (drec.FileType = ftNormal) then begin
-          dir := ExtractFilePath(filename);
-        end else if (drec.FileType = ftDirectory) then begin
-          dir := filename;
+      try
+        while untar.FindNext(drec) do begin
+          filename:= destDir + drec.Name;
+          if (drec.FileType = ftNormal) then begin
+            dir := ExtractFilePath(filename);
+          end else if (drec.FileType = ftDirectory) then begin
+            dir := filename;
+          end;
+          ForceDirectories(dir);
+          if (drec.FileType = ftNormal) then begin
+            untar.ReadFile(filename);
+            untarCount += 1;
+          end;
         end;
-        ForceDirectories(dir);
-        if (drec.FileType = ftNormal) then begin
-          untar.ReadFile(filename);
-          untarCount += 1;
+        fileCount:= untarCount;
+        errCode := ERROR_NONE;
+        errMsg := ERRMSG_NONE;
+        if (untarCount = 0) then begin
+          errCode := ERROR_UNCOMPRESS;
+          errMsg := ERRMSG_UNCOMPRESS;
         end;
-      end;
-      fileCount:= untarCount;
-      errCode := ERROR_NONE;
-      errMsg := ERRMSG_NONE;
-      if (untarCount = 0) then begin
+      except
         errCode := ERROR_UNCOMPRESS;
         errMsg := ERRMSG_UNCOMPRESS;
       end;
-    except
-      errCode := ERROR_UNCOMPRESS;
-      errMsg := ERRMSG_UNCOMPRESS;
+    finally
+      untar.Free;
     end;
-  finally
-    untar.Free;
+  except
+    errCode := ERROR_UNCOMPRESS;
+    errMsg := ERRMSG_UNCOMPRESS;
   end;
   AddUncompressStatus(filePath, fileCount, untarCount, errCode, errMsg);
   Result := errCode;

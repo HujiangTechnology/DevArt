@@ -25,8 +25,8 @@ begin
   // hjz
   tmpFile:= filePath + '.tmp';
   count := DoTar(tmpFile, srcDir);
-  hjzCount := count;
-  if (count > 0) then begin
+  hjzCount := getCompressedCount(PChar(tmpFile));
+  if (count = 0) then begin
     try
       ofile := TFileStream.Create(filePath, fmCreate);
       hjz := TplLzmaCompress.Create(nil);
@@ -36,9 +36,9 @@ begin
         hjz.InputFiles.Add(tmpFile);
         if hjz.CreateArchive then begin
           hjzCount += 1;
+          errCode:= ERROR_NONE;
+          errMsg:= ERRMSG_NONE;
         end;
-        errCode:= ERROR_NONE;
-        errMsg:= ERRMSG_NONE;
       except
         errCode:= ERROR_COMPRESS;
         errMsg:= ERRMSG_COMPRESS;
@@ -49,6 +49,12 @@ begin
     end;
   end;
   DeleteFile(tmpFile);
+  errCode:= ERROR_NONE;
+  errMsg:= ERRMSG_NONE;
+  if (hjzCount = 0) then begin
+    errCode:= ERROR_COMPRESS;
+    errMsg:= ERRMSG_COMPRESS;
+  end;
   AddCompressStatus(filePath, hjzCount, hjzCount, errCode, errMsg);
   Result := errCode;
 end;
@@ -93,9 +99,15 @@ begin
   end;
   if (count > 0) then begin
     count := DoUntar(tmpFile, destDir);
-    unhjzCount += count;
+    if count = 0 then begin
+      unhjzCount += getUncompressedCount(PChar(tmpFile));
+    end;
   end;
   DeleteFile(tmpFile);
+  if (unhjzCount = 0) then begin
+    errCode:= ERROR_UNCOMPRESS;
+    errMsg:= ERRMSG_UNCOMPRESS;
+  end;
   AddUncompressStatus(filePath, unhjzCount, unhjzCount, errCode, errMsg);
   Result := errCode;
 end;

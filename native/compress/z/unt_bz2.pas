@@ -27,11 +27,15 @@ begin
     infile := TFileStream.Create(filePath, fmCreate);
     bfile := TBzip2CompressStream.Create(infile);
     ofile := TFileStream.Create(src, fmOpenRead);
+    // LOGE('BZ 4');
     try
       repeat
         count := ofile.Read(buf, SizeOf(buf));
+        // LOGE('BZ 5');
         bfile.Write(buf, count);
+        // LOGE('BZ 6');
       until count < SizeOf(buf);
+      // LOGE('BZ 7');
       bzCount:= 1;
       errCode := ERROR_NONE;
       errMsg := ERRMSG_NONE;

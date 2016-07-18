@@ -23,10 +23,12 @@ begin
   // tar
   tmpFile:= filePath + '.tmp';
   count := DoTar(tmpFile, srcDir);
-  tarCount := count;
-  if (count > 0) then begin
+  tarCount := getCompressedCount(PChar(tmpFile));
+  if (count = 0) then begin
     count := DoGz(filePath, tmpFile);
-    tarCount += count;
+    if count = 0 then begin
+      tarCount += 1;
+    end;
   end;
   DeleteFile(tmpFile);
   errCode:= ERROR_NONE;
@@ -50,10 +52,12 @@ begin
   // untargz
   tmpFile:= filePath + '.tmp';
   count := DoUnGz(filePath, tmpFile);
-  untarCount := count;
-  if (count > 0) then begin
+  untarCount := getUncompressedCount(PChar(filePath));
+  if (count = 0) then begin
     count := DoUntar(tmpFile, destDir);
-    untarCount += count;
+    if count = 0 then begin
+      untarCount += getUncompressedCount(PChar(tmpFile));
+    end;
   end;
   DeleteFile(tmpFile);
   errCode:= ERROR_NONE;

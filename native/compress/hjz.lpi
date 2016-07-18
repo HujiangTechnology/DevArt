@@ -25,7 +25,7 @@
     <RunParams>
       <local>
         <FormatVersion Value="1"/>
-        <CommandLineParams Value="-c /home/rarnu/Desktop/my.zip /home/rarnu/Desktop/test/"/>
+        <CommandLineParams Value="-c /home/rarnu/Desktop/my.hjz /home/rarnu/Desktop/test/"/>
       </local>
     </RunParams>
     <Units Count="31">
@@ -173,9 +173,6 @@
       <Debugging>
         <UseHeaptrc Value="True"/>
       </Debugging>
-      <Options>
-        <ExecutableType Value="Library"/>
-      </Options>
     </Linking>
   </CompilerOptions>
   <Debugging>

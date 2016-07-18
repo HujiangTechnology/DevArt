@@ -78,16 +78,16 @@ begin
   errMsg:= ERRMSG_FORMAT_NOT_SUPPORT;
   if (ext = '.zip') or (ext = '.jar') or (ext = '.hjp') then begin
     errCode := DoUnzip(strPath, strDest);
-  end else if (ext = '.bz2') then begin
-    errCode := DoUnbz2(strPath, strDest);
+  // end else if (ext = '.bz2') then begin
+  //   errCode := DoUnbz2(strPath, strDest);
   end else if (ext = '.tar') then begin
     errCode := DoUntar(strPath, strDest);
   end else if (ext = '.tgz') or (ext = '.tar.gz') then begin
     errCode := DoUnTarGz(strPath, strDest);
   end else if (ext = '.gz') or (ext = '.gzip') then begin
     errCode := DoUnGz(strPath, strDest);
-  end else if (ext = '.tbz') or (ext = '.tar.bz2') then begin
-    errCode := DoUnTarBz(strPath, strDest);
+  // end else if (ext = '.tbz') or (ext = '.tar.bz2') then begin
+  //   errCode := DoUnTarBz(strPath, strDest);
   end else if (ext = '.hjz') then begin
     errCode := DoUnhjz(strPath, strDest);
   end;
@@ -112,16 +112,16 @@ begin
   errMsg:= ERRMSG_FORMAT_NOT_SUPPORT;
   if (ext = '.zip') or (ext = '.jar') or (ext = '.hjp') then begin
     errCode := DoZip(strPath, strSrc);
-  end else if (ext = '.bz2') then begin
-    errCode := DoBz2(strPath, strSrc);
+  //end else if (ext = '.bz2') then begin
+  //  errCode := DoBz2(strPath, strSrc);
   end else if (ext = '.tar') then begin
     errCode := DoTar(strPath, strSrc);
   end else if (ext = '.tgz') or (ext = '.tar.gz') then begin
     errCode := DoTarGz(strPath, strSrc);
   end else if (ext = '.gz') or (ext = '.gzip') then begin
     errCode := DoGz(strPath, strSrc);
-  end else if (ext = '.tbz') or (ext = '.tar.bz2') then begin
-    errCode := DoTarBz(strPath, strSrc);
+  // end else if (ext = '.tbz') or (ext = '.tar.bz2') then begin
+  //  errCode := DoTarBz(strPath, strSrc);
   end else if (ext = '.hjz') then begin
     errCode := DoHjz(strPath, strSrc);
   end;
@@ -245,26 +245,15 @@ var
 begin
   {$IFDEF DEBUG}
   pCount:= ParamCount;
-  if (pCount = 1) and (ParamStr(1) = '-h') then begin
-    WriteLn(string(_getHelp()));
-    Exit;
-  end else if (pCount <> 3) then begin
-    WriteLn(string(_getHelp()));
-    Exit;
-  end;
   funType:= ParamStr(1);
   p1 := ParamStr(2);
   p2 := ParamStr(3);
   if (funType = '-c') then begin
     ret := _compress(PChar(p1), PChar(p2));
     WriteLn(Format('Compress %s to %s => %d', [p2, p1, ret]));
-    WriteLn(Format('Error Code => %d', [_getLastError()]));
-    WriteLn(Format('Error Message => %s', [string(_getLastErrorMessage())]));
   end else if (funType = '-d') then begin
     ret := _uncompress(PChar(p1), PChar(p2));
     WriteLn(Format('Decompress %s to %s => %d', [p1, p2, ret]));
-    WriteLn(Format('Error Code => %d', [_getLastError()]));
-    WriteLn(Format('Error Message => %s', [string(_getLastErrorMessage())]));
   end else if (funType = '-s') then begin
     retStr:= _getFileSize(PChar(p1));
     WriteLn(Format('File Size => %s', [string(retStr)]));

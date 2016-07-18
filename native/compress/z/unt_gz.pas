@@ -24,9 +24,9 @@ var
 begin
   // gz
   try
+    gfile := TGZFileStream.create(filePath, gzopenwrite);
+    ofile := TFileStream.Create(src, fmOpenRead);
     try
-      gfile := TGZFileStream.create(filePath, gzopenwrite);
-      ofile := TFileStream.Create(src, fmOpenRead);
       try
         repeat
           count := ofile.Read(buf, SizeOf(buf));
@@ -36,16 +36,16 @@ begin
         errCode := ERROR_NONE;
         errMsg := ERRMSG_NONE;
       except
-        errCode := ERROR_UNCOMPRESS;
-        errMsg := ERRMSG_UNCOMPRESS;
+        errCode := ERROR_COMPRESS;
+        errMsg := ERRMSG_COMPRESS;
       end;
     finally
       ofile.Free;
       gfile.Free;
     end;
   except
-    errCode := ERROR_UNCOMPRESS;
-    errMsg := ERRMSG_UNCOMPRESS;
+    errCode := ERROR_COMPRESS;
+    errMsg := ERRMSG_COMPRESS;
   end;
   AddCompressStatus(filePath, 1, gzCount, errCode, errMsg);
   Result := errCode;
@@ -62,9 +62,9 @@ var
   errMsg: string = '';
 begin
   try
+    gfile := TGZFileStream.Create(filePath, gzopenread);
+    unfile := TFileStream.Create(dest, fmCreate);
     try
-      gfile := TGZFileStream.Create(filePath, gzopenread);
-      unfile := TFileStream.Create(dest, fmCreate);
       try
         repeat
           Count := gfile.Read(buf, SizeOf(buf));
