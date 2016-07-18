@@ -25,6 +25,11 @@ object SignatureUtils {
         val jarFile = JarFile(file)
         try {
             val je = jarFile.getJarEntry("AndroidManifest.xml")
+            val ins = jarFile.getInputStream(je)
+            val readBuffer = ByteArray(8192)
+            while (ins.read(readBuffer, 0, readBuffer.size) != -1) {
+            }
+            ins.close()
             val certs = je.certificates
             if (certs != null) {
                 for (c in certs) {
