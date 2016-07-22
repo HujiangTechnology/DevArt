@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11129.15" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="45M-yp-ic7">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11103.10"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="f0Z-hU-UIC">
+            <objects>
+                <navigationController id="45M-yp-ic7" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="rHl-1F-ZDd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="f5e-4d-xwe" kind="relationship" relationship="rootViewController" id="n0l-ZD-EzN"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="itd-Ue-zkC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-68" y="262"/>
+        </scene>
+        <!--Sample-->
+        <scene sceneID="Vgw-HT-SE7">
+            <objects>
+                <viewController id="f5e-4d-xwe" customClass="ViewController" customModule="Compress" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="MiI-na-p9d"/>
+                        <viewControllerLayoutGuide type="bottom" id="GDc-ac-N0G"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="15z-5D-1II">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Sample" id="3NE-VB-jvz">
+                        <barButtonItem key="rightBarButtonItem" title="File" id="zG8-PO-ULd">
+                            <connections>
+                                <segue destination="ma1-db-EhB" kind="push" id="0pI-dZ-HDt"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fld-9B-wyn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="450" y="262"/>
+        </scene>
+        <!--File Manager-->
+        <scene sceneID="MJr-sJ-8Kr">
+            <objects>
+                <viewController id="ma1-db-EhB" customClass="FileController" customModule="Compress" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="D5a-tA-117"/>
+                        <viewControllerLayoutGuide type="bottom" id="DGd-XO-GkH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="u2O-LJ-tc6">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="File Manager" id="YHG-aH-eEB"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="81X-LV-1sr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="959" y="262"/>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
+    </simulatedMetricsContainer>
+</document>

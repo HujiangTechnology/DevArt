@@ -1,0 +1,116 @@
+object FormMain: TFormMain
+  Left = 272
+  Height = 437
+  Top = 333
+  Width = 384
+  BorderIcons = [biSystemMenu, biMinimize]
+  BorderStyle = bsSingle
+  Caption = 'Sample'
+  ClientHeight = 437
+  ClientWidth = 384
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  Position = poMainFormCenter
+  LCLVersion = '5.7'
+  object lblSrc: TLabel
+    Left = 16
+    Height = 29
+    Top = 15
+    Width = 92
+    AutoSize = False
+    Caption = 'Source'
+    Layout = tlCenter
+    ParentColor = False
+  end
+  object lblDest: TLabel
+    Left = 16
+    Height = 29
+    Top = 48
+    Width = 92
+    AutoSize = False
+    Caption = 'Destination'
+    Layout = tlCenter
+    ParentColor = False
+  end
+  object lblFormat: TLabel
+    Left = 16
+    Height = 29
+    Top = 80
+    Width = 92
+    AutoSize = False
+    Caption = 'Format'
+    Layout = tlCenter
+    ParentColor = False
+  end
+  object edtSrc: TEdit
+    Left = 112
+    Height = 29
+    Top = 15
+    Width = 256
+    AutoSize = False
+    TabOrder = 0
+  end
+  object edtDest: TEdit
+    Left = 112
+    Height = 29
+    Top = 48
+    Width = 256
+    AutoSize = False
+    TabOrder = 1
+  end
+  object cbFormat: TComboBox
+    Left = 112
+    Height = 29
+    Top = 80
+    Width = 168
+    ItemHeight = 0
+    OnSelect = cbFormatSelect
+    Style = csDropDownList
+    TabOrder = 2
+  end
+  object lblFormatHint: TLabel
+    Left = 288
+    Height = 29
+    Top = 80
+    Width = 80
+    AutoSize = False
+    Layout = tlCenter
+    ParentColor = False
+  end
+  object btnZip: TButton
+    Left = 16
+    Height = 29
+    Top = 112
+    Width = 168
+    Caption = 'Zip'
+    OnClick = btnZipClick
+    TabOrder = 3
+  end
+  object btnUnzip: TButton
+    Left = 200
+    Height = 29
+    Top = 112
+    Width = 168
+    Caption = 'Unzip'
+    OnClick = btnUnzipClick
+    TabOrder = 4
+  end
+  object btnGo: TButton
+    Left = 16
+    Height = 29
+    Top = 144
+    Width = 352
+    Caption = 'GO! GO! GO!'
+    OnClick = btnGoClick
+    TabOrder = 5
+  end
+  object mmLog: TMemo
+    Left = 16
+    Height = 243
+    Top = 181
+    Width = 350
+    ReadOnly = True
+    ScrollBars = ssAutoBoth
+    TabOrder = 6
+  end
+end

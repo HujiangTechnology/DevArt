@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:padding="8dip">
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:orientation="horizontal" android:weightSum="4">
+
+        <TextView android:layout_width="0px" android:layout_height="wrap_content"
+                  android:text="@string/main_src" android:layout_weight="1"
+                  android:layout_gravity="center_vertical"/>
+        <EditText
+                android:id="@+id/etSrc"
+                android:layout_width="0px" android:layout_height="wrap_content"
+                android:layout_weight="3" android:hint="@string/main_src_hint"
+                android:textSize="12sp"
+                android:layout_gravity="center_vertical"/>
+    </LinearLayout>
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:orientation="horizontal" android:weightSum="4">
+
+        <TextView android:layout_width="0px" android:layout_height="wrap_content"
+                  android:text="@string/main_dest" android:layout_weight="1"
+                  android:layout_gravity="center_vertical"/>
+        <EditText
+                android:id="@+id/etDest"
+                android:layout_width="0px" android:layout_height="wrap_content"
+                android:hint="@string/main_dest_hint"
+                android:textSize="12sp"
+                android:layout_weight="3"
+                android:layout_gravity="center_vertical"/>
+    </LinearLayout>
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:orientation="horizontal" android:weightSum="4">
+        <TextView android:layout_width="0px" android:layout_height="wrap_content"
+                  android:text="@string/main_format" android:layout_weight="1"
+                  android:layout_gravity="center_vertical"
+        />
+        <Spinner
+                android:id="@+id/spFormat"
+                android:layout_width="0px" android:layout_height="wrap_content" android:layout_weight="2"
+                android:layout_gravity="center_vertical"
+        ></Spinner>
+        <TextView
+                android:id="@+id/tvFormatHint"
+                android:layout_width="0px" android:layout_height="wrap_content"
+                android:layout_weight="1" android:layout_gravity="center_vertical"/>
+    </LinearLayout>
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:orientation="horizontal" android:weightSum="2">
+        <Button
+                android:id="@+id/btnZip"
+                android:layout_width="0px" android:layout_height="wrap_content" android:layout_weight="1"
+                android:text="@string/main_zip"/>
+        <Button
+                android:id="@+id/btnUnzip"
+                android:layout_width="0px" android:layout_height="wrap_content" android:layout_weight="1"
+                android:text="@string/main_unzip"/>
+    </LinearLayout>
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:orientation="horizontal"
+                  android:weightSum="1">
+        <Button
+                android:id="@+id/btnGo"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="@string/main_go"/>
+    </LinearLayout>
+
+    <ScrollView android:layout_width="match_parent" android:layout_height="match_parent"
+                android:layout_marginTop="8dip">
+
+        <TextView
+                android:id="@+id/tvLog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left|top"/>
+    </ScrollView>
+</LinearLayout>
+
