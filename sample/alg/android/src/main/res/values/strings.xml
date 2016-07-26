@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AlgSample</string>
+    <string name="btn_go">GO! GO! GO!</string>
+    <string name="btn_keypair">Generate KeyPair</string>
+    <string name="et_src_hint">Input string for encrypting</string>
+    <string name="et_dec_hint">Input string for decrypting</string>
+    <string name="et_verify_src_hint">Input string for verifying</string>
+    <string name="et_verify_ori_hint">Input origin string</string>
+    <string name="et_ekey_hint">Input encrypt key</string>
+    <string name="et_dkey_hint">Input decrypt key</string>
+
+    <string name="tv_enc_title">Encrypt</string>
+    <string name="tv_dec_title">Decrypt</string>
+    <string name="tv_verify_title">Verify</string>
+
+</resources>

@@ -73,7 +73,6 @@
       <excludeFolder url="file://$MODULE_DIR$/../../../app/build/intermediates/dependency-cache" />
       <excludeFolder url="file://$MODULE_DIR$/../../../app/build/intermediates/incremental" />
       <excludeFolder url="file://$MODULE_DIR$/../../../app/build/intermediates/jniLibs" />
-      <excludeFolder url="file://$MODULE_DIR$/../../../app/build/intermediates/lint" />
       <excludeFolder url="file://$MODULE_DIR$/../../../app/build/intermediates/manifests" />
       <excludeFolder url="file://$MODULE_DIR$/../../../app/build/intermediates/pre-dexed" />
       <excludeFolder url="file://$MODULE_DIR$/../../../app/build/intermediates/res" />

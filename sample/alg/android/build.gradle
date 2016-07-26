@@ -2,7 +2,7 @@ buildscript {
     ext.kotlin_version = '1.0.3'
     repositories {
         jcenter() {
-            url "http://jcenter.bintray.com/"
+            url 'http://jcenter.bintray.com/'
         }
         mavenCentral()
     }
@@ -11,16 +11,18 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 19
-    buildToolsVersion "22.0.1"
+    buildToolsVersion '22.0.1'
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
+
     lintOptions {
         abortOnError false
     }
@@ -29,7 +31,6 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    compile project(':DevArtLib')
 }
 
 project.gradle.startParameter.excludedTaskNames.add('lint')

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:padding="8dip">
+
+    <Button
+            android:id="@+id/btnKeyPair"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="@string/btn_keypair"/>
+
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+              android:text="@string/tv_enc_title"/>
+    <EditText
+            android:id="@+id/etEncSrc"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:hint="@string/et_src_hint"/>
+    <TextView
+            android:id="@+id/tvEncDest"
+            android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+    <Button
+            android:id="@+id/btnEncGo"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="@string/btn_go"/>
+
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+              android:text="@string/tv_verify_title"
+              android:layout_marginTop="16dip"/>
+    <EditText
+            android:id="@+id/etVerifySrc"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:hint="@string/et_verify_src_hint"/>
+    <EditText
+            android:id="@+id/etVerifyOri"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:hint="@string/et_verify_ori_hint"/>
+    <TextView
+            android:id="@+id/tvVerifyDest"
+            android:layout_width="match_parent" android:layout_height="wrap_content"/>
+    <Button
+            android:id="@+id/btnVerifyGo"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="@string/btn_go"/>
+    <TextView
+            android:id="@+id/tvStatus"
+            android:layout_width="match_parent" android:layout_height="match_parent"
+            android:gravity="left|bottom"/>
+</LinearLayout>

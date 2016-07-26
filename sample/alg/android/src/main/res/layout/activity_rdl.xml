@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:padding="8dip">
+
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+              android:text="@string/tv_enc_title"/>
+    <EditText
+            android:id="@+id/etEncSrc"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:hint="@string/et_src_hint"/>
+    <EditText
+            android:id="@+id/etEncKey"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:hint="@string/et_ekey_hint"/>
+    <TextView
+            android:id="@+id/tvEncDest"
+            android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+    <Button
+            android:id="@+id/btnEncGo"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="@string/btn_go"/>
+
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+              android:text="@string/tv_dec_title"
+              android:layout_marginTop="16dip"/>
+    <EditText
+            android:id="@+id/etDecSrc"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:hint="@string/et_dec_hint"/>
+    <EditText
+            android:id="@+id/etDecKey"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:hint="@string/et_dkey_hint"/>
+    <TextView
+            android:id="@+id/tvDecDest"
+            android:layout_width="match_parent" android:layout_height="wrap_content"/>
+    <Button
+            android:id="@+id/btnDecGo"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="@string/btn_go"/>
+</LinearLayout>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.hujiang.alg.sample"
+          android:versionCode="1"
+          android:versionName="1.0">
+    <uses-sdk android:minSdkVersion="14" android:targetSdkVersion="19"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <application android:label="@string/app_name" android:icon="@drawable/ic_launcher"
+                 android:theme="@android:style/Theme.Holo.Light">
+        <activity android:name="MainActivity"
+                  android:label="@string/app_name"
+                  android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".MD5Activity"
+                  android:screenOrientation="portrait"/>
+        <activity android:name=".SHA1Activity"
+                  android:screenOrientation="portrait"/>
+        <activity android:name=".LMDActivity"
+                  android:screenOrientation="portrait"/>
+        <activity android:name=".ELFActivity"
+                  android:screenOrientation="portrait"/>
+        <activity android:name=".BASE64Activity"
+                  android:screenOrientation="portrait"/>
+        <activity android:name=".RSAActivity"
+                  android:screenOrientation="portrait"/>
+        <activity android:name=".DSAActivity"
+                  android:screenOrientation="portrait"/>
+        <activity android:name=".RDLActivity"
+                  android:screenOrientation="portrait"/>
+        <activity android:name=".RSASSAActivity"
+                  android:screenOrientation="portrait"/>
+        <activity android:name=".AESActivity"
+                  android:screenOrientation="portrait"/>
+    </application>
+
+</manifest>
