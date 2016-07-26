@@ -1,0 +1,47 @@
+buildscript {
+    ext.kotlin_version = '1.0.3'
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:1.5.0'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+apply plugin: 'android'
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion 19
+    buildToolsVersion '22.0.1'
+
+    buildTypes {
+        release {
+            // runProguard false
+            // proguardFile getDefaultProguardFile('proguard-android.txt')
+        }
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+}
+
+// task woca {
+//     println("123")
+// }
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+}
+
+project.gradle.startParameter.excludedTaskNames.add('lint')
+project.gradle.startParameter.excludedTaskNames.add('lintVitalRelease')

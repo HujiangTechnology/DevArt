@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ZipSample</string>
+    <string name="main_src">Source</string>
+    <string name="main_dest">Destination</string>
+    <string name="main_src_hint">source folder for zip, and source zip file for unzip</string>
+    <string name="main_dest_hint">dest zip file for zip, and dest folder for unzip</string>
+    <string name="main_format">Format</string>
+    <string name="main_zip">Zip</string>
+    <string name="main_unzip">Unzip</string>
+    <string name="main_single">Single File</string>
+    <string name="main_multi">Multi Files</string>
+    <string name="main_go">GO! GO! GO!</string>
+</resources>

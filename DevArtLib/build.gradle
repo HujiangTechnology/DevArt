@@ -42,3 +42,6 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
+
+project.gradle.startParameter.excludedTaskNames.add('lint')
+project.gradle.startParameter.excludedTaskNames.add('lintVitalRelease')
