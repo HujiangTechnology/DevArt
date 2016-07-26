@@ -97,25 +97,25 @@ end;
 function rdlEncryptString(keySize: Integer; cipherMode: Integer; key: PChar;
   str: PChar): PChar; cdecl;
 begin
-  Result := _rdlEncryptString(keySize, cipherMode, key, str);
+  Result := _rdlEncryptString(keySize, 1, key, str);
 end;
 
 function rdlEncryptFile(keySize: Integer; cipherMode: Integer; key: PChar;
   filePath: PChar; outFilePath: PChar): Integer; cdecl;
 begin
-  Result := _rdlEncryptFile(keySize, cipherMode, key, filePath, outFilePath);
+  Result := _rdlEncryptFile(keySize, 1, key, filePath, outFilePath);
 end;
 
 function rdlDecryptString(keySize: Integer; cipherMode: Integer; key: PChar;
   str: PChar): PChar; cdecl;
 begin
-  Result := _rdlDecryptString(keySize, cipherMode, key, str);
+  Result := _rdlDecryptString(keySize, 1, key, str);
 end;
 
 function rdlDecryptFile(keySize: Integer; cipherMode: Integer; key: PChar;
   filePath: PChar; outFilePath: PChar): Integer; cdecl;
 begin
-  Result := _rdlDecryptFile(keySize, cipherMode, key, filePath, outFilePath);
+  Result := _rdlDecryptFile(keySize, 1, key, filePath, outFilePath);
 end;
 
 function Java_com_hujiang_devart_security_AlgorithmUtils_rdlEncryptString(
@@ -124,7 +124,7 @@ function Java_com_hujiang_devart_security_AlgorithmUtils_rdlEncryptString(
 var
   ret: PChar;
 begin
-  ret := _rdlEncryptString(keySize, cipherMode, PChar(jstringToString(env, key)), PChar(jstringToString(env, str)));
+  ret := _rdlEncryptString(keySize, 1, PChar(jstringToString(env, key)), PChar(jstringToString(env, str)));
   Result := stringToJString(env, string(ret));
 end;
 
@@ -132,7 +132,7 @@ function Java_com_hujiang_devart_security_AlgorithmUtils_rdlEncryptFile(
   env: PJNIEnv; obj: jobject; keySize: jint; cipherMode: jint; key: jstring;
   filePath: jstring; outFilePath: jstring): jint; stdcall;
 begin
-  Result := _rdlEncryptFile(keySize, cipherMode, PChar(jstringToString(env, key)), PChar(jstringToString(env, filePath)), PChar(jstringToString(env, outFilePath)));
+  Result := _rdlEncryptFile(keySize, 1, PChar(jstringToString(env, key)), PChar(jstringToString(env, filePath)), PChar(jstringToString(env, outFilePath)));
 end;
 
 function Java_com_hujiang_devart_security_AlgorithmUtils_rdlDecryptString(
@@ -141,7 +141,7 @@ function Java_com_hujiang_devart_security_AlgorithmUtils_rdlDecryptString(
 var
   ret: PChar;
 begin
-  ret := _rdlDecryptString(keySize, cipherMode, PChar(jstringToString(env, key)), PChar(jstringToString(env, str)));
+  ret := _rdlDecryptString(keySize, 1, PChar(jstringToString(env, key)), PChar(jstringToString(env, str)));
   Result := stringToJString(env, string(ret));
 end;
 
@@ -149,7 +149,7 @@ function Java_com_hujiang_devart_security_AlgorithmUtils_rdlDecryptFile(
   env: PJNIEnv; obj: jobject; keySize: jint; cipherMode: jint; key: jstring;
   filePath: jstring; outFilePath: jstring): jint; stdcall;
 begin
-  Result := _rdlDecryptFile(keySize, cipherMode, PChar(key), PChar(filePath), PChar(outFilePath));
+  Result := _rdlDecryptFile(keySize, 1, PChar(key), PChar(filePath), PChar(outFilePath));
 end;
 
 

@@ -108,8 +108,6 @@ begin
   strcopy(Result, PChar(S));
 end;
 
-
-
 function _desDecryptString(str: PChar; key: PChar): PChar;
 var
   des: TLb3DES;

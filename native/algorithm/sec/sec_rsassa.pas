@@ -192,7 +192,7 @@ function Java_com_hujiang_devart_security_AlgorithmUtils_rsassaSignString(
 var
   ret: PChar;
 begin
-  ret := _rsassaSignString(keySize, hashMethod, PChar(privPass), PChar(privPath), PChar(str));
+  ret := _rsassaSignString(keySize, hashMethod, PChar(jstringToString(env, privPass)), PChar(jstringToString(env, privPath)), PChar(jstringToString(env, str)));
   Result := stringToJString(env, string(ret));
 end;
 
@@ -202,7 +202,7 @@ function Java_com_hujiang_devart_security_AlgorithmUtils_rsassaSignFile(
 var
   ret: PChar;
 begin
-  ret := _rsassaSignFile(keySize, hashMethod, PChar(privPass), PChar(privPath), PChar(filePath));
+  ret := _rsassaSignFile(keySize, hashMethod, PChar(jstringToString(env, privPass)), PChar(jstringToString(env, privPath)), PChar(jstringToString(env, filePath)));
   Result := stringToJString(env, string(ret));
 end;
 
