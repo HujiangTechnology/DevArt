@@ -34,7 +34,7 @@ end;
 
 function base64EncryptString(str: PChar): PChar; cdecl;
 begin
-  Result := _base64DecryptString(str);
+  Result := _base64EncryptString(str);
 end;
 
 function base64DecryptString(str: Pchar): PChar; cdecl;
