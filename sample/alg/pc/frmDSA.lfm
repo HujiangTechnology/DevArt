@@ -1,0 +1,107 @@
+object FormDSA: TFormDSA
+  Left = 311
+  Height = 369
+  Top = 445
+  Width = 320
+  BorderIcons = [biSystemMenu, biMaximize]
+  BorderStyle = bsSingle
+  Caption = 'DSA'
+  ClientHeight = 369
+  ClientWidth = 320
+  OnCreate = FormCreate
+  Position = poScreenCenter
+  LCLVersion = '5.7'
+  object btnKeyPair: TButton
+    Left = 8
+    Height = 29
+    Top = 8
+    Width = 300
+    Caption = 'Generate Key Pair'
+    OnClick = btnKeyPairClick
+    TabOrder = 0
+  end
+  object lbEncTitle: TLabel
+    Left = 8
+    Height = 17
+    Top = 48
+    Width = 300
+    AutoSize = False
+    Caption = 'Encrypt'
+    ParentColor = False
+  end
+  object etEncSrc: TEdit
+    Left = 8
+    Height = 27
+    Top = 72
+    Width = 300
+    AutoSize = False
+    TabOrder = 1
+  end
+  object lbEncDest: TLabel
+    Left = 8
+    Height = 17
+    Top = 104
+    Width = 300
+    AutoSize = False
+    ParentColor = False
+  end
+  object btnEncGo: TButton
+    Left = 8
+    Height = 29
+    Top = 128
+    Width = 300
+    Caption = 'GO! GO! GO!'
+    OnClick = btnEncGoClick
+    TabOrder = 2
+  end
+  object lbVerifyTitle: TLabel
+    Left = 8
+    Height = 17
+    Top = 176
+    Width = 300
+    AutoSize = False
+    Caption = 'Verify'
+    ParentColor = False
+  end
+  object etVerifySrc: TEdit
+    Left = 8
+    Height = 27
+    Top = 200
+    Width = 300
+    AutoSize = False
+    TabOrder = 3
+  end
+  object etVerifyOri: TEdit
+    Left = 8
+    Height = 27
+    Top = 232
+    Width = 300
+    AutoSize = False
+    TabOrder = 4
+  end
+  object lbVerifyDest: TLabel
+    Left = 8
+    Height = 17
+    Top = 264
+    Width = 300
+    AutoSize = False
+    ParentColor = False
+  end
+  object btnVerifyGo: TButton
+    Left = 8
+    Height = 29
+    Top = 288
+    Width = 300
+    Caption = 'GO! GO! GO!'
+    OnClick = btnVerifyGoClick
+    TabOrder = 5
+  end
+  object lbStatus: TLabel
+    Left = 8
+    Height = 17
+    Top = 336
+    Width = 300
+    AutoSize = False
+    ParentColor = False
+  end
+end

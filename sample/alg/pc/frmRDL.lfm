@@ -1,0 +1,97 @@
+object FormRDL: TFormRDL
+  Left = 311
+  Height = 333
+  Top = 445
+  Width = 320
+  BorderIcons = [biSystemMenu, biMaximize]
+  BorderStyle = bsSingle
+  Caption = 'RDL'
+  ClientHeight = 333
+  ClientWidth = 320
+  Position = poScreenCenter
+  LCLVersion = '5.7'
+  object lbEncTitle: TLabel
+    Left = 8
+    Height = 17
+    Top = 14
+    Width = 300
+    AutoSize = False
+    Caption = 'Encrypt'
+    ParentColor = False
+  end
+  object etEncSrc: TEdit
+    Left = 8
+    Height = 27
+    Top = 40
+    Width = 300
+    AutoSize = False
+    TabOrder = 0
+  end
+  object etEncKey: TEdit
+    Left = 8
+    Height = 27
+    Top = 72
+    Width = 300
+    AutoSize = False
+    TabOrder = 1
+  end
+  object lbEncDest: TLabel
+    Left = 8
+    Height = 17
+    Top = 104
+    Width = 300
+    AutoSize = False
+    ParentColor = False
+  end
+  object btnEncGo: TButton
+    Left = 8
+    Height = 29
+    Top = 128
+    Width = 300
+    Caption = 'GO! GO! GO!'
+    OnClick = btnEncGoClick
+    TabOrder = 2
+  end
+  object lbDecTitle: TLabel
+    Left = 8
+    Height = 17
+    Top = 176
+    Width = 300
+    AutoSize = False
+    Caption = 'Decrypt'
+    ParentColor = False
+  end
+  object etDecSrc: TEdit
+    Left = 8
+    Height = 27
+    Top = 200
+    Width = 300
+    AutoSize = False
+    TabOrder = 3
+  end
+  object etDecKey: TEdit
+    Left = 8
+    Height = 27
+    Top = 232
+    Width = 300
+    AutoSize = False
+    TabOrder = 4
+  end
+  object lbDecDest: TLabel
+    Left = 8
+    Height = 17
+    Top = 264
+    Width = 300
+    AutoSize = False
+    ParentColor = False
+  end
+  object btnDecGo: TButton
+    Left = 8
+    Height = 29
+    Top = 288
+    Width = 300
+    Caption = 'GO! GO! GO!'
+    OnClick = btnDecGoClick
+    TabOrder = 5
+  end
+end
