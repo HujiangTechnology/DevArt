@@ -67,20 +67,40 @@ class BASE64Controller: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func handleEncData(data: String?) {
+        btnEncGo?.isEnabled = true
+        tvEncDest?.text = data
+        etDecSrc?.text = data
+    }
+    
+    func threadEncrypt() {
+        let ori = NSString(string: etEncSrc!.text!).utf8String
+        let enc = base64EncryptString(ori)
+        let encStr = NSString(utf8String: enc!)
+        self.performSelector(onMainThread: #selector(handleEncData(data:)), with: encStr as? String, waitUntilDone: true)
+    }
+    
+    func handleDecData(data: String?) {
+        btnDecGo?.isEnabled = true
+        tvDecDest?.text = data
+    }
+    
+    func threadDecrypt() {
+        let ori = NSString(string: etDecSrc!.text!).utf8String
+        let dec = base64DecryptString(ori)
+        let decStr = NSString(utf8String: dec!)
+        self.performSelector(onMainThread: #selector(handleDecData(data:)), with: decStr as? String, waitUntilDone: true)
+    }
 
     func btnClicked(sender: AnyObject?) {
         let btn = sender as? UIButton
         if (btn == btnEncGo) {
-            let ori = NSString(string: etEncSrc!.text!).utf8String
-            let enc = base64EncryptString(ori)
-            let encStr = NSString(utf8String: enc!)
-            tvEncDest?.text = encStr as? String
-            etDecSrc?.text = tvEncDest?.text
+            btnEncGo?.isEnabled = false
+            Thread.detachNewThreadSelector(#selector(threadEncrypt), toTarget: self, with: nil)
         } else if (btn == btnDecGo) {
-            let ori = NSString(string: etDecSrc!.text!).utf8String
-            let dec = base64DecryptString(ori)
-            let decStr = NSString(utf8String: dec!)
-            tvDecDest?.text = decStr as? String
+            btnDecGo?.isEnabled = false
+            Thread.detachNewThreadSelector(#selector(threadDecrypt), toTarget: self, with: nil)
+            
         }
     }
     

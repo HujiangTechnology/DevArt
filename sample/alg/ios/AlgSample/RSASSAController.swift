@@ -97,6 +97,7 @@ class RSASSAController: UIViewController {
     func handleMessage(msg: String?) {
         tvStatus?.text = ""
         if (msg == "TRUE" || msg == "FALSE") {
+            btnKeypair?.isEnabled = true
             showAlert(msg: msg)
         } else {
             tvStatus?.text = msg
@@ -104,11 +105,13 @@ class RSASSAController: UIViewController {
     }
     
     func handleEncData(data: String?) {
+        btnEncGo?.isEnabled = true
         tvEncDest?.text = data
         etVerifySrc?.text = data
     }
     
     func handleDecData(data: String?) {
+        btnVerifyGo?.isEnabled = true
         tvVerifyDest?.text = data
     }
     
@@ -146,11 +149,14 @@ class RSASSAController: UIViewController {
     func btnClicked(sender: AnyObject?) {
         let btn = sender as? UIButton
         if (btn == btnKeypair) {
+            btnKeypair?.isEnabled = false
             Thread.detachNewThreadSelector(#selector(threadGenerateKeyPair), toTarget: self, with: nil)
         } else if (btn == btnEncGo) {
+            btnEncGo?.isEnabled = false
             etVerifyOri?.text = etEncSrc?.text
             Thread.detachNewThreadSelector(#selector(threadEncrypt), toTarget: self, with: nil)
         } else if (btn == btnVerifyGo) {
+            btnVerifyGo?.isEnabled = false
             Thread.detachNewThreadSelector(#selector(threadVerify), toTarget: self, with: nil)
         }
     }

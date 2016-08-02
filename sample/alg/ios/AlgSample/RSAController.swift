@@ -90,6 +90,7 @@ class RSAController: UIViewController {
     func handleMessage(msg: String?) {
         tvStatus?.text = ""
         if (msg == "TRUE" || msg == "FALSE") {
+            btnKeypair?.isEnabled = true
             showAlert(msg: msg)
         } else {
             tvStatus?.text = msg
@@ -97,11 +98,13 @@ class RSAController: UIViewController {
     }
     
     func handleEncData(data: String?) {
+        btnEncGo?.isEnabled = true
         tvEncDest?.text = data
         etDecSrc?.text = data
     }
     
     func handleDecData(data: String?) {
+        btnDecGo?.isEnabled = true
         tvDecDest?.text = data
     }
     
@@ -138,10 +141,13 @@ class RSAController: UIViewController {
     func btnClicked(sender: AnyObject?) {
         let btn = sender as? UIButton
         if (btn == btnKeypair) {
+            btnKeypair?.isEnabled = false
             Thread.detachNewThreadSelector(#selector(threadGenerateKeyPair), toTarget: self, with: nil)
         } else if (btn == btnEncGo) {
+            btnEncGo?.isEnabled = false
             Thread.detachNewThreadSelector(#selector(threadEncrypt), toTarget: self, with: nil)
         } else if (btn == btnDecGo) {
+            btnDecGo?.isEnabled = false
             Thread.detachNewThreadSelector(#selector(threadDecrypt), toTarget: self, with: nil)
         }
     }

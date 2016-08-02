@@ -42,11 +42,21 @@ class LMDController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func btnClicked(sender: AnyObject?) {
+    func handleData(data: String?) {
+        btnGo?.isEnabled = true
+        tvDest?.text = data
+    }
+    
+    func threadLMD() {
         let ori = NSString(string: etSrc!.text!).utf8String
         let enc = lmdEncryptString(ori)
         let envStr = NSString(utf8String: enc!)
-        tvDest?.text = envStr as? String
+        self.performSelector(onMainThread: #selector(handleData(data:)), with: envStr as? String, waitUntilDone: true)
+    }
+    
+    func btnClicked(sender: AnyObject?) {
+        btnGo?.isEnabled = false
+        Thread.detachNewThreadSelector(#selector(threadLMD), toTarget: self, with: nil)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

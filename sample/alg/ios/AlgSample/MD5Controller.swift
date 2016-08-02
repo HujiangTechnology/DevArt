@@ -41,11 +41,21 @@ class MD5Controller: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    func btnClicked(sender: AnyObject?) {
+    func handleData(data: String?) {
+        btnGo?.isEnabled = true
+        tvDest?.text = data
+    }
+    
+    func threadMD5() {
         let ori = NSString(string: etSrc!.text!).utf8String
         let enc = md5EncryptString(ori)
         let envStr = NSString(utf8String: enc!)
-        tvDest?.text = envStr as? String
+        self.performSelector(onMainThread: #selector(handleData(data:)), with: envStr as? String, waitUntilDone: true)
+    }
+    
+    func btnClicked(sender: AnyObject?) {
+        btnGo?.isEnabled = false
+        Thread.detachNewThreadSelector(#selector(threadMD5), toTarget: self, with: nil)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
