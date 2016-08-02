@@ -63,9 +63,19 @@ function Java_com_hujiang_devart_security_AlgorithmUtils_base64DecryptString(
   env: PJNIEnv; obj: jobject; str: jstring): jstring; stdcall;
 var
   ret: PChar;
+  rs: string;
+  rs2: string;
+  i: Integer;
 begin
   ret := _base64DecryptString(PChar(jstringToString(env, str)));
-  Result := stringToJString(env, string(ret));
+  rs := string(ret);
+  rs2 := UTF8Encode(UTF8Decode(rs));
+  if rs = rs2 then begin
+    Result := stringToJString(env, string(ret));
+  end else begin
+    ret := '';
+    Result := stringToJString(env, string(ret));
+  end;
 end;
 
 end.
