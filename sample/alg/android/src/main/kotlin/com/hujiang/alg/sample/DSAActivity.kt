@@ -1,7 +1,5 @@
 package com.hujiang.alg.sample
 
-import android.app.Activity
-import android.os.Bundle
 import android.os.Handler
 import android.os.Message
 import android.view.View
@@ -10,6 +8,7 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import com.hujiang.devart.security.AlgorithmUtils
+import java.io.File
 import kotlin.concurrent.thread
 
 /**
@@ -54,11 +53,14 @@ class DSAActivity: BaseActivity(), View.OnClickListener {
         override fun handleMessage(msg: Message?) {
             tvStatus?.text = ""
             if (msg!!.what == 99) {
+                btnKeyPair?.isEnabled = true
                 Toast.makeText(this@DSAActivity, msg.obj as String, Toast.LENGTH_SHORT).show()
             } else if (msg.what == 100) {
+                btnEncGo?.isEnabled = true
                 tvEncDest?.text = msg.obj as String
                 etVerifySrc?.setText(msg.obj as String)
             } else if (msg.what == 101) {
+                btnVerifyGo?.isEnabled = true
                 tvVerifyDest?.text = msg.obj as String
             } else {
                 tvStatus?.text = msg.obj as String?
@@ -68,14 +70,16 @@ class DSAActivity: BaseActivity(), View.OnClickListener {
     }
 
     private fun sendMessage(h: Handler, what: Int, msg: String) {
-        val m = Message.obtain(h, what, msg)
+        val m = Message()
+        m.what = what
+        m.obj = msg
         h.sendMessage(m)
-        m.recycle()
     }
 
     override fun onClick(v: View?) {
         when (v!!.id) {
             R.id.btnKeyPair -> {
+                btnKeyPair?.isEnabled = false
                 thread {
                     sendMessage(h, 0, "Generating Key Pair ...")
                     val ret = AlgorithmUtils.dsaGenerateKeys(0, PUBKEY_PASS, PRIVKEY_PASS, PUBKEY_PATH, PRIVKEY_PATH)
@@ -83,6 +87,11 @@ class DSAActivity: BaseActivity(), View.OnClickListener {
                 }
             }
             R.id.btnEncGo -> {
+                if (!File(PUBKEY_PATH).exists() || !File(PRIVKEY_PATH).exists()) {
+                    Toast.makeText(this, "please generate key pair first.", Toast.LENGTH_SHORT).show()
+                    return
+                }
+                btnEncGo?.isEnabled = false
                 val ori = etEncSrc?.text.toString()
                 etVerifyOri?.setText(ori)
                 thread {
@@ -92,6 +101,11 @@ class DSAActivity: BaseActivity(), View.OnClickListener {
                 }
             }
             R.id.btnVerifyGo -> {
+                if (!File(PUBKEY_PATH).exists() || !File(PRIVKEY_PATH).exists()) {
+                    Toast.makeText(this, "please generate key pair first.", Toast.LENGTH_SHORT).show()
+                    return
+                }
+                btnVerifyGo?.isEnabled = false
                 val e = etVerifySrc?.text.toString()
                 val ori = etVerifyOri?.text.toString()
                 thread {

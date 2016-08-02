@@ -1,13 +1,13 @@
 package com.hujiang.alg.sample
 
-import android.app.ActionBar
-import android.app.Activity
-import android.os.Bundle
+import android.os.Handler
+import android.os.Message
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import com.hujiang.devart.security.AlgorithmUtils
+import kotlin.concurrent.thread
 
 /**
  * Created by rarnu on 7/25/16.
@@ -27,15 +27,26 @@ class SHA1Activity: BaseActivity(), View.OnClickListener {
         btnGo?.setOnClickListener(this)
     }
 
-    override fun onClick(v: View?) {
-        when (v!!.id) {
-            R.id.btnGo -> {
-                val ori = etSrc?.text.toString()
-                val enc = AlgorithmUtils.sha1EncryptString(ori)
-                tvDest?.text = enc
-
-            }
+    private val h = object: Handler() {
+        override fun handleMessage(msg: Message?) {
+            tvDest?.text = msg!!.obj as String
+            btnGo?.isEnabled = true
+            super.handleMessage(msg)
         }
     }
 
+    override fun onClick(v: View?) {
+        when (v!!.id) {
+            R.id.btnGo -> {
+                btnGo?.isEnabled = false
+                val ori = etSrc?.text.toString()
+                thread {
+                    val enc = AlgorithmUtils.sha1EncryptString(ori)
+                    val m =  Message()
+                    m.obj = enc
+                    h.sendMessage(m)
+                }
+            }
+        }
+    }
 }
