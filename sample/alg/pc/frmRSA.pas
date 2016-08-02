@@ -162,6 +162,7 @@ begin
   FPubPass:= 'hujiang';
   FPrivPass:= 'hujiang';
   FPubPath:= ExtractFilePath(ParamStr(0)) + 'rsa.pub';
+  ShowMessage(FPubPath);
   FPrivPath:= ExtractFilePath(ParamStr(0)) + 'rsa.priv';
 end;
 

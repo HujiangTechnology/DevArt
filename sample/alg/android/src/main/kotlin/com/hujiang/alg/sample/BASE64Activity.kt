@@ -57,7 +57,12 @@ class BASE64Activity: BaseActivity(), View.OnClickListener {
                 btnEncGo?.isEnabled = false
                 val ori = etEncSrc?.text.toString()
                 thread {
-                    val enc = AlgorithmUtils.base64EncryptString(ori)
+                    var enc = ""
+                    try {
+                        enc = AlgorithmUtils.base64EncryptString(ori)
+                    } catch (e: Throwable) {
+
+                    }
                     val m = Message()
                     m.what = 100
                     m.obj = enc
@@ -68,7 +73,12 @@ class BASE64Activity: BaseActivity(), View.OnClickListener {
                 btnDecGo?.isEnabled = false
                 val ori = etDecSrc?.text.toString()
                 thread {
-                    val dec = AlgorithmUtils.base64DecryptString(ori)
+                    var dec = ""
+                    try {
+                        dec = AlgorithmUtils.base64DecryptString(ori)
+                    } catch (e: Throwable) {
+
+                    }
                     val m = Message()
                     m.what = 101
                     m.obj = dec
