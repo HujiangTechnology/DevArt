@@ -59,20 +59,24 @@ var
   rsassa: TLbRSASSA;
   ret: string = '';
 begin
-  rsassa := TLbRSASSA.Create(nil);
   try
-    rsassa.PrimeTestIterations:= 20;
-    rsassa.KeySize:= TLbAsymKeySize(keySize);
-    rsassa.PrivateKey.Passphrase:= string(privPass);
-    rsassa.PrivateKey.LoadFromFile(string(privPath));
-    rsassa.HashMethod:= TRSAHashMethod(hashMethod);
-    rsassa.SignString(string(str));
-    ret := rsassa.Signature.IntStr;
-  finally
-    rsassa.Free;
+    rsassa := TLbRSASSA.Create(nil);
+    try
+      rsassa.PrimeTestIterations:= 20;
+      rsassa.KeySize:= TLbAsymKeySize(keySize);
+      rsassa.PrivateKey.Passphrase:= string(privPass);
+      rsassa.PrivateKey.LoadFromFile(string(privPath));
+      rsassa.HashMethod:= TRSAHashMethod(hashMethod);
+      rsassa.SignString(string(str));
+      ret := rsassa.Signature.IntStr;
+    finally
+      rsassa.Free;
+    end;
+    Result := StrAlloc(Length(ret));
+    strcopy(Result, PChar(ret));
+  except
+    Result := '';
   end;
-  Result := StrAlloc(Length(ret));
-  strcopy(Result, PChar(ret));
 end;
 
 function _rsassaSignFile(keySize: Integer; hashMethod: Integer;
@@ -81,20 +85,24 @@ var
   rsassa: TLbRSASSA;
   ret: string = '';
 begin
-  rsassa := TLbRSASSA.Create(nil);
   try
-    rsassa.PrimeTestIterations:= 20;
-    rsassa.KeySize:= TLbAsymKeySize(keySize);
-    rsassa.PrivateKey.Passphrase:= string(privPass);
-    rsassa.PrivateKey.LoadFromFile(string(privPath));
-    rsassa.HashMethod:= TRSAHashMethod(hashMethod);
-    rsassa.SignFile(string(filePath));
-    ret := rsassa.Signature.IntStr
-  finally
-    rsassa.Free;
+    rsassa := TLbRSASSA.Create(nil);
+    try
+      rsassa.PrimeTestIterations:= 20;
+      rsassa.KeySize:= TLbAsymKeySize(keySize);
+      rsassa.PrivateKey.Passphrase:= string(privPass);
+      rsassa.PrivateKey.LoadFromFile(string(privPath));
+      rsassa.HashMethod:= TRSAHashMethod(hashMethod);
+      rsassa.SignFile(string(filePath));
+      ret := rsassa.Signature.IntStr
+    finally
+      rsassa.Free;
+    end;
+    Result := StrAlloc(Length(ret));
+    strcopy(Result, PChar(ret));
+  except
+    Result := '';
   end;
-  Result := StrAlloc(Length(ret));
-  strcopy(Result, PChar(ret));
 end;
 
 function _rsassaVerifyString(keySize: Integer; hashMethod: Integer;
@@ -105,20 +113,23 @@ var
   ret: Boolean;
 begin
   Result := -1;
-  rsassa := TLbRSASSA.Create(nil);
-  evt := TRSASSABlockEvent.Create(string(sig));
   try
-    rsassa.PrimeTestIterations:= 20;
-    rsassa.KeySize:= TLbAsymKeySize(keySize);
-    rsassa.HashMethod:= TRSAHashMethod(hashMethod);
-    rsassa.PublicKey.Passphrase:= string(pubPass);
-    rsassa.PublicKey.LoadFromFile(string(pubPath));
-    rsassa.OnGetSignature:= @evt.evtGetSignatre;
-    ret := rsassa.VerifyString(string(str));
-    Result := ifthen(ret, 0, 1);
-  finally
-    rsassa.Free;
-    evt.Free;
+    rsassa := TLbRSASSA.Create(nil);
+    evt := TRSASSABlockEvent.Create(string(sig));
+    try
+      rsassa.PrimeTestIterations:= 20;
+      rsassa.KeySize:= TLbAsymKeySize(keySize);
+      rsassa.HashMethod:= TRSAHashMethod(hashMethod);
+      rsassa.PublicKey.Passphrase:= string(pubPass);
+      rsassa.PublicKey.LoadFromFile(string(pubPath));
+      rsassa.OnGetSignature:= @evt.evtGetSignatre;
+      ret := rsassa.VerifyString(string(str));
+      Result := ifthen(ret, 0, 1);
+    finally
+      rsassa.Free;
+      evt.Free;
+    end;
+  except
   end;
 end;
 
@@ -130,20 +141,23 @@ var
   ret: Boolean;
 begin
   Result := -1;
-  rsassa := TLbRSASSA.Create(nil);
-  evt := TRSASSABlockEvent.Create(string(sig));
   try
-    rsassa.PrimeTestIterations:= 20;
-    rsassa.KeySize:= TLbAsymKeySize(keySize);
-    rsassa.HashMethod:= TRSAHashMethod(hashMethod);
-    rsassa.PublicKey.Passphrase:= string(pubPass);
-    rsassa.PublicKey.LoadFromFile(string(pubPath));
-    rsassa.OnGetSignature:= @evt.evtGetSignatre;
-    ret := rsassa.VerifyFile(string(filePath));
-    Result := ifthen(ret, 0, 1);
-  finally
-    rsassa.Free;
-    evt.Free;
+    rsassa := TLbRSASSA.Create(nil);
+    evt := TRSASSABlockEvent.Create(string(sig));
+    try
+      rsassa.PrimeTestIterations:= 20;
+      rsassa.KeySize:= TLbAsymKeySize(keySize);
+      rsassa.HashMethod:= TRSAHashMethod(hashMethod);
+      rsassa.PublicKey.Passphrase:= string(pubPass);
+      rsassa.PublicKey.LoadFromFile(string(pubPath));
+      rsassa.OnGetSignature:= @evt.evtGetSignatre;
+      ret := rsassa.VerifyFile(string(filePath));
+      Result := ifthen(ret, 0, 1);
+    finally
+      rsassa.Free;
+      evt.Free;
+    end;
+  except
   end;
 end;
 

@@ -22,10 +22,14 @@ var
   d: LongInt;
   ret: string;
 begin
-  StringHashLMD(d, SizeOf(d), string(str));
-  ret := BufferToHex(d, SizeOf(d));
-  Result := StrAlloc(Length(ret));
-  strcopy(Result, PChar(ret));
+  try
+    StringHashLMD(d, SizeOf(d), string(str));
+    ret := BufferToHex(d, SizeOf(d));
+    Result := StrAlloc(Length(ret));
+    strcopy(Result, PChar(ret));
+  except
+    Result := '';
+  end;
 end;
 
 function _lmdEncryptFile(filePath: PChar): PChar;
@@ -36,21 +40,25 @@ var
   ret: string;
   bs: Int64;
 begin
-  ret := '';
-  s := openFileStream(string(filePath));
-  if Assigned(s) then begin
-    InitLMD(c);
-    bs := s.Read(Buffer, SizeOf(Buffer));
-    while (bs > 0) do begin
-      UpdateLMD(c, Buffer, bs);
+  try
+    ret := '';
+    s := openFileStream(string(filePath));
+    if Assigned(s) then begin
+      InitLMD(c);
       bs := s.Read(Buffer, SizeOf(Buffer));
+      while (bs > 0) do begin
+        UpdateLMD(c, Buffer, bs);
+        bs := s.Read(Buffer, SizeOf(Buffer));
+      end;
+      FinalizeLMD(c, d, SizeOf(d));
+      closeFileStream(s);
+      ret := BufferToHex(d, SizeOf(d));
     end;
-    FinalizeLMD(c, d, SizeOf(d));
-    closeFileStream(s);
-    ret := BufferToHex(d, SizeOf(d));
+    Result := StrAlloc(Length(ret));
+    strcopy(Result, PChar(ret));
+  except
+    Result := '';
   end;
-  Result := StrAlloc(Length(ret));
-  strcopy(Result, PChar(ret));
 end;
 
 function lmdEncryptString(str: PChar): PChar; cdecl;

@@ -18,18 +18,26 @@ function _base64EncryptString(str: PChar): PChar;
 var
   ret: string;
 begin
-  ret := EncodeStringBase64(string(str));
-  Result := StrAlloc(Length(ret));
-  strcopy(Result, PChar(ret));
+  try
+    ret := EncodeStringBase64(string(str));
+    Result := StrAlloc(Length(ret));
+    strcopy(Result, PChar(ret));
+  except
+    Result := '';
+  end;
 end;
 
 function _base64DecryptString(str: Pchar): PChar;
 var
   ret: string;
 begin
-  ret := DecodeStringBase64(string(str));
-  Result := StrAlloc(Length(ret));
-  strcopy(Result, PChar(ret));
+  try
+    ret := DecodeStringBase64(string(str));
+    Result := StrAlloc(Length(ret));
+    strcopy(Result, PChar(ret));
+  except
+    Result := '';
+  end;
 end;
 
 function base64EncryptString(str: PChar): PChar; cdecl;

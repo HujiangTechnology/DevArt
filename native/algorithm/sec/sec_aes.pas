@@ -81,217 +81,312 @@ function aesEncryptECB128(key: PChar; src: PChar): PChar; cdecl;
 var
   ret: string;
 begin
-  ret := _AESEncryptECB(string(key), 128, False, string(src));
-  Result := StrAlloc(Length(ret));
-  strcopy(Result, PChar(ret));
+  try
+    ret := _AESEncryptECB(string(key), 128, False, string(src));
+    Result := StrAlloc(Length(ret));
+    strcopy(Result, PChar(ret));
+  except
+    Result := '';
+  end;
 end;
 
 function aesEncryptECB192(key: PChar; src: PChar): PChar; cdecl;
 var
   ret: string;
 begin
-  ret := _AESEncryptECB(string(key), 192, False, string(src));
-  Result := StrAlloc(Length(ret));
-  strcopy(Result, PChar(ret));
+  try
+    ret := _AESEncryptECB(string(key), 192, False, string(src));
+    Result := StrAlloc(Length(ret));
+    strcopy(Result, PChar(ret));
+  except
+    Result := '';
+  end;
 end;
 
 function aesEncryptECB256(key: PChar; src: PChar): PChar; cdecl;
 var
   ret: string;
 begin
-  ret := _AESEncryptECB(string(key), 256, False, string(src));
-  Result := StrAlloc(Length(ret));
-  strcopy(Result, PChar(ret));
+  try
+    ret := _AESEncryptECB(string(key), 256, False, string(src));
+    Result := StrAlloc(Length(ret));
+    strcopy(Result, PChar(ret));
+  except
+    Result := '';
+  end;
 end;
 
 function aesEncryptECB128Exp(key: PChar; src: PChar): PChar; cdecl;
 var
   ret: string;
 begin
-  ret := _AESEncryptECB(string(key), 128, True, string(src));
-  Result := StrAlloc(Length(ret));
-  strcopy(Result, PChar(ret));
+  try
+    ret := _AESEncryptECB(string(key), 128, True, string(src));
+    Result := StrAlloc(Length(ret));
+    strcopy(Result, PChar(ret));
+  except
+    Result := '';
+  end;
 end;
 
 function aesEncryptECB192Exp(key: PChar; src: PChar): PChar; cdecl;
 var
   ret: string;
 begin
-  ret := _AESEncryptECB(string(key), 192, True, string(src));
-  Result := StrAlloc(Length(ret));
-  strcopy(Result, PChar(ret));
+  try
+    ret := _AESEncryptECB(string(key), 192, True, string(src));
+    Result := StrAlloc(Length(ret));
+    strcopy(Result, PChar(ret));
+  except
+    Result := '';
+  end;
 end;
 
 function aesEncryptECB256Exp(key: PChar; src: PChar): PChar; cdecl;
 var
   ret: string;
 begin
-  ret := _AESEncryptECB(string(key), 256, True, string(src));
-  Result := StrAlloc(Length(ret));
-  strcopy(Result, PChar(ret));
+  try
+    ret := _AESEncryptECB(string(key), 256, True, string(src));
+    Result := StrAlloc(Length(ret));
+    strcopy(Result, PChar(ret));
+  except
+    Result := '';
+  end;
 end;
 
 function aesEncryptCBC128(init: PChar; key: PChar; src: PChar): PChar; cdecl;
 var
   ret: string;
 begin
-  ret := _AESEncryptCBC(string(init), string(key), 128, False, string(src));
-  Result := StrAlloc(Length(ret));
-  strcopy(Result, PChar(ret));
+  try
+    ret := _AESEncryptCBC(string(init), string(key), 128, False, string(src));
+    Result := StrAlloc(Length(ret));
+    strcopy(Result, PChar(ret));
+  except
+    Result := '';
+  end;
 end;
 
 function aesEncryptCBC192(init: PChar; key: PChar; src: PChar): PChar; cdecl;
 var
   ret: string;
 begin
-  ret := _AESEncryptCBC(string(init), string(key), 192, False, string(src));
-  Result := StrAlloc(Length(ret));
-  strcopy(Result, PChar(ret));
+  try
+    ret := _AESEncryptCBC(string(init), string(key), 192, False, string(src));
+    Result := StrAlloc(Length(ret));
+    strcopy(Result, PChar(ret));
+  except
+    Result := '';
+  end;
 end;
 
 function aesEncryptCBC256(init: PChar; key: PChar; src: PChar): PChar; cdecl;
 var
   ret: string;
 begin
-  ret := _AESEncryptCBC(string(init), string(key), 256, False, string(src));
-  Result := StrAlloc(Length(ret));
-  strcopy(Result, PChar(ret));
+  try
+    ret := _AESEncryptCBC(string(init), string(key), 256, False, string(src));
+    Result := StrAlloc(Length(ret));
+    strcopy(Result, PChar(ret));
+  except
+    Result := '';
+  end;
 end;
 
 function aesEncryptCBC128Exp(init: PChar; key: PChar; src: PChar): PChar; cdecl;
 var
   ret: string;
 begin
-  ret := _AESEncryptCBC(string(init), string(key), 128, True, string(src));
-  Result := StrAlloc(Length(ret));
-  strcopy(Result, PChar(ret));
+  try
+    ret := _AESEncryptCBC(string(init), string(key), 128, True, string(src));
+    Result := StrAlloc(Length(ret));
+    strcopy(Result, PChar(ret));
+  except
+    Result := '';
+  end;
 end;
 
 function aesEncryptCBC192Exp(init: PChar; key: PChar; src: PChar): PChar; cdecl;
 var
   ret: string;
 begin
-  ret := _AESEncryptCBC(string(init), string(key), 192, True, string(src));
-  Result := StrAlloc(Length(ret));
-  strcopy(Result, PChar(ret));
+  try
+    ret := _AESEncryptCBC(string(init), string(key), 192, True, string(src));
+    Result := StrAlloc(Length(ret));
+    strcopy(Result, PChar(ret));
+  except
+    Result := '';
+  end;
 end;
 
 function aesEncryptCBC256Exp(init: PChar; key: PChar; src: PChar): PChar; cdecl;
 var
   ret: string;
 begin
-  ret := _AESEncryptCBC(string(init), string(key), 256, True, string(src));
-  Result := StrAlloc(Length(ret));
-  strcopy(Result, PChar(ret));
+  try
+    ret := _AESEncryptCBC(string(init), string(key), 256, True, string(src));
+    Result := StrAlloc(Length(ret));
+    strcopy(Result, PChar(ret));
+  except
+    Result := '';
+  end;
 end;
 
 function aesDecryptECB128(key: PChar; src: PChar): PChar; cdecl;
 var
   ret: string;
 begin
-  ret := _AESDecryptECB(string(key), 128, False, string(src));
-  Result := StrAlloc(Length(ret));
-  strcopy(Result, PChar(ret));
+  try
+    ret := _AESDecryptECB(string(key), 128, False, string(src));
+    Result := StrAlloc(Length(ret));
+    strcopy(Result, PChar(ret));
+  except
+    Result := '';
+  end;
 end;
 
 function aesDecryptECB192(key: PChar; src: PChar): PChar; cdecl;
 var
   ret: string;
 begin
-  ret := _AESDecryptECB(string(key), 192, False, string(src));
-  Result := StrAlloc(Length(ret));
-  strcopy(Result, PChar(ret));
+  try
+    ret := _AESDecryptECB(string(key), 192, False, string(src));
+    Result := StrAlloc(Length(ret));
+    strcopy(Result, PChar(ret));
+  except
+    Result := '';
+  end;
 end;
 
 function aesDecryptECB256(key: PChar; src: PChar): PChar; cdecl;
 var
   ret: string;
 begin
-  ret := _AESDecryptECB(string(key), 256, False, string(src));
-  Result := StrAlloc(Length(ret));
-  strcopy(Result, PChar(ret));
+  try
+    ret := _AESDecryptECB(string(key), 256, False, string(src));
+    Result := StrAlloc(Length(ret));
+    strcopy(Result, PChar(ret));
+  except
+    Result := '';
+  end;
 end;
 
 function aesDecryptECB128Exp(key: PChar; src: PChar): PChar; cdecl;
 var
   ret: string;
 begin
-  ret := _AESDecryptECB(string(key), 128, True, string(src));
-  Result := StrAlloc(Length(ret));
-  strcopy(Result, PChar(ret));
+  try
+    ret := _AESDecryptECB(string(key), 128, True, string(src));
+    Result := StrAlloc(Length(ret));
+    strcopy(Result, PChar(ret));
+  except
+    Result := '';
+  end;
 end;
 
 function aesDecryptECB192Exp(key: PChar; src: PChar): PChar; cdecl;
 var
   ret: string;
 begin
-  ret := _AESDecryptECB(string(key), 192, True, string(src));
-  Result := StrAlloc(Length(ret));
-  strcopy(Result, PChar(ret));
+  try
+    ret := _AESDecryptECB(string(key), 192, True, string(src));
+    Result := StrAlloc(Length(ret));
+    strcopy(Result, PChar(ret));
+  except
+    Result := '';
+  end;
 end;
 
 function aesDecryptECB256Exp(key: PChar; src: PChar): PChar; cdecl;
 var
   ret: string;
 begin
-  ret := _AESDecryptECB(string(key), 256, True, string(src));
-  Result := StrAlloc(Length(ret));
-  strcopy(Result, PChar(ret));
+  try
+    ret := _AESDecryptECB(string(key), 256, True, string(src));
+    Result := StrAlloc(Length(ret));
+    strcopy(Result, PChar(ret));
+  except
+    Result := '';
+  end;
 end;
 
 function aesDecryptCBC128(init: PChar; key: PChar; src: PChar): PChar; cdecl;
 var
   ret: string;
 begin
-  ret := _AESDecryptCBC(string(init), string(key), 128, False, string(src));
-  Result := StrAlloc(Length(ret));
-  strcopy(Result, PChar(ret));
+  try
+    ret := _AESDecryptCBC(string(init), string(key), 128, False, string(src));
+    Result := StrAlloc(Length(ret));
+    strcopy(Result, PChar(ret));
+  except
+    Result := '';
+  end;
 end;
 
 function aesDecryptCBC192(init: PChar; key: PChar; src: PChar): PChar; cdecl;
 var
   ret: string;
 begin
-  ret := _AESDecryptCBC(string(init), string(key), 192, False, string(src));
-  Result := StrAlloc(Length(ret));
-  strcopy(Result, PChar(ret));
+  try
+    ret := _AESDecryptCBC(string(init), string(key), 192, False, string(src));
+    Result := StrAlloc(Length(ret));
+    strcopy(Result, PChar(ret));
+  except
+    Result := '';
+  end;
 end;
 
 function aesDecryptCBC256(init: PChar; key: PChar; src: PChar): PChar; cdecl;
 var
   ret: string;
 begin
-  ret := _AESDecryptCBC(string(init), string(key), 256, False, string(src));
-  Result := StrAlloc(Length(ret));
-  strcopy(Result, PChar(ret));
+  try
+    ret := _AESDecryptCBC(string(init), string(key), 256, False, string(src));
+    Result := StrAlloc(Length(ret));
+    strcopy(Result, PChar(ret));
+  except
+    Result := '';
+  end;
 end;
 
 function aesDecryptCBC128Exp(init: PChar; key: PChar; src: PChar): PChar; cdecl;
 var
   ret: string;
 begin
-  ret := _AESDecryptCBC(string(init), string(key), 128, True, string(src));
-  Result := StrAlloc(Length(ret));
-  strcopy(Result, PChar(ret));
+  try
+    ret := _AESDecryptCBC(string(init), string(key), 128, True, string(src));
+    Result := StrAlloc(Length(ret));
+    strcopy(Result, PChar(ret));
+  except
+    Result := '';
+  end;
 end;
 
 function aesDecryptCBC192Exp(init: PChar; key: PChar; src: PChar): PChar; cdecl;
 var
   ret: string;
 begin
-  ret := _AESDecryptCBC(string(init), string(key), 192, True, string(src));
-  Result := StrAlloc(Length(ret));
-  strcopy(Result, PChar(ret));
-
+  try
+    ret := _AESDecryptCBC(string(init), string(key), 192, True, string(src));
+    Result := StrAlloc(Length(ret));
+    strcopy(Result, PChar(ret));
+  except
+    Result := '';
+  end;
 end;
 
 function aesDecryptCBC256Exp(init: PChar; key: PChar; src: PChar): PChar; cdecl;
 var
   ret: string;
 begin
-  ret := _AESDecryptCBC(string(init), string(key), 256, True, string(src));
-  Result := StrAlloc(Length(ret));
-  strcopy(Result, PChar(ret));
+  try
+    ret := _AESDecryptCBC(string(init), string(key), 256, True, string(src));
+    Result := StrAlloc(Length(ret));
+    strcopy(Result, PChar(ret));
+  except
+    Result := '';
+  end;
 end;
 
 // ==========================================================================

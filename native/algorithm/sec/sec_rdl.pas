@@ -26,17 +26,21 @@ var
   rdl: TLbRijndael;
   ret: string = '';
 begin
-  rdl := TLbRijndael.Create(nil);
   try
-    rdl.KeySize:= TLbKeySizeRDL(keySize);
-    rdl.CipherMode:= TLbCipherMode(cipherMode);
-    rdl.GenerateKey(string(key));
-    ret  := rdl.EncryptString(string(str));
-  finally
-    rdl.Free;
+    rdl := TLbRijndael.Create(nil);
+    try
+      rdl.KeySize:= TLbKeySizeRDL(keySize);
+      rdl.CipherMode:= TLbCipherMode(cipherMode);
+      rdl.GenerateKey(string(key));
+      ret  := rdl.EncryptString(string(str));
+    finally
+      rdl.Free;
+    end;
+    Result := StrAlloc(Length(ret));
+    strcopy(Result, PChar(ret));
+  except
+    Result := '';
   end;
-  Result := StrAlloc(Length(ret));
-  strcopy(Result, PChar(ret));
 end;
 
 function _rdlEncryptFile(keySize: Integer; cipherMode: Integer; key: PChar;
@@ -45,15 +49,18 @@ var
   rdl: TLbRijndael;
 begin
   Result := -1;
-  rdl := TLbRijndael.Create(nil);
   try
-    rdl.KeySize:= TLbKeySizeRDL(keySize);
-    rdl.CipherMode:= TLbCipherMode(cipherMode);
-    rdl.GenerateKey(string(key));
-    rdl.EncryptFile(string(filePath), string(outFilePath));
-    Result := 0;
-  finally
-    rdl.Free;
+    rdl := TLbRijndael.Create(nil);
+    try
+      rdl.KeySize:= TLbKeySizeRDL(keySize);
+      rdl.CipherMode:= TLbCipherMode(cipherMode);
+      rdl.GenerateKey(string(key));
+      rdl.EncryptFile(string(filePath), string(outFilePath));
+      Result := 0;
+    finally
+      rdl.Free;
+    end;
+  except
   end;
 end;
 
@@ -63,17 +70,21 @@ var
   rdl: TLbRijndael;
   ret: string = '';
 begin
-  rdl := TLbRijndael.Create(nil);
   try
-    rdl.KeySize:= TLbKeySizeRDL(keySize);
-    rdl.CipherMode:= TLbCipherMode(cipherMode);
-    rdl.GenerateKey(string(key));
-    ret  := rdl.DecryptString(string(str));
-  finally
-    rdl.Free;
+    rdl := TLbRijndael.Create(nil);
+    try
+      rdl.KeySize:= TLbKeySizeRDL(keySize);
+      rdl.CipherMode:= TLbCipherMode(cipherMode);
+      rdl.GenerateKey(string(key));
+      ret  := rdl.DecryptString(string(str));
+    finally
+      rdl.Free;
+    end;
+    Result := StrAlloc(Length(ret));
+    strcopy(Result, PChar(ret));
+  except
+    Result := '';
   end;
-  Result := StrAlloc(Length(ret));
-  strcopy(Result, PChar(ret));
 end;
 
 function _rdlDecryptFile(keySize: Integer; cipherMode: Integer; key: PChar;
@@ -82,15 +93,18 @@ var
   rdl: TLbRijndael;
 begin
   Result := -1;
-  rdl := TLbRijndael.Create(nil);
   try
-    rdl.KeySize:= TLbKeySizeRDL(keySize);
-    rdl.CipherMode:= TLbCipherMode(cipherMode);
-    rdl.GenerateKey(string(key));
-    rdl.DecryptFile(string(filePath), string(outFilePath));
-    Result := 0;
-  finally
-    rdl.Free;
+    rdl := TLbRijndael.Create(nil);
+    try
+      rdl.KeySize:= TLbKeySizeRDL(keySize);
+      rdl.CipherMode:= TLbCipherMode(cipherMode);
+      rdl.GenerateKey(string(key));
+      rdl.DecryptFile(string(filePath), string(outFilePath));
+      Result := 0;
+    finally
+      rdl.Free;
+    end;
+  except
   end;
 end;
 
@@ -151,8 +165,6 @@ function Java_com_hujiang_devart_security_AlgorithmUtils_rdlDecryptFile(
 begin
   Result := _rdlDecryptFile(keySize, 1, PChar(key), PChar(filePath), PChar(outFilePath));
 end;
-
-
 
 end.
 

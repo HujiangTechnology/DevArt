@@ -17,10 +17,14 @@ var
   d: LongInt;
   ret: string;
 begin
-  StringHashELF(d, string(str));
-  ret := BufferToHex(d, SizeOf(d));
-  Result := StrAlloc(Length(ret));
-  strcopy(Result, PChar(ret));
+  try
+    StringHashELF(d, string(str));
+    ret := BufferToHex(d, SizeOf(d));
+    Result := StrAlloc(Length(ret));
+    strcopy(Result, PChar(ret));
+  except
+    Result := '';
+  end;
 end;
 
 function elfEncryptString(str: PChar): PChar; cdecl;

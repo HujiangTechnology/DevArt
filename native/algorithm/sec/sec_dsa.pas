@@ -67,19 +67,23 @@ var
   dsa: TLbDSA;
   ret: string = '';
 begin
-  dsa := TLbDSA.Create(nil);
   try
-    dsa.PrimeTestIterations:= 20;
-    dsa.KeySize:= TLbAsymKeySize(keySize);
-    dsa.PrivateKey.Passphrase:= string(privPass);
-    dsa.PrivateKey.LoadFromFile(string(privPath));
-    dsa.SignString(string(str));
-    ret := Format('%s|%s', [dsa.SignatureR.IntStr, dsa.SignatureS.IntStr]);
-  finally
-    dsa.Free;
+    dsa := TLbDSA.Create(nil);
+    try
+      dsa.PrimeTestIterations:= 20;
+      dsa.KeySize:= TLbAsymKeySize(keySize);
+      dsa.PrivateKey.Passphrase:= string(privPass);
+      dsa.PrivateKey.LoadFromFile(string(privPath));
+      dsa.SignString(string(str));
+      ret := Format('%s|%s', [dsa.SignatureR.IntStr, dsa.SignatureS.IntStr]);
+    finally
+      dsa.Free;
+    end;
+    Result := StrAlloc(Length(ret));
+    strcopy(Result, PChar(ret));
+  except
+    Result := '';
   end;
-  Result := StrAlloc(Length(ret));
-  strcopy(Result, PChar(ret));
 end;
 
 function _dsaSignFile(keySize: Integer; privPass: PChar; privPath: PChar;
@@ -88,19 +92,23 @@ var
   dsa: TLbDSA;
   ret: string = '';
 begin
-  dsa := TLbDSA.Create(nil);
   try
-    dsa.PrimeTestIterations:= 20;
-    dsa.KeySize:= TLbAsymKeySize(keySize);
-    dsa.PrivateKey.Passphrase:= string(privPass);
-    dsa.PrivateKey.LoadFromFile(string(privPath));
-    dsa.SignFile(string(filePath));
-    ret := Format('%s|%s', [dsa.SignatureR.IntStr, dsa.SignatureS.IntStr]);
-  finally
-    dsa.Free;
+    dsa := TLbDSA.Create(nil);
+    try
+      dsa.PrimeTestIterations:= 20;
+      dsa.KeySize:= TLbAsymKeySize(keySize);
+      dsa.PrivateKey.Passphrase:= string(privPass);
+      dsa.PrivateKey.LoadFromFile(string(privPath));
+      dsa.SignFile(string(filePath));
+      ret := Format('%s|%s', [dsa.SignatureR.IntStr, dsa.SignatureS.IntStr]);
+    finally
+      dsa.Free;
+    end;
+    Result := StrAlloc(Length(ret));
+    strcopy(Result, PChar(ret));
+  except
+    Result := '';
   end;
-  Result := StrAlloc(Length(ret));
-  strcopy(Result, PChar(ret));
 end;
 
 function _dsaVerifyString(keySize: Integer; pubPass: PChar; pubPath: PChar;
@@ -111,20 +119,23 @@ var
   ret: Boolean;
 begin
   Result := -1;
-  dsa := TLbDSA.Create(nil);
-  evt := TDsaBlockEvent.Create(string(rs));
   try
-    dsa.PrimeTestIterations:= 20;
-    dsa.KeySize:= TLbAsymKeySize(keySize);
-    dsa.PublicKey.Passphrase:= string(pubPass);
-    dsa.PublicKey.LoadFromFile(pubPath);
-    dsa.OnGetR:= @evt.evtDsaGetR;
-    dsa.OnGetS:= @evt.evtDsaGetS;
-    ret := dsa.VerifyString(string(str));
-    Result := ifthen(ret, 0, 1);
-  finally
-    dsa.Free;
-    evt.Free;
+    dsa := TLbDSA.Create(nil);
+    evt := TDsaBlockEvent.Create(string(rs));
+    try
+      dsa.PrimeTestIterations:= 20;
+      dsa.KeySize:= TLbAsymKeySize(keySize);
+      dsa.PublicKey.Passphrase:= string(pubPass);
+      dsa.PublicKey.LoadFromFile(pubPath);
+      dsa.OnGetR:= @evt.evtDsaGetR;
+      dsa.OnGetS:= @evt.evtDsaGetS;
+      ret := dsa.VerifyString(string(str));
+      Result := ifthen(ret, 0, 1);
+    finally
+      dsa.Free;
+      evt.Free;
+    end;
+  except
   end;
 end;
 
@@ -136,22 +147,24 @@ var
   ret: Boolean;
 begin
   Result := -1;
-  dsa := TLbDSA.Create(nil);
-  evt := TDsaBlockEvent.Create(string(rs));
   try
-    dsa.PrimeTestIterations:= 20;
-    dsa.KeySize:= TLbAsymKeySize(keySize);
-    dsa.PublicKey.Passphrase:= string(pubPass);
-    dsa.PublicKey.LoadFromFile(pubPath);
-    dsa.OnGetR:= @evt.evtDsaGetR;
-    dsa.OnGetS:= @evt.evtDsaGetS;
-    ret := dsa.VerifyFile(string(filePath));
-    Result := ifthen(ret, 0, 1);
-  finally
-    dsa.Free;
-    evt.Free;
+    dsa := TLbDSA.Create(nil);
+    evt := TDsaBlockEvent.Create(string(rs));
+    try
+      dsa.PrimeTestIterations:= 20;
+      dsa.KeySize:= TLbAsymKeySize(keySize);
+      dsa.PublicKey.Passphrase:= string(pubPass);
+      dsa.PublicKey.LoadFromFile(pubPath);
+      dsa.OnGetR:= @evt.evtDsaGetR;
+      dsa.OnGetS:= @evt.evtDsaGetS;
+      ret := dsa.VerifyFile(string(filePath));
+      Result := ifthen(ret, 0, 1);
+    finally
+      dsa.Free;
+      evt.Free;
+    end;
+  except
   end;
-
 end;
 
 function _dsaGetPubkeyQPGY(keySize: Integer; pubPass: PChar; pubPath: PChar
@@ -160,18 +173,22 @@ var
   dsa: TLbDSA;
   ret: string = '';
 begin
-  dsa := TLbDSA.Create(nil);
   try
-    dsa.PrimeTestIterations:= 20;
-    dsa.KeySize:= TLbAsymKeySize(keySize);
-    dsa.PublicKey.Passphrase:= string(pubPass);
-    dsa.PublicKey.LoadFromFile(pubPath);
-    ret := Format('%s|%s|%s|%s', [dsa.PublicKey.QAsString, dsa.PublicKey.PAsString, dsa.PublicKey.GAsString, dsa.PublicKey.YAsString]);
-  finally
-    dsa.Free;
+    dsa := TLbDSA.Create(nil);
+    try
+      dsa.PrimeTestIterations:= 20;
+      dsa.KeySize:= TLbAsymKeySize(keySize);
+      dsa.PublicKey.Passphrase:= string(pubPass);
+      dsa.PublicKey.LoadFromFile(pubPath);
+      ret := Format('%s|%s|%s|%s', [dsa.PublicKey.QAsString, dsa.PublicKey.PAsString, dsa.PublicKey.GAsString, dsa.PublicKey.YAsString]);
+    finally
+      dsa.Free;
+    end;
+    Result := StrAlloc(Length(ret));
+    strcopy(Result, PChar(ret));
+  except
+    Result := '';
   end;
-  Result := StrAlloc(Length(ret));
-  strcopy(Result, PChar(ret));
 end;
 
 function _dsaGetPrivkeyQPGX(keySize: Integer; privPass: PChar; privPath: PChar
@@ -180,18 +197,22 @@ var
   dsa: TLbDSA;
   ret: string = '';
 begin
-  dsa := TLbDSA.Create(nil);
   try
-    dsa.PrimeTestIterations:= 20;
-    dsa.KeySize:= TLbAsymKeySize(keySize);
-    dsa.PrivateKey.Passphrase:= string(privPass);
-    dsa.PrivateKey.LoadFromFile(privPath);
-    ret := Format('%s|%s|%s|%s', [dsa.PrivateKey.QAsString, dsa.PrivateKey.PAsString, dsa.PrivateKey.GAsString, dsa.PrivateKey.XAsString]);
-  finally
-    dsa.Free;
+    dsa := TLbDSA.Create(nil);
+    try
+      dsa.PrimeTestIterations:= 20;
+      dsa.KeySize:= TLbAsymKeySize(keySize);
+      dsa.PrivateKey.Passphrase:= string(privPass);
+      dsa.PrivateKey.LoadFromFile(privPath);
+      ret := Format('%s|%s|%s|%s', [dsa.PrivateKey.QAsString, dsa.PrivateKey.PAsString, dsa.PrivateKey.GAsString, dsa.PrivateKey.XAsString]);
+    finally
+      dsa.Free;
+    end;
+    Result := StrAlloc(Length(ret));
+    strcopy(Result, PChar(ret));
+  except
+    Result := '';
   end;
-  Result := StrAlloc(Length(ret));
-  strcopy(Result, PChar(ret));
 end;
 
 function dsaGenerateKeys(keySize: Integer; pubPass: PChar; privPass: PChar;

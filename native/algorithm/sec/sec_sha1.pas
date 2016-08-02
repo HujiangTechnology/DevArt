@@ -22,10 +22,14 @@ var
   d: TSHA1Digest;
   ret: string;
 begin
-  StringHashSHA1(d, string(str));
-  ret := BufferToHex(d, SizeOf(d));
-  Result := StrAlloc(Length(ret));
-  strcopy(Result, PChar(ret));
+  try
+    StringHashSHA1(d, string(str));
+    ret := BufferToHex(d, SizeOf(d));
+    Result := StrAlloc(Length(ret));
+    strcopy(Result, PChar(ret));
+  except
+    Result := '';
+  end;
 end;
 
 function _sha1EncryptFile(filePath: PChar): PChar;
@@ -36,21 +40,25 @@ var
   ret: string;
   bs: Int64;
 begin
-  ret := '';
-  s := openFileStream(string(filePath));
-  if Assigned(s) then begin
-    InitSHA1(c);
-    bs := s.Read(Buffer, SizeOf(Buffer));
-    while (bs > 0) do begin
-      UpdateSHA1(c, Buffer, bs);
+  try
+    ret := '';
+    s := openFileStream(string(filePath));
+    if Assigned(s) then begin
+      InitSHA1(c);
       bs := s.Read(Buffer, SizeOf(Buffer));
+      while (bs > 0) do begin
+        UpdateSHA1(c, Buffer, bs);
+        bs := s.Read(Buffer, SizeOf(Buffer));
+      end;
+      FinalizeSHA1(c, d);
+      closeFileStream(s);
+      ret := BufferToHex(d, SizeOf(d));
     end;
-    FinalizeSHA1(c, d);
-    closeFileStream(s);
-    ret := BufferToHex(d, SizeOf(d));
+    Result := StrAlloc(Length(ret));
+    strcopy(Result, PChar(ret));
+  except
+    Result := '';
   end;
-  Result := StrAlloc(Length(ret));
-  strcopy(Result, PChar(ret));
 end;
 
 function sha1EncryptString(str: PChar): PChar; cdecl;

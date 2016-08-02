@@ -53,18 +53,22 @@ var
   rsa: TLbRSA;
   ret: String = '';
 begin
-  rsa := TLbRSA.Create(nil);
   try
-    rsa.PrimeTestIterations:= 20;
-    rsa.KeySize:= TLbAsymKeySize(keySize);
-    rsa.PublicKey.Passphrase:= string(pubPass);
-    rsa.PublicKey.LoadFromFile(string(pubPath));
-    ret := rsa.EncryptString(string(str));
-  finally
-    rsa.Free;
+    rsa := TLbRSA.Create(nil);
+    try
+      rsa.PrimeTestIterations:= 20;
+      rsa.KeySize:= TLbAsymKeySize(keySize);
+      rsa.PublicKey.Passphrase:= string(pubPass);
+      rsa.PublicKey.LoadFromFile(string(pubPath));
+      ret := rsa.EncryptString(string(str));
+    finally
+      rsa.Free;
+    end;
+    Result := StrAlloc(Length(ret));
+    strcopy(Result, PChar(ret));
+  except
+    Result := '';
   end;
-  Result := StrAlloc(Length(ret));
-  strcopy(Result, PChar(ret));
 end;
 
 function _rsaEncryptFile(keySize: Integer; pubPass: PChar; pubPath: PChar;
@@ -73,16 +77,19 @@ var
   rsa: TLbRSA;
 begin
   Result := -1;
-  rsa := TLbRSA.Create(nil);
   try
-    rsa.PrimeTestIterations:= 20;
-    rsa.KeySize:= TLbAsymKeySize(keySize);
-    rsa.PublicKey.Passphrase:= string(pubPass);
-    rsa.PublicKey.LoadFromFile(string(pubPath));
-    rsa.EncryptFile(string(filePath), string(outFilePath));
-    Result := 0;
-  finally
-    rsa.Free;
+    rsa := TLbRSA.Create(nil);
+    try
+      rsa.PrimeTestIterations:= 20;
+      rsa.KeySize:= TLbAsymKeySize(keySize);
+      rsa.PublicKey.Passphrase:= string(pubPass);
+      rsa.PublicKey.LoadFromFile(string(pubPath));
+      rsa.EncryptFile(string(filePath), string(outFilePath));
+      Result := 0;
+    finally
+      rsa.Free;
+    end;
+  except
   end;
 end;
 
@@ -92,18 +99,22 @@ var
   rsa: TLbRSA;
   ret: String = '';
 begin
-  rsa := TLbRSA.Create(nil);
   try
-    rsa.PrimeTestIterations:= 20;
-    rsa.KeySize:= TLbAsymKeySize(keySize);
-    rsa.PrivateKey.Passphrase:= string(privPass);
-    rsa.PrivateKey.LoadFromFile(string(privPath));
-    ret := rsa.DecryptString(string(str));
-  finally
-    rsa.Free;
+    rsa := TLbRSA.Create(nil);
+    try
+      rsa.PrimeTestIterations:= 20;
+      rsa.KeySize:= TLbAsymKeySize(keySize);
+      rsa.PrivateKey.Passphrase:= string(privPass);
+      rsa.PrivateKey.LoadFromFile(string(privPath));
+      ret := rsa.DecryptString(string(str));
+    finally
+      rsa.Free;
+    end;
+    Result := StrAlloc(Length(ret));
+    strcopy(Result, PChar(ret));
+  except
+    Result := '';
   end;
-  Result := StrAlloc(Length(ret));
-  strcopy(Result, PChar(ret));
 end;
 
 function _rsaDecryptFile(keySize: Integer; privPass: PChar; privPath: PChar;
@@ -112,16 +123,19 @@ var
   rsa: TLbRSA;
 begin
   Result := -1;
-  rsa := TLbRSA.Create(nil);
   try
-    rsa.PrimeTestIterations:= 20;
-    rsa.KeySize:= TLbAsymKeySize(keySize);
-    rsa.PrivateKey.Passphrase:= string(privPass);
-    rsa.PrivateKey.LoadFromFile(string(privPath));
-    rsa.DecryptFile(string(filePath), string(outFilePath));
-    Result := 0;
-  finally
-    rsa.Free;
+    rsa := TLbRSA.Create(nil);
+    try
+      rsa.PrimeTestIterations:= 20;
+      rsa.KeySize:= TLbAsymKeySize(keySize);
+      rsa.PrivateKey.Passphrase:= string(privPass);
+      rsa.PrivateKey.LoadFromFile(string(privPath));
+      rsa.DecryptFile(string(filePath), string(outFilePath));
+      Result := 0;
+    finally
+      rsa.Free;
+    end;
+  except
   end;
 end;
 
@@ -131,18 +145,22 @@ var
   rsa: TLbRSA;
   ret: string = '';
 begin
-  rsa := TLbRSA.Create(nil);
   try
-    rsa.PrimeTestIterations:= 20;
-    rsa.KeySize:= TLbAsymKeySize(keySize);
-    rsa.PublicKey.Passphrase:= string(pubPass);
-    rsa.PublicKey.LoadFromFile(string(pubPath));
-    ret := rsa.PublicKey.ModulusAsString;
-  finally
-    rsa.Free;
+    rsa := TLbRSA.Create(nil);
+    try
+      rsa.PrimeTestIterations:= 20;
+      rsa.KeySize:= TLbAsymKeySize(keySize);
+      rsa.PublicKey.Passphrase:= string(pubPass);
+      rsa.PublicKey.LoadFromFile(string(pubPath));
+      ret := rsa.PublicKey.ModulusAsString;
+    finally
+      rsa.Free;
+    end;
+    Result := StrAlloc(Length(ret));
+    strcopy(Result, PChar(ret));
+  except
+    Result := '';
   end;
-  Result := StrAlloc(Length(ret));
-  strcopy(Result, PChar(ret));
 end;
 
 function _rsaGetPrivkeyModules(keySize: Integer; privPass: PChar;
@@ -151,18 +169,22 @@ var
   rsa: TLbRSA;
   ret: string = '';
 begin
-  rsa := TLbRSA.Create(nil);
   try
-    rsa.PrimeTestIterations:= 20;
-    rsa.KeySize:= TLbAsymKeySize(keySize);
-    rsa.PrivateKey.Passphrase:= string(privPass);
-    rsa.PrivateKey.LoadFromFile(string(privPath));
-    ret := rsa.PrivateKey.ModulusAsString;
-  finally
-    rsa.Free;
+    rsa := TLbRSA.Create(nil);
+    try
+      rsa.PrimeTestIterations:= 20;
+      rsa.KeySize:= TLbAsymKeySize(keySize);
+      rsa.PrivateKey.Passphrase:= string(privPass);
+      rsa.PrivateKey.LoadFromFile(string(privPath));
+      ret := rsa.PrivateKey.ModulusAsString;
+    finally
+      rsa.Free;
+    end;
+    Result := StrAlloc(Length(ret));
+    strcopy(Result, PChar(ret));
+  except
+    Result := '';
   end;
-  Result := StrAlloc(Length(ret));
-  strcopy(Result, PChar(ret));
 end;
 
 function rsaGenerateKeys(keySize: Integer; pubPass: PChar; privPass: PChar;

@@ -22,10 +22,13 @@ var
   d: TMD5Digest;
   ret: string;
 begin
-  StringHashMD5(d, string(str));
-  ret := BufferToHex(d, SizeOf(d));
-  Result := StrAlloc(Length(ret));
-  strcopy(Result, PChar(ret));
+  try
+    StringHashMD5(d, string(str));
+    ret := BufferToHex(d, SizeOf(d));
+    Result := StrAlloc(Length(ret));
+    strcopy(Result, PChar(ret));
+  except
+  end;
 end;
 
 function _md5EncryptFile(filePath: PChar): PChar;
@@ -36,21 +39,25 @@ var
   ret: string;
   bs: Int64;
 begin
-  ret := '';
-  s := openFileStream(string(filePath));
-  if Assigned(s) then begin
-    InitMD5(c);
-    bs := s.Read(Buffer, SizeOf(Buffer));
-    while (bs > 0) do begin
-      UpdateMD5(c, Buffer, bs);
+  try
+    ret := '';
+    s := openFileStream(string(filePath));
+    if Assigned(s) then begin
+      InitMD5(c);
       bs := s.Read(Buffer, SizeOf(Buffer));
+      while (bs > 0) do begin
+        UpdateMD5(c, Buffer, bs);
+        bs := s.Read(Buffer, SizeOf(Buffer));
+      end;
+      FinalizeMD5(c, d);
+      closeFileStream(s);
+      ret := BufferToHex(d, SizeOf(d));
     end;
-    FinalizeMD5(c, d);
-    closeFileStream(s);
-    ret := BufferToHex(d, SizeOf(d));
+    Result := StrAlloc(Length(ret));
+    strcopy(Result, PChar(ret));
+  except
+    Result := '';
   end;
-  Result := StrAlloc(Length(ret));
-  strcopy(Result, PChar(ret));
 end;
 
 function md5EncryptString(str: PChar): PChar; cdecl;
