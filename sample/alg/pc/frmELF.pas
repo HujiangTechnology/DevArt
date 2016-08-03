@@ -16,6 +16,8 @@ type
     FEncryptString: string;
     FHandle: HWND;
     FOri: string;
+    procedure SendUI;
+    procedure SendBtn;
   protected
     procedure Execute; override;
   public
@@ -46,11 +48,21 @@ implementation
 
 { TThreadELF }
 
+procedure TThreadELF.SendUI;
+begin
+  SendMessage(FHandle, LM_MSG, MSG_UI, 0);
+end;
+
+procedure TThreadELF.SendBtn;
+begin
+  SendMessage(FHandle, LM_MSG, MSG_BTN, 0);
+end;
+
 procedure TThreadELF.Execute;
 begin
   FEncryptString:= string(mElfEncryptString(PChar(FOri)));
-  SendMessage(FHandle, LM_MSG, MSG_UI, 0);
-  SendMessage(FHandle, LM_MSG, MSG_BTN, 0);
+  Synchronize(@SendUI);
+  Synchronize(@SendBtn);
 end;
 
 constructor TThreadELF.Create(AHandle: HWND; AOri: string);

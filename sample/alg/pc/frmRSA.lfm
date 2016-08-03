@@ -50,7 +50,7 @@ object FormRSA: TFormRSA
     Height = 29
     Top = 128
     Width = 300
-    Caption = 'btnEncGo'
+    Caption = 'GO! GO! GO!'
     OnClick = btnEncGoClick
     TabOrder = 2
   end
@@ -84,7 +84,7 @@ object FormRSA: TFormRSA
     Height = 29
     Top = 248
     Width = 300
-    Caption = 'btnDecGo'
+    Caption = 'GO! GO! GO!'
     OnClick = btnDecGoClick
     TabOrder = 4
   end

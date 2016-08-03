@@ -12,7 +12,7 @@ object FormMD5: TFormMD5
   LCLVersion = '5.7'
   object etSrc: TEdit
     Left = 8
-    Height = 27
+    Height = 22
     Top = 8
     Width = 300
     ParentShowHint = False

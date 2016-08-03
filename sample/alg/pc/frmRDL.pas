@@ -17,6 +17,8 @@ type
     FHandle: HWND;
     FOri: string;
     FKey: string;
+    procedure SendUI;
+    procedure SendBtn;
   protected
     procedure Execute; override;
   public
@@ -33,6 +35,8 @@ type
     FHandle: HWND;
     FOri: string;
     FKey: string;
+    procedure SendUI;
+    procedure SendBtn;
   protected
     procedure Execute; override;
   public
@@ -72,11 +76,21 @@ implementation
 
 { TThreadDecrypt }
 
+procedure TThreadDecrypt.SendUI;
+begin
+  SendMessage(FHandle, LM_MSG, MSG_UI, 1);
+end;
+
+procedure TThreadDecrypt.SendBtn;
+begin
+  SendMessage(FHandle, LM_MSG, MSG_BTN, 1);
+end;
+
 procedure TThreadDecrypt.Execute;
 begin
   FDecryptString:= string(mRdlDecryptString(0, 1, PChar(FKey), PChar(FOri)));
-  SendMessage(FHandle, LM_MSG, MSG_UI, 1);
-  SendMessage(FHandle, LM_MSG, MSG_BTN, 1);
+  Synchronize(@SendUI);
+  Synchronize(@SendBtn);
 end;
 
 constructor TThreadDecrypt.Create(AHandle: HWND; AOri: string; AKey: string);
@@ -90,11 +104,21 @@ end;
 
 { TThreadEncrypt }
 
+procedure TThreadEncrypt.SendUI;
+begin
+  SendMessage(FHandle, LM_MSG, MSG_UI, 0);
+end;
+
+procedure TThreadEncrypt.SendBtn;
+begin
+  SendMessage(FHandle, LM_MSG, MSG_BTN, 0);
+end;
+
 procedure TThreadEncrypt.Execute;
 begin
   FEncryptString:= string(mRdlEncryptString(0, 1, PChar(FKey), PChar(FOri)));
-  SendMessage(FHandle, LM_MSG, MSG_UI, 0);
-  SendMessage(FHandle, LM_MSG, MSG_BTN, 0);
+  Synchronize(@SendUI);
+  Synchronize(@SendBtn);
 end;
 
 constructor TThreadEncrypt.Create(AHandle: HWND; AOri: string; AKey: string);

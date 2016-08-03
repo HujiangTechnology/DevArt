@@ -19,6 +19,8 @@ type
     FPrivPass: string;
     FPrivPath: string;
     FStatus: string;
+    procedure SendStatus;
+    procedure SendBtn;
   protected
     procedure Execute; override;
   public
@@ -37,6 +39,9 @@ type
     FPrivPass: string;
     FPrivPath: string;
     FStatus: string;
+    procedure SendUI;
+    procedure SendStatus;
+    procedure SendBtn;
   protected
     procedure Execute; override;
   public
@@ -57,6 +62,9 @@ type
     FPubPath: string;
     FStatus: string;
     FVerifyString: string;
+    procedure SendUI;
+    procedure SendStatus;
+    procedure SendBtn;
   protected
     procedure Execute; override;
   public
@@ -103,18 +111,33 @@ implementation
 
 {$R *.lfm}
 
+procedure TThreadVerify.SendUI;
+begin
+  SendMessage(FHandle, LM_MSG, MSG_UI, 2);
+end;
+
+procedure TThreadVerify.SendStatus;
+begin
+  SendMessage(FHandle, LM_MSG, MSG_STATUS, 2);
+end;
+
+procedure TThreadVerify.SendBtn;
+begin
+  SendMessage(FHandle, LM_MSG, MSG_BTN, 2);
+end;
+
 procedure TThreadVerify.Execute;
 var
   ret: Integer;
 begin
   FStatus:= 'Verifying ...';
-  SendMessage(FHandle, LM_MSG, MSG_STATUS, 2);
+  Synchronize(@SendStatus);
   ret := mRsassaVerifyString(1, 0, PChar(FPubPass), PChar(FPubPath), PChar(FSrc), PChar(Fori));
   FVerifyString:= IfThen(ret = 0, 'TRUE', 'FALSE');
-  SendMessage(FHandle, LM_MSG, MSG_UI, 2);
+  Synchronize(@SendUI);
   FStatus:= 'Verify Completed';
-  SendMessage(FHandle, LM_MSG, MSG_STATUS, 2);
-  SendMessage(FHandle, LM_MSG, MSG_BTN, 2);
+  Synchronize(@SendStatus);
+  Synchronize(@SendBtn);
 end;
 
 constructor TThreadVerify.Create(AHandle: HWND; ASrc: string; AOri: string;
@@ -131,15 +154,30 @@ end;
 
 { TThreadEncrypt }
 
+procedure TThreadEncrypt.SendUI;
+begin
+  SendMessage(FHandle, LM_MSG, MSG_UI, 1);
+end;
+
+procedure TThreadEncrypt.SendStatus;
+begin
+  SendMessage(FHandle, LM_MSG, MSG_STATUS, 1);
+end;
+
+procedure TThreadEncrypt.SendBtn;
+begin
+  SendMessage(FHandle, LM_MSG, MSG_BTN, 1);
+end;
+
 procedure TThreadEncrypt.Execute;
 begin
   FStatus:= 'Encrypting ...';
-  SendMessage(FHandle, LM_MSG, MSG_STATUS, 1);
+  Synchronize(@SendStatus);
   FEncryptedString:= string(mRsassaSignString(1, 0, PChar(FPrivPass), PChar(FPrivPath), PChar(FOri)));
-  SendMessage(FHandle, LM_MSG, MSG_UI, 1);
+  Synchronize(@SendUI);
   FStatus:= 'Encrypt Completed';
-  SendMessage(FHandle, LM_MSG, MSG_STATUS, 1);
-  SendMessage(FHandle, LM_MSG, MSG_BTN, 1);
+  Synchronize(@SendStatus);
+  Synchronize(@SendBtn);
 end;
 
 constructor TThreadEncrypt.Create(AHandle: HWND; AOri: string;
@@ -153,16 +191,26 @@ begin
   FreeOnTerminate:=True;
 end;
 
+procedure TThreadKeyPair.SendStatus;
+begin
+  SendMessage(FHandle, LM_MSG, MSG_STATUS, 0);
+end;
+
+procedure TThreadKeyPair.SendBtn;
+begin
+  SendMessage(FHandle, LM_MSG, MSG_BTN, 0);
+end;
+
 procedure TThreadKeyPair.Execute;
 var
   ret: Integer;
 begin
   FStatus:= 'Generating Key Pair ...';
-  SendMessage(FHandle, LM_MSG, MSG_STATUS, 0);
+  Synchronize(@SendStatus);
   ret := mRsassaGenerateKeys(1, PChar(FPubPass), PChar(FPrivPass), PChar(FPubPath), PChar(FPrivPath));
   FStatus:= IfThen(ret = 0, 'Generate OK', 'Generate Fail');
-  SendMessage(FHandle, LM_MSG, MSG_STATUS, 0);
-  SendMessage(FHandle, LM_MSG, MSG_BTN, 0);
+  Synchronize(@SendStatus);
+  Synchronize(@SendBtn);
 end;
 
 constructor TThreadKeyPair.Create(AHandle: HWND; APubPass: string;

@@ -16,6 +16,8 @@ type
     FEncryptString: string;
     FHandle: HWND;
     FOri: string;
+    procedure SendUI;
+    procedure SendBtn;
   protected
     procedure Execute; override;
   public
@@ -46,11 +48,21 @@ implementation
 
 { TThreadMD5 }
 
+procedure TThreadMD5.SendUI;
+begin
+  SendMessage(FHandle, LM_MSG, MSG_UI, 0);
+end;
+
+procedure TThreadMD5.SendBtn;
+begin
+  SendMessage(FHandle, LM_MSG, MSG_BTN, 0);
+end;
+
 procedure TThreadMD5.Execute;
 begin
   FEncryptString:= string(mMd5EncryptString(PChar(FOri)));
-  SendMessage(FHandle, LM_MSG, MSG_UI, 0);
-  SendMessage(FHandle, LM_MSG, MSG_BTN, 0);
+  Synchronize(@SendUI);
+  Synchronize(@SendBtn);
 end;
 
 constructor TThreadMD5.Create(AHandle: HWND; AOri: string);
@@ -76,6 +88,7 @@ begin
   MSG_UI: lbDest.Caption:= FEncrypt.EncryptString;
   MSG_BTN: btnGo.Enabled:= True;
   end;
+
 end;
 
 initialization
