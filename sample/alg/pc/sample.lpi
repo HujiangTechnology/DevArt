@@ -29,7 +29,7 @@
         <PackageName Value="LCL"/>
       </Item1>
     </RequiredPackages>
-    <Units Count="13">
+    <Units Count="14">
       <Unit0>
         <Filename Value="sample.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -98,7 +98,9 @@
       <Unit10>
         <Filename Value="frmRSASSA.pas"/>
         <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormRSASSA"/>
         <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
       </Unit10>
       <Unit11>
         <Filename Value="frmAES.pas"/>
@@ -109,6 +111,10 @@
         <Filename Value="NativeAlgorithm.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit12>
+      <Unit13>
+        <Filename Value="unt_msgconst.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit13>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

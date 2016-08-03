@@ -5,14 +5,7 @@ unit frmRSASSA;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls, NativeAlgorithm, LMessages, Messages, LCLType, LCLIntf, strutils;
-
-const
-  LM_MSG = LM_USER + 1;
-
-  MSG_STATUS = 0;
-  MSG_UI = 1;
-  MSG_BTN = 2;
+  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls, NativeAlgorithm, LMessages, Messages, LCLType, LCLIntf, strutils, unt_msgconst;
 
 type
 

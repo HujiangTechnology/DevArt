@@ -5,9 +5,24 @@ unit frmELF;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls, NativeAlgorithm;
+  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls, NativeAlgorithm, LCLType, LCLIntf, LMessages, Messages, unt_msgconst;
 
 type
+
+  { TThreadELF }
+
+  TThreadELF = class(TThread)
+  private
+    FEncryptString: string;
+    FHandle: HWND;
+    FOri: string;
+  protected
+    procedure Execute; override;
+  public
+    constructor Create(AHandle: HWND; AOri: string);
+  public
+    property EncryptString: string read FEncryptString write FEncryptString;
+  end;
 
   { TFormELF }
 
@@ -17,9 +32,9 @@ type
     lbDest: TLabel;
     procedure btnGoClick(Sender: TObject);
   private
-    { private declarations }
+    FEncrypt: TThreadELF;
   public
-    { public declarations }
+    procedure OnHandleMessage(var msg: TMessage); message LM_MSG;
   end;
 
 var
@@ -29,16 +44,38 @@ implementation
 
 {$R *.lfm}
 
+{ TThreadELF }
+
+procedure TThreadELF.Execute;
+begin
+  FEncryptString:= string(mElfEncryptString(PChar(FOri)));
+  SendMessage(FHandle, LM_MSG, MSG_UI, 0);
+  SendMessage(FHandle, LM_MSG, MSG_BTN, 0);
+end;
+
+constructor TThreadELF.Create(AHandle: HWND; AOri: string);
+begin
+  Inherited Create(True);
+  FHandle:= AHandle;
+  FOri:= AOri;
+  FreeOnTerminate:= True;
+end;
+
 { TFormELF }
 
 procedure TFormELF.btnGoClick(Sender: TObject);
-var
-  ori: string;
-  enc: string;
 begin
-  ori := etSrc.Text;
-  enc := string(mElfEncryptString(PChar(ori)));
-  lbDest.Caption:= enc;
+  btnGo.Enabled:= False;
+  FEncrypt := TThreadELF.Create(self.Handle, etSrc.Text);
+  FEncrypt.Start;
+end;
+
+procedure TFormELF.OnHandleMessage(var msg: TMessage);
+begin
+  case msg.WParam of
+  MSG_BTN: btnGo.Enabled:= True;
+  MSG_UI: lbDest.Caption:= FEncrypt.EncryptString;
+  end;
 end;
 
 initialization

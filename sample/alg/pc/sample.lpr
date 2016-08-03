@@ -7,7 +7,8 @@ uses
   cthreads,
   {$ENDIF}
   Interfaces, Forms, frmMain, frmMD5, frmSHA1, frmLMD, frmELF, frmBASE64,
-  frmRSA, frmDSA, frmRDL, frmRSASSA, frmAES, NativeAlgorithm, Dialogs;
+  frmRSA, frmDSA, frmRDL, frmRSASSA, frmAES, NativeAlgorithm, Dialogs, 
+unt_msgconst;
 
 {$R *.res}
 
