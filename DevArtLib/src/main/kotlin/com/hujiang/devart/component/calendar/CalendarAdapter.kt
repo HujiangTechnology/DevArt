@@ -210,7 +210,7 @@ open class CalendarAdapter: BaseAdapter {
             val tvDay = v?.findViewById(R.id.tvDay) as TextView?
             val tvLunar = v?.findViewById(R.id.tvLunar) as TextView?
             val vEvent = v?.findViewById(R.id.vEvent)
-            vEvent?.setBackgroundColor(_context!!.resources.getColor(R.color.skyblue))
+            vEvent?.setBackgroundColor(_context!!.resources.getColor(R.color.skyblue, _context?.theme))
             tvLunar?.visibility = if (_showLunar) View.VISIBLE else View.GONE
             tvDay?.text = d
             tvLunar?.text = dv
@@ -221,24 +221,24 @@ open class CalendarAdapter: BaseAdapter {
                 tvDay?.setTextColor(Color.BLACK)
                 if (_isMondayFirstDay) {
                     if (position % 7 == 5 || position % 7 == 6) {
-                        tvDay?.setTextColor(_context!!.resources.getColor(R.color.skyblue))
-                        tvLunar?.setTextColor(_context!!.resources.getColor(R.color.skyblue))
+                        tvDay?.setTextColor(_context!!.resources.getColor(R.color.skyblue, _context?.theme))
+                        tvLunar?.setTextColor(_context!!.resources.getColor(R.color.skyblue, _context?.theme))
                     }
                 } else {
                     if (position % 7 == 0 || position % 7 == 6) {
-                        tvDay?.setTextColor(_context!!.resources.getColor(R.color.skyblue))
-                        tvLunar?.setTextColor(_context!!.resources.getColor(R.color.skyblue))
+                        tvDay?.setTextColor(_context!!.resources.getColor(R.color.skyblue, _context?.theme))
+                        tvLunar?.setTextColor(_context!!.resources.getColor(R.color.skyblue, _context?.theme))
                     }
                 }
                 vEvent?.visibility = if (evt) View.VISIBLE else View.INVISIBLE
             }
             if (_currentSelected == position) {
-                v?.setBackgroundColor(_context!!.resources.getColor(R.color.lightgray))
+                v?.setBackgroundColor(_context!!.resources.getColor(R.color.lightgray, _context?.theme))
                 tvDay?.setTextColor(Color.WHITE)
                 tvLunar?.setTextColor(Color.WHITE)
             }
             if (_currentFlag == position) {
-                v?.setBackgroundColor(_context!!.resources.getColor(R.color.skyblue))
+                v?.setBackgroundColor(_context!!.resources.getColor(R.color.skyblue, _context?.theme))
                 tvDay?.setTextColor(Color.WHITE)
                 tvLunar?.setTextColor(Color.WHITE)
                 vEvent?.setBackgroundColor(Color.WHITE)

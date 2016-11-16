@@ -29,7 +29,7 @@ class IndicatorLayout: FrameLayout, Animation.AnimationListener {
 
     constructor(context: Context, mode: PullToRefreshBase.Mode): super(context) {
         _arrowImageView = ImageView(context)
-        val arrowD = resources.getDrawable(R.drawable.indicator_arrow)
+        val arrowD = resources.getDrawable(R.drawable.indicator_arrow, context.theme)
         _arrowImageView?.setImageDrawable(arrowD)
         val padding = resources.getDimensionPixelSize(R.dimen.indicator_internal_padding)
         _arrowImageView?.setPadding(padding, padding, padding, padding)

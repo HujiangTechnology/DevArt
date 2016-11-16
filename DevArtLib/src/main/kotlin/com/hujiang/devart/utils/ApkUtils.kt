@@ -122,7 +122,7 @@ object ApkUtils {
         amu.addAssetPath(archiveFilePath)
         val res = Resources(assmgr, pRes.displayMetrics, pRes.configuration)
         if (info!!.icon != 0) {
-            val icon = res.getDrawable(info.icon)
+            val icon = res.getDrawable(info.icon, context.theme)
             return icon
         } else {
             return null
@@ -137,7 +137,7 @@ object ApkUtils {
         res = Resources(assmgr, res.displayMetrics, res.configuration)
         try {
             if (info.icon != 0) {
-                return res.getDrawable(info.icon)
+                return res.getDrawable(info.icon, context.theme)
             } else {
                 return null
             }

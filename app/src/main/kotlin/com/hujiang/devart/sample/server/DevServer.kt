@@ -18,7 +18,6 @@ class DevServer(port: Int) : HTTPServer(port) {
         session as HTTPSession
         val parms = session._parms
         val uri = session._uri
-        var served = false
 
         Log.e("LOG", "serve => ${uri}, ${parms}")
 

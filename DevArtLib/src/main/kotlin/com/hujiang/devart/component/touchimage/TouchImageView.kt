@@ -7,7 +7,6 @@ import android.graphics.Matrix
 import android.graphics.PointF
 import android.graphics.drawable.BitmapDrawable
 import android.util.AttributeSet
-import android.util.FloatMath
 import android.view.MotionEvent
 import android.widget.ImageView
 
@@ -39,7 +38,7 @@ class TouchImageView : ImageView {
             if (y < 0) {
                 y = -y
             }
-            return FloatMath.sqrt(x * x + y * y)
+            return Math.sqrt((x * x + y * y).toDouble()).toFloat()
         }
 
         private fun midPoint(point: PointF?, event: MotionEvent?) {
@@ -57,7 +56,7 @@ class TouchImageView : ImageView {
             if (y < 0) {
                 y = -y
             }
-            return FloatMath.sqrt(x * x + y * y)
+            return Math.sqrt((x * x + y * y).toDouble()).toFloat()
         }
 
         private fun fspacing(event: MotionEvent?): Float {
@@ -69,7 +68,7 @@ class TouchImageView : ImageView {
             if (y < 0) {
                 y = -y
             }
-            return FloatMath.sqrt(x * x + y * y)
+            return Math.sqrt((x * x + y * y).toDouble()).toFloat()
         }
 
     }

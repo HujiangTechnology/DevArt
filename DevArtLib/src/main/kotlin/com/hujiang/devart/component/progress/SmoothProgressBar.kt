@@ -30,7 +30,7 @@ open class SmoothProgressBar: ProgressBar {
         }
         val res = context.resources
         val a = context.obtainStyledAttributes(attrs, R.styleable.SmoothProgressBar, defStyle, 0)
-        val color = a.getColor(R.styleable.SmoothProgressBar_spbColor, res.getColor(R.color.spbDefaultColor))
+        val color = a.getColor(R.styleable.SmoothProgressBar_spbColor, res.getColor(R.color.spbDefaultColor, context.theme))
         val sectionsCount = a.getInteger(R.styleable.SmoothProgressBar_spbSectionsCount, res.getInteger(R.integer.spbDefaultSectionsCount))
         val separatorLength = a.getDimensionPixelSize(R.styleable.SmoothProgressBar_spbStrokeSeparatorLength, res.getDimensionPixelSize(R.dimen.spbDefaultStrokeSeparatorLength))
         val strokeWidth = a.getDimension(R.styleable.SmoothProgressBar_spbStrokeWidth, res.getDimension(R.dimen.spbDefaultStrokeWidth))

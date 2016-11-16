@@ -22,7 +22,7 @@ class CircularProgressBar : ProgressBar {
         }
         val res = context.resources
         val a = context.obtainStyledAttributes(attrs, R.styleable.CircularProgressBar, defStyle, 0)
-        val color = a.getColor(R.styleable.CircularProgressBar_cpbColor, res.getColor(R.color.cpbDefaultColor))
+        val color = a.getColor(R.styleable.CircularProgressBar_cpbColor, res.getColor(R.color.cpbDefaultColor, context.theme))
         val strokeWidth = a.getDimension(R.styleable.CircularProgressBar_cpbStrokeWidth, res.getDimension(R.dimen.cpbDefaultStrokeWidth))
         val sweepSpeed = a.getFloat(R.styleable.CircularProgressBar_cpbSweepSpeed, (res.getString(R.string.cpbDefaultSweepSpeed)).toFloat())
         val rotationSpeed = a.getFloat(R.styleable.CircularProgressBar_cpbRotationSpeed, (res.getString(R.string.cpbDefaultRotationSpeed)).toFloat())

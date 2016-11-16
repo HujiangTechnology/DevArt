@@ -1,5 +1,6 @@
 package com.hujiang.devart.component.cropper
 
+import android.content.Context
 import android.content.res.Resources
 import android.graphics.Paint
 import com.hujiang.devart.R
@@ -9,34 +10,34 @@ import com.hujiang.devart.R
  */
 object PaintUtil {
 
-    fun newBorderPaint(resources: Resources): Paint {
+    fun newBorderPaint(context: Context): Paint {
         val paint = Paint()
         paint.style = Paint.Style.STROKE
-        paint.strokeWidth = resources.getDimension(R.dimen.border_thickness)
-        paint.color = resources.getColor(R.color.white_translucent)
+        paint.strokeWidth = context.resources.getDimension(R.dimen.border_thickness)
+        paint.color = context.resources.getColor(R.color.white_translucent, context.theme)
         return paint
     }
 
-    fun newGuidelinePaint(resources: Resources): Paint {
+    fun newGuidelinePaint(context: Context): Paint {
         val paint = Paint()
         paint.style = Paint.Style.STROKE
-        paint.strokeWidth = resources.getDimension(R.dimen.guideline_thickness)
-        paint.color = resources.getColor(R.color.white_translucent)
+        paint.strokeWidth = context.resources.getDimension(R.dimen.guideline_thickness)
+        paint.color = context.resources.getColor(R.color.white_translucent, context.theme)
         return paint
     }
 
-    fun newSurroundingAreaOverlayPaint(resources: Resources): Paint {
+    fun newSurroundingAreaOverlayPaint(context: Context): Paint {
         val paint = Paint()
         paint.style = Paint.Style.FILL
-        paint.color = resources.getColor(R.color.black_translucent)
+        paint.color = context.resources.getColor(R.color.black_translucent, context.theme)
         return paint
     }
 
-    fun newCornerPaint(resources: Resources): Paint {
+    fun newCornerPaint(context: Context): Paint {
         val paint = Paint()
         paint.style = Paint.Style.STROKE
-        paint.strokeWidth = resources.getDimension(R.dimen.corner_thickness)
-        paint.color = resources.getColor(R.color.white)
+        paint.strokeWidth = context.resources.getDimension(R.dimen.corner_thickness)
+        paint.color = context.resources.getColor(R.color.white, context.theme)
         return paint
     }
 

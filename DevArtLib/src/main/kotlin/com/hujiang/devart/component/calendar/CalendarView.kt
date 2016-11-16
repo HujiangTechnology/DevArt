@@ -63,7 +63,7 @@ class CalendarView: LinearLayout {
         val layWeek = LinearLayout(context)
         layWeek.orientation = HORIZONTAL
         layWeek.layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, UIUtils.dip2px(20))
-        layWeek.setBackgroundColor(resources.getColor(R.color.white))
+        layWeek.setBackgroundColor(resources.getColor(R.color.white, context.theme))
         val lllp = LayoutParams(0, LayoutParams.MATCH_PARENT)
         lllp.weight = 1.toFloat()
         lllp.gravity = Gravity.CENTER
@@ -73,13 +73,13 @@ class CalendarView: LinearLayout {
             _tvWeek[i]?.gravity = Gravity.CENTER
             _tvWeek[i]?.textSize = 12.toFloat()
             _tvWeek[i]?.text = weekString[i]
-            _tvWeek[i]?.setTextColor(resources.getColor(if (i == (if (_isMondayFirstDay) 5 else 0) || i == 6) android.R.color.holo_blue_light else R.color.black))
+            _tvWeek[i]?.setTextColor(resources.getColor(if (i == (if (_isMondayFirstDay) 5 else 0) || i == 6) android.R.color.holo_blue_light else R.color.black, context.theme))
             layWeek.addView(_tvWeek[i])
         }
         addView(layWeek)
         val vSplit = View(context)
         vSplit.layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, UIUtils.dip2px(1))
-        vSplit.setBackgroundColor(resources.getColor(android.R.color.darker_gray))
+        vSplit.setBackgroundColor(resources.getColor(android.R.color.darker_gray, context.theme))
         addView(vSplit)
         _flipper = ViewFlipper(context)
         _flipper?.layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
@@ -253,7 +253,7 @@ class CalendarView: LinearLayout {
                 } else {
                     _tvWeek[i]?.text = weekString[i]
                 }
-                _tvWeek[i]?.setTextColor(resources.getColor(if (i == (if (_isMondayFirstDay) 5 else 0) || i == 6) android.R.color.holo_blue_light else R.color.black))
+                _tvWeek[i]?.setTextColor(resources.getColor(if (i == (if (_isMondayFirstDay) 5 else 0) || i == 6) android.R.color.holo_blue_light else R.color.black, context.theme))
             }
         }
     }

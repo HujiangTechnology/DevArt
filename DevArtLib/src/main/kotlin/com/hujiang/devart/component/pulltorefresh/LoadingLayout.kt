@@ -130,7 +130,7 @@ abstract class LoadingLayout: FrameLayout, ILoadingLayout {
             }
         }
         if (imageDrawable == null) {
-            imageDrawable = context.resources.getDrawable(getDefaultDrawableResId())
+            imageDrawable = context.resources.getDrawable(getDefaultDrawableResId(), context.theme)
         }
         setLoadingDrawable(imageDrawable)
         reset()

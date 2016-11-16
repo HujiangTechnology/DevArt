@@ -12,7 +12,6 @@ import com.hujiang.devart.sample.MainActivity
 import com.hujiang.devart.sample.R
 import com.hujiang.devart.utils.HttpUtils
 import com.hujiang.devart.utils.MessageUtils
-import org.apache.http.protocol.HTTP
 import kotlin.concurrent.thread
 
 /**
@@ -65,7 +64,7 @@ class HttpFragment : BaseFragment(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         thread {
-            val ret = HttpUtils.get("http://www.hujiang.com", "", HTTP.UTF_8)
+            val ret = HttpUtils.get("http://www.hujiang.com", "")
             MessageUtils.sendMessage(_hRequest, 1, 0, 0, ret)
         }
     }

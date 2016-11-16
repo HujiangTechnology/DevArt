@@ -90,16 +90,16 @@ class LightCalendarAdapter: BaseAdapter {
             tvDay?.setTextColor(Color.BLACK)
             if (_isMondayFirstDay) {
                 if (position % 7 == 5 || position % 7 == 6) {
-                    tvDay?.setTextColor(_context!!.resources.getColor(R.color.skyblue))
+                    tvDay?.setTextColor(_context!!.resources.getColor(R.color.skyblue, _context?.theme))
                 }
             } else {
                 if (position % 7 == 0 || position % 7 == 6) {
-                    tvDay?.setTextColor(_context!!.resources.getColor(R.color.skyblue))
+                    tvDay?.setTextColor(_context!!.resources.getColor(R.color.skyblue, _context?.theme))
                 }
             }
         }
         if (_currentFlag == position) {
-            v?.setBackgroundColor(_context!!.resources.getColor(R.color.skyblue))
+            v?.setBackgroundColor(_context!!.resources.getColor(R.color.skyblue, _context?.theme))
             tvDay?.setTextColor(Color.WHITE)
         }
         return v

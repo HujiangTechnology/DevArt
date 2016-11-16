@@ -1,7 +1,6 @@
 package com.hujiang.devart.component.emulator
 
 import android.graphics.*
-import org.apache.http.impl.auth.BasicScheme
 
 /**
  * Created by rarnu on 4/10/16.
@@ -96,7 +95,7 @@ abstract class BaseTextRenderer: TextRenderer {
         setDefaultColors(nscheme.getForeColor(), nscheme.getBackColor())
         _cursorPaint = Paint()
         _cursorPaint?.color = sCursorColor
-        _cursorPaint?.xfermode = PixelXorXfermode(sCursorColor.inv())
+        // _cursorPaint?.xfermode = PixelXorXfermode(sCursorColor.inv())
         _cursorPaint?.isAntiAlias = true
         _cursorStrokePaint = Paint(_cursorPaint)
         _cursorStrokePaint?.strokeWidth = 0.1f

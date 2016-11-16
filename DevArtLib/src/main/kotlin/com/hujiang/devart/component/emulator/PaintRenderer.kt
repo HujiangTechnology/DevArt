@@ -3,7 +3,6 @@ package com.hujiang.devart.component.emulator
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Typeface
-import android.util.FloatMath
 
 /**
  * Created by rarnu on 4/11/16.
@@ -24,8 +23,8 @@ class PaintRenderer: BaseTextRenderer {
         _textPaint?.typeface = Typeface.MONOSPACE
         _textPaint?.isAntiAlias = true
         _textPaint?.textSize = fontSize.toFloat()
-        _charHeight = FloatMath.ceil(_textPaint!!.fontSpacing).toInt()
-        _charAscent = FloatMath.ceil(_textPaint!!.ascent()).toInt()
+        _charHeight = Math.ceil(_textPaint!!.fontSpacing.toDouble()).toInt()
+        _charAscent = Math.ceil(_textPaint!!.ascent().toDouble()).toInt()
         _charDescent = _charHeight + _charAscent
         _charWidth = _textPaint!!.measureText(EXAMPLE_CHAR, 0, 1)
     }

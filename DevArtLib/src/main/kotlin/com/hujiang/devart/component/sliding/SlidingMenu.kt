@@ -340,7 +340,7 @@ class SlidingMenu : RelativeLayout {
         }
 
     fun setBehindShadowDrawable(resId: Int) {
-        behindShadowDrawable = resources.getDrawable(resId)
+        behindShadowDrawable = resources.getDrawable(resId, context.theme)
     }
 
     var behindSecondaryShadowDrawable: Drawable?
@@ -350,7 +350,7 @@ class SlidingMenu : RelativeLayout {
         }
 
     fun setBehindSecondaryShadowDrawable(resId: Int) {
-        behindSecondaryShadowDrawable = resources.getDrawable(resId)
+        behindSecondaryShadowDrawable = resources.getDrawable(resId, context.theme)
     }
 
     var behindShadowWidth: Int

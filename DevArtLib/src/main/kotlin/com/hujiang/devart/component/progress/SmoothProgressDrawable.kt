@@ -560,7 +560,7 @@ class SmoothProgressDrawable: Drawable, Animatable {
                 _speed = (res.getString(R.string.spbDefaultSpeed)).toFloat()
                 _reversed = res.getBoolean(R.bool.spbDefaultReversed)
                 _progressiveStartActivated = res.getBoolean(R.bool.spbDefaultProgressiveStartActivated)
-                _colors = intArrayOf(res.getColor(R.color.spbDefaultColor))
+                _colors = intArrayOf(res.getColor(R.color.spbDefaultColor, context.theme))
                 _strokeSeparatorLength = res.getDimensionPixelSize(R.dimen.spbDefaultStrokeSeparatorLength)
                 _strokeWidth = res.getDimensionPixelOffset(R.dimen.spbDefaultStrokeWidth).toFloat()
             } else {

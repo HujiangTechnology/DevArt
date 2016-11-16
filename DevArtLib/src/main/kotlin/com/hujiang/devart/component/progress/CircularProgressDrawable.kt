@@ -153,7 +153,7 @@ class CircularProgressDrawable: Drawable, Animatable {
                 _minSweepAngle = 20
                 _maxSweepAngle = 300
             } else {
-                _colors = intArrayOf(context.resources.getColor(R.color.cpbDefaultColor))
+                _colors = intArrayOf(context.resources.getColor(R.color.cpbDefaultColor, context.theme))
                 _minSweepAngle = context.resources.getInteger(R.integer.cpbDefaultMinSweepAngle)
                 _maxSweepAngle = context.resources.getInteger(R.integer.cpbDefaultMaxSweepAngle)
             }

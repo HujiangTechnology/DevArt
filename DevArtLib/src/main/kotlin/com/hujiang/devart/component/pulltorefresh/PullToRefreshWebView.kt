@@ -4,7 +4,6 @@ import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.util.AttributeSet
-import android.util.FloatMath
 import android.webkit.WebChromeClient
 import android.webkit.WebView
 import com.hujiang.devart.R
@@ -68,7 +67,7 @@ open class PullToRefreshWebView: PullToRefreshBase<WebView> {
 
     @Suppress("DEPRECATION")
     override fun isReadyForPullEnd(): Boolean {
-        val exactContentHeight = FloatMath.floor(_refreshableView!!.contentHeight * _refreshableView!!.scale)
+        val exactContentHeight = Math.floor((_refreshableView!!.contentHeight * _refreshableView!!.scale).toDouble())
         return _refreshableView!!.scrollY >= (exactContentHeight - _refreshableView!!.height)
     }
 
@@ -95,6 +94,6 @@ open class PullToRefreshWebView: PullToRefreshBase<WebView> {
         }
 
         @Suppress("DEPRECATION")
-        private fun getScrollRange(): Int = Math.max(0.0f, FloatMath.floor(_refreshableView!!.contentHeight * _refreshableView!!.scale)- (height - paddingBottom - paddingTop)).toInt()
+        private fun getScrollRange(): Int = Math.max(0.0, Math.floor((_refreshableView!!.contentHeight * _refreshableView!!.scale).toDouble())- (height - paddingBottom - paddingTop)).toInt()
     }
 }

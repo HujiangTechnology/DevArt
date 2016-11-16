@@ -6,7 +6,6 @@ import android.graphics.Rect
 import android.os.Build
 import android.support.v4.view.ViewPager
 import android.util.AttributeSet
-import android.util.FloatMath
 import android.view.*
 import android.view.animation.Interpolator
 import android.widget.Scroller
@@ -176,7 +175,7 @@ class CustomViewAbove: ViewGroup {
     private fun distanceInfluenceForSnapDuration(f: Float): Float {
         var nf = (f - 0.5f).toDouble()
         nf *= (0.3f * Math.PI / 2.0f)
-        return FloatMath.sin(nf.toFloat())
+        return Math.sin(nf).toFloat()
     }
 
     fun getDestScrollX(page: Int): Int = when(page) {

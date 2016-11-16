@@ -16,8 +16,8 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 19
-    buildToolsVersion "22.0.1"
+    compileSdkVersion 24
+    buildToolsVersion "24.0.3"
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
@@ -33,4 +33,3 @@ dependencies {
 }
 
 project.gradle.startParameter.excludedTaskNames.add('lint')
-project.gradle.startParameter.excludedTaskNames.add('lintVitalRelease')
