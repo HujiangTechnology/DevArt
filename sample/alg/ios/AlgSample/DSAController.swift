@@ -34,13 +34,13 @@ class DSAController: UIViewController {
         PUBKEY_PATH = "\(DOC)/dsa.pub"
         PRIVKEY_PATH = "\(DOC)/dsa.priv"
         
-        let w = UIScreen.main().bounds.size.width
-        let h = UIScreen.main().bounds.size.height
+        let w = UIScreen.main.bounds.size.width
+        let h = UIScreen.main.bounds.size.height
         
         btnKeypair = UIButton(type: UIButtonType.system)
         btnKeypair?.frame = CGRect(x: 8, y: 64 + 8, width: w - 16, height: 32)
         btnKeypair?.backgroundColor = self.view.tintColor
-        btnKeypair?.setTitleColor(UIColor.white(), for: [])
+        btnKeypair?.setTitleColor(UIColor.white, for: [])
         btnKeypair?.setTitle(STR_BTN_KEYPAIR, for: [])
         tvEncTitle = UILabel(frame: CGRect(x: 8, y: 64 + 48, width: w - 16, height: 32))
         tvEncTitle?.text = STR_ENC
@@ -51,7 +51,7 @@ class DSAController: UIViewController {
         btnEncGo = UIButton(type: UIButtonType.system)
         btnEncGo?.frame = CGRect(x: 8, y: 64 + 168, width: w - 16, height: 32)
         btnEncGo?.backgroundColor = self.view.tintColor
-        btnEncGo?.setTitleColor(UIColor.white(), for: [])
+        btnEncGo?.setTitleColor(UIColor.white, for: [])
         btnEncGo?.setTitle(STR_BTN_GO, for: [])
         
         tvVerifyTitle = UILabel(frame: CGRect(x: 8, y: 64 + 208, width: w - 16, height: 32))
@@ -66,7 +66,7 @@ class DSAController: UIViewController {
         btnVerifyGo = UIButton(type: UIButtonType.system)
         btnVerifyGo?.frame = CGRect(x: 8, y: 64 + 368, width: w - 16, height: 32)
         btnVerifyGo?.backgroundColor = self.view.tintColor
-        btnVerifyGo?.setTitleColor(UIColor.white(), for: [])
+        btnVerifyGo?.setTitleColor(UIColor.white, for: [])
         btnVerifyGo?.setTitle(STR_BTN_GO, for: [])
         
         tvStatus = UILabel(frame: CGRect(x: 8, y: h - 40, width: w - 16, height: 32))

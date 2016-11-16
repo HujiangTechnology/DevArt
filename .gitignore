@@ -21,3 +21,5 @@ common
 *.rsj
 *.lps
 
+sample/alg/ios/Build/
+sample/compress/ios/Build/

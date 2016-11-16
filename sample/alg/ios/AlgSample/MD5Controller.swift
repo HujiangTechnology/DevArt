@@ -17,7 +17,7 @@ class MD5Controller: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let w = UIScreen.main().bounds.size.width
+        let w = UIScreen.main.bounds.size.width
         
         etSrc = UITextField(frame: CGRect(x: 8, y: 64 + 8, width: w - 16, height: 32))
         etSrc?.borderStyle = UITextBorderStyle.roundedRect
@@ -27,7 +27,7 @@ class MD5Controller: UIViewController {
         btnGo = UIButton(type: UIButtonType.system)
         btnGo?.frame = CGRect(x: 8, y: 64 + 88, width: w - 16, height: 32)
         btnGo?.backgroundColor = self.view.tintColor
-        btnGo?.setTitleColor(UIColor.white(), for: [])
+        btnGo?.setTitleColor(UIColor.white, for: [])
         btnGo?.setTitle(STR_BTN_GO, for: [])
         
         btnGo?.addTarget(self, action: #selector(btnClicked(sender:)), for: UIControlEvents.touchDown)

@@ -33,13 +33,13 @@ class RSAController: UIViewController {
         PUBKEY_PATH = "\(DOC)/rsa.pub"
         PRIVKEY_PATH = "\(DOC)/rsa.priv"
         
-        let w = UIScreen.main().bounds.size.width
-        let h = UIScreen.main().bounds.size.height
+        let w = UIScreen.main.bounds.size.width
+        let h = UIScreen.main.bounds.size.height
         
         btnKeypair = UIButton(type: UIButtonType.system)
         btnKeypair?.frame = CGRect(x: 8, y: 64 + 8, width: w - 16, height: 32)
         btnKeypair?.backgroundColor = self.view.tintColor
-        btnKeypair?.setTitleColor(UIColor.white(), for: [])
+        btnKeypair?.setTitleColor(UIColor.white, for: [])
         btnKeypair?.setTitle(STR_BTN_KEYPAIR, for: [])
         tvEncTitle = UILabel(frame: CGRect(x: 8, y: 64 + 48, width: w - 16, height: 32))
         tvEncTitle?.text = STR_ENC
@@ -50,7 +50,7 @@ class RSAController: UIViewController {
         btnEncGo = UIButton(type: UIButtonType.system)
         btnEncGo?.frame = CGRect(x: 8, y: 64 + 168, width: w - 16, height: 32)
         btnEncGo?.backgroundColor = self.view.tintColor
-        btnEncGo?.setTitleColor(UIColor.white(), for: [])
+        btnEncGo?.setTitleColor(UIColor.white, for: [])
         btnEncGo?.setTitle(STR_BTN_GO, for: [])
         
         tvDecTitle = UILabel(frame: CGRect(x: 8, y: 64 + 208, width: w - 16, height: 32))
@@ -62,7 +62,7 @@ class RSAController: UIViewController {
         btnDecGo = UIButton(type: UIButtonType.system)
         btnDecGo?.frame = CGRect(x: 8, y: 64 + 328, width: w - 16, height: 32)
         btnDecGo?.backgroundColor = self.view.tintColor
-        btnDecGo?.setTitleColor(UIColor.white(), for: [])
+        btnDecGo?.setTitleColor(UIColor.white, for: [])
         btnDecGo?.setTitle(STR_BTN_GO, for: [])
         
         tvStatus = UILabel(frame: CGRect(x: 8, y: h - 40, width: w - 16, height: 32))

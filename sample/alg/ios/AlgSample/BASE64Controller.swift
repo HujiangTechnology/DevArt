@@ -22,7 +22,7 @@ class BASE64Controller: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let w = UIScreen.main().bounds.size.width
+        let w = UIScreen.main.bounds.size.width
         
         tvEncTitle = UILabel(frame: CGRect(x: 8, y: 64 + 8, width: w - 16, height: 32))
         tvEncTitle?.text = STR_ENC
@@ -33,7 +33,7 @@ class BASE64Controller: UIViewController {
         btnEncGo = UIButton(type: UIButtonType.system)
         btnEncGo?.frame = CGRect(x: 8, y: 64 + 128, width: w - 16, height: 32)
         btnEncGo?.backgroundColor = self.view.tintColor
-        btnEncGo?.setTitleColor(UIColor.white(), for: [])
+        btnEncGo?.setTitleColor(UIColor.white, for: [])
         btnEncGo?.setTitle(STR_BTN_GO, for: [])
         
         tvDecTitle = UILabel(frame: CGRect(x: 8, y: 64 + 168, width: w - 16, height: 32))
@@ -45,7 +45,7 @@ class BASE64Controller: UIViewController {
         btnDecGo = UIButton(type: UIButtonType.system)
         btnDecGo?.frame = CGRect(x: 8, y: 64 + 288, width: w - 16, height: 32)
         btnDecGo?.backgroundColor = self.view.tintColor
-        btnDecGo?.setTitleColor(UIColor.white(), for: [])
+        btnDecGo?.setTitleColor(UIColor.white, for: [])
         btnDecGo?.setTitle(STR_BTN_GO, for: [])
         
         btnEncGo?.addTarget(self, action: #selector(btnClicked(sender:)), for: UIControlEvents.touchDown)

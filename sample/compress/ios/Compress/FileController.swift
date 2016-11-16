@@ -35,39 +35,39 @@ class FileController: UIViewController {
     }
     
     private func initUI() {
-        let size = UIScreen.main().bounds.size
+        let size = UIScreen.main.bounds.size
         let w = size.width
-        let noffset = self.navigationController!.navigationBar.frame.size.height + UIApplication.shared().statusBarFrame.size.height
+        let noffset = self.navigationController!.navigationBar.frame.size.height + UIApplication.shared.statusBarFrame.size.height
         
         btnMakeTest = UIButton(type: UIButtonType.system)
         btnMakeTest?.frame = CGRect(x: 8, y: noffset + 16, width: w - 16, height: 32)
         btnMakeTest?.backgroundColor = self.view.tintColor
-        btnMakeTest?.setTitleColor(UIColor.white(), for: [])
+        btnMakeTest?.setTitleColor(UIColor.white, for: [])
         btnMakeTest?.setTitle("Make Test", for: [])
         btnCleanTest = UIButton(type: UIButtonType.system)
         btnCleanTest?.frame = CGRect(x: 8, y: noffset + 56, width: w - 16, height: 32)
         btnCleanTest?.backgroundColor = self.view.tintColor
-        btnCleanTest?.setTitleColor(UIColor.white(), for: [])
+        btnCleanTest?.setTitleColor(UIColor.white, for: [])
         btnCleanTest?.setTitle("Clean Test", for: [])
         btnCleanUnzip = UIButton(type: UIButtonType.system)
         btnCleanUnzip?.frame = CGRect(x: 8, y: noffset + 96, width: w - 16, height: 32)
         btnCleanUnzip?.backgroundColor = self.view.tintColor
-        btnCleanUnzip?.setTitleColor(UIColor.white(), for: [])
+        btnCleanUnzip?.setTitleColor(UIColor.white, for: [])
         btnCleanUnzip?.setTitle("Clean Unzip", for: [])
         btnShowTest = UIButton(type: UIButtonType.system)
         btnShowTest?.frame = CGRect(x: 8, y: noffset + 136, width: w - 16, height: 32)
         btnShowTest?.backgroundColor = self.view.tintColor
-        btnShowTest?.setTitleColor(UIColor.white(), for: [])
+        btnShowTest?.setTitleColor(UIColor.white, for: [])
         btnShowTest?.setTitle("Show Test", for: [])
         btnShowUnzip = UIButton(type: UIButtonType.system)
         btnShowUnzip?.frame = CGRect(x: 8, y: noffset + 176, width: w - 16, height: 32)
         btnShowUnzip?.backgroundColor = self.view.tintColor
-        btnShowUnzip?.setTitleColor(UIColor.white(), for: [])
+        btnShowUnzip?.setTitleColor(UIColor.white, for: [])
         btnShowUnzip?.setTitle("Show Unzip", for: [])
         btnShowSD = UIButton(type: UIButtonType.system)
         btnShowSD?.frame = CGRect(x: 8, y: noffset + 216, width: w - 16, height: 32)
         btnShowSD?.backgroundColor = self.view.tintColor
-        btnShowSD?.setTitleColor(UIColor.white(), for: [])
+        btnShowSD?.setTitleColor(UIColor.white, for: [])
         btnShowSD?.setTitle("Show Root", for: [])
         
         self.view.addSubview(btnMakeTest!)
@@ -111,7 +111,7 @@ class FileController: UIViewController {
     
     private func makeTest() {
         // TODO: make test
-        let mgr = FileManager.default()
+        let mgr = FileManager.default
         var isDir: ObjCBool = false
         if (mgr.fileExists(atPath: SDZIPSRC!, isDirectory: &isDir)) {
             if (isDir.boolValue) {
@@ -137,7 +137,7 @@ class FileController: UIViewController {
     
     private func cleanTest() {
         // TODO: clean test
-        let mgr = FileManager.default()
+        let mgr = FileManager.default
         do {
             try mgr.removeItem(atPath: SDZIPSRC!)
             showAlert(msg: "clean test ok")
@@ -148,7 +148,7 @@ class FileController: UIViewController {
     
     private func cleanUnzip() {
         // TODO: clean unzip
-        let mgr = FileManager.default()
+        let mgr = FileManager.default
         do {
             try mgr.removeItem(atPath: SDUNZIPDEST!)
             showAlert(msg: "clean unzip ok")
@@ -160,7 +160,7 @@ class FileController: UIViewController {
     
     private func showTest() {
         // TODO: show test
-        let mgr = FileManager.default()
+        let mgr = FileManager.default
         var str = ""
         let ar = mgr.subpaths(atPath: SDZIPSRC!)
         if (ar != nil) {
@@ -173,7 +173,7 @@ class FileController: UIViewController {
     
     private func showUnzip() {
         // TODO: show unzip
-        let mgr = FileManager.default()
+        let mgr = FileManager.default
         var str = ""
         let ar = mgr.subpaths(atPath: SDUNZIPDEST!)
         if (ar != nil) {
@@ -185,7 +185,7 @@ class FileController: UIViewController {
     }
     
     private func showSD() {
-        let mgr = FileManager.default()
+        let mgr = FileManager.default
         do {
             let ar = try mgr.contentsOfDirectory(atPath: DOC!)
             var str = ""

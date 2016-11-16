@@ -75,10 +75,10 @@ class ViewController: UIViewController {
     }
     
     private func initUI() {
-        let size = UIScreen.main().bounds.size
+        let size = UIScreen.main.bounds.size
         let w = size.width
         let h = size.height
-        let noffset = self.navigationController!.navigationBar.frame.size.height + UIApplication.shared().statusBarFrame.size.height
+        let noffset = self.navigationController!.navigationBar.frame.size.height + UIApplication.shared.statusBarFrame.size.height
         tvSrc = UILabel(frame: CGRect(x: 8, y: noffset + 16, width: w / 4, height: 32))
         tvSrc?.text = "Source"
         tvDest = UILabel(frame: CGRect(x: 8, y: noffset + 56, width: w / 4, height: 32))
@@ -92,22 +92,22 @@ class ViewController: UIViewController {
         spFormat = UIButton(type: UIButtonType.system)
         spFormat?.frame = CGRect(x: w / 4 + 8, y: noffset + 96, width: w * 2 / 4 - 24, height: 32)
         spFormat?.backgroundColor = self.view.tintColor
-        spFormat?.setTitleColor(UIColor.white(), for: [])
+        spFormat?.setTitleColor(UIColor.white, for: [])
         tvFormatHint = UILabel(frame: CGRect(x: w * 3 / 4, y: noffset + 96, width: w / 4, height: 32))
         btnZip = UIButton(type: UIButtonType.system)
         btnZip?.frame = CGRect(x: 8, y: noffset + 136, width: w / 2 - 8, height: 32)
         btnZip?.backgroundColor = self.view.tintColor
-        btnZip?.setTitleColor(UIColor.white(), for: [])
+        btnZip?.setTitleColor(UIColor.white, for: [])
         btnZip?.setTitle("Zip", for: [])
         btnUnzip = UIButton(type: UIButtonType.system)
         btnUnzip?.frame = CGRect(x: w / 2 + 8, y: noffset + 136, width: w / 2 - 16, height: 32)
         btnUnzip?.backgroundColor = self.view.tintColor
-        btnUnzip?.setTitleColor(UIColor.white(), for: [])
+        btnUnzip?.setTitleColor(UIColor.white, for: [])
         btnUnzip?.setTitle("Unzip", for: [])
         btnGo = UIButton(type: UIButtonType.system)
         btnGo?.frame = CGRect(x: 8, y: noffset + 176, width: w - 16, height: 32)
         btnGo?.backgroundColor = self.view.tintColor
-        btnGo?.setTitleColor(UIColor.white(), for: [])
+        btnGo?.setTitleColor(UIColor.white, for: [])
         btnGo?.setTitle("GO! GO! GO", for: [])
         svLog = UIScrollView(frame: CGRect(x: 8, y: noffset + 216, width: w - 16, height: h - noffset - 216 - 8))
         svLog?.contentSize = svLog!.frame.size
