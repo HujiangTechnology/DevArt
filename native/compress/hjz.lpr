@@ -207,6 +207,8 @@ begin
   size := Int64(env^^.CallLongMethodA(env, objFile, mLength, nil));
   ret := IntToStr(size);
   Result := stringToJString(env, ret);
+  env^^.DeleteLocalRef(env, obj);
+  env^^.DeleteLocalRef(env, clsFile);
 end;
 
 exports
